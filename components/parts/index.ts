@@ -1,0 +1,5 @@
+export * from './Curriculum/Curriculum'
+export * from './Footer/Footer'
+export * from './Header/Header'
+export * from './SocialLinks/SocialLinks'
+export * from './SkillSet/SkillSet'

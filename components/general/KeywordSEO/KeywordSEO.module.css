@@ -1,0 +1,3 @@
+.keywords {
+    @apply absolute invisible opacity-0 pointer-events-none;
+}
