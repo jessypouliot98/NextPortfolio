@@ -54,7 +54,7 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                   )}>
                     <span>{job.title}</span>
                     <span>{' at '}</span>
-                    <a className={'font-bold text-blue-500 hover:text-blue-400'} href={job.companyLink} target={'_blank'} rel="noreferrer">{job.companyName}</a>
+                    <Link className={'font-bold text-blue-500 hover:text-blue-400'} href={job.companyLink} target={'_blank'}>{job.companyName}</Link>
                   </h3>
                   {job.startDate && (
                     <h6 className={clsx(

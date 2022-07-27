@@ -4,7 +4,7 @@ import {FaExternalLinkAlt} from "react-icons/all";
 
 import {useProjectList} from "@/hooks/projects";
 
-import {Section, SectionTitle} from "@/components/general";
+import {KeywordSEO, Section, SectionTitle} from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import {StylishBox} from "@/components/general/StylishBox/StylishBox";
 import {PageDefaultLayout} from "@/components/layout";
@@ -27,6 +27,9 @@ const Project: NextPage = () => {
         <SectionTitle>
           {project.name}
         </SectionTitle>
+        {project.keywords && (
+          <KeywordSEO keywords={project.keywords}/>
+        )}
         <StylishBox className={'mb-2'} effects={[
           { top: -10, left: -10, blur: true },
           { top: 200, right: 50, blur: true },

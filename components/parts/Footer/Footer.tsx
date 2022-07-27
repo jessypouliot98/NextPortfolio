@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import {SocialLinks} from "@/components/parts";
+import Link from "@/components/general/Link/Link";
 
 export type FooterProps = {}
 
@@ -14,7 +15,11 @@ export const Footer: React.FC<FooterProps> = () => {
       )}
     >
       <SocialLinks />
-      <div className={'flex-1 text-center'}>Built & Designed by Jessy Pouliot</div>
+      <div className={'flex-1 text-center'}>
+        <Link className={'hover:underline'} href={'https://github.com/jessypouliot98/NextPortfolio'} target={'_blank'}>
+          Built & Designed by Jessy Pouliot
+        </Link>
+      </div>
     </footer>
   )
 }

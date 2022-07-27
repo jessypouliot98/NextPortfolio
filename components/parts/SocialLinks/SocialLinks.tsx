@@ -1,6 +1,7 @@
 import React from "react";
 import {FaEnvelope, FaGithub, FaLinkedinIn} from "react-icons/fa";
 import clsx from "clsx";
+import Link from "@/components/general/Link/Link";
 
 export type SocialLinksProps = {};
 
@@ -36,7 +37,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
         >
           {socials.map((social) => (
             <li key={social.title} className={'p-1'}>
-              <a
+              <Link
                 className={clsx(
                   'w-11 h-11 rounded flex-center transition',
                   'bg-transparent',
@@ -45,11 +46,10 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
                 )}
                 href={social.link}
                 target={'_blank'}
-                rel="noreferrer"
                 title={social.title}
               >
                 {social.icon}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

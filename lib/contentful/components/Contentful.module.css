@@ -1,6 +1,6 @@
 .wrapper ul,
 .wrapper ol {
-    @apply pl-3;
+    @apply pl-4;
 }
 
 .wrapper ul {
@@ -9,6 +9,10 @@
 
 .wrapper ol {
     @apply list-decimal;
+}
+
+.wrapper li {
+    @apply mb-2;
 }
 
 .wrapper a {
