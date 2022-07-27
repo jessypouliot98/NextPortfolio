@@ -1,8 +1,11 @@
+import { Document } from "@contentful/rich-text-types";
+
 export type Project = {
   name: string,
   slug: string,
   link?: string,
   keywords?: string[],
+  content: Document,
 };
 
 export type ProjectState = {

@@ -1,0 +1,16 @@
+.wrapper ul,
+.wrapper ol {
+    @apply pl-3;
+}
+
+.wrapper ul {
+    @apply list-custom;
+}
+
+.wrapper ol {
+    @apply list-decimal;
+}
+
+.wrapper a {
+    @apply text-blue-500 hover:text-blue-400 underline;
+}

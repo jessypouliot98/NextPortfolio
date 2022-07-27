@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import {FaEnvelope, FaGithub, FaLinkedinIn} from "react-icons/fa";
 
 export type SocialLinksProps = {};
 
@@ -7,23 +8,23 @@ const socials = [
   {
     title: 'GitHub',
     link: 'https://github.com/jessypouliot98',
-    icon: '⨷',
+    icon: <FaGithub size={'1.5rem'} />,
   },
   {
     title: 'LinkedIn',
     link: 'https://www.linkedin.com/in/jessypouliot/',
-    icon: '📤',
+    icon: <FaLinkedinIn size={'1.5rem'} />,
   },
   {
     title: 'Mail',
     link: 'mailto:jessypouliot98@gmail.com',
-    icon: '✉️',
+    icon: <FaEnvelope size={'1.5rem'} />,
   }
 ];
 
 export const SocialLinks: React.FC<SocialLinksProps> = () => {
   return (
-    <div className={'lg:fixed bottom-0 right-0'}>
+    <div className={'lg:fixed z-50 bottom-0 right-0'}>
       <div className={'mb-2 lg:mb-0 lg:p-5'}>
         <ul
           className={clsx(

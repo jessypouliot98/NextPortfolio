@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = () => {
       <nav
         className={clsx(
           height,
-          'transition px-5 flex items-center fixed top-0 left-0 right-0 shadow-lg',
+          'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
           'bg-white dark:bg-blue-500 dark:bg-opacity-90',
         )}
         style={{ transform: `translateY(${positionOffset}%)`}}

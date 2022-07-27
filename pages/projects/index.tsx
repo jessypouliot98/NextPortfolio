@@ -5,6 +5,7 @@ import {PageDefaultLayout} from "../../components/layout";
 import {useProjectList} from "../../hooks/projects/useProjectList";
 import {useFilterQuery} from "../../hooks/filter/useFilterQuery";
 import {useMemo} from "react";
+import {StylishBox} from "../../components/general/StylishBox/StylishBox";
 
 const Projects: NextPage = () => {
   const { projects: allProjects } = useProjectList();
@@ -29,7 +30,16 @@ const Projects: NextPage = () => {
             </div>
           )}
         </div>
-        <ProjectList projects={projects} />
+        <StylishBox effects={[
+          { top: -30, right: '33%', blur: false },
+          { top: 130, left: '15%', blur: true },
+          { top: 280, right: '35%', blur: true },
+          { top: 330, left: -30, blur: false },
+          { top: 560, left: '25%', blur: true },
+          { top: 700, right: -15, blur: false },
+        ]}>
+          <ProjectList projects={projects} />
+        </StylishBox>
       </Section>
     </PageDefaultLayout>
   )

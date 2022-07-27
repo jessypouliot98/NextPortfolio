@@ -5,6 +5,7 @@ import {Curriculum, SkillSet} from "../components/parts";
 import {ProjectList} from "../components/parts/ProjectList/ProjectList";
 import {useProjectList} from "../hooks/projects/useProjectList";
 import {useMemo} from "react";
+import {StylishBox} from "../components/general/StylishBox/StylishBox";
 
 const SHORT_PROJECT_LIST_COUNT = 6;
 
@@ -24,12 +25,22 @@ const Home: NextPage = () => {
 
       <Section>
         <SectionTitle>Portfolio</SectionTitle>
-        <ProjectList projects={projects}/>
+        <StylishBox effects={[
+          { top: -10, left: '33%', blur: true },
+        ]}>
+          <ProjectList projects={projects}/>
+        </StylishBox>
       </Section>
 
       <Section>
         <SectionTitle>Curriculum</SectionTitle>
-        <Curriculum />
+        <StylishBox effects={[
+          { bottom: 50, left: -30 },
+          { top: -50, right: -80 },
+          { bottom: -80, right: -80 },
+        ]}>
+          <Curriculum />
+        </StylishBox>
       </Section>
 
       <Section>

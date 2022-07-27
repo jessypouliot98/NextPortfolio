@@ -3,10 +3,11 @@ import type {AppContext, AppProps} from 'next/app'
 import {Provider} from "react-redux";
 import {createStore, getStore, initializeStore, RootState} from "../store/store";
 import App from "next/app";
-import {getProjects} from "../lib/contentful/contentful";
+import {getCurriculum, getProjects} from "../lib/contentful/api/contentful";
 import {useEffect, useState} from "react";
 import {setProjects} from "../store/project/actions";
 import {isWeb} from "../utils/platform";
+import {setJobs} from "../store/curriculum/actions";
 
 export type MyAppProps = AppProps & {
   initialState?: RootState,
@@ -40,10 +41,14 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     return appProps;
   }
 
-  const projectPage = await getProjects();
+  const [projectPage, curriculumPage] = await Promise.all([
+    getProjects(),
+    getCurriculum(),
+  ]);
 
   const store = createStore();
   store.dispatch(setProjects(projectPage.projects));
+  store.dispatch(setJobs(curriculumPage.jobs));
 
   const props: MyAppProps = {
     ...appProps as AppProps,
