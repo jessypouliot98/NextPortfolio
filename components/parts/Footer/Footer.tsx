@@ -1,6 +1,7 @@
 import React from "react";
-import {SocialLinks} from "../SocialLinks/SocialLinks";
 import clsx from "clsx";
+
+import {SocialLinks} from "@/components/parts";
 
 export type FooterProps = {}
 

@@ -1,8 +1,9 @@
 import React, {useRef} from "react";
-import {ScrollDir, useDocumentScroll} from "../../../hooks";
 import clsx from "clsx";
-import {useInnerFocus} from "../../../hooks/document/useInnerFocus";
-import Link from "../../general/Link/Link";
+
+import {ScrollDir, useDocumentScroll, useInnerFocus} from "@/hooks/document";
+
+import Link from "@/components/general/Link/Link";
 
 export type HeaderProps = {}
 

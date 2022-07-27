@@ -1,8 +1,9 @@
+import React from "react";
 import {documentToReactComponents} from "@contentful/rich-text-react-renderer";
 import {Document} from "@contentful/rich-text-types";
-import React from "react";
-import styles from './Contentful.module.css'
 import clsx from "clsx";
+
+import styles from './Contentful.module.css'
 
 export type ContentfulDisplayProps = {
   className?: string,

@@ -1,3 +1,53 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals"
+  ],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^react",
+            "^next",
+            "^@?react([-\\w]*)?",
+            "^@?\\w"
+          ],
+          [
+            "./store",
+            "./store/[\\\\w_-]+/types$",
+            "./store/[\\\\w_-]+/reducer$",
+            "./store/[\\\\w_-]+/actions$",
+            "./store/[\\\\w_-]+/selectors$",
+            "./store/.*$"
+          ],
+          [
+            "./hooks$",
+            "./hooks/.*$",
+            "./utils",
+            "./utils/.*$"
+          ],
+          [
+            "./components$",
+            "./components/.*$"
+          ],
+          [
+            "./style(s)",
+            "./style(s)/.*$",
+            "\\.css$"
+          ]
+        ]
+      }
+    ]
+  }
 }

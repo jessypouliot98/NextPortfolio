@@ -1,7 +1,8 @@
-import {createClient, Entry} from "contentful";
-import {Project} from "../../../store/project/type";
 import getConfig from 'next/config';
-import {Job} from "../../../store/curriculum/type";
+import {createClient, Entry} from "contentful";
+
+import {Job} from "@/store/curriculum/type";
+import {Project} from "@/store/project/type";
 
 type ContentfulProjectPage = {
   title: string,

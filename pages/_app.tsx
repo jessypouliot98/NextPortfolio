@@ -1,13 +1,17 @@
-import '../styles/globals.css'
-import type {AppContext, AppProps} from 'next/app'
-import {Provider} from "react-redux";
-import {createStore, getStore, initializeStore, RootState} from "../store/store";
-import App from "next/app";
-import {getCurriculum, getProjects} from "../lib/contentful/api/contentful";
 import {useEffect, useState} from "react";
-import {setProjects} from "../store/project/actions";
-import {isWeb} from "../utils/platform";
-import {setJobs} from "../store/curriculum/actions";
+import type {AppContext, AppProps} from 'next/app'
+import App from "next/app";
+import {Provider} from "react-redux";
+
+import {setJobs} from "@/store/curriculum/actions";
+import {setProjects} from "@/store/project/actions";
+import {createStore, getStore, initializeStore, RootState} from "@/store/store";
+
+import {isWeb} from "@/utils/platform";
+
+import '@/styles/globals.css'
+
+import {getCurriculum, getProjects} from "@/lib/contentful/api/contentful";
 
 export type MyAppProps = AppProps & {
   initialState?: RootState,

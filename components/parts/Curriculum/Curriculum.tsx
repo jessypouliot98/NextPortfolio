@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import clsx from "clsx";
-import {Card} from "../../general";
-import {useRootSelector} from "../../../store/store";
-import Link from "../../general/Link/Link";
-import {getMonthYear} from "../../../utils/date";
-import {ContentfulDisplay} from "../../../lib/contentful/components/ContentfulDisplay";
+
+import {useRootSelector} from "@/store/store";
+
+import {getMonthYear} from "@/utils/date";
+
+import {Card} from "@/components/general";
+import Link from "@/components/general/Link/Link";
+import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
+
 import styles from './Curriculum.module.css';
 
 export type CurricuclumProps = { };
@@ -50,7 +54,7 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                   )}>
                     <span>{job.title}</span>
                     <span>{' at '}</span>
-                    <a href={job.companyLink} target={'_blank'} className={'font-bold text-blue-500 hover:text-blue-400'}>{job.companyName}</a>
+                    <a className={'font-bold text-blue-500 hover:text-blue-400'} href={job.companyLink} target={'_blank'} rel="noreferrer">{job.companyName}</a>
                   </h3>
                   {job.startDate && (
                     <h6 className={clsx(

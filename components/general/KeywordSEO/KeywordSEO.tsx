@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from './KeywordSEO.module.css';
 
 export type KeywordSEOProps = {

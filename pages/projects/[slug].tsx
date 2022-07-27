@@ -1,13 +1,14 @@
 import type { NextPage } from 'next'
-import {Section, SectionTitle} from "../../components/general";
-import {PageDefaultLayout} from "../../components/layout";
-import {useProjectList} from "../../hooks/projects/useProjectList";
 import {useRouter} from "next/router";
-import Link from "../../components/general/Link/Link";
-import {ContentfulDisplay} from "../../lib/contentful/components/ContentfulDisplay";
-import {StylishBox} from "../../components/general/StylishBox/StylishBox";
-import {RatioContainer} from "../../components/general/RatioContainer/RatioContainer";
-import {FaExternalLinkAlt, FaExternalLinkSquareAlt} from "react-icons/all";
+import {FaExternalLinkAlt} from "react-icons/all";
+
+import {useProjectList} from "@/hooks/projects";
+
+import {Section, SectionTitle} from "@/components/general";
+import Link from "@/components/general/Link/Link";
+import {StylishBox} from "@/components/general/StylishBox/StylishBox";
+import {PageDefaultLayout} from "@/components/layout";
+import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
 
 const Project: NextPage = () => {
   const router = useRouter();

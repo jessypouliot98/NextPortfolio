@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import clsx from "clsx";
-import {Footer, Header} from "../../../parts";
+
+import {Footer, Header} from "@/components/parts";
 
 export type PageDefaultLayoutProps = {
   children: React.ReactNode,

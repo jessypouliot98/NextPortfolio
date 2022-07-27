@@ -1,11 +1,13 @@
-import type { NextPage } from 'next'
-import {Button, Section, SectionTitle} from "../../components/general";
-import {ProjectList} from "../../components/parts/ProjectList/ProjectList";
-import {PageDefaultLayout} from "../../components/layout";
-import {useProjectList} from "../../hooks/projects/useProjectList";
-import {useFilterQuery} from "../../hooks/filter/useFilterQuery";
 import {useMemo} from "react";
-import {StylishBox} from "../../components/general/StylishBox/StylishBox";
+import type { NextPage } from 'next'
+
+import {useFilterQuery} from "@/hooks/filter";
+import {useProjectList} from "@/hooks/projects";
+
+import {Button, Section, SectionTitle} from "@/components/general";
+import {StylishBox} from "@/components/general/StylishBox/StylishBox";
+import {PageDefaultLayout} from "@/components/layout";
+import {ProjectList} from "@/components/parts/ProjectList/ProjectList";
 
 const Projects: NextPage = () => {
   const { projects: allProjects } = useProjectList();

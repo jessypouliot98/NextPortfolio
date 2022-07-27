@@ -1,11 +1,13 @@
-import type { NextPage } from 'next'
-import { PageDefaultLayout } from "../components/layout";
-import {Section, SectionTitle} from "../components/general";
-import {Curriculum, SkillSet} from "../components/parts";
-import {ProjectList} from "../components/parts/ProjectList/ProjectList";
-import {useProjectList} from "../hooks/projects/useProjectList";
 import {useMemo} from "react";
-import {StylishBox} from "../components/general/StylishBox/StylishBox";
+import type { NextPage } from 'next'
+
+import {useProjectList} from "@/hooks/projects";
+
+import {Section, SectionTitle} from "@/components/general";
+import {StylishBox} from "@/components/general/StylishBox/StylishBox";
+import { PageDefaultLayout } from "@/components/layout";
+import {Curriculum, SkillSet} from "@/components/parts";
+import {ProjectList} from "@/components/parts/ProjectList/ProjectList";
 
 const SHORT_PROJECT_LIST_COUNT = 6;
 

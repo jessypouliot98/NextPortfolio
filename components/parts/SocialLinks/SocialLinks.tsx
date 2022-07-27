@@ -1,6 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import {FaEnvelope, FaGithub, FaLinkedinIn} from "react-icons/fa";
+import clsx from "clsx";
 
 export type SocialLinksProps = {};
 
@@ -45,6 +45,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
                 )}
                 href={social.link}
                 target={'_blank'}
+                rel="noreferrer"
                 title={social.title}
               >
                 {social.icon}
