@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { useRouter } from "next/router";
-import { FaExternalLinkAlt } from "react-icons/all";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import { useProjectList } from "@/hooks/projects";
