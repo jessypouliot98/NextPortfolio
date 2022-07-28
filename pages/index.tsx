@@ -22,8 +22,7 @@ const Home: NextPage = () => {
     <PageDefaultLayout>
       <Section>
         <SectionTitle>About me</SectionTitle>
-        <p className={'mb-2'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus delectus deleniti dignissimos, enim fugit hic in minima modi nesciunt nobis non quam quas, qui sint soluta tempora voluptatum! Perferendis, suscipit!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores aut consectetur quia suscipit. Aperiam at corporis culpa dolore, eius ex fugiat, neque officiis optio quam quos rem sapiente sunt.</p>
+        <p>Test deploy successfull ! :)</p>
       </Section>
 
       <Section>
