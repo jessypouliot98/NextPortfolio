@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 
-import {Footer, Header} from "@/components/parts";
+import { Footer, Header } from "@/components/parts";
 
 export type PageDefaultLayoutProps = {
   children: React.ReactNode,
@@ -24,5 +24,5 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children }
       </main>
       <Footer />
     </div>
-  )
-}
+  );
+};

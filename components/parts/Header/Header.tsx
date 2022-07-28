@@ -1,7 +1,7 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import clsx from "clsx";
 
-import {ScrollDir, useDocumentScroll, useInnerFocus} from "@/hooks/document";
+import { ScrollDir, useDocumentScroll, useInnerFocus } from "@/hooks/document";
 
 import Link from "@/components/general/Link/Link";
 
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const handleToggleTheme = () => {
     window.document.body.classList.toggle('dark');
-  }
+  };
 
   const linkStyle = clsx(
     'transition p-2 rounded',
@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = () => {
           'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
           'bg-white dark:bg-blue-500 dark:bg-opacity-90',
         )}
-        style={{ transform: `translateY(${positionOffset}%)`}}
+        style={{ transform: `translateY(${positionOffset}%)` }}
       >
         <div className={'p-2'}>
           <Link className={linkStyle} href={'/'}>
@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = () => {
               Toggle Theme
             </button>
           </li>
-          {links.map(({ link, title}) => (
+          {links.map(({ link, title }) => (
             <li key={title} className={'p-2'}>
               <Link className={linkStyle} href={link}>
                 {title}
@@ -65,5 +65,5 @@ export const Header: React.FC<HeaderProps> = () => {
         </ul>
       </nav>
     </header>
-  )
-}
+  );
+};

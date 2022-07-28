@@ -1,8 +1,8 @@
 import getConfig from 'next/config';
-import {createClient, Entry} from "contentful";
+import { createClient, Entry } from "contentful";
 
-import {Job} from "@/store/curriculum/type";
-import {Project} from "@/store/project/type";
+import { Job } from "@/store/curriculum/type";
+import { Project } from "@/store/project/type";
 
 type ContentfulProjectPage = {
   title: string,
@@ -35,7 +35,7 @@ const getClient = () => {
     space: serverRuntimeConfig.CONTENTFUL_SPACE_ID as string,
     accessToken: serverRuntimeConfig.CONTENTFUL_ACCESS_TOKEN as string,
   });
-}
+};
 
 export const getProjects = async () => {
   const entry = await getClient().getEntry<ContentfulProjectPage>('9Fvhg1FFcvesojFqhg6PK');
@@ -48,7 +48,7 @@ export const getProjects = async () => {
   };
 
   return projectPage;
-}
+};
 
 export const getCurriculum = async () => {
   const entry = await getClient().getEntry<ContentfulCurriculumPage>('6FVeb5FsvzCHdWgz85Dclx');
@@ -61,4 +61,4 @@ export const getCurriculum = async () => {
   };
 
   return projectPage;
-}
+};

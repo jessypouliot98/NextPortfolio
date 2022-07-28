@@ -13,5 +13,5 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
     )}>
       {children}
     </h2>
-  )
-}
+  );
+};

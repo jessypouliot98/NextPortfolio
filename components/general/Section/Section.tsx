@@ -14,5 +14,5 @@ export const Section: React.FC<SectionProps> = ({ children, className }) => {
     )}>
       {children}
     </section>
-  )
-}
+  );
+};

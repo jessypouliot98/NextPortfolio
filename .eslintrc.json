@@ -13,6 +13,8 @@
         "varsIgnorePattern": "^_"
       }
     ],
+    "semi": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
     "simple-import-sort/imports": [
       "error",
       {
@@ -21,7 +23,8 @@
             "^react",
             "^next",
             "^@?react([-\\w]*)?",
-            "^@?\\w"
+            "^@?\\w",
+            "./lib/.*$"
           ],
           [
             "./store",

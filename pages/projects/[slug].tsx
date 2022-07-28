@@ -1,21 +1,21 @@
-import type { NextPage } from 'next'
-import {useRouter} from "next/router";
-import {FaExternalLinkAlt} from "react-icons/all";
+import type { NextPage } from 'next';
+import { useRouter } from "next/router";
+import { FaExternalLinkAlt } from "react-icons/all";
+import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import {useProjectList} from "@/hooks/projects";
+import { useProjectList } from "@/hooks/projects";
 
-import {KeywordSEO, Section, SectionTitle} from "@/components/general";
+import { KeywordSEO, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
-import {StylishBox} from "@/components/general/StylishBox/StylishBox";
-import {PageDefaultLayout} from "@/components/layout";
-import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
+import { StylishBox } from "@/components/general/StylishBox/StylishBox";
+import { PageDefaultLayout } from "@/components/layout";
 
 const Project: NextPage = () => {
   const router = useRouter();
   const query = router.query;
   const { projects } = useProjectList();
 
-  const project = projects.find(({ slug }) => slug === query.slug)
+  const project = projects.find(({ slug }) => slug === query.slug);
 
   if (!project) {
     return null;
@@ -50,7 +50,7 @@ const Project: NextPage = () => {
         </div>
       </Section>
     </PageDefaultLayout>
-  )
-}
+  );
+};
 
-export default Project
+export default Project;

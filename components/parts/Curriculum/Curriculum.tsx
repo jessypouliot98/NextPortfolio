@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
+import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import {useRootSelector} from "@/store/store";
+import { useRootSelector } from "@/store/store";
 
-import {getMonthYear} from "@/utils/date";
+import { getMonthYear } from "@/utils/date";
 
-import {Card} from "@/components/general";
+import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
-import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
 
 import styles from './Curriculum.module.css';
 
@@ -38,7 +38,7 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                   {job.companyName}
                 </button>
               </li>
-            )
+            );
           })}
         </ul>
         <ul className={'flex-1'}>
@@ -83,5 +83,5 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
         </ul>
       </div>
     </Card>
-  )
-}
+  );
+};

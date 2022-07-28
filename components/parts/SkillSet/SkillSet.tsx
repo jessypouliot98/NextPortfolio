@@ -17,5 +17,5 @@ export const SkillSet: React.FC<SkillSetProps> = () => {
         <li>Next.js</li>
       </ul>
     </div>
-  )
-}
+  );
+};

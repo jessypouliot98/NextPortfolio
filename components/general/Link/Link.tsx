@@ -31,7 +31,7 @@ const Link: React.FC<LinkProps> = ({ children, ...props }) => {
     href,
     rel: otherProps.target === '_blank' ? 'noreferrer noopener' : undefined,
     ...otherProps,
-  }
+  };
 
   return (
     <NextLink {...linkProps}>
@@ -39,7 +39,7 @@ const Link: React.FC<LinkProps> = ({ children, ...props }) => {
         {children}
       </a>
     </NextLink>
-  )
-}
+  );
+};
 
 export default Link;

@@ -1,13 +1,13 @@
-import {useMemo} from "react";
-import type { NextPage } from 'next'
+import { useMemo } from "react";
+import type { NextPage } from 'next';
 
-import {useFilterQuery} from "@/hooks/filter";
-import {useProjectList} from "@/hooks/projects";
+import { useFilterQuery } from "@/hooks/filter";
+import { useProjectList } from "@/hooks/projects";
 
-import {Button, Section, SectionTitle} from "@/components/general";
-import {StylishBox} from "@/components/general/StylishBox/StylishBox";
-import {PageDefaultLayout} from "@/components/layout";
-import {ProjectList} from "@/components/parts/ProjectList/ProjectList";
+import { Button, Section, SectionTitle } from "@/components/general";
+import { StylishBox } from "@/components/general/StylishBox/StylishBox";
+import { PageDefaultLayout } from "@/components/layout";
+import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
 const Projects: NextPage = () => {
   const { projects: allProjects } = useProjectList();
@@ -44,7 +44,7 @@ const Projects: NextPage = () => {
         </StylishBox>
       </Section>
     </PageDefaultLayout>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

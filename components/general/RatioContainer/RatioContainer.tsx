@@ -16,5 +16,5 @@ export const RatioContainer: React.FC<RatioContainerProps> = ({ children, classN
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

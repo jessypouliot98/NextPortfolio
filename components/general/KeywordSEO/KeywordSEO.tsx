@@ -13,5 +13,5 @@ export const KeywordSEO: React.FC<KeywordSEOProps> = ({ keywords }) => {
         {keywords.map((keyword) => <li key={keyword}>{keyword}</li>)}
       </ul>
     </div>
-  )
-}
+  );
+};

@@ -1,13 +1,14 @@
-import {useMemo} from "react";
-import type { NextPage } from 'next'
+import { useMemo } from "react";
+import type { NextPage } from 'next';
 
-import {useProjectList} from "@/hooks/projects";
+import { useProjectList } from "@/hooks/projects";
 
-import {Section, SectionTitle} from "@/components/general";
-import {StylishBox} from "@/components/general/StylishBox/StylishBox";
+import { Section, SectionTitle } from "@/components/general";
+import Link from "@/components/general/Link/Link";
+import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
-import {Curriculum, SkillSet} from "@/components/parts";
-import {ProjectList} from "@/components/parts/ProjectList/ProjectList";
+import { Curriculum, SkillSet } from "@/components/parts";
+import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
 const SHORT_PROJECT_LIST_COUNT = 6;
 
@@ -27,11 +28,16 @@ const Home: NextPage = () => {
 
       <Section>
         <SectionTitle>Portfolio</SectionTitle>
-        <StylishBox effects={[
+        <StylishBox className={'mb-2'} effects={[
           { top: -10, left: '33%', blur: true },
         ]}>
           <ProjectList projects={projects}/>
         </StylishBox>
+        <div className={'flex flex-row justify-end'}>
+          <Link className={'text-blue-500 hover:text-blue-400'} href={'/projects'}>
+            See all projects
+          </Link>
+        </div>
       </Section>
 
       <Section>
@@ -50,7 +56,7 @@ const Home: NextPage = () => {
         <SkillSet />
       </Section>
     </PageDefaultLayout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

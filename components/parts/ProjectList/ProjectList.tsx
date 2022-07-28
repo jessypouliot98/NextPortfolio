@@ -1,9 +1,9 @@
 import React from "react";
 
-import {Project} from "@/store/project/type";
+import { Project } from "@/store/project/type";
 
-import {Card, FlexGrid} from "@/components/general";
-import {KeywordSEO} from "@/components/general/KeywordSEO/KeywordSEO";
+import { Card, FlexGrid } from "@/components/general";
+import { KeywordSEO } from "@/components/general/KeywordSEO/KeywordSEO";
 import Link from "@/components/general/Link/Link";
 
 export type ProjectListProps = {
@@ -23,4 +23,4 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
       ))}
     </FlexGrid>
   );
-}
+};

@@ -14,9 +14,9 @@ export const FlexGrid: React.FC<FlexGridProps> = ({ children: gridItems, classNa
             <div key={gridItem.key || i} className={'p-2 w-full max-w-full md:max-w-[50%] lg:max-w-[33.33%]'}>
               {gridItem}
             </div>
-          )
+          );
         })}
       </div>
     </div>
   );
-}
+};

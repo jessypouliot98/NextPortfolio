@@ -16,4 +16,4 @@ export const Button: React.FC<ButtonProps> = ({ children, className, disabled, o
       {children}
     </button>
   );
-}
+};

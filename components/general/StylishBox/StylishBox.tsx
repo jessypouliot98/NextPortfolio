@@ -47,10 +47,10 @@ export const StylishBox: React.FC<StylishBoxProps> = ({ children, className, eff
                 )}
                 style={{ top, right, bottom, left }}
               />
-            )
+            );
           })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

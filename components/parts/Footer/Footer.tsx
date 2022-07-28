@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 
-import {SocialLinks} from "@/components/parts";
 import Link from "@/components/general/Link/Link";
+import { SocialLinks } from "@/components/parts";
 
 export type FooterProps = {}
 
@@ -21,5 +21,5 @@ export const Footer: React.FC<FooterProps> = () => {
         </Link>
       </div>
     </footer>
-  )
-}
+  );
+};
