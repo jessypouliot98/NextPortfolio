@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import type { AppContext, AppProps } from 'next/app';
 import App from "next/app";
 import { Provider } from "react-redux";
-import {getCurriculum, getHomePage, getProjects} from "@/lib/contentful/api/contentful";
+import { getCurriculum, getHomePage, getProjects } from "@/lib/contentful/api/contentful";
 
 import { setLang } from "@/store/application/actions";
 import { AppLanguage } from "@/store/application/types";
 import { setJobs } from "@/store/curriculum/actions";
+import { setHomePage, setProjectsPage } from "@/store/pages/actions";
 import { setProjects } from "@/store/project/actions";
 import { createStore, getStore, initializeStore, RootState } from "@/store/store";
 
 import { isWeb } from "@/utils/platform";
 
 import '@/styles/globals.css';
-import {setHomePage, setProjectsPage} from "@/store/pages/actions";
 
 export type MyAppProps = AppProps & {
   initialState?: RootState,

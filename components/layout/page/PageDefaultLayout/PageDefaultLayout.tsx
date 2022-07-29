@@ -1,8 +1,8 @@
 import React from "react";
+import Head from "next/head";
 import clsx from "clsx";
 
 import { Footer, Header } from "@/components/parts";
-import Head from "next/head";
 
 export type PageDefaultLayoutProps = {
   children: React.ReactNode,

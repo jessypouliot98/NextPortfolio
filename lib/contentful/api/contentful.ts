@@ -3,8 +3,8 @@ import { createClient, Entry } from "contentful";
 
 import { AppLanguage } from "@/store/application/types";
 import { Job } from "@/store/curriculum/type";
+import { HomePage } from "@/store/pages/type";
 import { Project } from "@/store/project/type";
-import {HomePage} from "@/store/pages/type";
 
 type ContentfulProjectPage = {
   title: string,
@@ -93,4 +93,4 @@ export const getHomePage = async ({ lang }: BaseApiParams) => {
   };
 
   return homePage;
-}
+};

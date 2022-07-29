@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import type { NextPage } from 'next';
 
+import { useRootSelector } from "@/store/store";
+
 import { useFilterQuery } from "@/hooks/filter";
 import { useProjectList } from "@/hooks/projects";
 
@@ -8,7 +10,6 @@ import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
-import {useRootSelector} from "@/store/store";
 
 const Projects: NextPage = () => {
   const projectsPage = useRootSelector((state) => state.pagesState.pages.projects)!;

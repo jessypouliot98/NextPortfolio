@@ -1,5 +1,8 @@
 import { useMemo } from "react";
 import type { NextPage } from 'next';
+import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
+
+import { useRootSelector } from "@/store/store";
 
 import { useProjectList } from "@/hooks/projects";
 
@@ -9,8 +12,6 @@ import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
-import {useRootSelector} from "@/store/store";
-import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
 
 const Home: NextPage = () => {
   const homePage = useRootSelector((state) => state.pagesState.pages.home)!;
