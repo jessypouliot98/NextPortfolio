@@ -37,10 +37,10 @@ export const CardImage: React.FC<CardImageProps> = (props) => {
         <div
           className={clsx(
             baseImageClass,
-            'filter blur-md saturate-50 dark:saturate-0 opacity-100',
+            'filter blur-sm saturate-50 dark:saturate-0 opacity-100',
             'group-hover:opacity-0',
-            'bg-blue-800 bg-blend-overlay',
-            'scale-125'
+            'bg-blue-500 bg-blend-multiply',
+            'scale-110'
           )}
           style={baseImageStyle}
         />

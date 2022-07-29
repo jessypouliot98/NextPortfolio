@@ -7,24 +7,27 @@ import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
-import { Curriculum, SkillSet } from "@/components/parts";
+import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
+import {useRootSelector} from "@/store/store";
+import {ContentfulDisplay} from "@/lib/contentful/components/ContentfulDisplay";
 
 const Home: NextPage = () => {
+  const homePage = useRootSelector((state) => state.pagesState.pages.home)!;
   const { projects: allProjects } = useProjectList();
   const projects = useMemo(() => {
     return allProjects.filter((project) => project.keywords?.includes('featured'));
   }, [allProjects]);
 
   return (
-    <PageDefaultLayout>
+    <PageDefaultLayout title={homePage.title}>
       <Section>
-        <SectionTitle>About me</SectionTitle>
-        <p>Test deploy successfull ! :)</p>
+        <SectionTitle>{homePage.aboutMeTitle}</SectionTitle>
+        <ContentfulDisplay document={homePage.aboutMeContent} />
       </Section>
 
       <Section>
-        <SectionTitle>Portfolio</SectionTitle>
+        <SectionTitle>{homePage.featuredProjectsTitle}</SectionTitle>
         <StylishBox className={'mb-2'} effects={[
           { top: -10, left: '33%', blur: true },
         ]}>
@@ -49,8 +52,8 @@ const Home: NextPage = () => {
       </Section>
 
       <Section>
-        <SectionTitle>Skill set</SectionTitle>
-        <SkillSet />
+        <SectionTitle>{homePage.skillSetTitle}</SectionTitle>
+        <ContentfulDisplay document={homePage.skillSetContent}/>
       </Section>
     </PageDefaultLayout>
   );

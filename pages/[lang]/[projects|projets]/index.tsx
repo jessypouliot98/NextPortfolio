@@ -8,8 +8,10 @@ import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
+import {useRootSelector} from "@/store/store";
 
 const Projects: NextPage = () => {
+  const projectsPage = useRootSelector((state) => state.pagesState.pages.projects)!;
   const { projects: allProjects } = useProjectList();
   const { hasFilter, filter, clearFilter } = useFilterQuery();
 
@@ -22,7 +24,7 @@ const Projects: NextPage = () => {
   }, [filter, allProjects]);
 
   return (
-    <PageDefaultLayout>
+    <PageDefaultLayout title={projectsPage.title}>
       <Section>
         <div className={'flex mb-2'}>
           <SectionTitle>Portfolio</SectionTitle>

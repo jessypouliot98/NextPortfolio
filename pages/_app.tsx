@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { AppContext, AppProps } from 'next/app';
 import App from "next/app";
 import { Provider } from "react-redux";
-import { getCurriculum, getProjects } from "@/lib/contentful/api/contentful";
+import {getCurriculum, getHomePage, getProjects} from "@/lib/contentful/api/contentful";
 
 import { setLang } from "@/store/application/actions";
 import { AppLanguage } from "@/store/application/types";
@@ -13,6 +13,7 @@ import { createStore, getStore, initializeStore, RootState } from "@/store/store
 import { isWeb } from "@/utils/platform";
 
 import '@/styles/globals.css';
+import {setHomePage, setProjectsPage} from "@/store/pages/actions";
 
 export type MyAppProps = AppProps & {
   initialState?: RootState,
@@ -55,12 +56,15 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 
   lang = store.getState().applicationState.lang;
 
-  const [projectPage, curriculumPage] = await Promise.all([
+  const [homePage, projectsPage, curriculumPage] = await Promise.all([
+    getHomePage({ lang }),
     getProjects({ lang }),
     getCurriculum({ lang }),
   ]);
 
-  store.dispatch(setProjects(projectPage.projects));
+  store.dispatch(setHomePage(homePage));
+  store.dispatch(setProjectsPage(projectsPage));
+  store.dispatch(setProjects(projectsPage.projects));
   store.dispatch(setJobs(curriculumPage.jobs));
 
   const props: MyAppProps = {

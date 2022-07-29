@@ -3,9 +3,11 @@ import {curriculumReducer} from "./curriculum/reducer";
 import {projectReducer} from "./project/reducer";
 import {TypedUseSelectorHook, useSelector} from "react-redux";
 import {applicationReducer} from "@/store/application/reducer";
+import {pagesReducer} from "@/store/pages/reducer";
 
 export const rootReducer = combineReducers({
   applicationState: applicationReducer,
+  pagesState: pagesReducer,
   curriculumState: curriculumReducer,
   projectState: projectReducer,
 });

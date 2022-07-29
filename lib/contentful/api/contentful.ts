@@ -4,6 +4,7 @@ import { createClient, Entry } from "contentful";
 import { AppLanguage } from "@/store/application/types";
 import { Job } from "@/store/curriculum/type";
 import { Project } from "@/store/project/type";
+import {HomePage} from "@/store/pages/type";
 
 type ContentfulProjectPage = {
   title: string,
@@ -80,3 +81,16 @@ export const getCurriculum = async ({ lang }: BaseApiParams) => {
 
   return projectPage;
 };
+
+export const getHomePage = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry<HomePage>(
+    'O1yWAroLh52b0wKZtWrVR',
+    getBaseQuery(lang)
+  );
+
+  const homePage = {
+    ...entry.fields,
+  };
+
+  return homePage;
+}
