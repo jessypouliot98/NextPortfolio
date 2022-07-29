@@ -1,4 +1,5 @@
 import { Document } from "@contentful/rich-text-types";
+import {ContentfulMediaImage} from "@/lib/contentful/types";
 
 export type Project = {
   name: string,
@@ -6,6 +7,7 @@ export type Project = {
   link?: string,
   keywords?: string[],
   content: Document,
+  thumbnail?: ContentfulMediaImage,
 };
 
 export type ProjectState = {

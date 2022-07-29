@@ -10,12 +10,10 @@ import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum, SkillSet } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
-const SHORT_PROJECT_LIST_COUNT = 6;
-
 const Home: NextPage = () => {
   const { projects: allProjects } = useProjectList();
   const projects = useMemo(() => {
-    return allProjects.filter((_, i) => i < SHORT_PROJECT_LIST_COUNT);
+    return allProjects.filter((project) => project.keywords?.includes('featured'));
   }, [allProjects]);
 
   return (

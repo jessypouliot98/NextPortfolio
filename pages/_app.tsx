@@ -11,6 +11,8 @@ import { createStore, getStore, initializeStore, RootState } from "@/store/store
 import { isWeb } from "@/utils/platform";
 
 import '@/styles/globals.css';
+import {AppLanguage} from "@/store/application/types";
+import {setLang} from "@/store/application/actions";
 
 export type MyAppProps = AppProps & {
   initialState?: RootState,
@@ -44,12 +46,20 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     return appProps;
   }
 
+  const store = createStore();
+  let lang = appContext.router.query.lang as AppLanguage || undefined;
+
+  if (lang) {
+    store.dispatch(setLang(lang));
+  }
+
+  lang = store.getState().applicationState.lang;
+
   const [projectPage, curriculumPage] = await Promise.all([
-    getProjects(),
-    getCurriculum(),
+    getProjects({ lang }),
+    getCurriculum({ lang }),
   ]);
 
-  const store = createStore();
   store.dispatch(setProjects(projectPage.projects));
   store.dispatch(setJobs(curriculumPage.jobs));
 

@@ -3,6 +3,7 @@ import { createClient, Entry } from "contentful";
 
 import { Job } from "@/store/curriculum/type";
 import { Project } from "@/store/project/type";
+import {AppLanguage} from "@/store/application/types";
 
 type ContentfulProjectPage = {
   title: string,
@@ -37,21 +38,38 @@ const getClient = () => {
   });
 };
 
-export const getProjects = async () => {
-  const entry = await getClient().getEntry<ContentfulProjectPage>('9Fvhg1FFcvesojFqhg6PK');
+type BaseApiParams = { lang: AppLanguage };
+
+const getBaseQuery = (lang: AppLanguage) => {
+  return {
+    locale: lang === 'en' ? 'en-CA' : 'fr-CA',
+  };
+}
+
+export const getProjects = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry<ContentfulProjectPage>(
+    '9Fvhg1FFcvesojFqhg6PK',
+    getBaseQuery(lang),
+  );
 
   const projectPage: ProjectPage = {
     ...entry.fields,
     projects: entry.fields.projects.map((projectEntry) => {
-      return projectEntry.fields;
+      return {
+        ...projectEntry.fields,
+        thumbnail: projectEntry.fields.thumbnail?.fields,
+      };
     })
   };
 
   return projectPage;
 };
 
-export const getCurriculum = async () => {
-  const entry = await getClient().getEntry<ContentfulCurriculumPage>('6FVeb5FsvzCHdWgz85Dclx');
+export const getCurriculum = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry<ContentfulCurriculumPage>(
+    '6FVeb5FsvzCHdWgz85Dclx',
+    getBaseQuery(lang)
+  );
 
   const projectPage: CurriculumPage = {
     ...entry.fields,

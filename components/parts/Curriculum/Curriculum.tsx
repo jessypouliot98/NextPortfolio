@@ -10,10 +10,13 @@ import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import styles from './Curriculum.module.css';
+import {Routes} from "@/utils/link";
+import {useLang} from "@/hooks/app";
 
 export type CurricuclumProps = { };
 
 export const Curriculum: React.FC<CurricuclumProps> = () => {
+  const lang = useLang();
   const { jobs } = useRootSelector((state) => state.curriculumState);
   const [activeJob, setActiveJob] = useState(jobs[0].slug);
 
@@ -30,7 +33,7 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
             return (
               <li key={job.slug} className={clsx(isActive && '-mx-2')}>
                 <button className={clsx(
-                  'w-full py-2 text-center md:text-right',
+                  'transition w-full py-2 text-center md:text-right',
                   isActive ? 'text-white bg-blue-500' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
                   isActive ? 'pl-5 pr-7' : 'px-5',
                   isActive && 'rounded-r',
@@ -73,7 +76,10 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                 </div>
                 <ContentfulDisplay className={styles.richText} document={job.content} />
                 <div className={'flex flex-row-reverse'}>
-                  <Link className={'text-blue-500 hover:text-blue-400'} href={`/projects?filter=${job.companySlug}`}>
+                  <Link
+                    className={'text-blue-500 hover:text-blue-400'}
+                    href={`${Routes.getProjects(lang)}?filter=${job.companySlug}`}
+                  >
                     {`See all ${job.companyName} projects`}
                   </Link>
                 </div>

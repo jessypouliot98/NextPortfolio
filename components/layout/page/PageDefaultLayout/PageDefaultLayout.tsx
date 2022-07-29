@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
 
 import { Footer, Header } from "@/components/parts";
@@ -8,10 +8,6 @@ export type PageDefaultLayoutProps = {
 }
 
 export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children }) => {
-  useEffect(() => {
-    window.document.body.classList.toggle('dark', true);
-  });
-
   return (
     <div className={clsx(
       'relative flex flex-col min-h-screen',
