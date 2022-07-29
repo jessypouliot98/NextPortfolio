@@ -1,6 +1,7 @@
 import React from "react";
-import {Card, CardProps} from "@/components/general";
 import clsx from "clsx";
+
+import { Card, CardProps } from "@/components/general";
 
 export type CardImageProps = CardProps & {
   containerClassName?: string,
@@ -15,7 +16,7 @@ export const CardImage: React.FC<CardImageProps> = (props) => {
     'bg-cover bg-center',
     'transition duration-300 transform',
   );
-  const baseImageStyle = { backgroundImage: `url(${backgroundImage})`};
+  const baseImageStyle = { backgroundImage: `url(${backgroundImage})` };
 
   return (
     <Card
@@ -53,5 +54,5 @@ export const CardImage: React.FC<CardImageProps> = (props) => {
       </div>
 
     </Card>
-  )
-}
+  );
+};

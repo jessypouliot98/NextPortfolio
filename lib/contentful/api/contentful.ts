@@ -1,9 +1,9 @@
 import getConfig from 'next/config';
 import { createClient, Entry } from "contentful";
 
+import { AppLanguage } from "@/store/application/types";
 import { Job } from "@/store/curriculum/type";
 import { Project } from "@/store/project/type";
-import {AppLanguage} from "@/store/application/types";
 
 type ContentfulProjectPage = {
   title: string,
@@ -44,7 +44,7 @@ const getBaseQuery = (lang: AppLanguage) => {
   return {
     locale: lang === 'en' ? 'en-CA' : 'fr-CA',
   };
-}
+};
 
 export const getProjects = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry<ContentfulProjectPage>(
@@ -57,7 +57,7 @@ export const getProjects = async ({ lang }: BaseApiParams) => {
     projects: entry.fields.projects.map((projectEntry) => {
       return {
         ...projectEntry.fields,
-        thumbnail: projectEntry.fields.thumbnail?.fields,
+        thumbnail: (projectEntry.fields.thumbnail as any)?.fields,
       };
     })
   };

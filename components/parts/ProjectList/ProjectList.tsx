@@ -2,12 +2,13 @@ import React from "react";
 
 import { Project } from "@/store/project/type";
 
-import {Card, FlexGrid, RatioContainer} from "@/components/general";
+import { useLang } from "@/hooks/app";
+import { Routes } from "@/utils/link";
+
+import { FlexGrid, RatioContainer } from "@/components/general";
+import { CardImage } from "@/components/general/CardImage/CardImage";
 import { KeywordSEO } from "@/components/general/KeywordSEO/KeywordSEO";
 import Link from "@/components/general/Link/Link";
-import {Routes} from "@/utils/link";
-import {useLang} from "@/hooks/app";
-import {CardImage} from "@/components/general/CardImage/CardImage";
 
 export type ProjectListProps = {
   projects: Project[],
@@ -19,9 +20,8 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   return (
     <FlexGrid>
       {projects.map((project) => (
-        <RatioContainer ratio={[21,9]}>
+        <RatioContainer key={project.slug} ratio={[21,9]}>
           <Link
-            key={project.slug}
             className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
             href={Routes.getProject(lang, project.slug)}
           >

@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
+import { useRouter } from "next/router";
+import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
 
-import {ScrollDir, useDocumentScroll, useInnerFocus, useTheme} from "@/hooks/document";
+import { useLang } from "@/hooks/app";
+import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
+import { getIsActive, getIsHomeActive, getLink, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
-import {FaMoon, FaSun} from "react-icons/fa";
-import {useRouter} from "next/router";
-import {getIsActive, getIsHomeActive, getLink, Routes} from "@/utils/link";
-import {useLang} from "@/hooks/app";
 
 export type HeaderProps = {}
 
@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = () => {
   ];
 
   const homeHref = Routes.getHome(lang);
-  const [changeLangText, changeLangHref] = router.query.lang === 'en' ? ['FR', '/fr'] : ['EN', '/en'];
+  const changeLangText = router.query.lang === 'en' ? 'FR' : 'EN';
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
   const linkStyle = clsx(

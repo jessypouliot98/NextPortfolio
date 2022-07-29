@@ -4,14 +4,14 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 
 import { useRootSelector } from "@/store/store";
 
+import { useLang } from "@/hooks/app";
 import { getMonthYear } from "@/utils/date";
+import { Routes } from "@/utils/link";
 
 import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import styles from './Curriculum.module.css';
-import {Routes} from "@/utils/link";
-import {useLang} from "@/hooks/app";
 
 export type CurricuclumProps = { };
 
