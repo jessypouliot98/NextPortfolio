@@ -12,11 +12,14 @@ import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import styles from './Curriculum.module.css';
+import {Trans, useTranslation} from "react-i18next";
+import { Translation } from "react-i18next";
 
 export type CurricuclumProps = { };
 
 export const Curriculum: React.FC<CurricuclumProps> = () => {
   const lang = useLang();
+  const { t } = useTranslation();
   const { jobs } = useRootSelector((state) => state.curriculumState);
   const [activeJob, setActiveJob] = useState(jobs[0].slug);
 
@@ -55,9 +58,22 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                     'text-2xl',
                     'text-gray-900 dark:text-gray-100',
                   )}>
-                    <span>{job.title}</span>
-                    <span>{' at '}</span>
-                    <Link className={'font-bold text-blue-500 hover:text-blue-400'} href={job.companyLink} target={'_blank'}>{job.companyName}</Link>
+                    <Trans
+                      i18nKey={'curriculum.jobAtCompany'}
+                      values={{
+                        job: job.title,
+                        companyName: job.companyName,
+                      }}
+                      components={{
+                        Link: (
+                          <Link
+                            className={'font-bold text-blue-500 hover:text-blue-400'}
+                            href={job.companyLink}
+                            target={'_blank'}
+                          />
+                        ),
+                      }}
+                    />
                   </h3>
                   {job.startDate && (
                     <h6 className={clsx(
@@ -69,7 +85,7 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                       {job.endDate ? (
                         <span>{getMonthYear(new Date(job.endDate))}</span>
                       ) : (
-                        <span>{'Present'}</span>
+                        <span>{t('date.present')}</span>
                       )}
                     </h6>
                   )}
@@ -80,7 +96,9 @@ export const Curriculum: React.FC<CurricuclumProps> = () => {
                     className={'text-blue-500 hover:text-blue-400'}
                     href={`${Routes.getProjects(lang)}?filter=${job.companySlug}`}
                   >
-                    {`See all ${job.companyName} projects`}
+                    {t('projects.seeAllCompanyProjects', {
+                      companyName: job.companyName,
+                    })}
                   </Link>
                 </div>
               </li>

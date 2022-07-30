@@ -11,12 +11,14 @@ import { setHomePage, setProjectsPage } from "@/store/pages/actions";
 import { setProjects } from "@/store/project/actions";
 import { createStore, getStore, initializeStore, RootState } from "@/store/store";
 
+import { initI18n } from '@/utils/i18n';
 import { isWeb } from "@/utils/platform";
 
 import '@/styles/globals.css';
 
+
 export type MyAppProps = AppProps & {
-  initialState?: RootState,
+  initialState: RootState,
 }
 
 const MyApp = (props: MyAppProps) => {
@@ -25,6 +27,7 @@ const MyApp = (props: MyAppProps) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
+    initI18n(initialState.applicationState.lang);
     initializeStore(initialState);
     setIsInitialized(true);
   }, []);
@@ -55,6 +58,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   }
 
   lang = store.getState().applicationState.lang;
+  // initI18n(lang);
 
   const [homePage, projectsPage, curriculumPage] = await Promise.all([
     getHomePage({ lang }),

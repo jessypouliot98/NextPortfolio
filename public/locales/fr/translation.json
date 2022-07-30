@@ -1,0 +1,12 @@
+{
+  "date": {
+    "present": "Maintenant"
+  },
+  "projects": {
+    "seeAllProjects": "Voir tout les projets",
+    "seeAllCompanyProjects": "Voir tout les projets de {{companyName}}"
+  },
+  "curriculum": {
+    "jobAtCompany": "{{job}} chez <Link>{{companyName}}</Link>"
+  }
+}
