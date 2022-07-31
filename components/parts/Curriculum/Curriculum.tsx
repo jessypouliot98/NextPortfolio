@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import { useRootSelector } from "@/store/store";
+import { Job } from "@/store/pages/type";
 
 import { useLang } from "@/hooks/app";
 import { getMonthYear } from "@/utils/date";
@@ -12,15 +13,14 @@ import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import styles from './Curriculum.module.css';
-import {Trans, useTranslation} from "react-i18next";
-import { Translation } from "react-i18next";
 
-export type CurricuclumProps = { };
+export type CurricuclumProps = {
+  jobs: Job[],
+};
 
-export const Curriculum: React.FC<CurricuclumProps> = () => {
+export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
   const lang = useLang();
   const { t } = useTranslation();
-  const { jobs } = useRootSelector((state) => state.curriculumState);
   const [activeJob, setActiveJob] = useState(jobs[0].slug);
 
   return (

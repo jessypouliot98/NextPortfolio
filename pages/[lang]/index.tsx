@@ -1,10 +1,9 @@
-import { useMemo } from "react";
+import React from "react";
 import type { NextPage } from 'next';
+import { useTranslation } from "react-i18next";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import { useRootSelector } from "@/store/store";
-
-import { useProjectList } from "@/hooks/projects";
 
 import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -12,15 +11,10 @@ import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
-import { useTranslation } from "react-i18next";
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
   const homePage = useRootSelector((state) => state.pagesState.pages.home)!;
-  const { projects: allProjects } = useProjectList();
-  const projects = useMemo(() => {
-    return allProjects.filter((project) => project.keywords?.includes('featured'));
-  }, [allProjects]);
 
   return (
     <PageDefaultLayout title={homePage.title}>
@@ -34,7 +28,7 @@ const Home: NextPage = () => {
         <StylishBox className={'mb-2'} effects={[
           { top: -10, left: '33%', blur: true },
         ]}>
-          <ProjectList projects={projects}/>
+          <ProjectList projects={homePage.featuredProjects}/>
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
           <Link className={'text-blue-500 hover:text-blue-400'} href={'/projects'}>
@@ -50,7 +44,7 @@ const Home: NextPage = () => {
           { top: -50, right: -80 },
           { bottom: -80, right: -80 },
         ]}>
-          <Curriculum />
+          <Curriculum jobs={homePage.curriculumJobs} />
         </StylishBox>
       </Section>
 

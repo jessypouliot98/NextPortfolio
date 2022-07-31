@@ -2,7 +2,6 @@ import getConfig from 'next/config';
 import { createClient, Entry } from "contentful";
 
 import { AppLanguage } from "@/store/application/types";
-import { Job } from "@/store/curriculum/type";
 import { HomePage } from "@/store/pages/type";
 import { Project } from "@/store/project/type";
 
@@ -12,22 +11,10 @@ type ContentfulProjectPage = {
   projects: Entry<Project>[],
 }
 
-type ContentfulCurriculumPage = {
-  title: string,
-  slug: string,
-  jobs: Entry<Job>[],
-}
-
 type ProjectPage = {
   title: string,
   slug: string,
   projects: Project[],
-}
-
-type CurriculumPage = {
-  title: string,
-  slug: string,
-  jobs: Job[],
 }
 
 const { serverRuntimeConfig } = getConfig();
@@ -47,7 +34,31 @@ const getBaseQuery = (lang: AppLanguage) => {
   };
 };
 
-export const getProjects = async ({ lang }: BaseApiParams) => {
+export const getHomePage = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry<HomePage>(
+    'O1yWAroLh52b0wKZtWrVR',
+    getBaseQuery(lang)
+  );
+
+  const homePage: HomePage = {
+    ...entry.fields,
+    curriculumJobs: entry.fields.curriculumJobs.map((jobEntry: any) => {
+      return {
+        ...jobEntry.fields,
+      };
+    }),
+    featuredProjects: entry.fields.featuredProjects.map((projectEntry: any) => {
+      return {
+        ...projectEntry.fields,
+        thumbnail: (projectEntry.fields.thumbnail as any)?.fields,
+      };
+    })
+  };
+
+  return homePage;
+};
+
+export const getProjectsPage = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry<ContentfulProjectPage>(
     '9Fvhg1FFcvesojFqhg6PK',
     getBaseQuery(lang),
@@ -64,33 +75,4 @@ export const getProjects = async ({ lang }: BaseApiParams) => {
   };
 
   return projectPage;
-};
-
-export const getCurriculum = async ({ lang }: BaseApiParams) => {
-  const entry = await getClient().getEntry<ContentfulCurriculumPage>(
-    '6FVeb5FsvzCHdWgz85Dclx',
-    getBaseQuery(lang)
-  );
-
-  const projectPage: CurriculumPage = {
-    ...entry.fields,
-    jobs: entry.fields.jobs.map((jobEntry) => {
-      return jobEntry.fields;
-    })
-  };
-
-  return projectPage;
-};
-
-export const getHomePage = async ({ lang }: BaseApiParams) => {
-  const entry = await getClient().getEntry<HomePage>(
-    'O1yWAroLh52b0wKZtWrVR',
-    getBaseQuery(lang)
-  );
-
-  const homePage = {
-    ...entry.fields,
-  };
-
-  return homePage;
 };

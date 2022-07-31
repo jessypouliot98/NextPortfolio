@@ -1,4 +1,16 @@
 import {Document} from "@contentful/rich-text-types";
+import {Project} from "@/store/project/type";
+
+export type Job = {
+  title: string,
+  slug: string,
+  startDate?: string,
+  endDate?: string,
+  companyName: string,
+  companySlug: string,
+  companyLink: string,
+  content: Document,
+}
 
 export enum PagesActions {
   SET_HOME_PAGE = 'pages/set_home_page',
@@ -11,7 +23,9 @@ export type HomePage = {
   aboutMeTitle: string,
   aboutMeContent: Document,
   featuredProjectsTitle: string,
+  featuredProjects: Project[],
   curriculumTitle: string,
+  curriculumJobs: Job[],
   skillSetTitle: string,
   skillSetContent: Document,
 }
@@ -19,6 +33,7 @@ export type HomePage = {
 export type ProjectsPage = {
   title: string,
   slug: string,
+  projects: Project[],
 }
 
 export type PagesState = {
