@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       </Section>
 
       <Section>
-        <SectionTitle>Curriculum</SectionTitle>
+        <SectionTitle>{homePage.curriculumTitle}</SectionTitle>
         <StylishBox effects={[
           { bottom: 50, left: -30 },
           { top: -50, right: -80 },
