@@ -13,8 +13,22 @@ const setThemeToLocalStorage = (theme: Theme) => {
   window.localStorage.setItem('currentTheme', theme);
 }
 
+const getPreferedTheme = () => {
+  const savedPreferenceTheme = getThemeFromLocalStorage();
+
+  if (savedPreferenceTheme) {
+    return savedPreferenceTheme;
+  }
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return Theme.dark;
+  }
+
+  return Theme.light;
+}
+
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>(getThemeFromLocalStorage() || Theme.light);
+  const [theme, setTheme] = useState<Theme>(getPreferedTheme());
 
   const toggleTheme = () => setTheme((prevTheme) => {
     const nextTheme = prevTheme === Theme.light ? Theme.dark : Theme.light;
