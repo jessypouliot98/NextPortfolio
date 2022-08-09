@@ -5,6 +5,9 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 
 import { useRootSelector } from "@/store/store";
 
+import { useLang } from "@/hooks/app";
+import { Routes } from "@/utils/link";
+
 import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
@@ -14,6 +17,7 @@ import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
+  const lang = useLang();
   const homePage = useRootSelector((state) => state.pagesState.pages.home)!;
 
   return (
@@ -31,7 +35,7 @@ const Home: NextPage = () => {
           <ProjectList projects={homePage.featuredProjects}/>
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
-          <Link className={'text-blue-500 hover:text-blue-400'} href={'/projects'}>
+          <Link className={'text-blue-500 hover:text-blue-400'} href={Routes.getProjects(lang)}>
             {t('projects.seeAllProjects')}
           </Link>
         </div>

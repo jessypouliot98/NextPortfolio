@@ -94,6 +94,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 <div className={'flex flex-row-reverse'}>
                   <Link
                     className={'text-blue-500 hover:text-blue-400'}
+                    // TODO Refactor link to support route params payload
                     href={`${Routes.getProjects(lang)}?filter=${job.companySlug}`}
                   >
                     {t('projects.seeAllCompanyProjects', {
