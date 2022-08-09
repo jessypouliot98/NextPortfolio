@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
 import Link from "@/components/general/Link/Link";
@@ -7,6 +8,8 @@ import { SocialLinks } from "@/components/parts";
 export type FooterProps = {}
 
 export const Footer: React.FC<FooterProps> = () => {
+  const { t } = useTranslation();
+
   return (
     <footer
       className={clsx(
@@ -17,7 +20,7 @@ export const Footer: React.FC<FooterProps> = () => {
       <SocialLinks />
       <div className={'flex-1 text-center'}>
         <Link className={'hover:underline'} href={'https://github.com/jessypouliot98/NextPortfolio'} target={'_blank'}>
-          Built & Designed by Jessy Pouliot
+          {t('footer.buildAndDesigned')}
         </Link>
       </div>
     </footer>

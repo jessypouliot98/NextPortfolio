@@ -80,10 +80,10 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                       'text-sm',
                       'text-gray-600 dark:text-gray-400',
                     )}>
-                      <span>{getMonthYear(new Date(job.startDate))}</span>
+                      <span>{getMonthYear(new Date(job.startDate), t)}</span>
                       <span>{' - '}</span>
                       {job.endDate ? (
-                        <span>{getMonthYear(new Date(job.endDate))}</span>
+                        <span>{getMonthYear(new Date(job.endDate), t)}</span>
                       ) : (
                         <span>{t('date.present')}</span>
                       )}

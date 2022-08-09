@@ -1,10 +1,39 @@
 {
+  "common": {
+    "toBeConstructedContent": "Désolé, cette section est encore en construction et est incomplète."
+  },
   "date": {
+    "months": {
+      "january": "Janvier",
+      "february": "Février",
+      "march": "Mars",
+      "april": "Avril",
+      "may": "Mai",
+      "june": "Juin",
+      "july": "Juillet",
+      "august": "Août",
+      "september": "Septembre",
+      "october": "Octobre",
+      "november": "Novembre",
+      "december": "Décembre"
+    },
     "present": "Maintenant"
+  },
+  "header": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "footer": {
+    "github": "Github",
+    "linkedin": "LinkedIn",
+    "email": "Courriel",
+    "buildAndDesigned": "Créé et imaginé par Jessy Pouliot"
   },
   "projects": {
     "seeAllProjects": "Voir tout les projets",
-    "seeAllCompanyProjects": "Voir tout les projets de {{companyName}}"
+    "seeAllCompanyProjects": "Voir les projets de chez {{companyName}}",
+    "viewProject": "Voir le project"
   },
   "curriculum": {
     "jobAtCompany": "{{job}} chez <Link>{{companyName}}</Link>"

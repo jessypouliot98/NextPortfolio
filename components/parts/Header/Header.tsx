@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
 
@@ -14,6 +15,7 @@ export type HeaderProps = {}
 const NAV_HEIGHT_CLASS = 'h-16';
 
 export const Header: React.FC<HeaderProps> = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
   const { dir } = useDocumentScroll({ y: 80 });
@@ -24,11 +26,11 @@ export const Header: React.FC<HeaderProps> = () => {
   const links = [
     {
       link: Routes.getProjects(lang),
-      title: 'Projects'
+      title: t('header.projects'),
     },
     {
       link: 'mailto:jessypouliot98@gmail.com',
-      title: 'Contact'
+      title: t('header.contact'),
     },
   ];
 
@@ -64,7 +66,7 @@ export const Header: React.FC<HeaderProps> = () => {
             )}
             href={homeHref}
           >
-            {'Home'}
+            {t('header.home')}
           </Link>
         </div>
         <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
