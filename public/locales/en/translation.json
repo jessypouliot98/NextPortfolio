@@ -1,6 +1,7 @@
 {
   "common": {
-    "toBeConstructedContent": "Sorry, this section is still under construction and is incomplete. Please come again"
+    "toBeConstructedContent": "Sorry, this section is still under construction and is incomplete. Please come again",
+    "clearFilters": "Clear filters"
   },
   "date": {
     "months": {

@@ -1,5 +1,6 @@
 module.exports = [
   {
+    alias: 'home',
     destination: '/:lang',
     variants: {
       en: '/:lang',
@@ -7,6 +8,7 @@ module.exports = [
     }
   },
   {
+    alias: 'project-list',
     destination: '/:lang/projects',
     variants: {
       en: '/:lang/projects',
@@ -14,6 +16,7 @@ module.exports = [
     }
   },
   {
+    alias: 'project-single',
     destination: '/:lang/projects/:slug',
     variants: {
       en: '/:lang/projects/:slug',

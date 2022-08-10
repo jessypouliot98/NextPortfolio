@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import type { NextPage } from 'next';
+import { useTranslation } from "react-i18next";
 
 import { useRootSelector } from "@/store/store";
 
@@ -12,6 +13,7 @@ import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
 const Projects: NextPage = () => {
+  const { t } = useTranslation();
   const projectsPage = useRootSelector((state) => state.pagesState.pages.projects)!;
   const { projects: allProjects } = useProjectList();
   const { hasFilter, filter, clearFilter } = useFilterQuery();
@@ -28,10 +30,10 @@ const Projects: NextPage = () => {
     <PageDefaultLayout title={projectsPage.title}>
       <Section>
         <div className={'flex mb-2'}>
-          <SectionTitle>Portfolio</SectionTitle>
+          <SectionTitle>{projectsPage.title}</SectionTitle>
           {hasFilter && (
             <div className={'flex flex-row justify-end flex-1'}>
-              <Button onPress={clearFilter}>Clear filter</Button>
+              <Button onPress={clearFilter}>{t('common.clearFilters')}</Button>
             </div>
           )}
         </div>

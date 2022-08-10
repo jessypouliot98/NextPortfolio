@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
-import { getIsActive, getIsHomeActive, getLink, Routes } from "@/utils/link";
+import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
 
@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const links = [
     {
-      link: Routes.getProjects(lang),
+      link: Routes.getProjectList({ lang }),
       title: t('header.projects'),
     },
     {
@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = () => {
     },
   ];
 
-  const homeHref = Routes.getHome(lang);
+  const homeHref = Routes.getHome({ lang });
   const changeLangText = router.query.lang === 'en' ? 'FR' : 'EN';
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
@@ -95,10 +95,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <li className={'p-2'}>
             <a
               className={clsx(linkStyle)}
-              href={getLink({
-                en: '/fr',
-                fr: '/en',
-              }, lang)}
+              href={Routes.getHome({ lang: lang === 'en' ? 'fr' : 'en' })}
             >
               {changeLangText}
             </a>

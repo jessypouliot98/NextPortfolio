@@ -38,7 +38,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 <button className={clsx(
                   'transition w-full py-2 text-center md:text-right',
                   isActive ? 'text-white bg-blue-500' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
-                  isActive ? 'pl-5 pr-7' : 'px-5',
+                  isActive ? 'md:pl-5 md:pr-7' : 'px-5',
                   isActive && 'rounded-r',
                 )} onClick={() => setActiveJob(job.slug)}>
                   {job.companyName}
@@ -94,8 +94,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 <div className={'flex flex-row-reverse'}>
                   <Link
                     className={'text-blue-500 hover:text-blue-400'}
-                    // TODO Refactor link to support route params payload
-                    href={`${Routes.getProjects(lang)}?filter=${job.companySlug}`}
+                    href={Routes.getProjectList({ lang }, { filter: job.companySlug })}
                   >
                     {t('projects.seeAllCompanyProjects', {
                       companyName: job.companyName,
