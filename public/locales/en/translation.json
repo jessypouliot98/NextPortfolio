@@ -3,6 +3,10 @@
     "toBeConstructedContent": "Sorry, this section is still under construction and is incomplete. Please come again",
     "clearFilters": "Clear filters"
   },
+  "language": {
+    "en": "English",
+    "fr": "French"
+  },
   "date": {
     "months": {
       "january": "January",
@@ -23,13 +27,15 @@
   "header": {
     "home": "Home",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "toggleTheme": "Toggle theme"
   },
   "footer": {
     "github": "Github",
     "linkedin": "LinkedIn",
     "email": "Email",
-    "buildAndDesigned": "Built & Designed by Jessy Pouliot"
+    "builtAndDesigned": "Built & Designed by Jessy Pouliot",
+    "builtAndDesignedARIA": "Github NextPortfolio repository"
   },
   "projects": {
     "seeAllProjects": "See all projects",

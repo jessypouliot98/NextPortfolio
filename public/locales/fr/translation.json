@@ -3,6 +3,10 @@
     "toBeConstructedContent": "Désolé, cette section est encore en construction et est incomplète.",
     "clearFilters": "Retirer les filtres"
   },
+  "language": {
+    "en": "Anglais",
+    "fr": "Français"
+  },
   "date": {
     "months": {
       "january": "Janvier",
@@ -23,13 +27,15 @@
   "header": {
     "home": "Accueil",
     "projects": "Projets",
-    "contact": "Contact"
+    "contact": "Contact",
+    "toggleTheme": "Changer le thème"
   },
   "footer": {
     "github": "Github",
     "linkedin": "LinkedIn",
     "email": "Courriel",
-    "buildAndDesigned": "Créé et imaginé par Jessy Pouliot"
+    "builtAndDesigned": "Créé et imaginé par Jessy Pouliot",
+    "builtAndDesignedARIA": "Répertoire NextPortfolio sur Github"
   },
   "projects": {
     "seeAllProjects": "Voir tout les projets",

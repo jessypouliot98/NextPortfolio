@@ -73,6 +73,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <li className={'p-2'}>
             <button
               id={'toggle-theme'}
+              aria-label={t('header.toggleTheme')}
               className={linkStyle}
               onClick={toggleTheme}
             >
@@ -95,6 +96,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <li className={'p-2'}>
             <a
               className={clsx(linkStyle)}
+              aria-label={lang === 'en' ? t('language.fr') : t('language.en')}
               href={Routes.getHome({ lang: lang === 'en' ? 'fr' : 'en' })}
             >
               {changeLangText}

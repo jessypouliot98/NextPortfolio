@@ -19,8 +19,13 @@ export const Footer: React.FC<FooterProps> = () => {
     >
       <SocialLinks />
       <div className={'flex-1 text-center'}>
-        <Link className={'hover:underline'} href={'https://github.com/jessypouliot98/NextPortfolio'} target={'_blank'}>
-          {t('footer.buildAndDesigned')}
+        <Link
+          className={'hover:underline'}
+          href={'https://github.com/jessypouliot98/NextPortfolio'}
+          target={'_blank'}
+          aria-label={t('footer.builtAndDesignedARIA')}
+        >
+          {t('footer.builtAndDesigned')}
         </Link>
       </div>
     </footer>
