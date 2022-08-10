@@ -28,9 +28,10 @@ const Home: NextPage = () => {
       </Section>
 
       <Section>
-        <SectionTitle>{homePage.featuredProjectsTitle}</SectionTitle>
+        <SectionTitle className={'relative z-20'}>{homePage.featuredProjectsTitle}</SectionTitle>
         <StylishBox className={'mb-2'} effects={[
-          { top: -10, left: '33%', blur: true },
+          { top: -10, right: '20%', blur: true,  },
+          { bottom: -10, left: '-10%', blur: true },
         ]}>
           <ProjectList projects={homePage.featuredProjects}/>
         </StylishBox>
