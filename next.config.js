@@ -10,6 +10,8 @@ const nextConfig = {
     domains: ['images.ctfassets.net'],
   },
 
+  rewrites: require('./nextConfig/rewrites'),
+
   async redirects() {
     return [
       { // Move root to "en"
@@ -17,8 +19,8 @@ const nextConfig = {
         destination: '/en',
         permanent: true,
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
