@@ -7,13 +7,15 @@ import { Footer, Header } from "@/components/parts";
 export type PageDefaultLayoutProps = {
   children: React.ReactNode,
   title?: string;
+  description?: string;
 }
 
-export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, title }) => {
+export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, title, description }) => {
   return (
     <>
       <Head>
-        <title key={'title'}>{title}</title>
+        {title && <title key={'title'}>{title}</title>}
+        {description && (<meta key={'description'} name={'description'} content={description} />)}
       </Head>
       <div className={clsx(
         'relative flex flex-col min-h-screen overflow-x-hidden',

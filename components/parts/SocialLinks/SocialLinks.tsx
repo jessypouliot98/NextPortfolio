@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import clsx from "clsx";
 
@@ -12,17 +12,17 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
 
   const socials = [
     {
-      title: t('footer.github'),
+      title: t('global:footer.github'),
       link: 'https://github.com/jessypouliot98',
       icon: <FaGithub size={'1.5rem'} />,
     },
     {
-      title: t('footer.linkedin'),
+      title: t('global:footer.linkedin'),
       link: 'https://www.linkedin.com/in/jessypouliot/',
       icon: <FaLinkedinIn size={'1.5rem'} />,
     },
     {
-      title: t('footer.email'),
+      title: t('global:footer.email'),
       link: 'mailto:jessypouliot98@gmail.com',
       icon: <FaEnvelope size={'1.5rem'} />,
     }

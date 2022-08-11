@@ -1,4 +1,4 @@
-import {TFunction} from "i18next";
+import { TFunction } from "i18next";
 
 const monthKeys = [
   "january",
@@ -18,9 +18,9 @@ const monthKeys = [
 export const getMonth = (date: Date, t: TFunction) => {
   const monthKey = monthKeys[date.getMonth()];
 
-  return t(`date.months.${monthKey}`);
-}
+  return t(`common:date.months.${monthKey}`);
+};
 
 export const getMonthYear = (date: Date, t: TFunction) => {
   return `${getMonth(date, t)} ${date.getFullYear()}`;
-}
+};

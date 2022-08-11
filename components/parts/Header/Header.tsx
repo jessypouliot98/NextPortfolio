@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
+
+import { AppLanguage } from "@/store/application/types";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
@@ -18,6 +20,7 @@ export const Header: React.FC<HeaderProps> = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
+  
   const { dir } = useDocumentScroll({ y: 80 });
   const headerRef = useRef<HTMLElement>(null);
   const { isFocused } = useInnerFocus(headerRef);
@@ -26,16 +29,17 @@ export const Header: React.FC<HeaderProps> = () => {
   const links = [
     {
       link: Routes.getProjectList({ lang }),
-      title: t('header.projects'),
+      title: t('global:header.projects'),
     },
     {
       link: 'mailto:jessypouliot98@gmail.com',
-      title: t('header.contact'),
+      title: t('global:header.contact'),
     },
   ];
+  const otherLang: AppLanguage = lang === 'en' ? 'fr' : 'en';
 
   const homeHref = Routes.getHome({ lang });
-  const changeLangText = router.query.lang === 'en' ? 'FR' : 'EN';
+  const changeLangText = lang === 'en' ? 'FR' : 'EN';
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
   const linkStyle = clsx(
@@ -66,14 +70,14 @@ export const Header: React.FC<HeaderProps> = () => {
             )}
             href={homeHref}
           >
-            {t('header.home')}
+            {t('global:header.home')}
           </Link>
         </div>
         <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
           <li className={'p-2'}>
             <button
               id={'toggle-theme'}
-              aria-label={t('header.toggleTheme')}
+              aria-label={t('global:header.toggleTheme')}
               className={linkStyle}
               onClick={toggleTheme}
             >
@@ -94,13 +98,14 @@ export const Header: React.FC<HeaderProps> = () => {
             </li>
           ))}
           <li className={'p-2'}>
-            <a
+            <Link
               className={clsx(linkStyle)}
-              aria-label={lang === 'en' ? t('language.fr') : t('language.en')}
-              href={Routes.getHome({ lang: lang === 'en' ? 'fr' : 'en' })}
+              aria-label={lang === 'en' ? t('common:language.fr') : t('common:language.en')}
+              href={Routes.getHome({ lang: otherLang })}
+              locale={otherLang}
             >
               {changeLangText}
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

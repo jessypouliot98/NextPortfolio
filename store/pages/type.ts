@@ -1,5 +1,6 @@
-import {Document} from "@contentful/rich-text-types";
-import {Project} from "@/store/project/type";
+import { Document } from "@contentful/rich-text-types";
+
+import { Project } from "@/store/project/type";
 
 export type Job = {
   title: string,
@@ -20,6 +21,7 @@ export enum PagesActions {
 export type HomePage = {
   title: string,
   slug: string,
+  seoDescription: string,
   aboutMeTitle: string,
   aboutMeContent: Document,
   featuredProjectsTitle: string,

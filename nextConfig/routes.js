@@ -1,26 +1,26 @@
 module.exports = [
   {
     alias: 'home',
-    destination: '/:lang',
+    destination: '/',
     variants: {
-      en: '/:lang',
-      fr: '/:lang'
+      en: '/',
+      fr: '/'
     }
   },
   {
     alias: 'project-list',
-    destination: '/:lang/projects',
+    destination: '/projects',
     variants: {
-      en: '/:lang/projects',
-      fr: '/:lang/projets'
+      en: '/projects',
+      fr: '/projets'
     }
   },
   {
     alias: 'project-single',
-    destination: '/:lang/projects/:slug',
+    destination: '/projects/:slug',
     variants: {
-      en: '/:lang/projects/:slug',
-      fr: '/:lang/projets/:slug'
+      en: '/projects/:slug',
+      fr: '/projets/:slug'
     }
   }
 ];

@@ -1,5 +1,3 @@
-import App from "next/app";
-
 import { AppLanguage } from "@/store/application/types";
 
 import routes from '../nextConfig/routes';

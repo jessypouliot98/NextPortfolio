@@ -3,7 +3,7 @@ import { Trans, useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import { Job } from "@/store/pages/type";
+import type { Job } from "@/store/pages/type";
 
 import { useLang } from "@/hooks/app";
 import { getMonthYear } from "@/utils/date";
@@ -59,7 +59,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                     'text-gray-900 dark:text-gray-100',
                   )}>
                     <Trans
-                      i18nKey={'curriculum.jobAtCompany'}
+                      i18nKey={'page:curriculum.jobAtCompany'}
                       values={{
                         job: job.title,
                         companyName: job.companyName,
@@ -85,7 +85,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                       {job.endDate ? (
                         <span>{getMonthYear(new Date(job.endDate), t)}</span>
                       ) : (
-                        <span>{t('date.present')}</span>
+                        <span>{t('common:date.present')}</span>
                       )}
                     </h6>
                   )}
@@ -96,7 +96,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                     className={'text-blue-500 hover:text-blue-400'}
                     href={Routes.getProjectList({ lang }, { filter: job.companySlug })}
                   >
-                    {t('projects.seeAllCompanyProjects', {
+                    {t('page:projects.seeAllCompanyProjects', {
                       companyName: job.companyName,
                     })}
                   </Link>

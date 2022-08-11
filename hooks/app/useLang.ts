@@ -1,5 +1,9 @@
-import {useRootSelector} from "@/store/store";
+import { useRouter } from "next/router";
+
+import { getValidLang } from "@/utils/locale";
 
 export const useLang = () => {
-  return useRootSelector((state) => state.applicationState.lang);
-}
+  const { locale } =  useRouter();
+
+  return getValidLang(locale);
+};

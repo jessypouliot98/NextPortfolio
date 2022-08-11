@@ -1,21 +1,26 @@
 import { useMemo } from "react";
-import type { NextPage } from 'next';
-import { useTranslation } from "react-i18next";
+import type { GetStaticPropsContext, NextPage } from 'next';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { getProjectsPage } from "@/lib/contentful/api/contentful";
 
-import { useRootSelector } from "@/store/store";
+import { AppLanguage } from "@/store/application/types";
+import { ProjectsPage } from "@/store/pages/type";
 
 import { useFilterQuery } from "@/hooks/filter";
-import { useProjectList } from "@/hooks/projects";
+import { getSecondsFromMilliSeconds, MINUTE } from "@/utils/time";
 
 import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
-const Projects: NextPage = () => {
+export type ProjectListPageProps = ProjectsPage;
+
+const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   const { t } = useTranslation();
-  const projectsPage = useRootSelector((state) => state.pagesState.pages.projects)!;
-  const { projects: allProjects } = useProjectList();
+  const projectsPage = props;
+  const allProjects = projectsPage.projects;
   const { hasFilter, filter, clearFilter } = useFilterQuery();
 
   const projects = useMemo(() => {
@@ -52,4 +57,17 @@ const Projects: NextPage = () => {
   );
 };
 
-export default Projects;
+export async function getStaticProps(context: GetStaticPropsContext) {    
+  const lang = context.locale as AppLanguage;
+  const projectPage = await getProjectsPage({ lang });
+  
+  return {
+    props: {
+      ...projectPage,
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+    },
+    revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
+  };
+}
+
+export default ProjectListPage;

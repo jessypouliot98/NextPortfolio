@@ -1,4 +1,7 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+
+import { isServer } from './../../utils/platform';
+import { isWeb } from '@/utils/platform';
 
 enum Theme {
   light = 'light',
@@ -6,12 +9,20 @@ enum Theme {
 }
 
 const getThemeFromLocalStorage = () => {
+  if (isServer()) {
+    return null;
+  }
+  
   return window.localStorage.getItem('currentTheme') as Theme | null;
-}
+};
 
 const setThemeToLocalStorage = (theme: Theme) => {
+  if (isServer()) {
+    return;
+  }
+  
   window.localStorage.setItem('currentTheme', theme);
-}
+};
 
 const getPreferedTheme = () => {
   const savedPreferenceTheme = getThemeFromLocalStorage();
@@ -20,27 +31,33 @@ const getPreferedTheme = () => {
     return savedPreferenceTheme;
   }
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (isWeb() && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return Theme.dark;
   }
 
   return Theme.light;
-}
+};
 
 export const useTheme = () => {
   const [theme, setTheme] = useState<Theme>(getPreferedTheme());
 
   const toggleTheme = () => setTheme((prevTheme) => {
     const nextTheme = prevTheme === Theme.light ? Theme.dark : Theme.light;
-    window.document.body.classList.toggle(prevTheme, false);
-    window.document.body.classList.toggle(nextTheme, true);
+
+    if (isWeb()) {
+      window.document.body.classList.toggle(prevTheme, false);
+      window.document.body.classList.toggle(nextTheme, true);
+    }
+
     setThemeToLocalStorage(nextTheme);
 
     return nextTheme;
   });
 
   useEffect(() => {
-    window.document.body.classList.toggle(theme, true);
+    if (isWeb()) {
+      window.document.body.classList.toggle(theme, true);
+    }
   }, []);
 
   return {
@@ -48,5 +65,5 @@ export const useTheme = () => {
     isDark: theme === Theme.dark,
     isLight: theme === Theme.light,
     toggleTheme,
-  }
-}
+  };
+};

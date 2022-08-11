@@ -1,0 +1,10 @@
+{
+  "404": {
+    "title": "404",
+    "subTitle": "Page non trouvé",
+    "buttons": {
+      "back": "Retour",
+      "home": "Accueil"
+    }
+  }
+}

@@ -1,8 +1,10 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {projectReducer} from "./project/reducer";
-import {TypedUseSelectorHook, useSelector} from "react-redux";
-import {applicationReducer} from "@/store/application/reducer";
-import {pagesReducer} from "@/store/pages/reducer";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+
+import { applicationReducer } from "@/store/application/reducer";
+import { pagesReducer } from "@/store/pages/reducer";
+
+import { projectReducer } from "./project/reducer";
 
 export const rootReducer = combineReducers({
   applicationState: applicationReducer,
@@ -17,7 +19,7 @@ export const createStore = (preloadedState?: any) => {
     reducer: rootReducer,
     preloadedState,
   });
-}
+};
 
 export type StoreType = ReturnType<typeof createStore>;
 
@@ -32,14 +34,10 @@ export const getStore = () => {
 };
 
 export const initializeStore = (preloadedState?: RootState) => {
-  if (store) {
-    return store;
-  }
-
   store = createStore(preloadedState);
 
   return store;
-}
+};
 
 export const useRootSelector: TypedUseSelectorHook<RootState> = useSelector;
 

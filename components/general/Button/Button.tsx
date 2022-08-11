@@ -12,7 +12,14 @@ export const Button: React.FC<ButtonProps> = ({ children, className, disabled, o
   const handleClick = !disabled ? onPress : undefined;
 
   return (
-    <button className={clsx('p-2 bg-blue-500 text-white rounded hover:bg-blue-400', className)} onClick={handleClick}>
+    <button
+      className={clsx(
+        'flex flex-center rounded p-2',
+        'bg-blue-500 text-white hover:bg-blue-400',
+        className,
+      )}
+      onClick={handleClick}
+      >
       {children}
     </button>
   );

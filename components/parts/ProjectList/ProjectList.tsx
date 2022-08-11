@@ -20,7 +20,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   const lang = useLang();
 
   return (
-    <FlexGrid>
+    <FlexGrid columns={{ default: 1, sm: 2, lg: 3 }}>
       {projects.map((project) => (
         <RatioContainer key={project.slug} ratio={[21,9]}>
           <Link

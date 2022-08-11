@@ -1,14 +1,16 @@
-import type { NextPage } from 'next';
+import type { GetStaticPropsContext, NextPage } from 'next';
 import Image from 'next/image';
-import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FaExternalLinkAlt } from "react-icons/fa";
 import clsx from "clsx";
+import { getProjectsPage } from '@/lib/contentful/api/contentful';
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import { useRootSelector } from "@/store/store";
+import { AppLanguage } from '@/store/application/types';
+import { Project } from '@/store/project/type';
 
-import { useProjectList } from "@/hooks/projects";
+import { getSecondsFromMilliSeconds, MINUTE } from '@/utils/time';
 
 import { KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -17,21 +19,16 @@ import { PageDefaultLayout } from "@/components/layout";
 
 const IS_IN_CONSTRUCTION = true;
 
-const Project: NextPage = () => {
+export type ProjectSinglePageProps = {
+  title: string,
+  project: Project;
+}
+
+const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project }) => {
   const { t } = useTranslation();
-  const router = useRouter();
-  const query = router.query;
-  const projectsPage = useRootSelector((state) => state.pagesState.pages.projects)!;
-  const { projects } = useProjectList();
-
-  const project = projects.find(({ slug }) => slug === query.slug);
-
-  if (!project) {
-    return null;
-  }
 
   return (
-    <PageDefaultLayout title={[projectsPage.title, project.name].join(' - ')}>
+    <PageDefaultLayout title={title}>
       <Section>
         <SectionTitle>
           {project.name}
@@ -61,7 +58,7 @@ const Project: NextPage = () => {
           { top: 200, right: 50, blur: true },
         ]}>
           {IS_IN_CONSTRUCTION ? (
-            <p className={'font-bold text-xl'}>{t('common.toBeConstructedContent')}</p>
+            <p className={'font-bold text-xl'}>{t('global:common.toBeConstructedContent')}</p>
           ) : (
             <ContentfulDisplay document={project.content} />
           )}
@@ -73,7 +70,7 @@ const Project: NextPage = () => {
               href={project.link}
               target={'_blank'}
             >
-              <span>{t('projects.viewProject')}</span>
+              <span>{t('page:projects.viewProject')}</span>
               <FaExternalLinkAlt className={'ml-2'} />
             </Link>
           )}
@@ -83,4 +80,33 @@ const Project: NextPage = () => {
   );
 };
 
-export default Project;
+export async function getStaticPaths() {
+  const projectsPage = await getProjectsPage({ lang: 'en' });
+  
+  return {
+    paths: projectsPage.projects.reduce((accPaths, project) => {
+      accPaths.push({ params: { slug: project.slug }, locale: 'en' });
+      accPaths.push({ params: { slug: project.slug }, locale: 'fr' });
+      
+      return accPaths;
+    }, [] as { params: { slug: string }, locale: AppLanguage }[]),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext<{ slug: string }>) {    
+  const lang = context.locale as AppLanguage;
+  const projectsPage = await getProjectsPage({ lang });
+  const slug = context.params?.slug as string;
+  
+  return {
+    props: {
+      title: projectsPage.title,
+      project: projectsPage.projects.find((project) => project.slug === slug),
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+    } as ProjectSinglePageProps,
+    revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
+  };
+}
+
+export default ProjectSinglePage;

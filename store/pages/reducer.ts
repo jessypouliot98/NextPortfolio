@@ -1,6 +1,7 @@
-import {createReducer} from "@reduxjs/toolkit";
-import {setHomePage, setProjectsPage} from "@/store/pages/actions";
-import {PagesState} from "@/store/pages/type";
+import { createReducer } from "@reduxjs/toolkit";
+
+import { setHomePage, setProjectsPage } from "@/store/pages/actions";
+import { PagesState } from "@/store/pages/type";
 
 export const initialState: PagesState = {
   pages: {

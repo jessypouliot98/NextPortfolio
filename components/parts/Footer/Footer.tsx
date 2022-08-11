@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 
 import Link from "@/components/general/Link/Link";
@@ -23,9 +23,9 @@ export const Footer: React.FC<FooterProps> = () => {
           className={'hover:underline'}
           href={'https://github.com/jessypouliot98/NextPortfolio'}
           target={'_blank'}
-          aria-label={t('footer.builtAndDesignedARIA')}
+          aria-label={t('global:footer.builtAndDesignedARIA')}
         >
-          {t('footer.builtAndDesigned')}
+          {t('global:footer.builtAndDesigned')}
         </Link>
       </div>
     </footer>

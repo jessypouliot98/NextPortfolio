@@ -1,12 +1,16 @@
 import React from "react";
-import type { NextPage } from 'next';
-import { useTranslation } from "react-i18next";
+import type { GetStaticPropsContext, NextPage } from 'next';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getHomePage } from "@/lib/contentful/api/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
-import { useRootSelector } from "@/store/store";
+import { AppLanguage } from "@/store/application/types";
+import { HomePage } from "@/store/pages/type";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
+import { getSecondsFromMilliSeconds, MINUTE } from "@/utils/time";
 
 import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -15,13 +19,15 @@ import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
-const Home: NextPage = () => {
+export type HomePageProps = HomePage
+
+const Home: NextPage<HomePageProps> = (props) => {
   const { t } = useTranslation();
   const lang = useLang();
-  const homePage = useRootSelector((state) => state.pagesState.pages.home)!;
+  const homePage = props;
 
   return (
-    <PageDefaultLayout title={homePage.title}>
+    <PageDefaultLayout title={homePage.title} description={homePage.seoDescription}>
       <Section>
         <SectionTitle>{homePage.aboutMeTitle}</SectionTitle>
         <ContentfulDisplay document={homePage.aboutMeContent} />
@@ -37,7 +43,7 @@ const Home: NextPage = () => {
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
           <Link className={'text-blue-500 hover:text-blue-400'} href={Routes.getProjectList({ lang })}>
-            {t('projects.seeAllProjects')}
+            {t('page:projects.seeAllProjects')}
           </Link>
         </div>
       </Section>
@@ -60,5 +66,18 @@ const Home: NextPage = () => {
     </PageDefaultLayout>
   );
 };
+
+export async function getStaticProps(context: GetStaticPropsContext ) {    
+  const lang = context.locale as AppLanguage;
+  const homePage = await getHomePage({ lang });
+  
+  return {
+    props: {
+      ...homePage,
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+    },
+    revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
+  };
+}
 
 export default Home;

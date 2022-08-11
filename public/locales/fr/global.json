@@ -1,0 +1,19 @@
+{
+  "common": {
+    "toBeConstructedContent": "Désolé, cette section est encore en construction et est incomplète.",
+    "clearFilters": "Retirer les filtres"
+  },
+  "header": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "contact": "Contact",
+    "toggleTheme": "Changer le thème"
+  },
+  "footer": {
+    "github": "Github",
+    "linkedin": "LinkedIn",
+    "email": "Courriel",
+    "builtAndDesigned": "Créé et imaginé par Jessy Pouliot",
+    "builtAndDesignedARIA": "Répertoire NextPortfolio sur Github"
+  }
+}
