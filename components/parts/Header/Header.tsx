@@ -8,7 +8,7 @@ import { AppLanguage } from "@/store/application/types";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
-import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+import { getIsActive, getIsHomeActive, getRouteByPath, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
 
@@ -28,17 +28,17 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const links = [
     {
-      link: Routes.getProjectList({ lang }),
+      route: Routes.getProjectList({ lang }),
       title: t('global:header.projects'),
     },
     {
-      link: 'mailto:jessypouliot98@gmail.com',
+      route: { href: 'mailto:jessypouliot98@gmail.com', path: '@@@' },
       title: t('global:header.contact'),
     },
   ];
   const otherLang: AppLanguage = lang === 'en' ? 'fr' : 'en';
 
-  const homeHref = Routes.getHome({ lang });
+  const homeRoute = Routes.getHome();
   const changeLangText = lang === 'en' ? 'FR' : 'EN';
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
@@ -66,9 +66,9 @@ export const Header: React.FC<HeaderProps> = () => {
           <Link
             className={clsx(
               linkStyle,
-              getIsHomeActive(router.asPath, lang) && activeLinkStyle,
+              getIsHomeActive(router) && activeLinkStyle,
             )}
-            href={homeHref}
+            href={homeRoute.href}
           >
             {t('global:header.home')}
           </Link>
@@ -84,14 +84,14 @@ export const Header: React.FC<HeaderProps> = () => {
               {isDark ? <FaSun /> : <FaMoon />}
             </button>
           </li>
-          {links.map(({ link, title }) => (
+          {links.map(({ route, title }) => (
             <li key={title} className={'p-2'}>
               <Link
                 className={clsx(
                   linkStyle,
-                  getIsActive(router.asPath, link) && activeLinkStyle,
+                  getIsActive(router, route?.path) && activeLinkStyle,
                 )}
-                href={link}
+                href={route.href}
               >
                 {title}
               </Link>
@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = () => {
             <Link
               className={clsx(linkStyle)}
               aria-label={lang === 'en' ? t('common:language.fr') : t('common:language.en')}
-              href={Routes.getHome({ lang: otherLang })}
+              href={getRouteByPath(router.route, { lang: otherLang, params: router.query as any })?.href || '/'}
               locale={otherLang}
             >
               {changeLangText}

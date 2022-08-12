@@ -38,7 +38,7 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
           <SectionTitle>{projectsPage.title}</SectionTitle>
           {hasFilter && (
             <div className={'flex flex-row justify-end flex-1'}>
-              <Button onPress={clearFilter}>{t('common.clearFilters')}</Button>
+              <Button onPress={clearFilter}>{t('global:common.clearFilters')}</Button>
             </div>
           )}
         </div>

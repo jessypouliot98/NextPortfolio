@@ -94,7 +94,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 <div className={'flex flex-row-reverse'}>
                   <Link
                     className={'text-blue-500 hover:text-blue-400'}
-                    href={Routes.getProjectList({ lang }, { filter: job.companySlug })}
+                    href={Routes.getProjectList({ lang, query: { filter: job.companySlug } }).href}
                   >
                     {t('page:projects.seeAllCompanyProjects', {
                       companyName: job.companyName,

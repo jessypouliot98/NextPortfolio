@@ -28,7 +28,6 @@ const Link: React.FC<LinkProps> = ({ children, ...props }) => {
   };
 
   const anchorProps = {
-    href,
     rel: otherProps.target === '_blank' ? 'noreferrer noopener' : undefined,
     ...otherProps,
   };

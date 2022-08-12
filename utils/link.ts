@@ -1,34 +1,67 @@
+import { NextRouter } from "next/router";
+
 import { AppLanguage } from "@/store/application/types";
 
 import routes from '../nextConfig/routes';
 
-const getCleanUrl = (url: string) => {
-  return url.includes('?') ? url.substring(0, url.indexOf('?')) : url;
+// TODO Refactor this file
+
+export const getIsHomeActive = (router: NextRouter) => {
+  return router.pathname === '/';
 };
 
-export const getIsHomeActive = (url: string, lang: AppLanguage) => {
-  const homeUrl = Routes.getHome({ lang });
-
-  return getCleanUrl(url) === homeUrl;
+export const getIsActive = (router: NextRouter, path: string) => {
+  return router.pathname.includes(path);
 };
 
-export const getIsActive = (url: string, route: string) => {
-  return getCleanUrl(url).includes(route);
+export const getRouteByAlias = (
+  routeAlias: string,
+  options?: {
+    lang?: AppLanguage,
+    params?: Record<string, string>,
+    query?: Record<string, string>
+  }
+) => {
+  const appRoute = routes.find(({ alias }) => alias === routeAlias);
+
+  if (!appRoute) {
+    return;
+  }
+
+  return {
+    alias: appRoute.alias,
+    path: appRoute.destination,
+    get href() {
+      const lang = options?.lang || 'en';
+      let path = appRoute.variants[lang];
+
+      Object.entries(options?.params || {}).forEach(([key, value]) => {
+        const findKeyRegExp = new RegExp(`\\[${key}\\]`, 'gi');
+        path = path.replace(findKeyRegExp, value);
+      });
+
+      path = urlWithQuery(path, options?.query || {});
+
+      return path;
+    }
+  };
 };
 
-type BaseRouteParams = { lang: AppLanguage };
+export const getRouteByPath = (
+  routePath: string,
+  options?: {
+    lang?: AppLanguage,
+    params?: Record<string, string>,
+    query?: Record<string, string>
+  }
+) => {
+  const appRoute = routes.find(({ destination }) => destination === routePath);
 
-export const getRouteByAlias = <P extends BaseRouteParams = BaseRouteParams>(routeAlias: string, params: P) => {
-  const { lang } = params;
-  
-  let route = routes.find(({ alias }) => alias === routeAlias)?.variants[lang] || '/';
+  if (!appRoute) {
+    return;
+  }
 
-  Object.entries(params).forEach(([key, value]) => {
-    const findKeyRegex = new RegExp(`:${key}`, 'gi');
-    route = route.replace(findKeyRegex, value);
-  });
-
-  return route;
+  return getRouteByAlias(appRoute?.alias, options);
 };
 
 export const urlWithQuery = (url: string, query: Record<string, string>) => {
@@ -41,16 +74,22 @@ export const urlWithQuery = (url: string, query: Record<string, string>) => {
   return `${url}?${queryString}`;
 };
 
+type RouteOptions<P extends {} = never, Q extends {} = never> = {
+  lang?: AppLanguage,
+  params?: P,
+  query?: Q,
+}
+
 export namespace Routes {
-  export const getHome = (params: BaseRouteParams) => {
-    return getRouteByAlias('home', params); 
+  export const getHome = () => {
+    return getRouteByAlias('home')!; 
   };
 
-  export const getProjectList = (params: BaseRouteParams, query: { filter?: string } = {}) => {
-    return urlWithQuery(getRouteByAlias('project-list', params), query);
+  export const getProjectList = (options?: RouteOptions<never, { filter?: string }>) => {
+    return getRouteByAlias('project-list', options)!;
   };
 
-  export const getProjectSingle = (params: BaseRouteParams & { slug: string }) => {
-    return getRouteByAlias('project-single', params);
+  export const getProjectSingle = (options: RouteOptions<{ slug: string }>) => {
+    return getRouteByAlias('project-single', options)!;
   };
 }

@@ -17,10 +17,10 @@ module.exports = [
   },
   {
     alias: 'project-single',
-    destination: '/projects/:slug',
+    destination: '/projects/[slug]',
     variants: {
-      en: '/projects/:slug',
-      fr: '/projets/:slug'
+      en: '/projects/[slug]',
+      fr: '/projets/[slug]'
     }
   }
 ];

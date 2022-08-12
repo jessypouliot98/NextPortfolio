@@ -18,14 +18,14 @@ export type ProjectListProps = {
 
 export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   const lang = useLang();
-
+  
   return (
     <FlexGrid columns={{ default: 1, sm: 2, lg: 3 }}>
       {projects.map((project) => (
         <RatioContainer key={project.slug} ratio={[21,9]}>
           <Link
             className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
-            href={Routes.getProjectSingle({ lang, slug: project.slug })}
+            href={Routes.getProjectSingle({ lang, params: { slug: project.slug } }).href}
           >
             <CardImage
               className={'transition flex-center opacity-100 group-hover:opacity-0'}
