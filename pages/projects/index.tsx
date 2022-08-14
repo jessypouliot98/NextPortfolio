@@ -32,7 +32,7 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   }, [filter, allProjects]);
 
   return (
-    <PageDefaultLayout title={projectsPage.title}>
+    <PageDefaultLayout title={projectsPage.title} description={projectsPage.seoDescription}>
       <Section>
         <div className={'flex mb-2'}>
           <SectionTitle>{projectsPage.title}</SectionTitle>

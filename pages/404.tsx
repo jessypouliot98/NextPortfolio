@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { useLang } from '../hooks';
 import { Routes } from '@/utils/link';
 import { getValidLang } from '@/utils/locale';
 
@@ -14,6 +15,7 @@ export type Error404Props = {}
 const Error404: NextPage<Error404Props> = () => {
   const { t } = useTranslation();
   const router = useRouter();
+  const lang = useLang();
 
   return (
     <PageErrorLayout status={404}>
@@ -28,7 +30,7 @@ const Error404: NextPage<Error404Props> = () => {
             <Button className={'w-full'} onPress={router.back}>
               {t('error:404.buttons.back')}
             </Button>
-            <Button className={'w-full'} onPress={() => router.push(Routes.getHome().href)}>
+            <Button className={'w-full'} onPress={() => router.push(Routes.getHome(lang).href)}>
               {t('error:404.buttons.home')}
             </Button>
           </FlexGrid>

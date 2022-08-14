@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = () => {
 
   const links = [
     {
-      route: Routes.getProjectList({ lang }),
+      route: Routes.getProjectList(lang),
       title: t('global:header.projects'),
     },
     {
@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = () => {
   ];
   const otherLang: AppLanguage = lang === 'en' ? 'fr' : 'en';
 
-  const homeRoute = Routes.getHome();
+  const homeRoute = Routes.getHome(lang);
   const changeLangText = lang === 'en' ? 'FR' : 'EN';
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
@@ -101,7 +101,8 @@ export const Header: React.FC<HeaderProps> = () => {
             <Link
               className={clsx(linkStyle)}
               aria-label={lang === 'en' ? t('common:language.fr') : t('common:language.en')}
-              href={getRouteByPath(router.route, { lang: otherLang, params: router.query as any })?.href || '/'}
+              // TODO Refactor to current page instead of home
+              href={'/'}
               locale={otherLang}
             >
               {changeLangText}

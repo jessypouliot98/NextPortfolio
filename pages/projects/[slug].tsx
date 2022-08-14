@@ -28,7 +28,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   const { t } = useTranslation();
 
   return (
-    <PageDefaultLayout title={title}>
+    <PageDefaultLayout title={title} description={project.shortDescription}>
       <Section>
         <SectionTitle>
           {project.name}
@@ -80,17 +80,18 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   );
 };
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context: GetStaticPropsContext) {
   const projectsPage = await getProjectsPage({ lang: 'en' });
   
   return {
     paths: projectsPage.projects.reduce((accPaths, project) => {
-      accPaths.push({ params: { slug: project.slug }, locale: 'en' });
-      accPaths.push({ params: { slug: project.slug }, locale: 'fr' });
+      context.locales?.forEach((locale: string) => {
+        accPaths.push({ params: { slug: project.slug }, locale: locale as AppLanguage });
+      });
       
       return accPaths;
     }, [] as { params: { slug: string }, locale: AppLanguage }[]),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 

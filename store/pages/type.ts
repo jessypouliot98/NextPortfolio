@@ -35,6 +35,7 @@ export type HomePage = {
 export type ProjectsPage = {
   title: string,
   slug: string,
+  seoDescription: string,
   projects: Project[],
 }
 

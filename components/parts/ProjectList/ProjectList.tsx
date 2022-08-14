@@ -25,7 +25,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
         <RatioContainer key={project.slug} ratio={[21,9]}>
           <Link
             className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
-            href={Routes.getProjectSingle({ lang, params: { slug: project.slug } }).href}
+            href={Routes.getProjectSingle(lang, project.slug).href}
           >
             <CardImage
               className={'transition flex-center opacity-100 group-hover:opacity-0'}
