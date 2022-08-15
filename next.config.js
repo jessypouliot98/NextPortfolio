@@ -8,6 +8,9 @@ const nextConfig = {
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
   },
+  publicRuntimeConfig: {
+    GOOGLE_MEASUREMENT_ID: process.env.GOOGLE_MEASUREMENT_ID,
+  },
   i18n: require('./next-i18next.config').i18n,
   images: {
     domains: ['images.ctfassets.net'],

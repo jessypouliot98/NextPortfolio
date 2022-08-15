@@ -25,19 +25,31 @@ export const urlWithQuery = (url: string, query?: Record<string, string>) => {
 export namespace Routes {
   export const getHome = (lang: AppLanguage) => {
     return {
+      path: '/',
       href: { en: '/', fr: '/' }[lang],
+    }; 
+  };
+
+  export const getContact = (_lang: AppLanguage) => {
+    return {
+      path: '@@@',
+      href: 'mailto:jessypouliot98@gmail.com',
     }; 
   };
 
   export const getProjectList = (lang: AppLanguage, query?: { filter: string }) => {
     return {
+      path: '/projects',
       href: urlWithQuery({ en: '/projects', fr: '/projets' }[lang], query),
     };
   };
 
   export const getProjectSingle = (lang: AppLanguage, slug: string) => {
+    const projectListRoute = getProjectList(lang);
+    
     return {
-      href: `${getProjectList(lang).href}/${slug}`,
+      path: `${projectListRoute.path}/[slug]`,
+      href: `${projectListRoute.href}/${slug}`,
     };
   };
 }

@@ -8,7 +8,7 @@ import { AppLanguage } from "@/store/application/types";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
-import { getIsActive, getIsHomeActive, getRouteByPath, Routes } from "@/utils/link";
+import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
 
@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = () => {
       title: t('global:header.projects'),
     },
     {
-      route: { href: 'mailto:jessypouliot98@gmail.com', path: '@@@' },
+      route: Routes.getContact(lang),
       title: t('global:header.contact'),
     },
   ];
