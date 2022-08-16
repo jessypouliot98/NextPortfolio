@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
 
 import Link from "@/components/general/Link/Link";
 
@@ -29,35 +30,42 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
   ];
 
   return (
-    <div className={'lg:fixed z-50 bottom-0 right-0'}>
-      <div className={'mb-2 lg:mb-0 lg:p-5'}>
-        <ul
-          className={clsx(
-            'flex',
-            'flex-row lg:flex-col',
-            'lg:shadow-lg lg:p-2 lg:rounded-lg',
-            'lg:bg-white dark:lg:bg-gray-900'
-          )}
-        >
-          {socials.map((social) => (
-            <li key={social.title} className={'p-1'}>
-              <Link
-                className={clsx(
-                  'w-11 h-11 rounded flex-center transition',
-                  'bg-transparent',
-                  'hover:bg-gray-100 lg:hover:bg-gray-100',
-                  'dark:hover:bg-gray-700 dark:lg:hover:bg-gray-800',
-                )}
-                href={social.link}
-                target={'_blank'}
-                title={social.title}
-              >
-                {social.icon}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <AnimatePresence initial={true}>
+      <motion.div
+        className={'lg:fixed z-50 bottom-0 right-0'}
+        initial={{ opacity: 0, scale: 1.1, x: 100 }}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{ delay: 1 }}
+      >
+        <div className={'mb-2 lg:mb-0 lg:p-5'}>
+          <ul
+            className={clsx(
+              'flex',
+              'flex-row lg:flex-col',
+              'lg:shadow-lg lg:p-2 lg:rounded-lg',
+              'lg:bg-white dark:lg:bg-gray-900'
+            )}
+          >
+            {socials.map((social) => (
+              <li key={social.title} className={'p-1'}>
+                <Link
+                  className={clsx(
+                    'w-11 h-11 rounded flex-center transition',
+                    'bg-transparent',
+                    'hover:bg-gray-100 lg:hover:bg-gray-100',
+                    'dark:hover:bg-gray-700 dark:lg:hover:bg-gray-800',
+                  )}
+                  href={social.link}
+                  target={'_blank'}
+                  title={social.title}
+                >
+                  {social.icon}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };

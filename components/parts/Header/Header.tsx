@@ -36,10 +36,10 @@ export const Header: React.FC<HeaderProps> = () => {
       title: t('global:header.contact'),
     },
   ];
-  const otherLang: AppLanguage = lang === 'en' ? 'fr' : 'en';
+  const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
 
   const homeRoute = Routes.getHome(lang);
-  const changeLangText = lang === 'en' ? 'FR' : 'EN';
+  const changeLangText = { en: 'FR', fr: 'EN' }[lang];
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
   const linkStyle = clsx(
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <li className={'p-2'}>
             <Link
               className={clsx(linkStyle)}
-              aria-label={lang === 'en' ? t('common:language.fr') : t('common:language.en')}
+              aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
               // TODO Refactor to current page instead of home
               href={'/'}
               locale={otherLang}

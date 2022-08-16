@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { AnimatePresence, motion } from 'framer-motion';
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import type { Job } from "@/store/pages/type";
@@ -24,88 +25,114 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
   const [activeJob, setActiveJob] = useState(jobs[0].slug);
 
   return (
-    <Card>
-      <div className={'flex flex-col md:flex-row'}>
-        <ul className={clsx(
-          '-m-5 mb-5 md:-mb-5 md:mr-5 py-5 min-w-[200px]',
-          'bg-gray-200 dark:bg-gray-900',
-        )}>
-          {jobs.map((job) => {
-            const isActive = job.slug === activeJob;
+    <AnimatePresence initial={true}>
+      <motion.div
+        initial={{ y: 100, opacity: 0, scale: 1.1 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Card>
+          <div className={'flex flex-col md:flex-row'}>
+            <ul className={clsx(
+              '-m-5 mb-5 md:-mb-5 md:mr-5 py-5 min-w-[200px]',
+              'bg-gray-200 dark:bg-gray-900',
+            )}>
+              {jobs.map((job) => {
+                const isActive = job.slug === activeJob;
 
-            return (
-              <li key={job.slug} className={clsx(isActive && '-mx-2')}>
-                <button className={clsx(
-                  'transition w-full py-2 text-center md:text-right',
-                  isActive ? 'text-white bg-blue-500' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
-                  isActive ? 'md:pl-5 md:pr-7' : 'px-5',
-                  isActive && 'rounded-r',
-                )} onClick={() => setActiveJob(job.slug)}>
-                  {job.companyName}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        <ul className={'flex-1'}>
-          {jobs.map((job) => {
-            const isActive = job.slug === activeJob;
+                return (
+                  <li key={job.slug} className={clsx(isActive && '-mx-2')}>
+                    <button className={clsx(
+                      'transition w-full py-2 text-center md:text-right',
+                      isActive ? 'text-white bg-blue-500' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
+                      isActive ? 'md:pl-5 md:pr-7' : 'px-5',
+                      isActive && 'rounded-r',
+                    )} onClick={() => setActiveJob(job.slug)}>
+                      {job.companyName}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            <motion.ul className={'flex-1'}>
+              {jobs.map((job) => {
+                const isActive = job.slug === activeJob;
 
-            return (
-              <li key={job.slug} className={clsx(isActive ? 'block' : 'hidden')}>
-                <div className={'mb-2'}>
-                  <h3 className={clsx(
-                    'text-2xl',
-                    'text-gray-900 dark:text-gray-100',
-                  )}>
-                    <Trans
-                      i18nKey={'page:curriculum.jobAtCompany'}
-                      values={{
-                        job: job.title,
-                        companyName: job.companyName,
-                      }}
-                      components={{
-                        Link: (
-                          <Link
-                            className={'font-bold text-blue-500 hover:text-blue-400'}
-                            href={job.companyLink}
-                            target={'_blank'}
-                          />
-                        ),
-                      }}
-                    />
-                  </h3>
-                  {job.startDate && (
-                    <h6 className={clsx(
-                      'text-sm',
-                      'text-gray-600 dark:text-gray-400',
-                    )}>
-                      <span>{getMonthYear(new Date(job.startDate), t)}</span>
-                      <span>{' - '}</span>
-                      {job.endDate ? (
-                        <span>{getMonthYear(new Date(job.endDate), t)}</span>
-                      ) : (
-                        <span>{t('common:date.present')}</span>
-                      )}
-                    </h6>
-                  )}
-                </div>
-                <ContentfulDisplay className={styles.richText} document={job.content} />
-                <div className={'flex flex-row-reverse'}>
-                  <Link
-                    className={'text-blue-500 hover:text-blue-400'}
-                    href={Routes.getProjectList(lang, { filter: job.companySlug }).href}
+                return (
+                  <motion.li
+                    key={job.slug}
+                    className={'hidden'}
+                    animate={isActive ? 'open': 'closed'}
+                    variants={{
+                      open: {
+                        display: 'block',
+                        height: 'auto',
+                        opacity: 1,
+                        transition: { ease: 'linear', duration: 0.3 },
+                      },
+                      closed: {
+                        display: 'block',
+                        height: 0,
+                        opacity: 0,
+                        transition: { ease: 'linear', duration: 0.3 },
+                      }
+                    }}
                   >
-                    {t('page:projects.seeAllCompanyProjects', {
-                      companyName: job.companyName,
-                    })}
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </Card>
+                    <div className={'mb-2'}>
+                      <h3 className={clsx(
+                        'text-2xl',
+                        'text-gray-900 dark:text-gray-100',
+                      )}>
+                        <Trans
+                          i18nKey={'page:curriculum.jobAtCompany'}
+                          values={{
+                            job: job.title,
+                            companyName: job.companyName,
+                          }}
+                          components={{
+                            Link: (
+                              <Link
+                                className={'font-bold text-blue-500 hover:text-blue-400'}
+                                href={job.companyLink}
+                                target={'_blank'}
+                              />
+                            ),
+                          }}
+                        />
+                      </h3>
+                      {job.startDate && (
+                        <h6 className={clsx(
+                          'text-sm',
+                          'text-gray-600 dark:text-gray-400',
+                        )}>
+                          <span>{getMonthYear(new Date(job.startDate), t)}</span>
+                          <span>{' - '}</span>
+                          {job.endDate ? (
+                            <span>{getMonthYear(new Date(job.endDate), t)}</span>
+                          ) : (
+                            <span>{t('common:date.present')}</span>
+                          )}
+                        </h6>
+                      )}
+                    </div>
+                    <ContentfulDisplay className={styles.richText} document={job.content} />
+                    <div className={'flex flex-row-reverse'}>
+                      <Link
+                        className={'text-blue-500 hover:text-blue-400'}
+                        href={Routes.getProjectList(lang, { filter: job.companySlug }).href}
+                      >
+                        {t('page:projects.seeAllCompanyProjects', {
+                          companyName: job.companyName,
+                        })}
+                      </Link>
+                    </div>
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
+          </div>
+        </Card>
+      </motion.div>
+    </AnimatePresence>
   );
 };

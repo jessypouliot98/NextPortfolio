@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { Project } from "@/store/project/type";
 
@@ -20,27 +21,36 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   const lang = useLang();
   
   return (
-    <FlexGrid columns={{ default: 1, sm: 2, lg: 3 }}>
-      {projects.map((project) => (
-        <RatioContainer key={project.slug} ratio={[21,9]}>
-          <Link
-            className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
-            href={Routes.getProjectSingle(lang, project.slug).href}
+    <AnimatePresence initial={true}>
+      <FlexGrid columns={{ default: 1, sm: 2, lg: 3 }}>
+        {projects.map((project, i, { length }) => (
+          <motion.div
+            key={project.slug}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 1 * (i / length) }}
           >
-            <CardImage
-              className={'transition flex-center opacity-100 group-hover:opacity-0'}
-              containerClassName={'h-full'}
-              backgroundImage={project.thumbnail?.file.url || PLACEHOLDER_IMAGE}
-              aria-describedby={project.thumbnail?.description}
-            >
-              {project.keywords && <KeywordSEO keywords={project.keywords} />}
-              <h3 className={'transition transform p-1 text-white font-bold text-2xl text-center bg-blue-800 bg-opacity-50 group-hover:translate-y-10'}>
-                {project.name}
-              </h3>
-            </CardImage>
-          </Link>
-        </RatioContainer>
-      ))}
-    </FlexGrid>
+            <RatioContainer ratio={[21,9]}>
+              <Link
+                className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
+                href={Routes.getProjectSingle(lang, project.slug).href}
+              >
+                <CardImage
+                  className={'transition flex-center opacity-100 group-hover:opacity-0'}
+                  containerClassName={'h-full'}
+                  backgroundImage={project.thumbnail?.file.url || PLACEHOLDER_IMAGE}
+                  aria-describedby={project.thumbnail?.description}
+                >
+                  {project.keywords && <KeywordSEO keywords={project.keywords} />}
+                  <h3 className={'transition transform p-1 text-white font-bold text-2xl text-center bg-blue-800 bg-opacity-50 group-hover:translate-y-10'}>
+                    {project.name}
+                  </h3>
+                </CardImage>
+              </Link>
+            </RatioContainer>
+          </motion.div>
+        ))}
+      </FlexGrid>
+    </AnimatePresence>
   );
 };
