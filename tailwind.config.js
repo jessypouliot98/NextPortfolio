@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const colors = {
+  transparent: 'rgba(0, 0, 0, 0)',
   white: '#ffffff',
   gray: {
     50: '#fafaf9',

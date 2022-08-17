@@ -16,7 +16,7 @@ const nextConfig = {
     domains: ['images.ctfassets.net'],
   },
 
-  rewrites: require('./nextConfig/rewrites'),
+  rewrites: require('./.nextConfig/rewrites'),
 };
 
 module.exports = nextConfig;
