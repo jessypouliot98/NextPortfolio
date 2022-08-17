@@ -1,5 +1,5 @@
 {
-  "ignorePatterns": ["nextConfig/*"],
+  "ignorePatterns": ["nextConfig/*", "**/*.config.js"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
