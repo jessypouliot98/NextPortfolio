@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Link from "@/components/general/Link/Link";
 
+
 export type BreadcrumbsProps = {
   i18nProps?: Record<string, string>,
 }
@@ -38,7 +39,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   }
 
   return (
-    <AnimatePresence initial={true}>
+    <AnimatePresence initial={true   }>  
       <div className={'flex flex-wrap'}>
         {links.map(({ href, label }, i, arr) => {
           const isHome = i === 0;

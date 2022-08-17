@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
@@ -36,6 +38,7 @@
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^8.0.1",
     "typescript": "4.7.4"
   }
 }
