@@ -64,7 +64,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
       ...projectPage,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
     },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };

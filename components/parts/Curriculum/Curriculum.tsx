@@ -54,29 +54,14 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 );
               })}
             </ul>
-            <motion.ul className={'flex-1'}>
+            <ul className={'flex-1'}>
               {jobs.map((job) => {
                 const isActive = job.slug === activeJob;
 
                 return (
-                  <motion.li
+                  <li
                     key={job.slug}
-                    className={'hidden'}
-                    animate={isActive ? 'open': 'closed'}
-                    variants={{
-                      open: {
-                        display: 'block',
-                        height: 'auto',
-                        opacity: 1,
-                        transition: { ease: 'linear', duration: 0.3 },
-                      },
-                      closed: {
-                        display: 'block',
-                        height: 0,
-                        opacity: 0,
-                        transition: { ease: 'linear', duration: 0.3 },
-                      }
-                    }}
+                    className={clsx(isActive ? 'block' : 'hidden')}
                   >
                     <div className={'mb-2'}>
                       <h3 className={clsx(
@@ -126,10 +111,10 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                         })}
                       </Link>
                     </div>
-                  </motion.li>
+                  </li>
                 );
               })}
-            </motion.ul>
+            </ul>
           </div>
         </Card>
       </motion.div>

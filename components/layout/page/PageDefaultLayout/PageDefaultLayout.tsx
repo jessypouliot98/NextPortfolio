@@ -3,15 +3,17 @@ import Head from "next/head";
 import clsx from "clsx";
 import { motion } from 'framer-motion';
 
+import { Breadcrumbs, BreadcrumbsProps } from "@/components/general/Breadcrumbs/Breadcrumbs";
 import { Footer, Header } from "@/components/parts";
 
 export type PageDefaultLayoutProps = {
   children: React.ReactNode,
   title?: string;
   description?: string;
+  breadcrumbsI18nProps?: BreadcrumbsProps['i18nProps'],
 }
 
-export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, title, description }) => {
+export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, title, description, breadcrumbsI18nProps }) => {
   return (
     <>
       <Head>
@@ -31,6 +33,7 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
+            <Breadcrumbs i18nProps={breadcrumbsI18nProps} />
             {children}
           </motion.div>
         </main>

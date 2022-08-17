@@ -28,7 +28,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   const { t } = useTranslation();
 
   return (
-    <PageDefaultLayout title={title} description={project.shortDescription}>
+    <PageDefaultLayout title={title} description={project.shortDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
       <Section>
         <SectionTitle>
           {project.name}
@@ -104,7 +104,7 @@ export async function getStaticProps(context: GetStaticPropsContext<{ slug: stri
     props: {
       title: projectsPage.title,
       project: projectsPage.projects.find((project) => project.slug === slug),
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
     } as ProjectSinglePageProps,
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
