@@ -1,6 +1,7 @@
 import getConfig from 'next/config';
 import { createClient, Entry } from "contentful";
 
+import { CVPage } from './../../../store/pages/type';
 import { AppLanguage } from "@/store/application/types";
 import { HomePage } from "@/store/pages/type";
 import { Project } from "@/store/project/type";
@@ -56,6 +57,29 @@ export const getHomePage = async ({ lang }: BaseApiParams) => {
   };
 
   return homePage;
+};
+
+export const getCVPage = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry<CVPage>(
+    '7I1lyspj1Pv4n4GqXI5HJW',
+    getBaseQuery(lang)
+  );
+
+  const cvPage: CVPage = {
+    ...entry.fields,
+    jobs: entry.fields.jobs.map((jobEntry: any) => {
+      return {
+        ...jobEntry.fields,
+      };
+    }),
+    skills: entry.fields.skills.map((skillEntry: any) => {
+      return {
+        ...skillEntry.fields,
+      };
+    }),
+  };
+
+  return cvPage;
 };
 
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {

@@ -5,6 +5,11 @@
     "viewProject": "Voir le project"
   },
   "curriculum": {
-    "jobAtCompany": "{{job}} chez <Link>{{companyName}}</Link>"
+    "jobAtCompanyLinked": "{{job}} chez <Link>{{companyName}}</Link>",
+    "jobAtCompany": "{{job}} chez {{companyName}}"
+  },
+  "cv": {
+    "qualities": "Qualités",
+    "workExperiences": "Expériences de travail"
   }
 }

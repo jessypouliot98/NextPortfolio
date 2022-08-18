@@ -21,7 +21,7 @@ import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
 export type HomePageProps = HomePage
 
-const Home: NextPage<HomePageProps> = (props) => {
+const HomePage: NextPage<HomePageProps> = (props) => {
   const { t } = useTranslation();
   const lang = useLang();
   const homePage = props;
@@ -80,4 +80,4 @@ export async function getStaticProps(context: GetStaticPropsContext ) {
   };
 }
 
-export default Home;
+export default HomePage;

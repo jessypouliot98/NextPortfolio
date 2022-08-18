@@ -2,6 +2,7 @@
 
 const colors = {
   transparent: 'rgba(0, 0, 0, 0)',
+  current: 'currentColor',
   white: '#ffffff',
   gray: {
     50: '#fafaf9',

@@ -13,6 +13,11 @@ export type Job = {
   content: Document,
 }
 
+export type Skill = {
+  name: string,
+  slug: string,
+}
+
 export enum PagesActions {
   SET_HOME_PAGE = 'pages/set_home_page',
   SET_PROJECTS_PAGE = 'pages/set_projects_page',
@@ -30,6 +35,16 @@ export type HomePage = {
   curriculumJobs: Job[],
   skillSetTitle: string,
   skillSetContent: Document,
+}
+
+export type CVPage = {
+  title: string,
+  subtitle: string,
+  contact: Document,
+  intro: Document,
+  qualities: string[],
+  jobs: Job[],
+  skills: Skill[],
 }
 
 export type ProjectsPage = {

@@ -7,13 +7,14 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 import type { Job } from "@/store/pages/type";
 
 import { useLang } from "@/hooks/app";
-import { getMonthYear } from "@/utils/date";
 import { Routes } from "@/utils/link";
 
 import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import styles from './Curriculum.module.css';
+
+import { DateRange } from "../DateRange/DateRange";
 
 export type CurricuclumProps = {
   jobs: Job[],
@@ -69,7 +70,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                         'text-gray-900 dark:text-gray-100',
                       )}>
                         <Trans
-                          i18nKey={'page:curriculum.jobAtCompany'}
+                          i18nKey={'page:curriculum.jobAtCompanyLinked'}
                           values={{
                             job: job.title,
                             companyName: job.companyName,
@@ -85,20 +86,11 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                           }}
                         />
                       </h3>
-                      {job.startDate && (
-                        <h6 className={clsx(
-                          'text-sm',
-                          'text-gray-600 dark:text-gray-400',
-                        )}>
-                          <span>{getMonthYear(new Date(job.startDate), t)}</span>
-                          <span>{' - '}</span>
-                          {job.endDate ? (
-                            <span>{getMonthYear(new Date(job.endDate), t)}</span>
-                          ) : (
-                            <span>{t('common:date.present')}</span>
-                          )}
-                        </h6>
-                      )}
+                      <DateRange
+                        startDate={job.startDate}
+                        endDate={job.endDate}
+                        className={'text-sm text-gray-600 dark:text-gray-400'}
+                      />
                     </div>
                     <ContentfulDisplay className={styles.richText} document={job.content} />
                     <div className={'flex flex-row-reverse'}>

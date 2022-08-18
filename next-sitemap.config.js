@@ -34,6 +34,7 @@ const getLocalizedUrl = (url) => {
 const config = {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
+  exclude: ['**/404', '**/hidden/*'],
   transform: (config, url) => {
     return {
       loc: getLocalizedUrl(url),

@@ -1,0 +1,26 @@
+.richText ul,
+.richText li,
+.richText p,
+.richText h1,
+.richText h2,
+.richText h3,
+.richText h4,
+.richText h5,
+.richText h6
+{
+  @apply mb-0;
+}
+
+.richText h6 {
+  @apply text-gray-600;
+}
+
+.richText a {
+  @apply text-current no-underline hover:underline;
+}
+
+.richText b {
+  @apply font-bold text-gray-900;
+}
+
+.richTextContact {}

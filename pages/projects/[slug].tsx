@@ -17,7 +17,7 @@ import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 
-const IS_IN_CONSTRUCTION = true;
+const IS_IN_CONSTRUCTION = !true;
 
 export type ProjectSinglePageProps = {
   title: string,
