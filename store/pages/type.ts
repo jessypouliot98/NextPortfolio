@@ -11,11 +11,13 @@ export type Job = {
   companySlug: string,
   companyLink: string,
   content: Document,
+  skills: Skill[],
 }
 
 export type Skill = {
   name: string,
   slug: string,
+  color?: string,
 }
 
 export enum PagesActions {
@@ -35,6 +37,7 @@ export type HomePage = {
   curriculumJobs: Job[],
   skillSetTitle: string,
   skillSetContent: Document,
+  skills: Skill[],
 }
 
 export type CVPage = {

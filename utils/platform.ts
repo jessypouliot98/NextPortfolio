@@ -1,8 +1,8 @@
 export const isServer = () => {
   return typeof window === 'undefined';
-}
+};
 
-export const isWeb = () => {
+export const isClient = () => {
   return !isServer();
-}
+};
 

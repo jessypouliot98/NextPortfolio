@@ -35,28 +35,28 @@ const getBaseQuery = (lang: AppLanguage) => {
   };
 };
 
+const mapEntry = <R extends {} = any>(entry: any): R => {
+  if (entry.fields) {
+    return Object.entries(entry.fields).reduce<any>((acc, [key, entry]) => {
+      acc[key] = mapEntry(entry);
+      return acc;
+    }, {});
+  }
+
+  if (Array.isArray(entry)) {
+    return entry.map(mapEntry) as any;
+  }
+
+  return entry;
+};
+
 export const getHomePage = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry<HomePage>(
     'O1yWAroLh52b0wKZtWrVR',
     getBaseQuery(lang)
   );
 
-  const homePage: HomePage = {
-    ...entry.fields,
-    curriculumJobs: entry.fields.curriculumJobs.map((jobEntry: any) => {
-      return {
-        ...jobEntry.fields,
-      };
-    }),
-    featuredProjects: entry.fields.featuredProjects.map((projectEntry: any) => {
-      return {
-        ...projectEntry.fields,
-        thumbnail: (projectEntry.fields.thumbnail as any)?.fields,
-      };
-    })
-  };
-
-  return homePage;
+  return mapEntry<HomePage>(entry);
 };
 
 export const getCVPage = async ({ lang }: BaseApiParams) => {
@@ -65,21 +65,7 @@ export const getCVPage = async ({ lang }: BaseApiParams) => {
     getBaseQuery(lang)
   );
 
-  const cvPage: CVPage = {
-    ...entry.fields,
-    jobs: entry.fields.jobs.map((jobEntry: any) => {
-      return {
-        ...jobEntry.fields,
-      };
-    }),
-    skills: entry.fields.skills.map((skillEntry: any) => {
-      return {
-        ...skillEntry.fields,
-      };
-    }),
-  };
-
-  return cvPage;
+  return mapEntry<CVPage>(entry);
 };
 
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {
@@ -88,15 +74,5 @@ export const getProjectsPage = async ({ lang }: BaseApiParams) => {
     getBaseQuery(lang),
   );
 
-  const projectPage: ProjectPage = {
-    ...entry.fields,
-    projects: entry.fields.projects.map((projectEntry) => {
-      return {
-        ...projectEntry.fields,
-        thumbnail: (projectEntry.fields.thumbnail as any)?.fields,
-      };
-    })
-  };
-
-  return projectPage;
+  return mapEntry<ProjectPage>(entry);
 };

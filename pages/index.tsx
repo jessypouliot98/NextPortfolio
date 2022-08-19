@@ -2,6 +2,7 @@ import React from "react";
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { AnimatePresence, motion } from "framer-motion";
 import { getHomePage } from "@/lib/contentful/api/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
@@ -18,6 +19,7 @@ import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
+import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 export type HomePageProps = HomePage
 
@@ -61,7 +63,32 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
       <Section>
         <SectionTitle>{homePage.skillSetTitle}</SectionTitle>
-        <ContentfulDisplay document={homePage.skillSetContent}/>
+        <AnimatePresence initial={true}>
+          <div className={'-m-4 flex flex-wrap'}>
+            {homePage.skills.map((skill, i, { length }) => {
+              const transition = { delay: (2 * (i / length)), duration: 0.3 };
+              return (
+                <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 text-lg md:text-2xl'}>
+                  <motion.div
+                    className={'mr-1'}
+                    initial={{ opacity: 0, translateX: -10 }}
+                    animate={{ opacity: 1, translateX: 0 }}
+                    transition={transition}
+                  >
+                    <SkillIcon color={skill.color} skill={skill.slug} size={'1.5em'} />
+                  </motion.div>
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ ...transition, delay: transition.delay + 0.1 }}
+                  >
+                    {skill.name}
+                  </motion.span>
+                </div>
+              );
+            })}
+          </div>
+        </AnimatePresence>
       </Section>
     </PageDefaultLayout>
   );

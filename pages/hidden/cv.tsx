@@ -1,8 +1,9 @@
 import React from "react";
 import { GetServerSidePropsContext, NextPage } from "next";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { FaReact } from "react-icons/fa";
+import { FaDownload, FaHome, FaLanguage } from "react-icons/fa";
 import clsx from "clsx";
 import { getCVPage } from "@/lib/contentful/api/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
@@ -10,7 +11,12 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 import { AppLanguage } from "@/store/application/types";
 import { CVPage } from '@/store/pages/type';
 
+import { useLang } from "@/hooks/app";
+import { Routes } from "@/utils/link";
+
+import { Button } from "@/components/general";
 import { DateRange } from "@/components/parts/DateRange/DateRange";
+import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from '@/styles/pages/cv.module.css';
 
@@ -22,15 +28,47 @@ export type CVPageProps = {
 
 const CVPage: NextPage<CVPageProps> = ({ page }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+  const lang = useLang();
 
-  const asideSectionStyle = clsx('mb-4');
+  const asideSectionStyle = clsx('mb-8');
   const asideTitleStyle = clsx('font-bold text-xl mb-2');
 
-  const mainSectionStyle = clsx('mb-4');
+  const mainSectionStyle = clsx('mb-8');
   const mainTitleStyle = clsx('font-bold text-xl mb-2 text-gray-700');
   
   return (
     <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>
+
+      <header className="print:hidden fixed top-10 right-10 p-2">
+        <Button
+          className={'mb-2'}
+          title={'Home'}
+          onPress={() => router.push(Routes.getHome(lang).href)}
+        >
+          <FaHome />
+        </Button>
+        <Button
+          className={'mb-2'}
+          title={'Change language'}
+          onPress={() => router.push(
+            router.asPath,
+            router.asPath,
+            { locale: { en: 'fr', fr: 'en' }[lang] }
+          )}
+        >
+          <FaLanguage />
+        </Button>
+        <Button
+          className={'mb-2'}
+          title={'Download'}
+          onPress={() => {
+            console.log('No download');
+          }}
+        >
+          <FaDownload />
+        </Button>
+      </header>
 
       <aside className={'w-full px-4 py-4 text-white bg-blue-600'} style={{ width: '2.7in' }}>
         <section id={'presentation'} className={asideSectionStyle}>
@@ -53,7 +91,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             {page.skills.map((skill) => (
               <li key={skill.slug} className={'flex w-full max-w-[50%] p-1'}>
                 <div className={'flex flex-center mr-1'}>
-                  <FaReact size={'1.2em'} />
+                  <SkillIcon skill={skill.slug} size={'1.2em'} />
                 </div>
                 <div className={'font-bold text-sm'}>{skill.name}</div>
               </li>
@@ -89,15 +127,22 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
                   <DateRange
                     startDate={job.startDate}
                     endDate={job.endDate}
-                    className={'text-sm text-gray-600 dark:text-gray-400 leading-none'}
+                    className={'text-gray-600 dark:text-gray-400 text-xs leading-tight'}
                   />
-                  <h3 className={'font-bold text-blue-700'}>
+                  <h3 className={'font-bold text-blue-700 text-lg leading-tight'}>
                     {t('page:curriculum.jobAtCompany', {
                       job: job.title,
                       companyName: job.companyName,
                     })}
                   </h3>
-                  <ContentfulDisplay className={styles.richText} document={job.content} />
+                  <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
+                  <ul className={'flex -m-1'}>
+                    {job.skills.map((skill) => (
+                      <li key={skill.slug} className={'p-1'}>
+                        <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               );
             })}

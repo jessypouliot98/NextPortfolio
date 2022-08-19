@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { isServer } from './../../utils/platform';
-import { isWeb } from '@/utils/platform';
+import { isClient } from '@/utils/platform';
 
 enum Theme {
   light = 'light',
@@ -31,7 +31,7 @@ const getPreferedTheme = () => {
     return savedPreferenceTheme;
   }
 
-  if (isWeb() && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (isClient() && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return Theme.dark;
   }
 
@@ -44,7 +44,7 @@ export const useTheme = () => {
   const toggleTheme = () => setTheme((prevTheme) => {
     const nextTheme = prevTheme === Theme.light ? Theme.dark : Theme.light;
 
-    if (isWeb()) {
+    if (isClient()) {
       window.document.body.classList.toggle(prevTheme, false);
       window.document.body.classList.toggle(nextTheme, true);
     }
@@ -55,7 +55,7 @@ export const useTheme = () => {
   });
 
   useEffect(() => {
-    if (isWeb()) {
+    if (isClient()) {
       window.document.body.classList.toggle(theme, true);
     }
   }, []);
