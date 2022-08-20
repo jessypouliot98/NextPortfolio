@@ -10,10 +10,17 @@ export default async function handler(
   res: NextApiResponse<Buffer>
 ) {
   const lang = req.query.lang || 'en';
-  const protocol = /localhost:\d+/.test(req.headers.host as string) ? 'http' : 'https';
-  const cvUrl = `${protocol}://${req.headers.host}${Routes.getCVPage(lang as AppLanguage).localizedHref}`;
+  const cvUrl = process.env.SITE_URL + Routes.getCVPage(lang as AppLanguage).localizedHref;
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: [
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--disable-setuid-sandbox',
+      '--no-sandbox',
+    ]
+  });
 
   const page = await browser.newPage();
   await page.goto(cvUrl, {
