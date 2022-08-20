@@ -22,6 +22,7 @@
     "next-i18next": "^11.3.0",
     "next-sitemap": "^3.1.18",
     "postcss": "^8.4.14",
+    "puppeteer": "^16.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",

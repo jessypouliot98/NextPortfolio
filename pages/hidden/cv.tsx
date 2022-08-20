@@ -36,7 +36,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
 
   const mainSectionStyle = clsx('mb-8');
   const mainTitleStyle = clsx('font-bold text-xl mb-2 text-gray-700');
-  
+
   return (
     <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>
 
@@ -63,7 +63,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
           className={'mb-2'}
           title={'Download'}
           onPress={() => {
-            console.log('No download');
+            window.open(Routes.getPdfCV(lang).href, '_self');
           }}
         >
           <FaDownload />
@@ -153,10 +153,10 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {    
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const lang = context.locale as AppLanguage;
   const page = await getCVPage({ lang });
-  
+
   return {
     props: {
       page,

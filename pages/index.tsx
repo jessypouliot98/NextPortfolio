@@ -68,7 +68,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             {homePage.skills.map((skill, i, { length }) => {
               const transition = { delay: (2 * (i / length)), duration: 0.3 };
               return (
-                <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 text-lg md:text-2xl'}>
+                <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl'}>
                   <motion.div
                     className={'mr-1'}
                     initial={{ opacity: 0, translateX: -10 }}
@@ -94,10 +94,10 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   );
 };
 
-export async function getStaticProps(context: GetStaticPropsContext ) {    
+export async function getStaticProps(context: GetStaticPropsContext ) {
   const lang = context.locale as AppLanguage;
   const homePage = await getHomePage({ lang });
-  
+
   return {
     props: {
       ...homePage,

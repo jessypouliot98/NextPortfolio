@@ -27,14 +27,14 @@ export namespace Routes {
     return {
       path: '/',
       href: { en: '/', fr: '/' }[lang],
-    }; 
+    };
   };
 
   export const getContact = (_lang: AppLanguage) => {
     return {
       path: '@@@',
       href: 'mailto:jessypouliot98@gmail.com',
-    }; 
+    };
   };
 
   export const getProjectList = (lang: AppLanguage, query?: { filter: string }) => {
@@ -46,10 +46,28 @@ export namespace Routes {
 
   export const getProjectSingle = (lang: AppLanguage, slug: string) => {
     const projectListRoute = getProjectList(lang);
-    
+
     return {
       path: `${projectListRoute.path}/[slug]`,
       href: `${projectListRoute.href}/${slug}`,
     };
   };
+
+  export const getCVPage = (lang: AppLanguage) => {
+    return {
+      path: '/hidden/cv',
+      href: '/hidden/cv',
+      localizedHref: {
+        en: '/hidden/cv',
+        fr: '/fr/hidden/cv',
+      }[lang],
+    }
+  }
+
+  export const getPdfCV = (lang: AppLanguage) => {
+    return {
+      path: '/api/pdf/cv',
+      href: urlWithQuery('/api/pdf/cv', { lang }),
+    }
+  }
 }
