@@ -45,7 +45,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
           const isHome = i === 0;
           const isCurrent = i === arr.length - 1;
           const labelStyle = clsx('flex flex-center h-full');
-          const linkStyle = clsx(labelStyle, 'text-blue-500 hover:text-blue-400');
+          const linkStyle = clsx(labelStyle, 'link link-primary');
 
           return (
             <motion.div

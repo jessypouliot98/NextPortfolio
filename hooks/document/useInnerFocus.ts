@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const getFocusId = (e: FocusEvent) => {
   const target =  (e.target as { id?: string, href?: string });
@@ -10,6 +10,12 @@ export const useInnerFocus = (elementRef: React.RefObject<HTMLElement>) => {
   const isFocused = focus !== null;
 
   useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) {
+      return;
+    }
+
     const handleFocusIn = (e: FocusEvent) => {
       setFocus(getFocusId(e));
     };
@@ -25,16 +31,16 @@ export const useInnerFocus = (elementRef: React.RefObject<HTMLElement>) => {
       });
     };
 
-    elementRef.current?.addEventListener('focusin', handleFocusIn);
-    elementRef.current?.addEventListener('focusout', handleFocusOut);
+    element.addEventListener('focusin', handleFocusIn);
+    element.addEventListener('focusout', handleFocusOut);
 
     return () => {
-      elementRef.current?.removeEventListener('focusin', handleFocusIn);
-      elementRef.current?.removeEventListener('focusout', handleFocusOut);
-    }
+      element.removeEventListener('focusin', handleFocusIn);
+      element.removeEventListener('focusout', handleFocusOut);
+    };
   }, [elementRef.current]);
 
   return {
     isFocused,
-  }
-}
+  };
+};

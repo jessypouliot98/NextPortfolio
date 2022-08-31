@@ -51,9 +51,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
                 <Link
                   className={clsx(
                     'w-11 h-11 rounded flex-center transition',
-                    'bg-transparent',
-                    'hover:bg-gray-100 lg:hover:bg-gray-100',
-                    'dark:hover:bg-gray-700 dark:lg:hover:bg-gray-800',
+                    'btn btn-default',
                   )}
                   href={social.link}
                   target={'_blank'}

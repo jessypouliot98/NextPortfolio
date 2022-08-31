@@ -21,27 +21,28 @@ import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
-export type HomePageProps = HomePage
+export type HomePageProps = {
+  page: HomePage,
+}
 
-const HomePage: NextPage<HomePageProps> = (props) => {
+const HomePage: NextPage<HomePageProps> = ({ page }) => {
   const { t } = useTranslation();
   const lang = useLang();
-  const homePage = props;
 
   return (
-    <PageDefaultLayout title={homePage.title} description={homePage.seoDescription}>
+    <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
-        <SectionTitle>{homePage.aboutMeTitle}</SectionTitle>
-        <ContentfulDisplay document={homePage.aboutMeContent} />
+        <SectionTitle>{page.aboutMeTitle}</SectionTitle>
+        <ContentfulDisplay document={page.aboutMeContent} />
       </Section>
 
       <Section>
-        <SectionTitle className={'relative z-20'}>{homePage.featuredProjectsTitle}</SectionTitle>
+        <SectionTitle className={'relative z-20'}>{page.featuredProjectsTitle}</SectionTitle>
         <StylishBox className={'mb-2'} effects={[
           { top: -10, right: '20%', blur: true,  },
           { bottom: -10, left: '-10%', blur: true },
         ]}>
-          <ProjectList projects={homePage.featuredProjects}/>
+          <ProjectList projects={page.featuredProjects}/>
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
           <Link className={'text-blue-500 hover:text-blue-400'} href={Routes.getProjectList(lang).href}>
@@ -51,21 +52,21 @@ const HomePage: NextPage<HomePageProps> = (props) => {
       </Section>
 
       <Section>
-        <SectionTitle>{homePage.curriculumTitle}</SectionTitle>
+        <SectionTitle>{page.curriculumTitle}</SectionTitle>
         <StylishBox effects={[
           { bottom: 50, left: -30 },
           { top: -50, right: -80 },
           { bottom: -80, right: -80 },
         ]}>
-          <Curriculum jobs={homePage.curriculumJobs} />
+          <Curriculum jobs={page.curriculumJobs} />
         </StylishBox>
       </Section>
 
       <Section>
-        <SectionTitle>{homePage.skillSetTitle}</SectionTitle>
+        <SectionTitle>{page.skillSetTitle}</SectionTitle>
         <AnimatePresence initial={true}>
           <div className={'-m-4 flex flex-wrap'}>
-            {homePage.skills.map((skill, i, { length }) => {
+            {page.skills.map((skill, i, { length }) => {
               const transition = { delay: (2 * (i / length)), duration: 0.3 };
               return (
                 <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl'}>
@@ -96,12 +97,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
 export async function getStaticProps(context: GetStaticPropsContext ) {
   const lang = context.locale as AppLanguage;
-  const homePage = await getHomePage({ lang });
+  const page = await getHomePage({ lang });
 
   return {
     props: {
-      ...homePage,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+      page,
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
     },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };

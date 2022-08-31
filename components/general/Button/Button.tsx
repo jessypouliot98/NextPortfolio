@@ -1,22 +1,25 @@
 import React from "react";
 import clsx from "clsx";
 
+type ButtonType = 'primary' | 'gray' | 'default';
+
 export type ButtonProps = {
   children: React.ReactNode,
   className?: string,
+  type?: ButtonType,
   title?: string,
   disabled?: boolean,
   onPress?: () => void,
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, className, title, disabled, onPress }) => {
+export const Button: React.FC<ButtonProps> = ({ children, className, type = 'default', title, disabled, onPress }) => {
   const handleClick = !disabled ? onPress : undefined;
 
   return (
     <button
       className={clsx(
-        'flex flex-center rounded p-2',
-        'bg-blue-500 text-white hover:bg-blue-400',
+        'btn',
+        type && `btn-${type}`,
         className,
       )}
       title={title}

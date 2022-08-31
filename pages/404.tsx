@@ -27,10 +27,10 @@ const Error404: NextPage<Error404Props> = () => {
           </div>
 
           <FlexGrid className={'w-96'} columns={2}>
-            <Button className={'w-full'} onPress={router.back}>
+            <Button type={'gray'} className={'w-full'} onPress={router.back}>
               {t('error:404.buttons.back')}
             </Button>
-            <Button className={'w-full'} onPress={() => router.push(Routes.getHome(lang).href)}>
+            <Button type={'primary'} className={'w-full'} onPress={() => router.push(Routes.getHome(lang).href)}>
               {t('error:404.buttons.home')}
             </Button>
           </FlexGrid>

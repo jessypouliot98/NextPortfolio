@@ -34,14 +34,14 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   return (
     <PageDefaultLayout title={projectsPage.title} description={projectsPage.seoDescription}>
       <Section>
-        <div className={'flex mb-2'}>
-          <SectionTitle>{projectsPage.title}</SectionTitle>
-          {hasFilter && (
-            <div className={'flex flex-row justify-end flex-1'}>
-              <Button onPress={clearFilter}>{t('global:common.clearFilters')}</Button>
-            </div>
-          )}
-        </div>
+        <SectionTitle className={'mb-2'}>{projectsPage.title}</SectionTitle>
+        {hasFilter && (
+          <div className={'flex flex-row-reverse mb-2'}>
+            <Button type={'primary'} className={'relative w-full md:w-auto z-20 mb-2'} onPress={clearFilter}>
+              {t('global:common.clearFilters')}
+            </Button>
+          </div>
+        )}
         <StylishBox effects={[
           { top: -30, right: '33%', blur: false },
           { top: 130, left: '15%', blur: true },

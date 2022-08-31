@@ -42,14 +42,10 @@ export const Header: React.FC<HeaderProps> = () => {
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
-  const linkStyle = clsx(
-    'transition p-2 rounded',
-    'bg-transparent hover:bg-gray-100',
-    'dark:bg-gray-100 dark:bg-opacity-0 dark:hover:bg-opacity-30',
-  );
+  const linkStyle = clsx('btn btn-default');
   const activeLinkStyle = clsx(
-    '!bg-blue-600 !text-white',
-    'dark:!bg-white dark:!text-blue-600'
+    '!bg-blue-500 !text-white',
+    'dark:!bg-white dark:!text-blue-500'
   );
 
   return (

@@ -21,7 +21,7 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, 
         {description && (<meta key={'description'} name={'description'} content={description} />)}
       </Head>
       <div className={clsx(
-        'relative flex flex-col min-h-screen overflow-x-hidden',
+        'relative flex flex-col min-h-screen overflow-hidden',
         'bg-gray-100 dark:bg-gray-800',
         'text-gray-900 dark:text-gray-200',
       )}>

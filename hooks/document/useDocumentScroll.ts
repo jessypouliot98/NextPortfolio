@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export enum ScrollDir {
   up = 0,
@@ -7,7 +7,7 @@ export enum ScrollDir {
 
 export const useDocumentScroll = (offset?: { y?: number }) => {
   const { y: offsetY = 0 } = offset || {};
-  const [scrollData, setScrollData] = useState({ dir: ScrollDir.up, y: 0 })
+  const [scrollData, setScrollData] = useState({ dir: ScrollDir.up, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +21,7 @@ export const useDocumentScroll = (offset?: { y?: number }) => {
         return {
           dir: nextDir,
           y: window.scrollY,
-        }
+        };
       });
     };
 
@@ -30,4 +30,4 @@ export const useDocumentScroll = (offset?: { y?: number }) => {
   }, []);
 
   return scrollData;
-}
+};

@@ -99,11 +99,16 @@ export async function getStaticProps(context: GetStaticPropsContext<{ slug: stri
   const lang = context.locale as AppLanguage;
   const projectsPage = await getProjectsPage({ lang });
   const slug = context.params?.slug as string;
+  const project = projectsPage.projects.find((project) => project.slug === slug);
+
+  if (!project) {
+    throw new Error('Project not found');
+  }
   
   return {
     props: {
-      title: projectsPage.title,
-      project: projectsPage.projects.find((project) => project.slug === slug),
+      title: `${projectsPage.title} - ${project.name}`,
+      project: project,
       ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
     } as ProjectSinglePageProps,
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),

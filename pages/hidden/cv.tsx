@@ -41,33 +41,42 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
     <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>
 
       <header className="print:hidden fixed top-10 right-10 p-2">
-        <Button
-          className={'mb-2'}
-          title={'Home'}
-          onPress={() => router.push(Routes.getHome(lang).href)}
-        >
-          <FaHome />
-        </Button>
-        <Button
-          className={'mb-2'}
-          title={'Change language'}
-          onPress={() => router.push(
-            router.asPath,
-            router.asPath,
-            { locale: { en: 'fr', fr: 'en' }[lang] }
-          )}
-        >
-          <FaLanguage />
-        </Button>
-        <Button
-          className={'mb-2'}
-          title={'Download'}
-          onPress={() => {
-            window.open(Routes.getPdfCV(lang).href, '_self');
-          }}
-        >
-          <FaDownload />
-        </Button>
+        <div>
+          <Button
+            className={'mb-2'}
+            type={'primary'}
+            title={'Home'}
+            onPress={() => router.push(Routes.getHome(lang).href)}
+          >
+            <FaHome />
+          </Button>
+        </div>
+        <div>
+          <Button
+            className={'mb-2'}
+            type={'primary'}
+            title={'Change language'}
+            onPress={() => router.push(
+              router.asPath,
+              router.asPath,
+              { locale: { en: 'fr', fr: 'en' }[lang] }
+            )}
+          >
+            <FaLanguage />
+          </Button>
+        </div>
+        <div>
+          <Button
+            className={'mb-2'}
+            type={'primary'}
+            title={'Download'}
+            onPress={() => {
+              window.open(Routes.getPdfCV(lang).href, '_self');
+            }}
+          >
+            <FaDownload />
+          </Button>
+        </div>
       </header>
 
       <aside className={'w-full px-4 py-4 text-white bg-blue-600'} style={{ width: '2.7in' }}>

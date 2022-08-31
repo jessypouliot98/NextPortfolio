@@ -12,7 +12,7 @@ export type FlexGridProps = {
 
 // Todo Refactor with recursion & templating. Use tailwind config to force these always compiled to fix undefined issue
 const getColumnStyle = (columns: Column) => {
-  const styleBuilder = ['w-full', 'max-w-full'];
+  const styleBuilder = ['w-full'];
 
   const col: ResponsiveColumn = typeof columns === 'object' ? columns : {
     default: columns,

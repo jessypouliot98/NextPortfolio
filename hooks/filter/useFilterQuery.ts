@@ -1,5 +1,5 @@
-import {useRouter} from "next/router";
-import {useCallback} from "react";
+import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 export const useFilterQuery = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ export const useFilterQuery = () => {
 
   const handleClearFilter = useCallback(async () => {
     await router.replace(router.route, { query: undefined });
-  }, []);
+  }, [router]);
 
   return {
     hasFilter: parsedFilter.length > 0,
