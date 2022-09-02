@@ -6,7 +6,6 @@ import { ProjectPage } from "@/lib/contentful";
 import { getProjectsPage } from "@/lib/contentful/api/contentful";
 
 import { useFilterQuery } from "@/hooks/filter";
-import { getSecondsFromMilliSeconds, MINUTE } from "@/utils/time";
 
 import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";

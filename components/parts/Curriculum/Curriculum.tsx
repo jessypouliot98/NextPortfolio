@@ -9,6 +9,7 @@ import { Routes } from "@/utils/link";
 
 import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
+import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from './Curriculum.module.css';
 
@@ -90,6 +91,19 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                         className={'text-sm text-gray-600 dark:text-gray-400'}
                       />
                     </div>
+                    <ul className={'flex'}>
+                      {job.skills.map((skill) => (
+                        <li key={skill.slug} className={'p-1'}>
+                          <SkillIcon
+                            className={'dark:!text-gray-100'}
+                            title={skill.name}
+                            skill={skill.slug}
+                            color={skill.color}
+                            size={'1.3em'}
+                          />
+                        </li>
+                      ))}
+                    </ul>
                     <ContentfulDisplay className={styles.richText} document={job.content} />
                     <div className={'flex flex-row-reverse'}>
                       <Link

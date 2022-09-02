@@ -8,7 +8,6 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
-import { getSecondsFromMilliSeconds, MINUTE } from "@/utils/time";
 
 import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";

@@ -1,7 +1,21 @@
 import React from "react";
 import { IconBaseProps } from "react-icons";
 import { GiEmptyChessboard } from "react-icons/gi";
-import { SiCss3, SiHtml5, SiJavascript, SiLaravel, SiLinux, SiNextdotjs, SiNodedotjs, SiPhp, SiReact,SiTailwindcss,SiTypescript, SiVuedotjs } from "react-icons/si";
+import {
+  SiCss3,
+  SiElasticsearch,
+  SiHtml5,
+  SiJavascript,
+  SiLaravel,
+  SiLinux,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPhp,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+  SiVuedotjs
+} from "react-icons/si";
 
 export type SkillIconProps = IconBaseProps & {
   skill: string,
@@ -22,6 +36,7 @@ const getIcon = (skill: string) => {
     case 'linux': return SiLinux;
     case 'laravel': return SiLaravel;
     case 'php': return SiPhp;
+    case 'elastic-search': return SiElasticsearch;
     default: return GiEmptyChessboard;
   }
 };

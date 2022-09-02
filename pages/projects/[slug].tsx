@@ -6,8 +6,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
 
-import { getSecondsFromMilliSeconds, MINUTE } from '@/utils/time';
-
 import { KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
