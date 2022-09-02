@@ -109,7 +109,6 @@ export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: stri
       project: project,
       ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
-    revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
 };
 

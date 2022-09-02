@@ -66,7 +66,6 @@ export const getStaticProps: GetStaticProps<ProjectListPageProps> = async (conte
       ...projectPage,
       ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
-    revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
 };
 
