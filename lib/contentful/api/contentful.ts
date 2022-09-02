@@ -1,7 +1,8 @@
 import getConfig from 'next/config';
 import { createClient } from "contentful";
-import {AppLanguage} from "../../../types";
-import {CVPage, HomePage} from "@/lib/contentful/types";
+import { CVPage, HomePage, ProjectPage } from "@/lib/contentful/types";
+
+import { AppLanguage } from "../../../types";
 
 const { serverRuntimeConfig } = getConfig();
 

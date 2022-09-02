@@ -17,6 +17,7 @@ import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
+
 import { AppLanguage } from "../types";
 
 export type HomePageProps = {

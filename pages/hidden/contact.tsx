@@ -5,7 +5,8 @@ import clsx from "clsx";
 
 import { Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
-import {AppLanguage} from "../../types";
+
+import { AppLanguage } from "../../types";
 
 export type ContactPageProps = {};
 

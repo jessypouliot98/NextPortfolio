@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaDownload, FaHome, FaLanguage } from "react-icons/fa";
 import clsx from "clsx";
-import { getCVPage, CVPage } from "@/lib/contentful";
+import { CVPage,getCVPage } from "@/lib/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import { useLang } from "@/hooks/app";
@@ -16,7 +16,8 @@ import { DateRange } from "@/components/parts/DateRange/DateRange";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from '@/styles/pages/cv.module.css';
-import {AppLanguage} from "../../types";
+
+import { AppLanguage } from "../../types";
 
 const profilePic = 'https://media-exp1.licdn.com/dms/image/C4D03AQGn560isGTtnQ/profile-displayphoto-shrink_800_800/0/1564882386139?e=1666224000&v=beta&t=23b697fuQjlyC0LdpZX10FjDWlHS9xHgg1D1--A1Ets';
 
@@ -170,7 +171,7 @@ export const getServerSideProps: GetServerSideProps<CVPageProps> = async (contex
       ...(await serverSideTranslations(lang, ['common', 'global', 'page']) as any),
     },
   };
-}
+};
 
 
 export default CVPage;

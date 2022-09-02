@@ -1,4 +1,4 @@
-import type {GetStaticPaths, GetStaticProps, NextPage} from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -12,7 +12,8 @@ import { KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
-import {AppLanguage} from "../../types";
+
+import { AppLanguage } from "../../types";
 
 const IS_IN_CONSTRUCTION = true;
 
@@ -90,7 +91,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     }, [] as { params: { slug: string }, locale: AppLanguage }[]),
     fallback: 'blocking',
   };
-}
+};
 
 export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: string }> = async (context) => {
   const lang = context.locale as AppLanguage;
@@ -110,6 +111,6 @@ export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: stri
     },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
-}
+};
 
 export default ProjectSinglePage;

@@ -1,7 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from 'framer-motion';
-
-import { Project } from "@/store/project/type";
+import { Project } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
@@ -19,7 +18,7 @@ export type ProjectListProps = {
 
 export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   const lang = useLang();
-  
+
   return (
     <AnimatePresence initial={true}>
       <FlexGrid columns={{ default: 1, sm: 2, lg: 3 }}>

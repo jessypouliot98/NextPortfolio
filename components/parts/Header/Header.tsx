@@ -9,7 +9,8 @@ import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/d
 import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
-import {AppLanguage} from "../../../types";
+
+import { AppLanguage } from "../../../types";
 
 export type HeaderProps = {}
 

@@ -1,7 +1,8 @@
 import { useMemo } from "react";
-import type {GetStaticProps, NextPage} from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { ProjectPage } from "@/lib/contentful";
 import { getProjectsPage } from "@/lib/contentful/api/contentful";
 
 import { useFilterQuery } from "@/hooks/filter";
@@ -11,8 +12,8 @@ import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
-import {AppLanguage} from "../../types";
-import {ProjectPage} from "@/lib/contentful";
+
+import { AppLanguage } from "../../types";
 
 export type ProjectListPageProps = ProjectPage;
 
@@ -67,6 +68,6 @@ export const getStaticProps: GetStaticProps<ProjectListPageProps> = async (conte
     },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
-}
+};
 
 export default ProjectListPage;

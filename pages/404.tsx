@@ -7,8 +7,8 @@ import { useLang } from '../hooks';
 import { Routes } from '@/utils/link';
 import { getValidLang } from '@/utils/locale';
 
-import { PageErrorLayout } from '@/components/layout/page/PageErrorLayout/PageErrorLayout';
 import { Button, FlexGrid } from '@/components/general';
+import { PageErrorLayout } from '@/components/layout/page/PageErrorLayout/PageErrorLayout';
 
 export type Error404Props = {}
 

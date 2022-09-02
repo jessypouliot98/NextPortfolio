@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import puppeteer from "puppeteer";
 
 import { Routes } from "@/utils/link";
-import {AppLanguage} from "../../../types";
+
+import { AppLanguage } from "../../../types";
 
 export default async function handler(
   req: NextApiRequest,

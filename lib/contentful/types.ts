@@ -1,3 +1,5 @@
+import { Document } from "@contentful/rich-text-types";
+
 export type CVPage = {
   title: string,
   subtitle: string,
