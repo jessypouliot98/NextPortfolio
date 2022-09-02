@@ -23,8 +23,7 @@ const getAllStaticRoutes = async () => {
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(req.headers);
-  if (req.query.secret !== process.env.REVALIDATE_SECRET) {
+  if (req.headers.secret !== process.env.REVALIDATE_SECRET) {
     return res.status(401).json({ message: 'Invalid secret' });
   }
 
@@ -40,8 +39,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       routes: routesToRevalidate,
     });
   } catch (err) {
-    // If there was an error, Next.js will continue
-    // to show the last successfully generated page
     return res.status(500).send('Error revalidating');
   }
 };
