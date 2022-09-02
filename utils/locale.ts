@@ -1,4 +1,4 @@
-import { AppLanguage } from '@/store/application/types';
+import {AppLanguage} from "../types";
 
 export const getValidLang = (locale?: string): AppLanguage => {
   if (['en', 'fr'].includes(locale || '')) {

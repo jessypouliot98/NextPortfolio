@@ -1,15 +1,12 @@
 import React from "react";
-import { GetServerSidePropsContext, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaDownload, FaHome, FaLanguage } from "react-icons/fa";
 import clsx from "clsx";
-import { getCVPage } from "@/lib/contentful/api/contentful";
+import { getCVPage, CVPage } from "@/lib/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
-
-import { AppLanguage } from "@/store/application/types";
-import { CVPage } from '@/store/pages/type';
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
@@ -19,6 +16,7 @@ import { DateRange } from "@/components/parts/DateRange/DateRange";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from '@/styles/pages/cv.module.css';
+import {AppLanguage} from "../../types";
 
 const profilePic = 'https://media-exp1.licdn.com/dms/image/C4D03AQGn560isGTtnQ/profile-displayphoto-shrink_800_800/0/1564882386139?e=1666224000&v=beta&t=23b697fuQjlyC0LdpZX10FjDWlHS9xHgg1D1--A1Ets';
 
@@ -162,14 +160,14 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export const getServerSideProps: GetServerSideProps<CVPageProps> = async (context) => {
   const lang = context.locale as AppLanguage;
   const page = await getCVPage({ lang });
 
   return {
     props: {
       page,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page'])),
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page']) as any),
     },
   };
 }

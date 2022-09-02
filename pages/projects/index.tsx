@@ -1,11 +1,8 @@
 import { useMemo } from "react";
-import type { GetStaticPropsContext, NextPage } from 'next';
+import type {GetStaticProps, NextPage} from 'next';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getProjectsPage } from "@/lib/contentful/api/contentful";
-
-import { AppLanguage } from "@/store/application/types";
-import { ProjectsPage } from "@/store/pages/type";
 
 import { useFilterQuery } from "@/hooks/filter";
 import { getSecondsFromMilliSeconds, MINUTE } from "@/utils/time";
@@ -14,8 +11,10 @@ import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
+import {AppLanguage} from "../../types";
+import {ProjectPage} from "@/lib/contentful";
 
-export type ProjectListPageProps = ProjectsPage;
+export type ProjectListPageProps = ProjectPage;
 
 const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   const { t } = useTranslation();
@@ -57,14 +56,14 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   );
 };
 
-export async function getStaticProps(context: GetStaticPropsContext) {    
+export const getStaticProps: GetStaticProps<ProjectListPageProps> = async (context) => {
   const lang = context.locale as AppLanguage;
   const projectPage = await getProjectsPage({ lang });
-  
+
   return {
     props: {
       ...projectPage,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };

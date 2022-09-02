@@ -7,7 +7,7 @@ import { useLang } from '../hooks';
 import { Routes } from '@/utils/link';
 import { getValidLang } from '@/utils/locale';
 
-import { PageErrorLayout } from '../components/layout/page/PageErrorLayout/PageErrorLayout';
+import { PageErrorLayout } from '@/components/layout/page/PageErrorLayout/PageErrorLayout';
 import { Button, FlexGrid } from '@/components/general';
 
 export type Error404Props = {}
@@ -40,7 +40,7 @@ const Error404: NextPage<Error404Props> = () => {
   );
 };
 
-export async function getStaticProps(context: GetStaticPropsContext) {     
+export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(getValidLang(context.locale), ['error'])),

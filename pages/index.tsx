@@ -3,11 +3,8 @@ import type { GetStaticPropsContext, NextPage } from 'next';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AnimatePresence, motion } from "framer-motion";
-import { getHomePage } from "@/lib/contentful/api/contentful";
+import { getHomePage, HomePage } from "@/lib/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
-
-import { AppLanguage } from "@/store/application/types";
-import { HomePage } from "@/store/pages/type";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
@@ -20,6 +17,7 @@ import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
+import { AppLanguage } from "../types";
 
 export type HomePageProps = {
   page: HomePage,

@@ -1,22 +1,7 @@
 import getConfig from 'next/config';
-import { createClient, Entry } from "contentful";
-
-import { CVPage } from './../../../store/pages/type';
-import { AppLanguage } from "@/store/application/types";
-import { HomePage } from "@/store/pages/type";
-import { Project } from "@/store/project/type";
-
-type ContentfulProjectPage = {
-  title: string,
-  slug: string,
-  projects: Entry<Project>[],
-}
-
-type ProjectPage = {
-  title: string,
-  slug: string,
-  projects: Project[],
-}
+import { createClient } from "contentful";
+import {AppLanguage} from "../../../types";
+import {CVPage, HomePage} from "@/lib/contentful/types";
 
 const { serverRuntimeConfig } = getConfig();
 
@@ -51,7 +36,7 @@ const mapEntry = <R extends {} = any>(entry: any): R => {
 };
 
 export const getHomePage = async ({ lang }: BaseApiParams) => {
-  const entry = await getClient().getEntry<HomePage>(
+  const entry = await getClient().getEntry(
     'O1yWAroLh52b0wKZtWrVR',
     getBaseQuery(lang)
   );
@@ -60,7 +45,7 @@ export const getHomePage = async ({ lang }: BaseApiParams) => {
 };
 
 export const getCVPage = async ({ lang }: BaseApiParams) => {
-  const entry = await getClient().getEntry<CVPage>(
+  const entry = await getClient().getEntry(
     '7I1lyspj1Pv4n4GqXI5HJW',
     getBaseQuery(lang)
   );
@@ -69,7 +54,7 @@ export const getCVPage = async ({ lang }: BaseApiParams) => {
 };
 
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {
-  const entry = await getClient().getEntry<ContentfulProjectPage>(
+  const entry = await getClient().getEntry(
     '9Fvhg1FFcvesojFqhg6PK',
     getBaseQuery(lang),
   );

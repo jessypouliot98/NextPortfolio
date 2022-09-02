@@ -1,14 +1,10 @@
-import type { GetStaticPropsContext, NextPage } from 'next';
+import type {GetStaticPaths, GetStaticProps, NextPage} from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FaExternalLinkAlt } from "react-icons/fa";
 import clsx from "clsx";
-import { getProjectsPage } from '@/lib/contentful/api/contentful';
-import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
-
-import { AppLanguage } from '@/store/application/types';
-import { Project } from '@/store/project/type';
+import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
 
 import { getSecondsFromMilliSeconds, MINUTE } from '@/utils/time';
 
@@ -16,6 +12,7 @@ import { KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
+import {AppLanguage} from "../../types";
 
 const IS_IN_CONSTRUCTION = true;
 
@@ -80,22 +77,22 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   );
 };
 
-export async function getStaticPaths(context: GetStaticPropsContext) {
+export const getStaticPaths: GetStaticPaths = async (context) => {
   const projectsPage = await getProjectsPage({ lang: 'en' });
-  
+
   return {
     paths: projectsPage.projects.reduce((accPaths, project) => {
       context.locales?.forEach((locale: string) => {
         accPaths.push({ params: { slug: project.slug }, locale: locale as AppLanguage });
       });
-      
+
       return accPaths;
     }, [] as { params: { slug: string }, locale: AppLanguage }[]),
     fallback: 'blocking',
   };
 }
 
-export async function getStaticProps(context: GetStaticPropsContext<{ slug: string }>) {    
+export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: string }> = async (context) => {
   const lang = context.locale as AppLanguage;
   const projectsPage = await getProjectsPage({ lang });
   const slug = context.params?.slug as string;
@@ -104,13 +101,13 @@ export async function getStaticProps(context: GetStaticPropsContext<{ slug: stri
   if (!project) {
     throw new Error('Project not found');
   }
-  
+
   return {
     props: {
       title: `${projectsPage.title} - ${project.name}`,
       project: project,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
-    } as ProjectSinglePageProps,
+      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
+    },
     revalidate: getSecondsFromMilliSeconds(30 * MINUTE),
   };
 }

@@ -1,6 +1,5 @@
 import { NextRouter } from "next/router";
-
-import { AppLanguage } from './../store/application/types';
+import {AppLanguage} from "../types";
 
 // TODO Refactor this file
 

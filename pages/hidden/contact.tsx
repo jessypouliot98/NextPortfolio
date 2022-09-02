@@ -3,15 +3,13 @@ import type { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import clsx from "clsx";
 
-import { AppLanguage } from "@/store/application/types";
-import { HomePage } from "@/store/pages/type";
-
 import { Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
+import {AppLanguage} from "../../types";
 
-export type HomePageProps = HomePage
+export type ContactPageProps = {};
 
-const ContactPage: NextPage<HomePageProps> = () => {
+const ContactPage: NextPage<ContactPageProps> = () => {
   return (
     <PageDefaultLayout title={'Contact'} description={undefined}>
       <Section>
@@ -29,7 +27,7 @@ const ContactPage: NextPage<HomePageProps> = () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const lang = context.locale as AppLanguage;
-  
+
   return {
     props: {
       ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),

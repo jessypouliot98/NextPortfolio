@@ -4,13 +4,12 @@ import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
 
-import { AppLanguage } from "@/store/application/types";
-
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
 import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
 import Link from "@/components/general/Link/Link";
+import {AppLanguage} from "../../../types";
 
 export type HeaderProps = {}
 
@@ -20,7 +19,7 @@ export const Header: React.FC<HeaderProps> = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
-  
+
   const { dir } = useDocumentScroll({ y: 80 });
   const headerRef = useRef<HTMLElement>(null);
   const { isFocused } = useInnerFocus(headerRef);

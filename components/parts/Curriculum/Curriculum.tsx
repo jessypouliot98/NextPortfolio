@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { AnimatePresence, motion } from 'framer-motion';
-import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
-
-import type { Job } from "@/store/pages/type";
+import { ContentfulDisplay, Job } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
