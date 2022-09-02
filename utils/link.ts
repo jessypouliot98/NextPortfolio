@@ -25,7 +25,11 @@ export namespace Routes {
   export const getHome = (lang: AppLanguage) => {
     return {
       path: '/',
-      href: { en: '/', fr: '/' }[lang],
+      href: '/',
+      localizedHref: {
+        en: '/',
+        fr: '/fr',
+      }[lang],
     };
   };
 
@@ -40,6 +44,10 @@ export namespace Routes {
     return {
       path: '/projects',
       href: urlWithQuery({ en: '/projects', fr: '/projets' }[lang], query),
+      localizedHref: {
+        en: urlWithQuery('/projects', query),
+        fr: `/fr${urlWithQuery('/projets', query)}`,
+      }[lang],
     };
   };
 
@@ -49,6 +57,10 @@ export namespace Routes {
     return {
       path: `${projectListRoute.path}/[slug]`,
       href: `${projectListRoute.href}/${slug}`,
+      localizedHref: {
+        en: `${projectListRoute.href}/${slug}`,
+        fr: `/fr${projectListRoute.href}/${slug}`,
+      }[lang],
     };
   };
 
