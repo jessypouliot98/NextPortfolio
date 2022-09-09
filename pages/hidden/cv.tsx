@@ -96,7 +96,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         <section id={'skills'} className={asideSectionStyle}>
           <h2 className={asideTitleStyle}>Skills</h2>
           <ul className={'flex flex-wrap -m-1'}>
-            {page.skills.map((skill) => (
+            {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
               <li key={skill.slug} className={'flex w-full max-w-[50%] p-1'}>
                 <div className={'flex flex-center mr-1'}>
                   <SkillIcon skill={skill.slug} size={'1.2em'} />

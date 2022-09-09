@@ -56,6 +56,7 @@ export type Skill = {
   name: string,
   slug: string,
   color?: string,
+  isMajorSkill: boolean,
 }
 
 export type ContentfulFileImage = {

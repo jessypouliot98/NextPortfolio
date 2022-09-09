@@ -38,6 +38,10 @@
     @apply text-white bg-gray-500 hover:bg-gray-400 active:bg-opacity-50 shadow-lg;
 }
 
+.btn-white {
+    @apply text-gray-700 bg-white hover:bg-gray-200 active:bg-opacity-50 shadow-lg;
+}
+
 .link {
     @apply transition;
 }

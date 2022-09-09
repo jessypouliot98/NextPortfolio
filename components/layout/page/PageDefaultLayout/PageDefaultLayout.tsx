@@ -26,7 +26,7 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, 
         'text-gray-900 dark:text-gray-200',
       )}>
         <Header />
-        <main className={clsx('p-5 w-full h-full flex-1 max-w-[1024px] mx-auto')}>
+        <main className={clsx('p-5 w-full h-full flex-1 max-w-[1200px] mx-auto')}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

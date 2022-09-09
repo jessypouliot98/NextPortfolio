@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type ButtonType = 'primary' | 'gray' | 'default';
+type ButtonType = 'primary' | 'gray' | 'white' | 'default';
 
 export type ButtonProps = {
   children: React.ReactNode,
