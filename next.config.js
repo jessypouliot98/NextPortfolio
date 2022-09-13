@@ -11,11 +11,13 @@ const nextConfig = {
   publicRuntimeConfig: {
     GOOGLE_MEASUREMENT_ID: process.env.GOOGLE_MEASUREMENT_ID,
   },
+  experimental: {
+    esmExternals: false, // Required because SyntaxHighlighter would fail import otherwise
+  },
   i18n: require('./next-i18next.config').i18n,
   images: {
     domains: ['images.ctfassets.net'],
   },
-
   rewrites: require('./.nextConfig/rewrites'),
 };
 

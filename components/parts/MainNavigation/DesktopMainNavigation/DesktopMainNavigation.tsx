@@ -1,13 +1,16 @@
+import React, { useRef } from "react";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
+
+import { useLang } from "@/hooks/app";
+import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
+import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+
 import Link from "@/components/general/Link/Link";
-import {getIsActive, getIsHomeActive, Routes} from "@/utils/link";
-import {FaMoon, FaSun} from "react-icons/fa";
-import React, {useRef} from "react";
-import {useTranslation} from "next-i18next";
-import {useRouter} from "next/router";
-import {useLang} from "@/hooks/app";
-import {ScrollDir, useDocumentScroll, useInnerFocus, useTheme} from "@/hooks/document";
-import {AppLanguage} from "../../../../types";
+
+import { AppLanguage } from "../../../../types";
 
 export type DesktopMainNavigationProps = {
   navHeightClass: string,
@@ -102,5 +105,5 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};

@@ -20,10 +20,14 @@
     .min-h-touch, .btn {
         min-height: 42px;
     }
+
+    .min-w-touch {
+        min-width: 42px;
+    }
 }
 
 .btn {
-    @apply inline-flex justify-center items-center transition px-2 py-1 rounded select-none;
+    @apply inline-flex justify-center items-center transition px-2 py-2 rounded select-none leading-none;
 }
 
 .btn-primary {

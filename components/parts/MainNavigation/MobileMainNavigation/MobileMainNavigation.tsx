@@ -1,14 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { FaBars, FaMoon, FaSun, FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
-import {ScrollDir, useDocumentScroll, useInnerFocus, useTheme} from "@/hooks/document";
-import {Button} from "@/components/general";
-import {useRouter} from "next/router";
-import {getIsActive, getIsHomeActive, Routes} from "@/utils/link";
-import {AppLanguage} from "../../../../types";
-import {useLang} from "@/hooks/app";
-import {useTranslation} from "next-i18next";
-import {FaMoon, FaSun} from "react-icons/fa";
+
+import { useLang } from "@/hooks/app";
+import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
+import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+
+import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
+
+import { AppLanguage } from "../../../../types";
 
 export type MobileMainNavigationProps = {
   navHeightClass: string,
@@ -42,11 +45,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
   const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
 
-  const linkStyle = clsx('btn btn-white text-2xl');
-  const activeLinkStyle = clsx(
-    '!bg-blue-700 !text-white',
-    'dark:!bg-blue-500'
-  );
+  const linkStyle = clsx('btn btn-white');
 
   return (
     <>
@@ -58,20 +57,31 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
         )}
         style={{ transform: `translateY(${positionOffset}%)` }}
       >
-        <Button type="primary" onPress={() => setIsMenuOpen(true)}>
-          Open
+        <div className="flex-1">
+          <Link
+            className={clsx(
+              'btn btn-default text-xl',
+              getIsHomeActive(router) && '!bg-blue-500 !text-white'
+            )}
+            href={Routes.getHome(lang).href}
+          >
+            {t('global:header.home')}
+          </Link>
+        </div>
+        <Button className="text-xl min-w-touch min-h-touch" type="default" onPress={() => setIsMenuOpen(true)}>
+          <FaBars />
         </Button>
       </div>
       <aside
         className={'fixed z-50 top-0 right-0 bottom-0 left-0 transition-all duration-500 ease-in-out bg-blue-500 dark:bg-gray-700'}
         style={{
-          clipPath: `circle(${isMenuOpen ? '100% at 50% 50%' : '0% at 45px 35px'})`,
+          clipPath: `circle(${isMenuOpen ? '100% at 50% 50%' : '0% at calc(100% - 32px) 28px'})`,
         }}
       >
         <div className={'relative h-full'}>
-          <div className={clsx(navHeightClass, 'absolute px-5 flex items-center top-0 left-0')}>
-            <Button type="white" onPress={() => setIsMenuOpen(false)}>
-              Close
+          <div className={clsx(navHeightClass, 'absolute px-5 flex items-center top-0 right-0')}>
+            <Button className="text-xl min-w-touch min-h-touch" type="white" onPress={() => setIsMenuOpen(false)}>
+              <FaWindowClose />
             </Button>
           </div>
 
@@ -84,7 +94,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
                     <Link
                       className={clsx(
                         linkStyle,
-                        isActive && activeLinkStyle,
+                        isActive && '!bg-blue-700 dark:!bg-blue-500 !text-white',
                       )}
                       href={route.href}
                       onClick={() => setIsMenuOpen(false)}
@@ -92,7 +102,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
                       {title}
                     </Link>
                   </li>
-                )
+                );
               })}
               <li className={'p-4'}>
                 <Link
@@ -121,5 +131,5 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
         </div>
       </aside>
     </>
-  )
-}
+  );
+};

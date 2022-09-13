@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 
 import '@/styles/globals.css';
 
-export type MyAppProps = AppProps
+export type MyAppProps = AppProps;
 
 const MyApp = (props: MyAppProps) => {
   const { Component, pageProps } = props;

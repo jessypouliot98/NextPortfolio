@@ -1,6 +1,7 @@
 import React from "react";
-import {DesktopMainNavigation} from "@/components/parts/MainNavigation/DesktopMainNavigation/DesktopMainNavigation";
-import {MobileMainNavigation} from "@/components/parts/MainNavigation/MobileMainNavigation/MobileMainNavigation";
+
+import { DesktopMainNavigation } from "@/components/parts/MainNavigation/DesktopMainNavigation/DesktopMainNavigation";
+import { MobileMainNavigation } from "@/components/parts/MainNavigation/MobileMainNavigation/MobileMainNavigation";
 
 export type MainNavigationProps = {
   navHeightClass: string,
@@ -18,4 +19,4 @@ export const MainNavigation: React.FC<MainNavigationProps> = ({ navHeightClass, 
       </div>
     </>
   );
-}
+};
