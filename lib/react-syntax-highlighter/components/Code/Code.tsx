@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import SyntaxHighlighter, { SyntaxHighlighterProps } from 'react-syntax-highlighter';
-import { atelierSulphurpoolDark as themeStyle } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import clsx from 'clsx';
+import { nightOwl as themeStyle } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 export type CodeProps = SyntaxHighlighterProps;
 
@@ -15,10 +14,8 @@ export const Code: React.FC<CodeProps> = ((props) => {
   }, [props.children]);
 
   return (
-    <div className={clsx('rounded-lg shadow-lg overflow-hidden')}>
-      <SyntaxHighlighter style={{ ...themeStyle, hljs: { ...themeStyle.hljs, background: '#111827' } }} {...props}>
-        {content}
-      </SyntaxHighlighter>
-    </div>
+    <SyntaxHighlighter style={{ ...themeStyle, hljs: { ...themeStyle.hljs } }} {...props}>
+      {content}
+    </SyntaxHighlighter>
   );
 });

@@ -33,8 +33,7 @@ const colors = {
 
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './**/*.{jsx,tsx}',
   ],
   darkMode: 'class',
   theme: {
@@ -44,9 +43,7 @@ module.exports = {
       decimal: 'decimal',
       custom: '"▹ "',
     },
-    colors: {
-      ...colors,
-    },
+    colors,
     extend: {},
   },
   plugins: [],

@@ -1,7 +1,6 @@
 import { NextRouter } from "next/router";
-import {AppLanguage} from "../types";
 
-// TODO Refactor this file
+import { AppLanguage } from "../types";
 
 export const getIsHomeActive = (router: NextRouter) => {
   return router.pathname === '/';
@@ -64,6 +63,20 @@ export namespace Routes {
     };
   };
 
+  export const getBlogList = (_lang: AppLanguage) => {
+    return {
+      path: '/hidden/blog',
+      href: '/hidden/blog',
+    };
+  };
+
+  export const getBlogSingle = (lang: AppLanguage, slug: string) => {
+    return {
+      path: `${getBlogList(lang)}/[slug]`,
+      href: `${getBlogList(lang)}/${slug}`,
+    };
+  };
+
   export const getCVPage = (lang: AppLanguage) => {
     return {
       path: '/hidden/cv',
@@ -72,13 +85,13 @@ export namespace Routes {
         en: '/hidden/cv',
         fr: '/fr/hidden/cv',
       }[lang],
-    }
-  }
+    };
+  };
 
   export const getPdfCV = (lang: AppLanguage) => {
     return {
       path: '/api/pdf/cv',
       href: urlWithQuery('/api/pdf/cv', { lang }),
-    }
-  }
+    };
+  };
 }

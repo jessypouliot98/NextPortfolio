@@ -7,3 +7,4 @@ export * from './RatioContainer/RatioContainer';
 export * from './Section/Section';
 export * from './SectionTitle/SectionTitle';
 export * from './StylishBox/StylishBox';
+export * from './StylishCode/StylishCode';
