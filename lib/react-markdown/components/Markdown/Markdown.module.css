@@ -1,0 +1,48 @@
+.wrapper p,
+.wrapper h1,
+.wrapper h2,
+.wrapper h3,
+.wrapper h4,
+.wrapper h5,
+.wrapper h6,
+.wrapper :global(.stylish-box)
+{
+  @apply mb-2;
+}
+
+.wrapper h1,
+.wrapper h2,
+.wrapper h3,
+.wrapper h4,
+.wrapper h5,
+.wrapper h6 {
+  @apply font-bold;
+}
+
+.wrapper h1 {
+  @apply text-2xl;
+}
+
+.wrapper h2 {
+  @apply text-xl;
+}
+
+.wrapper h3 {
+  @apply text-lg;
+}
+
+.wrapper h4 {
+  @apply text-base;
+}
+
+.wrapper h5 {
+  @apply text-sm;
+}
+
+.wrapper h6 {
+  @apply text-xs;
+}
+
+.wrapper p {
+  @apply text-base;
+}

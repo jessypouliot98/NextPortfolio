@@ -4,5 +4,11 @@
     "[slug]": {
       "title": "{{projectTitle}}"
     }
+  },
+  "blog": {
+    "title": "Blogue",
+    "[slug]": {
+      "title": "{{blogTitle}}"
+    }
   }
 }

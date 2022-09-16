@@ -30,6 +30,13 @@ export type ProjectPage = {
   projects: Project[],
 }
 
+export type BlogPage = {
+  title: string,
+  slug: string,
+  seoDescription: string,
+  blogPosts: BlogPost[],
+}
+
 export type Project = {
   name: string,
   slug: string,
@@ -57,6 +64,12 @@ export type Skill = {
   slug: string,
   color?: string,
   isMajorSkill: boolean,
+}
+
+export type BlogPost = {
+  title: string,
+  slug: string,
+  content: string, // Markdown content
 }
 
 export type ContentfulFileImage = {
