@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getProjectsPage } from "@/lib/contentful";
+import {getBlogListPage, getProjectsPage} from "@/lib/contentful";
 
 import { Routes } from "@/utils/link";
 
@@ -11,12 +11,19 @@ const getAllProjectSingleRoutesForLang = async (lang: AppLanguage) => {
   return page.projects.map((project) => Routes.getProjectSingle(lang, project.slug).localizedHref);
 };
 
+const getAllBlogPostRoutesForLang = async (lang: AppLanguage) => {
+  const page = await getBlogListPage({ lang });
+
+  return page.blogPosts.map((blogPost) => Routes.getBlogSingle(lang, blogPost.slug).localizedHref);
+};
+
 const getAllStaticRoutes = async () => {
   const languages: AppLanguage[] = ['en', 'fr'];
   const routes = languages.map(async (lang) => [
     Routes.getHome(lang).localizedHref,
     Routes.getProjectList(lang).localizedHref,
-    ...(await getAllProjectSingleRoutesForLang(lang))
+    ...(await getAllProjectSingleRoutesForLang(lang)),
+    ...(await getAllBlogPostRoutesForLang(lang)),
   ]).flat();
 
   return (await Promise.all(routes)).flat();

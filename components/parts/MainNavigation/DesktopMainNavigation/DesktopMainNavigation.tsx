@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";

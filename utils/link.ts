@@ -56,24 +56,28 @@ export namespace Routes {
     return {
       path: `${projectListRoute.path}/[slug]`,
       href: `${projectListRoute.href}/${slug}`,
+      localizedHref: `${projectListRoute.localizedHref}/${slug}`,
+    };
+  };
+
+  export const getBlogList = (lang: AppLanguage) => {
+    return {
+      path: '/blog',
+      href: '/blog',
       localizedHref: {
-        en: `${projectListRoute.href}/${slug}`,
-        fr: `/fr${projectListRoute.href}/${slug}`,
+        en: '/blog',
+        fr: '/fr/blog',
       }[lang],
     };
   };
 
-  export const getBlogList = (_lang: AppLanguage) => {
-    return {
-      path: '/blog',
-      href: '/blog',
-    };
-  };
-
   export const getBlogSingle = (lang: AppLanguage, slug: string) => {
+    const blogListRoute = getBlogList(lang);
+
     return {
       path: `${getBlogList(lang).path}/[slug]`,
       href: `${getBlogList(lang).href}/${slug}`,
+      localizedHref: `${blogListRoute.localizedHref}/${slug}`,
     };
   };
 

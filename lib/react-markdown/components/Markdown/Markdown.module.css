@@ -37,7 +37,14 @@
 
 .wrapper ul,
 .wrapper ol {
-  @apply pl-4 mb-2;
+  @apply pl-4 mb-6;
+}
+
+.wrapper ul ul,
+.wrapper ul ol,
+.wrapper ol ul,
+.wrapper ol ol {
+  @apply mb-2;
 }
 
 .wrapper ul {
@@ -58,4 +65,13 @@
 
 .wrapper :global(.stylish-box) {
   @apply mb-4;
+}
+
+.wrapper img {
+  @apply rounded-md shadow;
+}
+
+.wrapper a {
+ /* TODO refactor @apply link link-primary */
+  @apply transition text-blue-500 hover:text-blue-400 active:text-opacity-50
 }

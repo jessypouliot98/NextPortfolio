@@ -24,7 +24,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   const { t } = useTranslation();
 
   return (
-    <PageDefaultLayout title={title} description={project.shortDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
+    <PageDefaultLayout title={title} description={project.seoDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
       <Section>
         <SectionTitle component="h1">
           {project.name}

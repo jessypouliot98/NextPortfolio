@@ -12,7 +12,7 @@ export type CVPage = {
 
 export type HomePage = {
   title: string,
-  seoDescription: string,
+  seoDescription?: string,
   aboutMeTitle: string,
   aboutMeContent: Document,
   featuredProjectsTitle: string,
@@ -26,21 +26,21 @@ export type HomePage = {
 export type ProjectPage = {
   title: string,
   slug: string,
-  seoDescription: string,
+  seoDescription?: string,
   projects: Project[],
 }
 
 export type BlogPage = {
   title: string,
   slug: string,
-  seoDescription: string,
+  seoDescription?: string,
   blogPosts: BlogPost[],
 }
 
 export type Project = {
   name: string,
   slug: string,
-  shortDescription: string,
+  seoDescription?: string,
   keywords: string[],
   thumbnail: ContentfulMediaImage,
   content: Document,
@@ -69,6 +69,7 @@ export type Skill = {
 export type BlogPost = {
   title: string,
   slug: string,
+  seoDescription?: string,
   content: string, // Markdown content
 }
 
