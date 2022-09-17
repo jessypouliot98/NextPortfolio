@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AppLanguage } from "types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 
-import { Section, SectionTitle } from "@/components/general";
+import { useLang } from "@/hooks/app";
+
+import { AlertBanner, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
 
 export type BlogPostPageProps = {
@@ -12,12 +16,20 @@ export type BlogPostPageProps = {
 }
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ page }) => {
+  const { t } = useTranslation();
+  const lang = useLang();
+
   return (
     <PageDefaultLayout breadcrumbsI18nProps={{ blogTitle: page.title }}>
       <Section>
-        <SectionTitle>
+        <SectionTitle component="h1">
           {page.title}
         </SectionTitle>
+        {lang !== 'en' && (
+          <AlertBanner className="font-bold mb-4" type="warning">
+            {t('page:blog.pageOnlyAvailableInEnglish')}
+          </AlertBanner>
+        )}
         <Markdown markdown={page.content}/>
       </Section>
     </PageDefaultLayout>

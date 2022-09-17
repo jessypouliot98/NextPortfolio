@@ -33,7 +33,9 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   return (
     <PageDefaultLayout title={projectsPage.title} description={projectsPage.seoDescription}>
       <Section>
-        <SectionTitle className={'mb-2'}>{projectsPage.title}</SectionTitle>
+        <SectionTitle component="h1">
+          {projectsPage.title}
+        </SectionTitle>
         {hasFilter && (
           <div className={'flex flex-row-reverse mb-2'}>
             <Button type={'primary'} className={'relative w-full md:w-auto z-20 mb-2'} onPress={clearFilter}>

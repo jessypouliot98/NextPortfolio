@@ -68,7 +68,12 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
             {t('global:header.home')}
           </Link>
         </div>
-        <Button className="text-xl min-w-touch min-h-touch" type="default" onPress={() => setIsMenuOpen(true)}>
+        <Button
+          className="text-xl min-w-touch min-h-touch" 
+          type="default"
+          aria-label={t('global:header.mainMenuBtn')}
+          onPress={() => setIsMenuOpen(true)}
+        >
           <FaBars />
         </Button>
       </div>
@@ -80,7 +85,12 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
       >
         <div className={'relative h-full'}>
           <div className={clsx(navHeightClass, 'absolute px-5 flex items-center top-0 right-0')}>
-            <Button className="text-xl min-w-touch min-h-touch" type="white" onPress={() => setIsMenuOpen(false)}>
+            <Button
+              className="text-xl min-w-touch min-h-touch"
+              type="white"
+              aria-label={t('global:header.mainMenuBtn')}
+              onPress={() => setIsMenuOpen(false)}
+            >
               <FaWindowClose />
             </Button>
           </div>

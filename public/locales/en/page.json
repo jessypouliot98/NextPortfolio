@@ -1,8 +1,14 @@
 {
+  "home": {
+    "home": "Accueil"
+  },
   "projects": {
     "seeAllProjects": "See all projects",
     "seeAllCompanyProjects": "See all {{companyName}} projects",
     "viewProject": "View project"
+  },
+  "blog": {
+    "pageOnlyAvailableInEnglish": "This page is only available in english"
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} at <Link>{{companyName}}</Link>",

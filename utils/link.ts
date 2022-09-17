@@ -65,15 +65,15 @@ export namespace Routes {
 
   export const getBlogList = (_lang: AppLanguage) => {
     return {
-      path: '/hidden/blog',
-      href: '/hidden/blog',
+      path: '/blog',
+      href: '/blog',
     };
   };
 
   export const getBlogSingle = (lang: AppLanguage, slug: string) => {
     return {
-      path: `${getBlogList(lang)}/[slug]`,
-      href: `${getBlogList(lang)}/${slug}`,
+      path: `${getBlogList(lang).path}/[slug]`,
+      href: `${getBlogList(lang).href}/${slug}`,
     };
   };
 

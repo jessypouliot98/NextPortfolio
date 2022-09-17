@@ -29,23 +29,11 @@ const colors = {
     800: '#075985',
     900: '#0c4a6e',
   },
-  orange: {
-    50: '#fff7ed',
-    100: '#ffedd5',
-    200: '#fed7aa',
-    300: '#fdba74',
-    400: '#fb923c',
-    500: '#f97316',
-    600: '#ea580c',
-    700: '#c2410c',
-    800: '#9a3412',
-    900: '#7c2d12',
-  },
 }
 
 module.exports = {
   content: [
-    './**/*.{jsx,tsx}',
+    './**/*.{jsx,tsx,css}',
   ],
   darkMode: 'class',
   theme: {
@@ -55,8 +43,9 @@ module.exports = {
       decimal: 'decimal',
       custom: '"▹ "',
     },
-    colors,
-    extend: {},
+    extend: {
+      colors,
+    },
   },
   plugins: [],
 }

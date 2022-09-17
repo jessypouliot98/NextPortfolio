@@ -8,6 +8,7 @@ import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
 import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
+import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
 import { AppLanguage } from "../../../../types";
@@ -30,6 +31,10 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
     {
       route: Routes.getProjectList(lang),
       title: t('global:header.projects'),
+    },
+    {
+      route: Routes.getBlogList(lang),
+      title: t('global:header.blog'),
     },
     {
       route: Routes.getContact(lang),
@@ -70,14 +75,15 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
       </div>
       <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
         <li className={'p-2'}>
-          <button
+          <Button
             id={'toggle-theme'}
+            type={'default'}
             aria-label={t('global:header.toggleTheme')}
             className={linkStyle}
-            onClick={toggleTheme}
+            onPress={toggleTheme}
           >
             {isDark ? <FaSun /> : <FaMoon />}
-          </button>
+          </Button>
         </li>
         {links.map(({ route, title }) => (
           <li key={title} className={'p-2'}>

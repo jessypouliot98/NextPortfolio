@@ -26,7 +26,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
   return (
     <PageDefaultLayout title={title} description={project.shortDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
       <Section>
-        <SectionTitle>
+        <SectionTitle component="h1">
           {project.name}
         </SectionTitle>
         {project.keywords && (

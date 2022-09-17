@@ -30,7 +30,7 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
   return (
     <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
-        <SectionTitle>{page.aboutMeTitle}</SectionTitle>
+        <SectionTitle component="h1">{page.aboutMeTitle}</SectionTitle>
         <ContentfulDisplay document={page.aboutMeContent} />
       </Section>
 

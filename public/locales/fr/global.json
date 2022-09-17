@@ -6,8 +6,10 @@
   "header": {
     "home": "Accueil",
     "projects": "Projets",
+    "blog": "Blog",
     "contact": "Contact",
-    "toggleTheme": "Changer le thème"
+    "toggleTheme": "Changer le thème",
+    "mainMenuBtn": "Bouton menu principale"
   },
   "footer": {
     "github": "Github",

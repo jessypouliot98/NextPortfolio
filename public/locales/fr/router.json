@@ -6,7 +6,7 @@
     }
   },
   "blog": {
-    "title": "Blogue",
+    "title": "Blog",
     "[slug]": {
       "title": "{{blogTitle}}"
     }

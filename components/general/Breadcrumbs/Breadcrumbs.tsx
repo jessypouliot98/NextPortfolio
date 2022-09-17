@@ -44,7 +44,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
         {links.map(({ href, label }, i, arr) => {
           const isHome = i === 0;
           const isCurrent = i === arr.length - 1;
-          const labelStyle = clsx('flex flex-center h-full');
+          const labelStyle = clsx('flex flex-center h-full truncate');
           const linkStyle = clsx(labelStyle, 'link link-primary');
 
           return (
@@ -63,6 +63,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
                 ) : (
                   <Link
                     className={linkStyle}
+                    title={t('page:home.home')}
                     href={href}
                   >
                     {isHome ? <FaHome size={'1.3em'} /> : t(label, i18nProps)}

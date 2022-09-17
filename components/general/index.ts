@@ -1,3 +1,4 @@
+export * from './AlertBanner/AlertBanner';
 export * from './Button/Button';
 export * from './Card/Card';
 export * from './FlexGrid/FlexGrid';
