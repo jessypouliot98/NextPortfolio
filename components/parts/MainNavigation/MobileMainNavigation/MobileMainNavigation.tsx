@@ -38,6 +38,10 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
       title: t('global:header.projects'),
     },
     {
+      route: Routes.getBlogList(lang),
+      title: t('global:header.blog'),
+    },
+    {
       route: Routes.getContact(lang),
       title: t('global:header.contact'),
     },

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import {GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage} from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AppLanguage } from "types";
-import {BlogPost, getBlogListPage, getProjectsPage} from "@/lib/contentful";
+import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 
 import { useLang } from "@/hooks/app";
 
 import { AlertBanner, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
-import {ProjectSinglePageProps} from "../projects/[slug]";
+
+import { ProjectSinglePageProps } from "../projects/[slug]";
 
 export type BlogPostPageProps = {
   title: string,

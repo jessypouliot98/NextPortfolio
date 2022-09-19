@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import {getBlogListPage, getProjectsPage} from "@/lib/contentful";
+import { getBlogListPage, getProjectsPage } from "@/lib/contentful";
 
 import { Routes } from "@/utils/link";
 

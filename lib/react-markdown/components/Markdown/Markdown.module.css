@@ -68,7 +68,7 @@
 }
 
 .wrapper img {
-  @apply rounded-md shadow;
+  @apply rounded-lg shadow mb-4;
 }
 
 .wrapper a {
