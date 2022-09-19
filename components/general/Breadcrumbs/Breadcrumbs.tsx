@@ -63,7 +63,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
                 ) : (
                   <Link
                     className={linkStyle}
-                    title={t('page:home.home')}
+                    title={isHome ? t('page:home.home') : undefined}
                     href={href}
                   >
                     {isHome ? <FaHome size={'1.3em'} /> : t(label, i18nProps)}

@@ -35,7 +35,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
         {project.thumbnail && (
           <RatioContainer
             className={clsx(
-              'mb-2 bg-gray-300 dark:bg-gray-700',
+              'mb-2 bg-gray-300 dark:bg-gray-700 rounded-lg shadow',
               'relative z-20' // Fix to keep decoration under
             )}
             ratio={[21, 9]}
