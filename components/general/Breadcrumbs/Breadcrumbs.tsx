@@ -17,7 +17,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   const pathSplit = router.asPath.split('/');
   const routeSplit = router.route.split('/').splice(1);
   const { t } = useTranslation('router');
-  
+
   const links = useMemo(() => {
     return pathSplit.reduce<{
       href: string,
@@ -25,13 +25,13 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
     }[]>((linkAccumulator, path, i) => {
       const lastLink = linkAccumulator[i - 1];
       const hrefPrefix = i <= 1 ? '' : lastLink?.href;
-      
+
       linkAccumulator.push({
         href: `${hrefPrefix}/${path}`,
         label: [...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
       });
-      
-  
+
+
       return linkAccumulator;
     }, []);
   }, [pathSplit, routeSplit]);
@@ -41,14 +41,15 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   }
 
   return (
-    <AnimatePresence initial={true   }>  
+    <AnimatePresence initial={true   }>
       <div className={'flex flex-wrap'}>
         {links.map(({ href, label }, i, arr) => {
           const isHome = i === 0;
           const isCurrent = i === arr.length - 1;
-          const labelStyle = clsx('flex flex-center h-full truncate');
+          const labelStyle = clsx('truncate max-w-[200px] lg:max-w-none');
           const linkStyle = clsx(labelStyle, 'link link-primary');
-          
+          const title = t(label, i18nProps);
+
           return (
             <motion.div
               key={href}
@@ -57,18 +58,18 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 * (i / arr.length) }}
             >
-              <div className={'mr-2'}>
+              <div className={'mr-2 flex flex-center'}>
                 {isCurrent ? (
-                  <span className={labelStyle} aria-current={'page'}>
-                    {t(label, i18nProps)}
+                  <span className={labelStyle} title={title} aria-current={'page'}>
+                    {title}
                   </span>
                 ) : (
                   <Link
                     className={linkStyle}
-                    title={isHome ? t(label) : undefined}
+                    title={title}
                     href={href}
                   >
-                    {isHome ? <FaHome size={'1.3em'} /> : t(label, i18nProps)}
+                    {isHome ? <FaHome size={'1.3em'} /> : title}
                   </Link>
                 )}
               </div>
