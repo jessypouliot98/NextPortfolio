@@ -33,7 +33,7 @@ export const FocusableImage: React.FC<FocusableImageProps> = (props) => {
           exit={{ opacity: 0 }}
           onClick={() => setIsOpen(false)}
         >
-          <div className="h-full flex-center p-4 lg:p-20">
+          <div className="h-full flex flex-center p-4 lg:p-20">
             <motion.img layoutId={src} className="w-full shadow cursor-default" src={src} alt={props.alt} onClick={preventDefaultEventCallback} />
           </div>
         </motion.div>

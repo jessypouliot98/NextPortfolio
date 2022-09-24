@@ -32,12 +32,12 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
   return (
     <AnimatePresence initial={true}>
       <motion.div
-        className={'lg:fixed z-40 bottom-0 right-0'}
+        className={'lg:fixed z-40 bottom-5 right-5'}
         initial={{ opacity: 0, scale: 1.1, x: 100 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ delay: 1 }}
       >
-        <div className={'mb-2 lg:mb-0 lg:p-5'}>
+        <div className={'mb-2 lg:m-0'}>
           <ul
             className={clsx(
               'flex',

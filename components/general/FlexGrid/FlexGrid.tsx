@@ -12,69 +12,15 @@ export type FlexGridProps = {
 
 // Todo Refactor with recursion & templating. Use tailwind config to force these always compiled to fix undefined issue
 const getColumnStyle = (columns: Column) => {
-  const styleBuilder = ['w-full'];
-
   const col: ResponsiveColumn = typeof columns === 'object' ? columns : {
     default: columns,
   };
 
-  switch (col.default) {
-    case 3: {
-      styleBuilder.push('max-w-[33.33%]');
-      break;
-    }
-    case 2: {
-      styleBuilder.push('max-w-[50%]');
-      break;
-    }
-  }
+  return Object.entries(col).reduce<string>((styleBuilder, [type, nbCols]) => {
+    const size = `max-w-1-${nbCols}`;
 
-  switch (col.sm) {
-    case 3: {
-      styleBuilder.push('sm:max-w-[33.33%]');
-      break;
-    }
-    case 2: {
-      styleBuilder.push('sm:max-w-[50%]');
-      break;
-    }
-      
-  }
-
-  switch (col.md) {
-    case 3: {
-      styleBuilder.push('md:max-w-[33%]');
-      break;
-    }
-    case 2: {
-      styleBuilder.push('md:max-w-[50%]');
-      break;
-    }
-  }
-
-  switch (col.lg) {
-    case 3: {
-      styleBuilder.push('lg:max-w-[33.33%]');
-      break;
-    }
-    case 2: {
-      styleBuilder.push('lg:max-w-[50%]');
-      break;
-    }
-  }
-
-  switch (col.xl) {
-    case 3: {
-      styleBuilder.push('xl:max-w-[33.33%]');
-      break;
-    }
-    case 2: {
-      styleBuilder.push('xl:max-w-[50%]');
-      break;
-    }
-  }
-
-  return styleBuilder.join(' ');
+    return `${styleBuilder} ${type === 'default' ? size : `${type}:${size}`}`;
+  }, 'w-full');
 };
 
 export const FlexGrid: React.FC<FlexGridProps> = ({ children: gridItems, className, columns = 2 }) => {

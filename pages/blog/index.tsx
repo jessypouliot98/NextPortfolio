@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { AnimatePresence, motion } from "framer-motion";
 import { AppLanguage } from "types";
 import { BlogPage, getBlogListPage } from "@/lib/contentful";
 
@@ -24,23 +25,31 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
           {page.title}
         </SectionTitle>
         <div className={'-m-2'}>
-          {page.blogPosts.map((blogPost) => (
-            <div key={blogPost.slug} className={'p-2'}>
-              <Link
-                className={'block transition hover:scale-105'}
-                href={Routes.getBlogSingle(lang, blogPost.slug).href}
+          <AnimatePresence initial={true}>
+            {page.blogPosts.map((blogPost, i , { length }) => (
+              <motion.div
+                key={blogPost.slug}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 1 * (i / length) }}
+                className={'p-2'}
               >
-                <Card className="flex flex-col md:flex-row">
-                  <div>
-                    <h2 className={'text-h3 mb-2 text-blue-500 dark:text-blue-500'}>{blogPost.title}</h2>
-                    <p className={'text-p'}>
-                      {blogPost.seoDescription}
-                    </p>
-                  </div>
-                </Card>
-              </Link>
-            </div>
-          ))}
+                <Link
+                  className={'block transition hover:scale-105'}
+                  href={Routes.getBlogSingle(lang, blogPost.slug).href}
+                >
+                  <Card className="flex flex-col md:flex-row">
+                    <div>
+                      <h2 className={'text-h3 mb-2 text-blue-500 dark:text-blue-500'}>{blogPost.title}</h2>
+                      <p className={'text-p'}>
+                        {blogPost.seoDescription}
+                      </p>
+                    </div>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </Section>
     </PageDefaultLayout>

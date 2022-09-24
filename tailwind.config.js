@@ -1,5 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-
 const colors = {
   transparent: 'rgba(0, 0, 0, 0)',
   current: 'currentColor',
@@ -31,9 +29,13 @@ const colors = {
   },
 }
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './**/*.{jsx,tsx,css}',
+  ],
+  safelist: [
+    { pattern: /max-w-1-(\d)/, variants: ['sm', 'md', 'lg', 'xl'] }
   ],
   darkMode: 'class',
   theme: {
@@ -44,6 +46,14 @@ module.exports = {
       custom: '"▹ "',
     },
     extend: {
+      maxWidth: {
+        '1-1': '100.00%',
+        '1-2': '50.00%',
+        '1-3': '33.33%',
+        '1-4': '25.00%',
+        '1-5': '20.00%',
+        '1-6': '16.66%',
+      },
       colors,
     },
   },

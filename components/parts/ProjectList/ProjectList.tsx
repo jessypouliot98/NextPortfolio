@@ -35,7 +35,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
                 href={Routes.getProjectSingle(lang, project.slug).href}
               >
                 <CardImage
-                  className={'transition flex-center opacity-100 group-hover:opacity-0'}
+                  className={'transition flex flex-center opacity-100 group-hover:opacity-0'}
                   containerClassName={'h-full'}
                   backgroundImage={project.thumbnail?.file.url || PLACEHOLDER_IMAGE}
                   aria-describedby={project.thumbnail?.description}

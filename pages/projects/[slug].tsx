@@ -35,7 +35,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
         {project.thumbnail && (
           <RatioContainer
             className={clsx(
-              'mb-2 bg-gray-300 dark:bg-gray-700 rounded-lg shadow',
+              'mb-6 bg-gray-300 dark:bg-gray-700 rounded-lg shadow',
               'relative z-20' // Fix to keep decoration under
             )}
             ratio={[21, 9]}
@@ -56,13 +56,13 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
           {IS_IN_CONSTRUCTION ? (
             <p className={'font-bold text-xl'}>{t('global:common.toBeConstructedContent')}</p>
           ) : (
-            <ContentfulDisplay document={project.content} />
+            <ContentfulDisplay className={'mb-4'} document={project.content} />
           )}
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
           {project.link && (
             <Link
-              className={'flex flex-center link link-primary'}
+              className={'link link-primary'}
               href={project.link}
               target={'_blank'}
             >

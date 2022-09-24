@@ -5,8 +5,6 @@ import clsx from "clsx";
 
 import Link from "@/components/general/Link/Link";
 
-import styles from './Contentful.module.css';
-
 export type ContentfulDisplayProps = {
   className?: string,
   document: Document,
@@ -26,7 +24,7 @@ const options: Options = {
 
 export const ContentfulDisplay: React.FC<ContentfulDisplayProps> = ({ className, document: contentfulDocument }) => {
   return (
-    <div className={clsx(styles.wrapper, className)}>
+    <div className={clsx('content', className)}>
       {documentToReactComponents(contentfulDocument, options)}
     </div>
   );

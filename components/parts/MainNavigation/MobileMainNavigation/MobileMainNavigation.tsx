@@ -73,7 +73,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
           </Link>
         </div>
         <Button
-          className="text-xl min-w-touch min-h-touch" 
+          className="text-xl min-w-touch min-h-touch"
           type="default"
           aria-label={t('global:header.mainMenuBtn')}
           onPress={() => setIsMenuOpen(true)}
@@ -99,8 +99,8 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
             </Button>
           </div>
 
-          <nav className={'h-full flex-center'}>
-            <ul className={'-m-4 flex-center flex-col'}>
+          <nav className={'h-full flex flex-center'}>
+            <ul className={'-m-4 flex flex-center flex-col'}>
               {links.map(({ route, title, getCustomIsActive }) => {
                 const isActive = getCustomIsActive ? getCustomIsActive() : getIsActive(router, route?.path);
                 return (
