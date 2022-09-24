@@ -22,7 +22,7 @@ export const StylishBox: React.FC<StylishBoxProps> = ({ children, className, eff
     <AnimatePresence initial={true}>
       <div className={clsx('relative z-10', className)}>
         <div className={'relative z-20'}>{children}</div>
-        <div className={'absolute top-0 right-0 bottom-0 left-0'}>
+        <div className={'absolute trbl'}>
           <div className={'relative w-full h-full -z-10 pointer-events-none'}>
             {effects.map((effect, i, { length }) => {
               const {

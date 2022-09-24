@@ -32,8 +32,8 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
               >
                 <Card className="flex flex-col md:flex-row">
                   <div>
-                    <h2 className={'text-xl font-bold text-blue-500 mb-4'}>{blogPost.title}</h2>
-                    <p className={'text-md font-normal'}>
+                    <h2 className={'text-h3 mb-2 text-blue-500 dark:text-blue-500'}>{blogPost.title}</h2>
+                    <p className={'text-p'}>
                       {blogPost.seoDescription}
                     </p>
                   </div>

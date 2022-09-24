@@ -1,9 +1,7 @@
 import React from "react";
 import ReactMarkdown from 'react-markdown';
 
-import { StylishCode } from "@/components/general";
-
-import styles from './Markdown.module.css';
+import { FocusableImage, StylishCode } from "@/components/general";
 
 const lineNumberStyle = {
   color: 'rgba(255, 255, 255, 0.4)',
@@ -20,7 +18,7 @@ export type MarkdownProps = {
 export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
   return (
     <ReactMarkdown
-      className={styles.wrapper}
+      className={'content'}
       components={{
         pre: ({ children }) => <>{children}</>,
         code: (props) => {
@@ -28,11 +26,16 @@ export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
           const language = properties?.className?.[0].replace(/^language-/, '');
           
           return (
-            <StylishCode language={language} showLineNumbers={true} lineNumberStyle={lineNumberStyle}>
+            <StylishCode className="mb-6" language={language} showLineNumbers={true} lineNumberStyle={lineNumberStyle}>
               {props.children as string[]}
             </StylishCode>
           );
-        }
+        },
+        img: (props) => {
+          return (
+            <FocusableImage src={props.src as string} alt={props.alt || ''} />
+          );
+        },
       }}
     >
       {markdown}

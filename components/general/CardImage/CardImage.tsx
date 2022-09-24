@@ -12,7 +12,7 @@ export const CardImage: React.FC<CardImageProps> = (props) => {
   const { children, className, containerClassName, backgroundImage, ...cardProps } = props;
 
   const baseImageClass = clsx(
-    'absolute top-0 right-0 bottom-0 left-0',
+    'absolute trbl',
     'bg-cover bg-center',
     'transition duration-300 transform',
   );
@@ -44,7 +44,7 @@ export const CardImage: React.FC<CardImageProps> = (props) => {
       />
 
       <div className={clsx(
-        'absolute top-0 right-0 bottom-0 left-0 bg-cover',
+        'absolute trbl bg-cover',
         className,
       )}>
         {children}

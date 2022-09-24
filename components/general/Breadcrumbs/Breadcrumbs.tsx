@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { FaAngleRight, FaHome } from "react-icons/fa";
@@ -18,21 +18,23 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   const routeSplit = router.route.split('/').splice(1);
   const { t } = useTranslation('router');
   
-  const links = pathSplit.reduce<{
-    href: string,
-    label: string,
-  }[]>((linkAccumulator, path, i) => {
-    const lastLink = linkAccumulator[i - 1];
-    const hrefPrefix = i <= 1 ? '' : lastLink?.href;
-    
-    linkAccumulator.push({
-      href: `${hrefPrefix}/${path}`,
-      label: [...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
-    });
-    
-
-    return linkAccumulator;
-  }, []);
+  const links = useMemo(() => {
+    return pathSplit.reduce<{
+      href: string,
+      label: string,
+    }[]>((linkAccumulator, path, i) => {
+      const lastLink = linkAccumulator[i - 1];
+      const hrefPrefix = i <= 1 ? '' : lastLink?.href;
+      
+      linkAccumulator.push({
+        href: `${hrefPrefix}/${path}`,
+        label: [...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
+      });
+      
+  
+      return linkAccumulator;
+    }, []);
+  }, [pathSplit, routeSplit]);
 
   if (router.route === '/') {
     return null;
@@ -46,7 +48,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
           const isCurrent = i === arr.length - 1;
           const labelStyle = clsx('flex flex-center h-full truncate');
           const linkStyle = clsx(labelStyle, 'link link-primary');
-
+          
           return (
             <motion.div
               key={href}
@@ -63,7 +65,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
                 ) : (
                   <Link
                     className={linkStyle}
-                    title={isHome ? t('page:home.home') : undefined}
+                    title={isHome ? t(label) : undefined}
                     href={href}
                   >
                     {isHome ? <FaHome size={'1.3em'} /> : t(label, i18nProps)}

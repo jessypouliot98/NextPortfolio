@@ -77,7 +77,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                           components={{
                             Link: (
                               <Link
-                                className={'font-bold text-blue-500 hover:text-blue-400'}
+                                className={'font-bold link link-primary'}
                                 href={job.companyLink}
                                 target={'_blank'}
                               />
@@ -107,7 +107,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                     <ContentfulDisplay className={styles.richText} document={job.content} />
                     <div className={'flex flex-row-reverse'}>
                       <Link
-                        className={'text-blue-500 hover:text-blue-400'}
+                        className={'link link-primary'}
                         href={Routes.getProjectList(lang, { filter: job.companySlug }).href}
                       >
                         {t('page:projects.seeAllCompanyProjects', {

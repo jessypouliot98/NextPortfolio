@@ -43,7 +43,7 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
           <ProjectList projects={page.featuredProjects}/>
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
-          <Link className={'text-blue-500 hover:text-blue-400'} href={Routes.getProjectList(lang).href}>
+          <Link className={'link link-primary'} href={Routes.getProjectList(lang).href}>
             {t('page:projects.seeAllProjects')}
           </Link>
         </div>
