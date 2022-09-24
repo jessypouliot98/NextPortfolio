@@ -8,13 +8,13 @@ import { AppLanguage } from "../../types";
 const getAllProjectSingleRoutesForLang = async (lang: AppLanguage) => {
   const page = await getProjectsPage({ lang });
 
-  return page.projects.map((project) => Routes.getProjectSingle(lang, project.slug).localizedHref);
+  return page.projects.map((project) => Routes.getProjectSingle(lang, { slug: project.slug }).localizedHref);
 };
 
 const getAllBlogPostRoutesForLang = async (lang: AppLanguage) => {
   const page = await getBlogListPage({ lang });
 
-  return page.blogPosts.map((blogPost) => Routes.getBlogSingle(lang, blogPost.slug).localizedHref);
+  return page.blogPosts.map((blogPost) => Routes.getBlogSingle(lang, { slug: blogPost.slug }).localizedHref);
 };
 
 const getAllStaticRoutes = async () => {

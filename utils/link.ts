@@ -2,6 +2,12 @@ import { NextRouter } from "next/router";
 
 import { AppLanguage } from "../types";
 
+type AppRoute = {
+  path: string,
+  href: string,
+  localizedHref: string,
+}
+
 export const getIsHomeActive = (router: NextRouter) => {
   return router.pathname === '/';
 };
@@ -20,8 +26,22 @@ export const urlWithQuery = (url: string, query?: Record<string, string>) => {
   return `${url}?${queryString}`;
 };
 
+export const getAlternateRoute = (router: NextRouter, alternateLang: AppLanguage) => {
+  let alternateRoute = Routes.getHome(alternateLang);
+
+  Object.values(Routes).forEach((getRoute) => {
+    const r = getRoute(alternateLang, router.query as any);
+
+    if (r.path === router.route) {
+      alternateRoute = r;
+    }
+  });
+
+  return alternateRoute;
+}
+
 export namespace Routes {
-  export const getHome = (lang: AppLanguage) => {
+  export const getHome = (lang: AppLanguage): AppRoute => {
     return {
       path: '/',
       href: '/',
@@ -32,14 +52,15 @@ export namespace Routes {
     };
   };
 
-  export const getContact = (_lang: AppLanguage) => {
+  export const getContact = (_lang: AppLanguage): AppRoute => {
     return {
       path: '@@@',
       href: 'mailto:jessypouliot98@gmail.com',
+      localizedHref: 'mailto:jessypouliot98@gmail.com',
     };
   };
 
-  export const getProjectList = (lang: AppLanguage, query?: { filter: string }) => {
+  export const getProjectList = (lang: AppLanguage, query?: { filter: string }): AppRoute => {
     return {
       path: '/projects',
       href: urlWithQuery({ en: '/projects', fr: '/projets' }[lang], query),
@@ -50,7 +71,8 @@ export namespace Routes {
     };
   };
 
-  export const getProjectSingle = (lang: AppLanguage, slug: string) => {
+  export const getProjectSingle = (lang: AppLanguage, query: { slug: string }): AppRoute => {
+    const { slug } = query;
     const projectListRoute = getProjectList(lang);
 
     return {
@@ -60,7 +82,7 @@ export namespace Routes {
     };
   };
 
-  export const getBlogList = (lang: AppLanguage) => {
+  export const getBlogList = (lang: AppLanguage): AppRoute => {
     return {
       path: '/blog',
       href: '/blog',
@@ -71,7 +93,8 @@ export namespace Routes {
     };
   };
 
-  export const getBlogSingle = (lang: AppLanguage, slug: string) => {
+  export const getBlogSingle = (lang: AppLanguage, query: { slug: string }): AppRoute => {
+    const { slug } = query;
     const blogListRoute = getBlogList(lang);
 
     return {
@@ -81,7 +104,7 @@ export namespace Routes {
     };
   };
 
-  export const getCVPage = (lang: AppLanguage) => {
+  export const getCVPage = (lang: AppLanguage): AppRoute => {
     return {
       path: '/hidden/cv',
       href: '/hidden/cv',
@@ -92,10 +115,11 @@ export namespace Routes {
     };
   };
 
-  export const getPdfCV = (lang: AppLanguage) => {
+  export const getPdfCV = (lang: AppLanguage): AppRoute => {
     return {
       path: '/api/pdf/cv',
       href: urlWithQuery('/api/pdf/cv', { lang }),
+      localizedHref: urlWithQuery('/api/pdf/cv', { lang }),
     };
   };
 }

@@ -36,7 +36,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
               >
                 <Link
                   className={'block transition hover:scale-105'}
-                  href={Routes.getBlogSingle(lang, blogPost.slug).href}
+                  href={Routes.getBlogSingle(lang, { slug: blogPost.slug }).href}
                 >
                   <Card className="flex flex-col md:flex-row">
                     <div>

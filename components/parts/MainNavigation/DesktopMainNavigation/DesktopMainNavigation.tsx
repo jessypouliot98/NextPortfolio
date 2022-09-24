@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
-import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+import { getAlternateRoute, getIsActive, getIsHomeActive, Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -26,6 +26,8 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
   const { dir } = useDocumentScroll({ y: 80 });
   const { isFocused } = useInnerFocus(headerRef);
   const { toggleTheme, isDark } = useTheme();
+  const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
+  const currentAlternateRoute = getAlternateRoute(router, otherLang);
 
   const links = [
     {
@@ -41,7 +43,6 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
       title: t('global:header.contact'),
     },
   ];
-  const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
 
   const homeRoute = Routes.getHome(lang);
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
@@ -62,18 +63,18 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
       )}
       style={{ transform: `translateY(${positionOffset}%)` }}
     >
-      <div className={'p-2'}>
-        <Link
-          className={clsx(
-            linkStyle,
-            getIsHomeActive(router) && activeLinkStyle,
-          )}
-          href={homeRoute.href}
-        >
-          {t('global:header.home')}
-        </Link>
-      </div>
       <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
+        <li className={'p-2 mr-auto'}>
+          <Link
+            className={clsx(
+              linkStyle,
+              getIsHomeActive(router) && activeLinkStyle,
+            )}
+            href={homeRoute.href}
+          >
+            {t('global:header.home')}
+          </Link>
+        </li>
         <li className={'p-2'}>
           <Button
             id={'toggle-theme'}
@@ -102,8 +103,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
           <Link
             className={clsx(linkStyle)}
             aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
-            // TODO Refactor to current page instead of home
-            href={'/'}
+            href={currentAlternateRoute.href}
             locale={otherLang}
           >
             {changeLangText}
