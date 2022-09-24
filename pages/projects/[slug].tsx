@@ -62,7 +62,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
         <div className={'flex flex-row justify-end'}>
           {project.link && (
             <Link
-              className={'flex flex-center text-blue-500 hover:text-blue-400'}
+              className={'flex flex-center link link-primary'}
               href={project.link}
               target={'_blank'}
             >

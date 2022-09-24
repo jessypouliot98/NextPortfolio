@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from 'react-markdown';
 
 import { FocusableImage, StylishCode } from "@/components/general";
+import Link from "@/components/general/Link/Link";
 
 const lineNumberStyle = {
   color: 'rgba(255, 255, 255, 0.4)',
@@ -31,9 +32,14 @@ export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
             </StylishCode>
           );
         },
+        a: (props) => {
+          return (
+            <Link href={props.href as string} target={'_blank'}>{props.children}</Link>
+          );
+        },
         img: (props) => {
           return (
-            <FocusableImage src={props.src as string} alt={props.alt || ''} />
+            <FocusableImage src={props.src as string} alt={props.alt as string} />
           );
         },
       }}

@@ -1,9 +1,8 @@
 import React from "react";
 import type { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import clsx from "clsx";
 
-import { Section, SectionTitle } from "@/components/general";
+import { CustomInput, FlexGrid, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
 
 import { AppLanguage } from "../../types";
@@ -15,11 +14,12 @@ const ContactPage: NextPage<ContactPageProps> = () => {
     <PageDefaultLayout title={'Contact'} description={undefined}>
       <Section>
         <SectionTitle>{'Contact'}</SectionTitle>
-        <form>
-          <label className={clsx('relative group')}>
-            <input className={clsx('px-2 bg-transparent border border-blue-500 rounded-lg')} type="text" />
-            <span className={clsx('select-none transition-all leading-none absolute left-2 top-1 group-focus-within:-top-3 transform group-focus-within:scale-90 group-focus-within:text-blue-500 bg-gray-100')} data-placeholder="Name">Name</span>
-          </label>
+        <form className="p-4 bg-white rounded-lg shadow">
+          <FlexGrid>
+            <CustomInput label={'Email'} />
+            <CustomInput label={'Phone'} />
+            <CustomInput label={'Message'} />
+          </FlexGrid>
         </form>
       </Section>
     </PageDefaultLayout>

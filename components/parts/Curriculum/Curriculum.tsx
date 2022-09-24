@@ -91,7 +91,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                         className={'text-sm text-gray-600 dark:text-gray-400'}
                       />
                     </div>
-                    <ul className={'flex'}>
+                    <ul className={'flex mb-2'}>
                       {job.skills.map((skill) => (
                         <li key={skill.slug} className={'p-1'}>
                           <SkillIcon
