@@ -8,19 +8,12 @@
 .richText h5,
 .richText h6
 {
-  @apply mb-0;
-}
-
-.richText h6 {
-  @apply text-gray-600;
+  @apply text-current;
+  margin-bottom: 0!important;
 }
 
 .richText a {
-  @apply text-current no-underline hover:underline;
-}
-
-.richText b {
-  @apply font-bold text-gray-900;
+  @apply text-current;
 }
 
 .richTextContact {}

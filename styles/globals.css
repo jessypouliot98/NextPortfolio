@@ -69,6 +69,10 @@
         @apply text-blue-500 hover:text-blue-400 active:text-opacity-50;
     }
 
+    .link-visited {
+        @apply visited:text-indigo-400 hover:visited:text-indigo-300;
+    }
+
     .content p { @apply text-p mb-4; }
     .content h1 { @apply text-h1 mb-4; }
     .content h2 { @apply text-h2 mb-4; }
@@ -76,7 +80,7 @@
     .content h4 { @apply text-h4 mb-4; }
     .content h5 { @apply text-h5 mb-2; }
     .content h6 { @apply text-h6 mb-2; }
-    .content a { @apply link link-primary; }
+    .content a { @apply link link-primary link-visited; }
     .content ul,
     .content ol { @apply pl-4 mb-6; }
     .content ul ul,

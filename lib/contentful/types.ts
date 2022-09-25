@@ -43,8 +43,9 @@ export type Project = {
   seoDescription?: string,
   keywords: string[],
   thumbnail: ContentfulMediaImage,
-  content: Document,
+  skills?: Skill[],
   link?: string,
+  content: Document,
 }
 
 export type Job = {

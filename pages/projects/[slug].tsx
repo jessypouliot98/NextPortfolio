@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
@@ -6,14 +7,13 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
 
-import { KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
+import { Card, KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
+import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import { AppLanguage } from "../../types";
-
-const IS_IN_CONSTRUCTION = true;
 
 export type ProjectSinglePageProps = {
   title: string,
@@ -22,6 +22,7 @@ export type ProjectSinglePageProps = {
 
 const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project }) => {
   const { t } = useTranslation();
+  const isInConstruction = useMemo(() => JSON.stringify(project.content).includes('### TODO'),[project.content]);
 
   return (
     <PageDefaultLayout title={title} description={project.seoDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
@@ -51,26 +52,40 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
         )}
         <StylishBox className={'mb-2'} effects={[
           { top: -10, left: -10, blur: true },
-          { top: 200, right: 50, blur: true },
+          { bottom: -100, right: 50, blur: true },
         ]}>
-          {IS_IN_CONSTRUCTION ? (
-            <p className={'font-bold text-xl'}>{t('global:common.toBeConstructedContent')}</p>
-          ) : (
-            <ContentfulDisplay className={'mb-4'} document={project.content} />
-          )}
+          <div className={'flex flex-col xl:flex-row-reverse'}>
+            {project.skills && (
+              <Card className={'mb-4 xl:mb-0 xl:ml-4 xl:min-w-[200px]'}>
+                <ul className={'flex flex-wrap xl:flex-col'}>
+                  {project.skills.map((skill) => (
+                    <li key={skill.slug} className={'text-md flex items-center p-2 xl:p-1 w-[50%] sm:w-auto'}>
+                      <SkillIcon className={'inline mr-2'} skill={skill.slug} color={skill.color} size="1.3em" />
+                      <span>{skill.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            )}
+            <div className={'flex-1'}>
+              {isInConstruction ? (
+                <p className={'font-bold text-xl mb-4'}>{t('global:common.toBeConstructedContent')}</p>
+              ) : (
+                <ContentfulDisplay className={'mb-4'} document={project.content} />
+              )}
+              {project.link && (
+                <Link
+                  className={'btn btn-primary'}
+                  href={project.link}
+                  target={'_blank'}
+                >
+                  <span>{t('page:projects.viewProject')}</span>
+                  <FaExternalLinkAlt className={'ml-2'} />
+                </Link>
+              )}
+            </div>
+          </div>
         </StylishBox>
-        <div className={'flex flex-row justify-end'}>
-          {project.link && (
-            <Link
-              className={'link link-primary'}
-              href={project.link}
-              target={'_blank'}
-            >
-              <span>{t('page:projects.viewProject')}</span>
-              <FaExternalLinkAlt className={'ml-2'} />
-            </Link>
-          )}
-        </div>
       </Section>
     </PageDefaultLayout>
   );

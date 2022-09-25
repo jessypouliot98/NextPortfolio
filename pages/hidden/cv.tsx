@@ -78,7 +78,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         </div>
       </header>
 
-      <aside className={'w-full px-4 py-4 text-white bg-blue-600'} style={{ width: '2.7in' }}>
+      <aside className={'w-full px-4 py-4 text-white bg-blue-600'} style={{ width: '2.8in' }}>
         <section id={'presentation'} className={asideSectionStyle}>
           <div className={'w-full bg-white rounded-3xl bg-cover shadow-lg'} style={{ paddingBottom: '100%', backgroundImage: `url(${profilePic})` }} />
         </section>
@@ -101,7 +101,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
                 <div className={'flex flex-center mr-1'}>
                   <SkillIcon skill={skill.slug} size={'1.2em'} />
                 </div>
-                <div className={'font-bold text-sm'}>{skill.name}</div>
+                <div className={'font-bold text-sm truncate'}>{skill.name}</div>
               </li>
             ))}
           </ul>
@@ -117,14 +117,14 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
           <ContentfulDisplay className={styles.richText} document={page.intro} />
         </section>
 
-        <section id={'qualities'} className={mainSectionStyle}>
-          <h2 className={mainTitleStyle}>{t('page:cv.qualities')}</h2>
-          <ul className={'mb-2'}>
-            {page.qualities.map((quality) => (
-              <li key={quality}>{quality}</li>
-            ))}
-          </ul>
-        </section>
+        {/*<section id={'qualities'} className={mainSectionStyle}>*/}
+        {/*  <h2 className={mainTitleStyle}>{t('page:cv.qualities')}</h2>*/}
+        {/*  <ul className={'mb-2'}>*/}
+        {/*    {page.qualities.map((quality) => (*/}
+        {/*      <li key={quality}>{quality}</li>*/}
+        {/*    ))}*/}
+        {/*  </ul>*/}
+        {/*</section>*/}
 
         <section id={'jobs'} className={mainSectionStyle}>
           <h2 className={mainTitleStyle}>{t('page:cv.workExperiences')}</h2>
@@ -137,20 +137,20 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
                     endDate={job.endDate}
                     className={'text-gray-600 dark:text-gray-400 text-xs leading-tight'}
                   />
-                  <h3 className={'font-bold text-blue-700 text-lg leading-tight'}>
+                  <h3 className={'font-bold text-blue-700 text-xl leading-tight'}>
                     {t('page:curriculum.jobAtCompany', {
                       job: job.title,
                       companyName: job.companyName,
                     })}
                   </h3>
-                  <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
-                  <ul className={'flex -m-1'}>
+                  <ul className={'flex -mx-1'}>
                     {job.skills.map((skill) => (
                       <li key={skill.slug} className={'p-1'}>
                         <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
                       </li>
                     ))}
                   </ul>
+                  <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
                 </div>
               );
             })}

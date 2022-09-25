@@ -2,7 +2,7 @@ import React from "react";
 import { IconBaseProps } from "react-icons";
 import { GiEmptyChessboard } from "react-icons/gi";
 import {
-  SiCss3,
+  SiCss3, SiDocker,
   SiElasticsearch,
   SiHtml5,
   SiJavascript,
@@ -11,10 +11,13 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiPhp,
+  SiPython,
   SiReact,
+  SiRedux,
   SiTailwindcss,
   SiTypescript,
-  SiVuedotjs
+  SiVuedotjs,
+  SiWordpress,
 } from "react-icons/si";
 
 export type SkillIconProps = IconBaseProps & {
@@ -37,6 +40,10 @@ const getIcon = (skill: string) => {
     case 'laravel': return SiLaravel;
     case 'php': return SiPhp;
     case 'elastic-search': return SiElasticsearch;
+    case 'docker': return SiDocker;
+    case 'wordpress': return SiWordpress;
+    case 'redux': return SiRedux;
+    case 'python': return SiPython;
     default: return GiEmptyChessboard;
   }
 };
