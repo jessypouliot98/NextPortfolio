@@ -61,15 +61,13 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ navH
         )}
         style={{ transform: `translateY(${positionOffset}%)` }}
       >
-        <div className="flex-1">
+        <div className="flex-1 flex items-center">
           <Link
-            className={clsx(
-              'btn btn-default text-xl',
-              getIsHomeActive(router) && '!bg-blue-500 !text-white'
-            )}
+            className="btn btn-default !p-0"
             href={Routes.getHome(lang).href}
+            title={t('global:header.home')}
           >
-            {t('global:header.home')}
+            <img src={isDark ? '/assets/logo_bw.svg' : '/assets/logo_color.svg'} className="inline-block w-10 h-10" alt="logo" />
           </Link>
         </div>
         <Button

@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
-import { getAlternateRoute, getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+import { getAlternateRoute, getIsActive, Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -44,7 +44,6 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
     },
   ];
 
-  const homeRoute = Routes.getHome(lang);
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
   const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
 
@@ -63,53 +62,53 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
       )}
       style={{ transform: `translateY(${positionOffset}%)` }}
     >
-      <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
-        <li className={'p-2 mr-auto'}>
-          <Link
-            className={clsx(
-              linkStyle,
-              getIsHomeActive(router) && activeLinkStyle,
-            )}
-            href={homeRoute.href}
-          >
-            {t('global:header.home')}
-          </Link>
-        </li>
-        <li className={'p-2'}>
-          <Button
-            id={'toggle-theme'}
-            type={'default'}
-            aria-label={t('global:header.toggleTheme')}
-            className={linkStyle}
-            onPress={toggleTheme}
-          >
-            {isDark ? <FaSun /> : <FaMoon />}
-          </Button>
-        </li>
-        {links.map(({ route, title }) => (
-          <li key={title} className={'p-2'}>
+      <div className="w-full max-w-[1500px] m-auto">
+        <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
+          <li className={'flex items-center p-2 mr-auto'}>
             <Link
-              className={clsx(
-                linkStyle,
-                getIsActive(router, route?.path) && activeLinkStyle,
-              )}
-              href={route.href}
+              className="btn btn-default !p-1 -m-1"
+              href={Routes.getHome(lang).href}
+              title={t('global:header.home')}
             >
-              {title}
+              <img src={isDark ? '/assets/logo_bw.svg' : '/assets/logo_color.svg'} className="inline-block w-10 h-10" alt="logo" />
             </Link>
           </li>
-        ))}
-        <li className={'p-2'}>
-          <Link
-            className={clsx(linkStyle)}
-            aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
-            href={currentAlternateRoute.href}
-            locale={otherLang}
-          >
-            {changeLangText}
-          </Link>
-        </li>
-      </ul>
+          <li className={'p-2'}>
+            <Button
+              id={'toggle-theme'}
+              type={'default'}
+              aria-label={t('global:header.toggleTheme')}
+              className={linkStyle}
+              onPress={toggleTheme}
+            >
+              {isDark ? <FaSun /> : <FaMoon />}
+            </Button>
+          </li>
+          {links.map(({ route, title }) => (
+            <li key={title} className={'p-2'}>
+              <Link
+                className={clsx(
+                  linkStyle,
+                  getIsActive(router, route?.path) && activeLinkStyle,
+                )}
+                href={route.href}
+              >
+                {title}
+              </Link>
+            </li>
+          ))}
+          <li className={'p-2'}>
+            <Link
+              className={clsx(linkStyle)}
+              aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
+              href={currentAlternateRoute.href}
+              locale={otherLang}
+            >
+              {changeLangText}
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
