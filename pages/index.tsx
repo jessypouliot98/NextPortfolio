@@ -2,9 +2,10 @@ import React from "react";
 import type { GetStaticPropsContext, NextPage } from 'next';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { getHomePage, HomePage } from "@/lib/contentful";
-import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
+import { getContentfulImageAlt, getContentfulImageSrc, getHomePage, HomePage } from "@/lib/contentful";
+import { ContentfulDisplay } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
@@ -31,7 +32,43 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
     <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
         <SectionTitle component="h1">{page.aboutMeTitle}</SectionTitle>
-        <ContentfulDisplay document={page.aboutMeContent} />
+        <div className="flex flex-row">
+          <ContentfulDisplay className="flex-1 z-1" document={page.aboutMeContent} />
+          <AnimatePresence initial={true}>
+            {page.aboutMeImage && (
+              <motion.div
+                className={clsx(
+                  'flex-1 relative',
+                  'hidden',
+                  'md:block md:max-w-[30%]',
+                  'lg:max-w-[40%]',
+                )}
+                initial={{ opacity: 0, translateX: '50%', scale: 0.3 }}
+                animate={{ opacity: 1, translateX: '0%', scale: 1 }}
+                exit={{ opacity: 0, translateX: '50%', scale: 0.3 }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className={clsx(
+                  'flex absolute trbl',
+                  'flex-center',
+                  'xl:justify-end'
+                )}>
+                  <img
+                    className={clsx(
+                      'block h-full drop-shadow-xl transform select-none pointer-events-none',
+                      'opacity-10 scale-150',
+                      'lg:opacity-100 lg:scale-150',
+                      'xl:scale-175'
+                    )}
+                    src={getContentfulImageSrc(page.aboutMeImage)}
+                    alt={getContentfulImageAlt(page.aboutMeImage)}
+                    loading="lazy"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </Section>
 
       <Section>

@@ -46,6 +46,7 @@ module.exports = {
       custom: '"▹ "',
     },
     extend: {
+      colors,
       maxWidth: {
         '1-1': '100.00%',
         '1-2': '50.00%',
@@ -54,7 +55,12 @@ module.exports = {
         '1-5': '20.00%',
         '1-6': '16.66%',
       },
-      colors,
+      scale: {
+        '175': '1.75',
+      },
+      zIndex: {
+        '1': "1",
+      },
     },
   },
   plugins: [],

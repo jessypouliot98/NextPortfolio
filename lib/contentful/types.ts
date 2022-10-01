@@ -15,6 +15,7 @@ export type HomePage = {
   seoDescription?: string,
   aboutMeTitle: string,
   aboutMeContent: Document,
+  aboutMeImage?: ContentfulMediaImage,
   featuredProjectsTitle: string,
   featuredProjects: Project[],
   curriculumTitle: string,
@@ -44,7 +45,10 @@ export type Project = {
   keywords: string[],
   thumbnail: ContentfulMediaImage,
   skills?: Skill[],
-  link?: string,
+  link?: string, // @deprecated
+  linkSourceCode?: string,
+  linkProject?: string,
+  linkPresentation?: string,
   content: Document,
 }
 

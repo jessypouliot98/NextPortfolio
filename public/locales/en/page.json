@@ -5,7 +5,11 @@
   "projects": {
     "seeAllProjects": "See all projects",
     "seeAllCompanyProjects": "See all {{companyName}} projects",
-    "viewProject": "View project"
+    "link": {
+      "viewSource": "View source code",
+      "viewProject": "View project",
+      "viewDetails": "See more"
+    }
   },
   "blog": {
     "pageOnlyAvailableInEnglish": "This page is only available in english"

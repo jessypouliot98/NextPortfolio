@@ -3,7 +3,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaCode, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
 
@@ -73,16 +73,44 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
               ) : (
                 <ContentfulDisplay className={'mb-4'} document={project.content} />
               )}
-              {project.link && (
-                <Link
-                  className={'btn btn-primary'}
-                  href={project.link}
-                  target={'_blank'}
-                >
-                  <span>{t('page:projects.viewProject')}</span>
-                  <FaExternalLinkAlt className={'ml-2'} />
-                </Link>
-              )}
+              <div className="-m-2 flex flex-wrap">
+                {project.linkSourceCode && (
+                  <div className="p-2">
+                    <Link
+                      className={'btn btn-primary'}
+                      href={project.linkSourceCode}
+                      target={'_blank'}
+                    >
+                      <span>{t('page:projects.link.viewSource')}</span>
+                      <FaCode className={'ml-2'} />
+                    </Link>
+                  </div>
+                )}
+                {project.linkProject && (
+                  <div className="p-2">
+                    <Link
+                      className={'btn btn-primary'}
+                      href={project.linkProject}
+                      target={'_blank'}
+                    >
+                      <span>{t('page:projects.link.viewProject')}</span>
+                      <FaLaptopCode className={'ml-2'} />
+                    </Link>
+                  </div>
+                )}
+                {project.linkPresentation && (
+                  <div className="p-2">
+                    <Link
+                      className={'btn btn-primary'}
+                      href={project.linkPresentation}
+                      target={'_blank'}
+                    >
+                      <span>{t('page:projects.link.viewDetails')}</span>
+                      <FaExternalLinkAlt className={'ml-2'} />
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </StylishBox>
