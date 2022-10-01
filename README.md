@@ -1,6 +1,17 @@
 # Next Portfolio
 My Next.js portfolio app
 
+<table>
+<tr>
+   <td>
+      <img src="https://raw.githubusercontent.com/jessypouliot98/NextPortfolio/main/.github/__assets__/NextPortfolio_Desktop.png" alt="desktop view" />
+   </td>
+   <td>
+      <img src="https://raw.githubusercontent.com/jessypouliot98/NextPortfolio/main/.github/__assets__/NextPortfolio_Iphone.png" alt="iphone xr view" />
+   </td>
+</tr>
+</table>
+
 ## Setup
 1. copy `.env.example` to create `.env`
 2. fill in the missing properties from `.env`
