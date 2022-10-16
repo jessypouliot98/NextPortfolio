@@ -13,8 +13,6 @@ import { AlertBanner, Button, Card, Section, SectionTitle } from "@/components/g
 import { PageDefaultLayout } from "@/components/layout";
 import { CommentList } from "@/components/parts/Comment";
 
-import { ProjectSinglePageProps } from "../projects/[slug]";
-
 export type BlogPostPageProps = {
   contentfulEntryId: string,
   title: string,
@@ -82,7 +80,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: string }> = async (context) => {
+export const getStaticProps: GetStaticProps<BlogPostPageProps, { slug: string }> = async (context) => {
   const lang = context.locale as AppLanguage;
   const page = await getBlogListPage({ lang });
 
