@@ -12,7 +12,9 @@
     }
   },
   "blog": {
-    "pageOnlyAvailableInEnglish": "This page is only available in english"
+    "pageOnlyAvailableInEnglish": "This page is only available in english",
+    "comments": "Comments",
+    "commentInputPlaceholder": "Write a comment.."
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} at <Link>{{companyName}}</Link>",

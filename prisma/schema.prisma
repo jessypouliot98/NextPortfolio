@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  contentfulEntryId String
+  content String
+  authorName String @db.VarChar(100)
+  parentCommentId Int?
+  parentComment Comment? @relation("CommentComments", fields: [parentCommentId], references: [id])
+  childComments Comment[] @relation("CommentComments")
+  createdAt DateTime? @default(now())
+  deletedAt DateTime?
+}

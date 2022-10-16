@@ -6,21 +6,27 @@ import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 
 import { useLang } from "@/hooks/app";
+import { useComments } from "@/hooks/comments";
+import { useCreateComment } from "@/hooks/comments/useCreateComment";
 
-import { AlertBanner, Section, SectionTitle } from "@/components/general";
+import { AlertBanner, Button, Card, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
+import { CommentList } from "@/components/parts/Comment";
 
 import { ProjectSinglePageProps } from "../projects/[slug]";
 
 export type BlogPostPageProps = {
+  contentfulEntryId: string,
   title: string,
   description: string,
   page: BlogPost,
 }
 
-const BlogPostPage: NextPage<BlogPostPageProps> = ({ title, page }) => {
+const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, page }) => {
   const { t } = useTranslation();
   const lang = useLang();
+  const { isLoading, data: comments = [], refetch,  } = useComments(contentfulEntryId);
+  const { handleSubmitComment } = useCreateComment(contentfulEntryId, refetch);
 
   return (
     <PageDefaultLayout title={title} description={page.seoDescription} breadcrumbsI18nProps={{ blogTitle: page.title }}>
@@ -34,6 +40,28 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ title, page }) => {
           </AlertBanner>
         )}
         <Markdown markdown={page.content}/>
+      </Section>
+      <Section>
+        <SectionTitle>
+          {t('page:blog.comments')}
+        </SectionTitle>
+        <Card>
+          {isLoading ? (
+            <div>loading</div>
+          ) : (
+            <>
+              <CommentList comments={comments} />
+              <form onSubmit={handleSubmitComment}>
+                <input type="text" placeholder={t('page:blog.commentInputPlaceholder')} className="w-full border rounded-md p-2 mb-2" name="comment" />
+                <div className="flex justify-end">
+                  <Button type="primary">
+                    Comment
+                  </Button>
+                </div>
+              </form>
+            </>
+          )}  
+        </Card>
       </Section>
     </PageDefaultLayout>
   );
@@ -66,6 +94,7 @@ export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: stri
 
   return {
     props: {
+      contentfulEntryId: blogPost.id,
       title: `${page.title} - ${blogPost.title}`,
       page: blogPost,
       ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),

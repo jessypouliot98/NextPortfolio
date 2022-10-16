@@ -8,3 +8,16 @@ services:
         PORT: "${APP_PORT}"
     ports:
       - "${APP_PORT}:${APP_PORT}"
+    restart: always
+
+  postgres:
+    image: postgres:15
+    restart: always
+    ports:
+     - "${DB_PORT}:5432"
+    environment:
+      - "POSTGRES_USER=${DB_USER}"
+      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+      - "POSTGRES_DB=${DB_DATABASE}"
+
+

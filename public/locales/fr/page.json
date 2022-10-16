@@ -8,7 +8,9 @@
     "viewProject": "Voir le project"
   },
   "blog": {
-    "pageOnlyAvailableInEnglish": "Cette page n'est disponible qu'en anglais"
+    "pageOnlyAvailableInEnglish": "Cette page n'est disponible qu'en anglais",
+    "comments": "Commentaires",
+    "commentInputPlaceholder": "Écrire un commentaire.."
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} chez <Link>{{companyName}}</Link>",

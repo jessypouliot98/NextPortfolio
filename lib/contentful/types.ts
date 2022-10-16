@@ -1,6 +1,8 @@
 import { Document } from "@contentful/rich-text-types";
 
-export type CVPage = {
+import { Entry } from ".";
+
+export type CVPage = Entry<{
   title: string,
   subtitle: string,
   intro: Document,
@@ -8,9 +10,9 @@ export type CVPage = {
   contact: Document,
   skills: Skill[],
   jobs: Job[],
-}
+}>
 
-export type HomePage = {
+export type HomePage = Entry<{
   title: string,
   seoDescription?: string,
   aboutMeTitle: string,
@@ -22,23 +24,23 @@ export type HomePage = {
   curriculumJobs: Job[],
   skillSetTitle: string,
   skills: Skill[],
-}
+}>
 
-export type ProjectPage = {
+export type ProjectPage = Entry<{
   title: string,
   slug: string,
   seoDescription?: string,
   projects: Project[],
-}
+}>
 
-export type BlogPage = {
+export type BlogPage = Entry<{
   title: string,
   slug: string,
   seoDescription?: string,
   blogPosts: BlogPost[],
-}
+}>
 
-export type Project = {
+export type Project = Entry<{
   name: string,
   slug: string,
   seoDescription?: string,
@@ -50,9 +52,9 @@ export type Project = {
   linkProject?: string,
   linkPresentation?: string,
   content: Document,
-}
+}>
 
-export type Job = {
+export type Job = Entry<{
   title: string,
   slug: string,
   companyName: string,
@@ -62,21 +64,21 @@ export type Job = {
   endDate?: string,
   content: Document,
   skills: Skill[],
-}
+}>
 
-export type Skill = {
+export type Skill = Entry<{
   name: string,
   slug: string,
   color?: string,
   isMajorSkill: boolean,
-}
+}>
 
-export type BlogPost = {
+export type BlogPost = Entry<{
   title: string,
   slug: string,
   seoDescription?: string,
   content: string, // Markdown content
-}
+}>
 
 export type ContentfulFileImage = {
   url: string,
@@ -88,7 +90,7 @@ export type ContentfulFileImage = {
     }
   },
   contentType: string,
-};
+}
 
 export type ContentfulMediaImage = {
   title: string,

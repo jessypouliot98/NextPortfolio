@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 
-import { getMonthYear } from "@/utils/date";
+import { useNextDate } from "@/hooks/utils";
 
 export type DateRangeProps = {
   className?: string,
@@ -11,6 +11,7 @@ export type DateRangeProps = {
 
 export const DateRange: React.FC<DateRangeProps> = ({ className, startDate, endDate }) => {
   const { t } = useTranslation();
+  const { getMonthYear } = useNextDate();
 
   if (!startDate) {
     return null;
@@ -18,10 +19,10 @@ export const DateRange: React.FC<DateRangeProps> = ({ className, startDate, endD
 
   return (
     <h4 className={clsx(className)}>
-      <span>{getMonthYear(new Date(startDate), t)}</span>
+      <span>{getMonthYear(new Date(startDate))}</span>
       <span>{' - '}</span>
       {endDate ? (
-        <span>{getMonthYear(new Date(endDate), t)}</span>
+        <span>{getMonthYear(new Date(endDate))}</span>
       ) : (
         <span>{t('common:date.present')}</span>
       )}

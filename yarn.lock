@@ -233,6 +233,23 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@prisma/client@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.4.0.tgz#45f59c172dd3621ecc92d7cf9bc765d85e6c7d56"
+  integrity sha512-ciKOP246x1xwr04G9ajHlJ4pkmtu9Q6esVyqVBO0QJihaKQIUvbPjClp17IsRJyxqNpFm4ScbOc/s9DUzKHINQ==
+  dependencies:
+    "@prisma/engines-version" "4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6"
+
+"@prisma/engines-version@4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6":
+  version "4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6.tgz#00875863bb30b670a586a5b5794a000f7f3ad976"
+  integrity sha512-P5v/PuEIJLYXZUZBvOLPqoyCW+m6StNqHdiR6te++gYVODpPdLakks5HVx3JaZIY+LwR02juJWFlwpc9Eog/ug==
+
+"@prisma/engines@4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.4.0.tgz#6ca7d3ce8eee08dcfa82311b0a02f5ccaac7dc0c"
+  integrity sha512-Fpykccxlt9MHrAs/QpPGpI2nOiRxuLA+LiApgA59ibbf24YICZIMWd3SI2YD+q0IAIso0jCGiHhirAIbxK3RyQ==
+
 "@reduxjs/toolkit@^1.8.3":
   version "1.8.3"
   resolved "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.8.3.tgz"
@@ -254,6 +271,19 @@
   integrity sha512-6JrF+fdUK2zbGpJIlN7G3v966PQjyx/dPt1T9km2wj+EUBqgrxCk3uX4Kct16MIm9gGxfKRcfax2hVf5jvlTzA==
   dependencies:
     tslib "^2.4.0"
+
+"@tanstack/query-core@4.12.0":
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.12.0.tgz#0e96adcfe182efc4ea4c21802f7596d56c6cd60a"
+  integrity sha512-KEiFPNLMFByhNL2s6RBFL6Z5cNdwwQzFpW/II3GY+rEuQ343ZEoVyQ48zlUXXkEkbamQFIFg2onM8Pxf0Yo01A==
+
+"@tanstack/react-query@^4.12.0":
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.12.0.tgz#2cb233ef1ccf7537aeed61ca171fc3dcc52d9c57"
+  integrity sha512-prchV1q+CJ0ZVo8Rts2cOF3azDfQizZZySmH6XXsXRcPTbir0sgb9fp0vY/5l5ZkSYjTvWt/OL8WQhAhYMSvrA==
+  dependencies:
+    "@tanstack/query-core" "4.12.0"
+    use-sync-external-store "^1.2.0"
 
 "@types/debug@^4.0.0":
   version "4.1.7"
@@ -901,6 +931,11 @@ damerau-levenshtein@^1.0.8:
   version "1.0.8"
   resolved "https://registry.npmjs.org/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
+
+date-fns@^2.29.3:
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
 debug@4, debug@4.3.4, debug@^4.0.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
@@ -2622,6 +2657,13 @@ prelude-ls@^1.2.1:
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prisma@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.4.0.tgz#0c53324bf6a29474636b3e1964e0d72e0277bf8f"
+  integrity sha512-l/QKLmLcKJQFuc+X02LyICo0NWTUVaNNZ00jKJBqwDyhwMAhboD1FWwYV50rkH4Wls0RviAJSFzkC2ZrfawpfA==
+  dependencies:
+    "@prisma/engines" "4.4.0"
+
 prismjs@^1.27.0:
   version "1.29.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
@@ -3307,7 +3349,7 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-use-sync-external-store@1.2.0, use-sync-external-store@^1.0.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.0.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==

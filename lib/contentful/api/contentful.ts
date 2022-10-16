@@ -14,6 +14,7 @@ const getClient = () => {
 };
 
 type BaseApiParams = { lang: AppLanguage };
+export type Entry<T extends {} = {}> = { id: string } & T;
 
 const getBaseQuery = (lang: AppLanguage, queryExtra: Record<string, string> = {}) => {
   return {
@@ -27,7 +28,9 @@ const mapEntry = <R extends {} = any>(entry: any): R => {
     return Object.entries(entry.fields).reduce<any>((acc, [key, entry]) => {
       acc[key] = mapEntry(entry);
       return acc;
-    }, {});
+    }, {
+      id: entry.sys.id
+    });
   }
 
   if (Array.isArray(entry)) {
