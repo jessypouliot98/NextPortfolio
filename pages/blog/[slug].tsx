@@ -26,7 +26,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
   const { t } = useTranslation();
   const lang = useLang();
   const { isLoading, data: comments = [], refetch,  } = useComments(contentfulEntryId);
-  const { handleSubmitComment } = useCreateComment(contentfulEntryId, refetch);
+  const { handleSubmitComment, isProcessing } = useCreateComment(contentfulEntryId, refetch);
 
   return (
     <PageDefaultLayout title={title} description={page.seoDescription} breadcrumbsI18nProps={{ blogTitle: page.title }}>
@@ -54,7 +54,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
               <form onSubmit={handleSubmitComment}>
                 <input type="text" placeholder={t('page:blog.commentInputPlaceholder')} className="w-full border rounded-md p-2 mb-2" name="comment" />
                 <div className="flex justify-end">
-                  <Button type="primary">
+                  <Button type="primary" disabled={isProcessing}>
                     Comment
                   </Button>
                 </div>

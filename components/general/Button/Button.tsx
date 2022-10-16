@@ -24,6 +24,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       className={clsx(
         'btn',
         type && `btn-${type}`,
+        disabled && 'btn-disabled',
         className,
       )}
       title={title}

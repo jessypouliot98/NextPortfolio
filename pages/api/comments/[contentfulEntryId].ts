@@ -1,5 +1,6 @@
 import { NextApiRequest } from 'next';
 import { NextApiResponse } from 'next';
+import { validateRecaptchaToken } from '@/lib/node-recaptcha';
 import { NextPrisma } from '@/lib/prisma-client';
 
 const commentApi = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -43,7 +44,17 @@ const getComments = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const createComment = async (req: NextApiRequest, res: NextApiResponse) => {
   const { contentfulEntryId } = req.query;
-  const { content, authorName } = JSON.parse(req.body);  
+  const { content, authorName, recaptchaToken } = JSON.parse(req.body);  
+
+  if (!recaptchaToken) {
+    return res.status(400).send('Missing reCAPTCHA token');
+  }
+  
+  const reCAPTCHAvalidation = await validateRecaptchaToken(recaptchaToken);
+
+  if (!reCAPTCHAvalidation.success) {
+    return res.status(400).send('Invalid reCAPTCHA token');
+  }
   
   await NextPrisma.getClient().comment.create({
     data: {

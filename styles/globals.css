@@ -48,7 +48,7 @@
     .btn-primary {
         @apply text-white bg-blue-500 hover:bg-blue-400 active:bg-opacity-50 shadow-lg;
     }
-
+    
     .btn-default {
         @apply hover:bg-gray-300 hover:bg-opacity-30 active:bg-opacity-10 hover:shadow-lg;
     }
@@ -56,9 +56,13 @@
     .btn-gray {
         @apply text-white bg-gray-500 hover:bg-gray-400 active:bg-opacity-50 shadow-lg;
     }
-
+    
     .btn-white {
         @apply text-gray-700 bg-white hover:bg-gray-200 active:bg-opacity-50 shadow-lg;
+    }
+    
+    .btn-disabled {
+        @apply !opacity-30 !bg-opacity-100 !cursor-default;
     }
 
     .link {
@@ -120,4 +124,9 @@
             @apply hidden;
         }
     }
+}
+
+
+.grecaptcha-badge {
+    @apply invisible;
 }

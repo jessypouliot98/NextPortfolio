@@ -39,8 +39,6 @@ export namespace NextDate {
   export const diffFromNowAorB = (date: Date, hoursBreakpoint: number, aCallback: (d: Date) => string, bCallback: (d: Date) => string) => {
     const n = now();
     const diffInHours = DateFns.differenceInHours(date, n);
-    console.log(diffInHours);
-    
 
     if (Math.abs(diffInHours) >= hoursBreakpoint) {
       return bCallback(date);
