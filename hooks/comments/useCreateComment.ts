@@ -18,7 +18,7 @@ export const useCreateComment = (contentfulEntryId: string, onCommentCreated?: (
       const formData = new FormData(form);
       const content = (formData.get('comment') as string).trim();
       const recaptchaToken = await executeRecaptcha?.();
-
+      
       if (!content || !recaptchaToken) {
         throw new Error('Missing required fields');
       }

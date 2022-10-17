@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 
 import '@/styles/globals.css';
 
-const { GOOGLE_RECAPTCHA_SECRET } = getConfig().publicRuntimeConfig;
+const { GOOGLE_RECAPTCHA_SITE_KEY } = getConfig().publicRuntimeConfig;
 const queryClient = new QueryClient();
 
 export type MyAppProps = AppProps;
@@ -19,7 +19,7 @@ const MyApp = (props: MyAppProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GoogleReCaptchaProvider reCaptchaKey={GOOGLE_RECAPTCHA_SECRET} language={i18n.language}>
+      <GoogleReCaptchaProvider reCaptchaKey={GOOGLE_RECAPTCHA_SITE_KEY} language={i18n.language}>
         <AnimatePresence initial={false}>
           <Component {...pageProps} />
         </AnimatePresence>

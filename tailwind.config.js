@@ -61,6 +61,9 @@ module.exports = {
       zIndex: {
         '1': "1",
       },
+      screens: {
+        'xl': '1380px',
+      }
     },
   },
   plugins: [],

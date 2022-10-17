@@ -12,8 +12,11 @@ RUN apt-get install -yyq gconf-service lsb-release wget
 ARG PORT
 RUN mkdir -p /usr/app/
 WORKDIR /usr/app
-COPY ./ "./"
+COPY "./" "./"
+VOLUME "./.env" "./.env"
 RUN yarn install
+RUN npx prisma generate
+# RUN npx prisma migrate deploy
 RUN yarn build
 EXPOSE "${PORT}"
 

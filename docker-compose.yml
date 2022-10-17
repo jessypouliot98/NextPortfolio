@@ -1,18 +1,8 @@
 version: '3'
 services:
-  web:
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-      args:
-        PORT: "${APP_PORT}"
-    ports:
-      - "${APP_PORT}:${APP_PORT}"
-    restart: always
-
-  postgres:
+  portfolio-postgres:
     image: postgres:15
-    restart: always
+    restart: unless-stopped
     ports:
      - "${DB_PORT}:5432"
     environment:
@@ -20,4 +10,14 @@ services:
       - "POSTGRES_PASSWORD=${DB_PASSWORD}"
       - "POSTGRES_DB=${DB_DATABASE}"
 
-
+  portfolio-web:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        PORT: "${APP_PORT}"
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    restart: unless-stopped
+    depends_on:
+      - portfolio-postgres
