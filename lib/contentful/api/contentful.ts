@@ -13,6 +13,14 @@ const getClient = () => {
   });
 };
 
+const getPreviewClient = () => {
+  return createClient({
+    space: serverRuntimeConfig.CONTENTFUL_SPACE_ID as string,
+    accessToken: serverRuntimeConfig.CONTENTFUL_PREVIEW_TOKEN as string,
+    host: 'preview.contentful.com'
+  });
+};
+
 type BaseApiParams = { lang: AppLanguage };
 export type Entry<T extends {} = {}> = { id: string } & T;
 
@@ -76,3 +84,12 @@ export const getBlogListPage = async ({ lang }: BaseApiParams) => {
   return mapEntry<BlogPage>(entry);
 };
 
+type FetchEntryApiParams = BaseApiParams & { entryId: string }
+export const getEntry = async <T extends {} = any>({ entryId, lang }: FetchEntryApiParams) => {
+  const entry = await getPreviewClient().getEntry(
+    entryId,
+    getBaseQuery(lang),
+  );
+  
+  return mapEntry<T>(entry);
+};
