@@ -1,23 +1,25 @@
 version: '3'
 services:
-  portfolio-postgres:
+  postgres:
     image: postgres:15
     restart: unless-stopped
     ports:
      - "${DB_PORT}:5432"
     environment:
-      - "POSTGRES_USER=${DB_USER}"
-      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
-      - "POSTGRES_DB=${DB_DATABASE}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_DATABASE}"
 
-  portfolio-web:
+  web:
     build:
       context: ./
       dockerfile: ./Dockerfile
       args:
         PORT: "${APP_PORT}"
+    environment:
+      DB_HOST: postgres
     ports:
       - "${APP_PORT}:${APP_PORT}"
     restart: unless-stopped
     depends_on:
-      - portfolio-postgres
+      - postgres
