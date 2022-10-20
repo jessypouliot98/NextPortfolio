@@ -21,14 +21,14 @@ export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
     <ReactMarkdown
       className={'content'}
       components={{
-        pre: ({ children }) => <>{children}</>,
-        code: (props) => {
-          const properties: Record<string, any> = props.node.properties || {};
-          const language = properties?.className?.[0].replace(/^language-/, '');
-          
+        pre: ({ node }) => {
+          const { properties = {}, children } = node.children?.[0] as any;
+          const language = properties?.className?.[0].replace(/^language-/, '') as string || '';
+          const code = children.map(({ value }: any) => value) as string[];
+           
           return (
             <StylishCode className="mb-6" language={language} showLineNumbers={true} lineNumberStyle={lineNumberStyle}>
-              {props.children as string[]}
+              {code}
             </StylishCode>
           );
         },

@@ -77,6 +77,10 @@
         @apply visited:text-indigo-400 hover:visited:text-indigo-300;
     }
 
+    .custom-scroll-bar::-webkit-scrollbar { @apply w-2 h-2; }
+    .custom-scroll-bar::-webkit-scrollbar-track { @apply rounded-full m-1; }
+    .custom-scroll-bar::-webkit-scrollbar-thumb { @apply rounded-full bg-gray-300 bg-opacity-10 hover:bg-opacity-20; }
+
     .content p { @apply text-p mb-4; }
     .content h1 { @apply text-h1 mb-4; }
     .content h2 { @apply text-h2 mb-4; }
@@ -98,6 +102,8 @@
     .content :global(.stylish-box) { @apply mb-4; }
     .content img { @apply rounded-lg shadow mb-6; }
     .content > *:last-child { @apply mb-0; }
+    .content :not(pre) > code { @apply font-mono bg-gray-400 bg-opacity-50 px-1; }
+    .dark .content :not(pre) > code { @apply bg-gray-900; }
 }
 
 @layer utilities {
@@ -126,7 +132,10 @@
     }
 }
 
+body * {
+    @apply custom-scroll-bar;
+}
 
 .grecaptcha-badge {
-    @apply invisible;
+    @apply invisible rounded-full;
 }
