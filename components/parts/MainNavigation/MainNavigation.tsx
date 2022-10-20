@@ -5,17 +5,16 @@ import { MobileMainNavigation } from "@/components/parts/MainNavigation/MobileMa
 
 export type MainNavigationProps = {
   navHeightClass: string,
-  headerRef: React.RefObject<HTMLElement>,
 }
 
-export const MainNavigation: React.FC<MainNavigationProps> = ({ navHeightClass, headerRef }) => {
+export const MainNavigation: React.FC<MainNavigationProps> = ({ navHeightClass }) => {
   return (
     <>
       <div className={'hidden md:block'}>
-        <DesktopMainNavigation navHeightClass={navHeightClass} headerRef={headerRef} />
+        <DesktopMainNavigation navHeightClass={navHeightClass} />
       </div>
       <div className={'block md:hidden'}>
-        <MobileMainNavigation navHeightClass={navHeightClass} headerRef={headerRef} />
+        <MobileMainNavigation navHeightClass={navHeightClass} />
       </div>
     </>
   );

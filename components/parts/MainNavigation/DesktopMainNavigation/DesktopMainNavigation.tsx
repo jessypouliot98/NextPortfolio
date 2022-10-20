@@ -5,7 +5,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
-import { ScrollDir, useDocumentScroll, useInnerFocus, useTheme } from "@/hooks/document";
+import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
 import { getAlternateRoute, getIsActive, Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
@@ -14,17 +14,16 @@ import Link from "@/components/general/Link/Link";
 import { AppLanguage } from "../../../../types";
 
 export type DesktopMainNavigationProps = {
+  className?: string,
   navHeightClass: string,
-  headerRef: React.RefObject<HTMLElement>,
 }
 
-export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ navHeightClass, headerRef }) => {
+export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ className, navHeightClass }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
 
   const { dir } = useDocumentScroll({ y: 80 });
-  const { isFocused } = useInnerFocus(headerRef);
   const { toggleTheme, isDark } = useTheme();
   const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
   const currentAlternateRoute = getAlternateRoute(router, otherLang);
@@ -45,7 +44,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
   ];
 
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
-  const positionOffset = isFocused || dir === ScrollDir.up ? 0 : -100;
+  const positionOffset = dir === ScrollDir.up ? 0 : -100;
 
   const linkStyle = clsx('btn btn-default');
   const activeLinkStyle = clsx(
@@ -59,6 +58,8 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ na
         navHeightClass,
         'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
         'bg-white dark:bg-blue-500 dark:bg-opacity-90',
+        'focus-within:!translate-y-0',
+        className,
       )}
       style={{ transform: `translateY(${positionOffset}%)` }}
     >

@@ -30,7 +30,7 @@ export const StylishCode: React.FC<StylishCodeProps> = (props) => {
         <Code {...props} className="rounded-lg shadow">
           {props.children}
         </Code>
-        <div className="transition opacity-0 group-hover:opacity-100 py-1 px-2 absolute top-0 right-0">
+        <div className="transition opacity-0 group-hover:opacity-100 focus-within:opacity-100 py-1 px-2 absolute top-0 right-0">
           <Button type="white" onPress={handleCopy}>
             <div className="relative w-4 h-4">
               <FaCopy className={clsx('transition absolute', isCopied ? 'opacity-0' : 'opacity-100')} />

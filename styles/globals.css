@@ -77,6 +77,14 @@
         @apply visited:text-indigo-400 hover:visited:text-indigo-300;
     }
 
+    .input {
+        @apply border rounded-md p-2 bg-white;
+    }
+
+    .dark .input {
+        @apply border-gray-500 bg-gray-800;
+    }
+
     .custom-scroll-bar::-webkit-scrollbar { @apply w-2 h-2; }
     .custom-scroll-bar::-webkit-scrollbar-track { @apply rounded-full m-1; }
     .custom-scroll-bar::-webkit-scrollbar-thumb { @apply rounded-full bg-gray-300 bg-opacity-10 hover:bg-opacity-20; }

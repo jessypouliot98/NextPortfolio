@@ -50,7 +50,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
             <>
               <CommentList comments={comments} />
               <form onSubmit={handleSubmitComment}>
-                <input className="w-full border rounded-md p-2 mb-2" type="text" name="comment" placeholder={t('page:blog.commentInputPlaceholder')} disabled={isProcessing} />
+                <input className="w-full input mb-2" type="text" name="comment" placeholder={t('page:blog.commentInputPlaceholder')} disabled={isProcessing} />
                 <div className="flex justify-end">
                   <Button type="primary" disabled={isProcessing}>
                     Comment
