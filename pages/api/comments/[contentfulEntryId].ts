@@ -20,23 +20,7 @@ const getComments = async (req: NextApiRequest, res: NextApiResponse) => {
   const comments = await NextPrisma.getClient().comment.findMany({
     where: {
       contentfulEntryId: contentfulEntryId as string,
-      parentCommentId: null,
     },
-    include: {
-      childComments: {
-        include: {
-          childComments: {
-            include: {
-              childComments: {
-                include: {
-                  childComments: true
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   });
 
   res.json(comments);

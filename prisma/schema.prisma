@@ -12,12 +12,9 @@ datasource db {
 
 model Comment {
   id Int @id @default(autoincrement())
-  contentfulEntryId String
+  contentfulEntryId String @db.VarChar(64)
   content String
-  authorName String @db.VarChar(100)
-  parentCommentId Int?
-  parentComment Comment? @relation("CommentComments", fields: [parentCommentId], references: [id])
-  childComments Comment[] @relation("CommentComments")
-  createdAt DateTime? @default(now())
+  authorName String @db.VarChar(128)
+  createdAt DateTime @default(now())
   deletedAt DateTime?
 }
