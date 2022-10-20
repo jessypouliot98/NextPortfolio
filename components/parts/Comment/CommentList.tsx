@@ -13,9 +13,9 @@ export const CommentList: React.FC<CommentListProps> = ({ comments }) => {
   }
   
   return (
-    <ul className="mb-4">
+    <ul className="mb-2">
       {comments.map((comment) => (
-        <li key={comment.id} className="border-b py-4">
+        <li key={comment.id} className="border-b border-gray-200 dark:border-gray-600 py-4 last:border-none">
           <CommentItem comment={comment} />
         </li>
       ))}

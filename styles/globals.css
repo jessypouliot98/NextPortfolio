@@ -78,11 +78,7 @@
     }
 
     .input {
-        @apply border rounded-md p-2 bg-white;
-    }
-
-    .dark .input {
-        @apply border-gray-500 bg-gray-800;
+        @apply border rounded-md p-2 bg-white dark:bg-gray-800 dark:border-gray-600;
     }
 
     .custom-scroll-bar::-webkit-scrollbar { @apply w-2 h-2; }

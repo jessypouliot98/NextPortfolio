@@ -13,8 +13,8 @@ export const CommentItem: React.FC<CommentProps> = ({ comment }) => {
   return (
     <div>
       <div className="text-xs flex">
-        <h4 className="font-bold text-blue-600">{comment.authorName}</h4>
-        <div className="ml-2 text-gray-600">{diffFromNowAorB(new Date(comment.createdAt || ''), 24, distanceFromNow, formatFullDate)}</div>
+        <h4 className="font-bold text-blue-600 dark:text-blue-400">{comment.authorName}</h4>
+        <div className="ml-2 text-gray-600 dark:text-gray-400">{diffFromNowAorB(new Date(comment.createdAt || ''), 24, distanceFromNow, formatFullDate)}</div>
       </div>
       <p className="text-p whitespace-pre">{comment.content}</p>
     </div>
