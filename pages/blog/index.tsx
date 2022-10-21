@@ -1,10 +1,13 @@
+import { useMemo } from "react";
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { FaEye } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { AppLanguage } from "types";
 import { BlogPage, getBlogListPage } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
+import { useBlogListViews } from "@/hooks/blog/useBlogListViews";
 import { Routes } from "@/utils/link";
 
 import { Card, Section, SectionTitle } from "@/components/general";
@@ -17,6 +20,20 @@ export type BlogPageProps = {
 
 const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
   const lang = useLang();
+  const { data: blogListViews, isLoading } = useBlogListViews();
+
+  const blogPosts = useMemo(() => {
+    return page.blogPosts.map((post) => {
+      const defaultViews = isLoading ? null : 0;
+      const matchedBlogView = blogListViews?.find(({ contentfulEntryId }) => contentfulEntryId === post.id);
+
+      return {
+        ...post,
+        views: matchedBlogView?.views ?? defaultViews,
+      };
+    });
+  }, [isLoading, blogListViews, page.blogPosts]);
+
 
   return (
     <PageDefaultLayout title={page.title} description={page.seoDescription}>
@@ -26,7 +43,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
         </SectionTitle>
         <div className={'-m-2'}>
           <AnimatePresence initial={true}>
-            {page.blogPosts.map((blogPost, i , { length }) => (
+            {blogPosts.map((blogPost, i , { length }) => (
               <motion.div
                 key={blogPost.slug}
                 initial={{ opacity: 0, scale: 1.05 }}
@@ -38,13 +55,19 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
                   className={'block transition hover:scale-105'}
                   href={Routes.getBlogSingle(lang, { slug: blogPost.slug }).href}
                 >
-                  <Card className="flex flex-col md:flex-row">
-                    <div>
-                      <h2 className={'text-h3 mb-2 text-blue-500 dark:text-blue-500'}>{blogPost.title}</h2>
-                      <p className={'text-p'}>
-                        {blogPost.seoDescription}
-                      </p>
-                    </div>
+                  <Card>
+                    <h2 className="text-h3 mb-2 text-blue-500 dark:text-blue-500">
+                      <span>{blogPost.title}</span>
+                    </h2>
+                    <p className="text-p">
+                      {blogPost.seoDescription}
+                    </p>
+                    {blogPost.views !== null && (
+                      <div className="inline-flex flex-center text-xs text-gray-700 dark:text-gray-100 mt-2">
+                        <FaEye className="text-[1.2em]" />
+                        <span className="ml-1">{blogPost.views}</span>
+                      </div>
+                    )}
                   </Card>
                 </Link>
               </motion.div>

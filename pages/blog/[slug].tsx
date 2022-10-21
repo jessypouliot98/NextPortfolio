@@ -1,11 +1,13 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { FaEye } from "react-icons/fa";
 import { AppLanguage } from "types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 
 import { useLang } from "@/hooks/app";
+import { useBlog, useBlogView } from "@/hooks/blog";
 import { useComments } from "@/hooks/comments";
 import { useCreateComment } from "@/hooks/comments/useCreateComment";
 
@@ -24,11 +26,19 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
   const { t } = useTranslation();
   const lang = useLang();
   const { isLoading, data: comments = [], refetch,  } = useComments(contentfulEntryId);
+  const { data: blog } = useBlog(contentfulEntryId); 
   const { handleSubmitComment, isProcessing } = useCreateComment(contentfulEntryId, refetch);
+  useBlogView(contentfulEntryId);
 
   return (
     <PageDefaultLayout title={title} description={page.seoDescription} breadcrumbsI18nProps={{ blogTitle: page.title }}>
       <Section>
+        {blog && (
+          <div className="inline-flex flex-center text-xs text-gray-700 dark:text-gray-100">
+            <FaEye className="text-xl" />
+            <span className="ml-2">{blog.views || 0}</span>
+          </div>
+        )}
         <SectionTitle component="h1">
           {page.title}
         </SectionTitle>
