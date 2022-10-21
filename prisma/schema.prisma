@@ -12,7 +12,7 @@ datasource db {
 
 model Comment {
   id Int @id @default(autoincrement())
-  contentfulEntryId String @unique @db.VarChar(64)
+  contentfulEntryId String @db.VarChar(64)
   content String
   authorName String @db.VarChar(128)
   createdAt DateTime @default(now())
