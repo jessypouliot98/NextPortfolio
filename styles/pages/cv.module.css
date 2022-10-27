@@ -8,7 +8,7 @@
 .richText h5,
 .richText h6
 {
-  @apply text-current;
+  @apply text-current leading-relaxed;
   margin-bottom: 0!important;
 }
 
@@ -16,4 +16,5 @@
   @apply text-current;
 }
 
-.richTextContact {}
+.richTextEducation h2 { @apply !text-sm font-bold; }
+.richTextEducation h6 { @apply !text-xs font-normal; }

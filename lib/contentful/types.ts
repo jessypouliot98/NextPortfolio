@@ -6,6 +6,7 @@ export type CVPage = Entry<{
   title: string,
   subtitle: string,
   intro: Document,
+  education: Document,
   qualities: string[],
   contact: Document,
   skills: Skill[],
