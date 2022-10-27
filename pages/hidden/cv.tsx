@@ -39,20 +39,21 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   return (
     <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>
 
-      <header className="print:hidden fixed top-10 right-10 p-2">
-        <div>
+      <header className="transition opacity-50 hover:opacity-100 print:hidden fixed top-10 right-10 p-2 flex flex-col">
+        <div className="w-full">
           <Button
-            className={'mb-2'}
+            className={'mb-2 w-full'}
             type={'primary'}
             title={'Home'}
             onPress={() => router.push(Routes.getHome(lang).href)}
           >
             <FaHome />
+            <span className="ml-2">{t('page:cv.website')}</span>
           </Button>
         </div>
-        <div>
+        <div className="w-full">
           <Button
-            className={'mb-2'}
+            className={'mb-2 w-full'}
             type={'primary'}
             title={'Change language'}
             onPress={() => router.push(
@@ -62,11 +63,12 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             )}
           >
             <FaLanguage />
+            <span className="ml-2">{t('page:cv.changeLanguage')}</span>
           </Button>
         </div>
-        <div>
+        <div className="w-full">
           <Button
-            className={'mb-2'}
+            className={'mb-2 w-full'}
             type={'primary'}
             title={'Download'}
             onPress={() => {
@@ -74,6 +76,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             }}
           >
             <FaDownload />
+            <span className="ml-2">{t('page:cv.downloadPdf')}</span>
           </Button>
         </div>
       </header>

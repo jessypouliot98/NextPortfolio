@@ -17,7 +17,9 @@
     "jobAtCompany": "{{job}} chez {{companyName}}"
   },
   "cv": {
-    "qualities": "Qualités",
+    "website": "Site Web",
+    "changeLanguage": "Voir en anglais",
+    "downloadPdf": "Télécharger le PDF",
     "workExperiences": "Expériences de travail"
   }
 }

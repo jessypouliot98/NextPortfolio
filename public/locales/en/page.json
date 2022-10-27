@@ -21,7 +21,9 @@
     "jobAtCompany": "{{job}} at {{companyName}}"
   },
   "cv": {
-    "qualities": "Qualities",
+    "website": "Website",
+    "changeLanguage": "Switch to french",
+    "downloadPdf": "Download PDF",
     "workExperiences": "Work experiences"
   }
 }
