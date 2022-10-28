@@ -9,6 +9,7 @@ import { BlogPage, getBlogListPage } from "@/lib/contentful";
 import { useLang } from "@/hooks/app";
 import { useBlogListViews } from "@/hooks/blog/useBlogListViews";
 import { Routes } from "@/utils/link";
+import { NextDate } from "@/utils/NextDate";
 
 import { Card, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -29,9 +30,9 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
 
       return {
         ...post,
-        views: matchedBlogView?.views ?? defaultViews,
+        views: matchedBlogView?.views || defaultViews,
       };
-    });
+    }).reverse();
   }, [isLoading, blogListViews, page.blogPosts]);
 
 
@@ -56,18 +57,23 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
                   href={Routes.getBlogSingle(lang, { slug: blogPost.slug }).href}
                 >
                   <Card>
+                    <div className="flex items-center">
+                      <time dateTime={blogPost.createdAt} className="text-h6">
+                        {NextDate.formatFullDate(new Date(blogPost.createdAt))}
+                      </time>
+                      {blogPost.views !== null && (
+                        <div className="inline-flex flex-center text-xs text-gray-700 dark:text-gray-100 ml-4">
+                          <span>{blogPost.views}</span>
+                          <FaEye className="text-base ml-1" />
+                        </div>
+                      )}
+                    </div>
                     <h2 className="text-h3 mb-2 text-blue-500 dark:text-blue-500">
                       <span>{blogPost.title}</span>
                     </h2>
                     <p className="text-p">
                       {blogPost.seoDescription}
                     </p>
-                    {blogPost.views !== null && (
-                      <div className="inline-flex flex-center text-xs text-gray-700 dark:text-gray-100 mt-2">
-                        <FaEye className="text-[1.2em]" />
-                        <span className="ml-1">{blogPost.views}</span>
-                      </div>
-                    )}
                   </Card>
                 </Link>
               </motion.div>

@@ -8,13 +8,11 @@
 .richText h5,
 .richText h6
 {
-  @apply text-current leading-relaxed;
-  margin-bottom: 0!important;
+  @apply text-current leading-relaxed !mb-0;
 }
+.richText a { @apply text-current; }
 
-.richText a {
-  @apply text-current;
-}
+.richTextContact a { @apply !text-white; }
 
 .richTextEducation h2 { @apply !text-sm font-bold; }
 .richTextEducation h6 { @apply !text-xs font-normal; }

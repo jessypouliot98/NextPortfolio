@@ -22,6 +22,7 @@ const getAllStaticRoutes = async () => {
   const routes = languages.map(async (lang) => [
     Routes.getHome(lang).localizedHref,
     Routes.getProjectList(lang).localizedHref,
+    Routes.getBlogList(lang).localizedHref,
     ...(await getAllProjectSingleRoutesForLang(lang)),
     ...(await getAllBlogPostRoutesForLang(lang)),
   ]).flat();

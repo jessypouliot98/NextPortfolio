@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -21,6 +21,8 @@ import { AppLanguage } from "../../types";
 
 const profilePic = '/assets/cv/avatar.jpg';
 
+const DARK_CLASS = 'dark';
+
 export type CVPageProps = {
   page: CVPage,
 };
@@ -35,6 +37,20 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
 
   const mainSectionStyle = clsx('mb-10');
   const mainTitleStyle = clsx('font-bold text-2xl mb-2 text-gray-700');
+
+  useEffect(() => {
+    const isDark = document.body.classList.contains(DARK_CLASS);
+
+    if (isDark) {
+      document.body.classList.remove(DARK_CLASS);
+    }
+    
+    return () => {
+      if (isDark) {
+        document.body.classList.add(DARK_CLASS);
+      }
+    };
+  }, []);
 
   return (
     <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>

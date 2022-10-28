@@ -22,7 +22,7 @@ const getPreviewClient = () => {
 };
 
 type BaseApiParams = { lang: AppLanguage };
-export type Entry<T extends {} = {}> = { id: string } & T;
+export type Entry<T extends {} = {}> = { id: string, createdAt: string, updatedAt: string } & T;
 
 const getBaseQuery = (lang: AppLanguage, queryExtra: Record<string, string> = {}) => {
   return {
@@ -37,7 +37,9 @@ const mapEntry = <R extends {} = any>(entry: any): R => {
       acc[key] = mapEntry(entry);
       return acc;
     }, {
-      id: entry.sys.id
+      id: entry.sys.id,
+      createdAt: entry.sys.createdAt,
+      updatedAt: entry.sys.updatedAt,
     });
   }
 
@@ -80,6 +82,7 @@ export const getBlogListPage = async ({ lang }: BaseApiParams) => {
     '6gG0r1TVZhsuHiyrYgAvxM',
     getBaseQuery(lang),
   );
+  
   
   return mapEntry<BlogPage>(entry);
 };

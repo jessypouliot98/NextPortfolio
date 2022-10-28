@@ -10,6 +10,7 @@ import { useLang } from "@/hooks/app";
 import { useBlog, useBlogView } from "@/hooks/blog";
 import { useComments } from "@/hooks/comments";
 import { useCreateComment } from "@/hooks/comments/useCreateComment";
+import { NextDate } from "@/utils/NextDate";
 
 import { AlertBanner, Button, Card, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
@@ -33,12 +34,17 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
   return (
     <PageDefaultLayout title={title} description={page.seoDescription} breadcrumbsI18nProps={{ blogTitle: page.title }}>
       <Section>
-        {blog && (
-          <div className="inline-flex flex-center text-xs text-gray-700 dark:text-gray-100">
-            <FaEye className="text-xl" />
-            <span className="ml-2">{blog.views || 0}</span>
-          </div>
-        )}
+        <div className="flex items-center">
+          <time dateTime={page.createdAt} className="text-h6 text-gray-600 dark:text-gray-400">
+            {NextDate.formatFullDate(new Date(page.createdAt))}
+          </time>
+          {blog && (
+            <div className="inline-flex flex-center text-gray-600 dark:text-gray-400 ml-4">
+              <span>{blog.views || 0}</span>
+              <FaEye className="text-base ml-1" />
+            </div>
+          )}
+        </div>
         <SectionTitle component="h1">
           {page.title}
         </SectionTitle>
