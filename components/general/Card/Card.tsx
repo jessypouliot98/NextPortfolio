@@ -1,24 +1,26 @@
 import React from "react";
 import clsx from "clsx";
 
+export enum CardType {
+  default = 'default',
+  none = 'none',
+}
+
 export type CardProps = {
   className?: string,
   style?: React.CSSProperties,
+  type?: CardType,
   children: React.ReactNode,
   "aria-describedby"?: string,
 }
 
 export const Card: React.FC<CardProps> = (props) => {
-  const { children, className, style } = props;
+  const { children, className, style, type = CardType.default } = props;
 
   return (
     <div
       aria-describedby={props['aria-describedby']}
-      className={clsx(
-        'p-5 shadow-lg rounded-lg overflow-hidden',
-        'bg-white dark:bg-gray-700',
-        className
-      )}
+      className={clsx('card', type === CardType.default && 'card-default', className)}
       style={style}
     >
       {children}

@@ -1,24 +1,23 @@
 import React from "react";
-import type { GetStaticPropsContext, NextPage } from 'next';
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import type {GetStaticPropsContext, NextPage} from 'next';
+import {useTranslation} from "next-i18next";
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
-import { getContentfulImageAlt, getContentfulImageSrc, getHomePage, HomePage } from "@/lib/contentful";
-import { ContentfulDisplay } from "@/lib/contentful";
+import {AnimatePresence, motion} from "framer-motion";
+import {ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc, getHomePage, HomePage} from "@/lib/contentful";
 
-import { useLang } from "@/hooks/app";
-import { Routes } from "@/utils/link";
+import {useLang} from "@/hooks/app";
+import {Routes} from "@/utils/link";
 
-import { Section, SectionTitle } from "@/components/general";
+import {Card, CardType, Section, SectionTitle} from "@/components/general";
 import Link from "@/components/general/Link/Link";
-import { StylishBox } from "@/components/general/StylishBox/StylishBox";
-import { PageDefaultLayout } from "@/components/layout";
-import { Curriculum } from "@/components/parts";
-import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
-import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
+import {StylishBox} from "@/components/general/StylishBox/StylishBox";
+import {PageDefaultLayout} from "@/components/layout";
+import {Curriculum} from "@/components/parts";
+import {ProjectList} from "@/components/parts/ProjectList/ProjectList";
+import {SkillIcon} from "@/components/parts/SkillIcon/SkillIcon";
 
-import { AppLanguage } from "../types";
+import {AppLanguage} from "../types";
 
 export type HomePageProps = {
   page: HomePage,
