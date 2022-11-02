@@ -13,8 +13,7 @@ ARG PORT
 
 RUN mkdir -p /usr/app/
 WORKDIR /usr/app
-COPY "./" "./"
-VOLUME "./.env" "./.env"
+COPY . .
 
 RUN yarn install
 RUN npx prisma generate
