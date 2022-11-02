@@ -13,9 +13,13 @@ ARG PORT
 
 RUN mkdir -p /usr/app/
 WORKDIR /usr/app
+
+# If there's no changes here, the yarn install can use cache and optimize this Dockerfile build speed
+COPY package*.json ./
+COPY yarn.lock ./
+RUN yarn install
 COPY . .
 
-RUN yarn install
 RUN npx prisma generate
 RUN yarn build
 
