@@ -7,7 +7,7 @@ git pull --rebase
 echo "Building latest Dockerfile"
 docker-compose build
 echo "Starting container"
-docker-compose up -d -u $(id -u):$(id -g)
+docker-compose up -d
 echo "Starting database migrations"
 docker-compose exec web npx prisma migrate deploy
 echo "Done"
