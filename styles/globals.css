@@ -35,16 +35,28 @@
         @apply inline-flex justify-center items-center transition min-h-touch min-w-touch p-2 rounded select-none leading-none;
     }
 
+    .btn-lg {
+        @apply py-4;
+    }
+
     .btn-primary {
         @apply text-white bg-blue-500 hover:bg-blue-400 active:bg-opacity-50 shadow-lg;
     }
 
+    .btn-outline-primary {
+        @apply border-2 text-blue-500 bg-white border-blue-500 hover:bg-blue-400 hover:border-blue-400 hover:text-white active:bg-opacity-50 shadow-lg;
+    }
+
     .btn-default {
-        @apply hover:bg-gray-300 hover:bg-opacity-30 active:bg-opacity-10 hover:shadow-lg;
+        @apply hover:bg-gray-300  hover:bg-opacity-30 active:bg-opacity-10 hover:shadow-lg;
     }
 
     .btn-gray {
         @apply text-white bg-gray-500 hover:bg-gray-400 active:bg-opacity-50 shadow-lg;
+    }
+
+    .btn-outline-gray {
+        @apply border-2 text-gray-500 bg-white border-gray-500 hover:bg-gray-400 hover:border-gray-400 hover:text-white active:bg-opacity-50 shadow-lg;
     }
 
     .btn-white {

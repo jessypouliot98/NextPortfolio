@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { FaDownload, FaHome, FaLanguage } from "react-icons/fa";
+import { FaCalendar, FaDownload, FaHome, FaLanguage } from "react-icons/fa";
 import clsx from "clsx";
+import { useCalendly } from "@/lib/calendly";
 import { CVPage,getCVPage } from "@/lib/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
 
-import { Button } from "@/components/general";
+import { Button, RatioContainer } from "@/components/general";
 import { DateRange } from "@/components/parts/DateRange/DateRange";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from '@/styles/pages/cv.module.css';
 
 import { AppLanguage } from "../../types";
-
-const profilePic = '/assets/cv/avatar.jpg';
 
 const DARK_CLASS = 'dark';
 
@@ -38,6 +38,8 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   const mainSectionStyle = clsx('mb-10');
   const mainTitleStyle = clsx('font-bold text-2xl mb-2 text-gray-700');
 
+  const { handleInitPopupWidget, stylesheet } = useCalendly('jessypouliot98/30min');
+
   useEffect(() => {
     const isDark = document.body.classList.contains(DARK_CLASS);
 
@@ -53,25 +55,26 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   }, []);
 
   return (
-    <div className={'m-auto flex text-base'} style={{ width: '8.5in', height: '11in' }}>
+    <>
+      <Head>
+        {stylesheet}
+      </Head>
 
-      <header className="transition opacity-50 hover:opacity-100 print:hidden fixed top-10 right-10 p-2 flex flex-col">
-        <div className="w-full">
+      <header className="print:hidden mb-12 bg-white shadow-lg">
+        <nav className="flex p-2 gap-2 mx-auto w-[8.5in] justify-center">
           <Button
-            className={'mb-2 w-full'}
-            type={'primary'}
-            title={'Home'}
+            className="flex-1"
+            type="outline-gray"
+            size="lg"
             onPress={() => router.push(Routes.getHome(lang).href)}
           >
             <FaHome />
             <span className="ml-2">{t('page:cv.website')}</span>
           </Button>
-        </div>
-        <div className="w-full">
           <Button
-            className={'mb-2 w-full'}
-            type={'primary'}
-            title={'Change language'}
+            className="flex-1"
+            type="gray"
+            size="lg"
             onPress={() => router.push(
               router.asPath,
               router.asPath,
@@ -81,12 +84,18 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             <FaLanguage />
             <span className="ml-2">{t('page:cv.changeLanguage')}</span>
           </Button>
-        </div>
-        <div className="w-full">
           <Button
-            className={'mb-2 w-full'}
+            className="flex-1"
+            type="outline-primary"
+            size="lg"
+            onPress={handleInitPopupWidget}
+            >
+            <FaCalendar />
+            <span className="ml-2">{t('page:cv.scheduleMeeting')}</span>
+          </Button>
+          <Button
+            className="flex-1"
             type={'primary'}
-            title={'Download'}
             onPress={() => {
               window.open(Routes.getPdfCV(lang).href, '_self');
             }}
@@ -94,80 +103,85 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             <FaDownload />
             <span className="ml-2">{t('page:cv.downloadPdf')}</span>
           </Button>
-        </div>
+        </nav>
       </header>
 
-      <aside className={'w-full px-4 py-4 text-white bg-blue-600'} style={{ width: '2.8in' }}>
-        <section id={'presentation'} className={asideSectionStyle}>
-          <div className={'w-full bg-white rounded-3xl bg-cover shadow-lg'} style={{ paddingBottom: '100%', backgroundImage: `url(${profilePic})` }} />
-        </section>
+      <div className="m-auto flex text-base mb-12 shadow-2xl w-[8.5in] h-[11in]">
 
-        <section id={'contact'} className={asideSectionStyle}>
-          <h2 className={asideTitleStyle}>Contact</h2>
-          <ContentfulDisplay className={clsx(styles.richText, styles.richTextContact)} document={page.contact} />
-        </section>
+        <aside className="w-full px-4 py-4 text-white bg-blue-600" style={{ width: '2.8in' }}>
+          <section id={'presentation'} className={asideSectionStyle}>
+            <RatioContainer ratio={[1, 1]} className="overflow-hidden rounded-3xl shadow-lg">
+              <img className="object-cover" src="/assets/cv/avatar.jpg" alt="avatar" />
+            </RatioContainer>
+          </section>
 
-        <section id={'education'} className={asideSectionStyle}>
-          <h2 className={asideTitleStyle}>Education</h2>
-          <ContentfulDisplay className={clsx(styles.richText, styles.richTextEducation)} document={page.education} />
-        </section>
+          <section id={'contact'} className={asideSectionStyle}>
+            <h2 className={asideTitleStyle}>Contact</h2>
+            <ContentfulDisplay className={clsx(styles.richText, styles.richTextContact)} document={page.contact} />
+          </section>
 
-        <section id={'skills'} className={asideSectionStyle}>
-          <h2 className={asideTitleStyle}>Skills</h2>
-          <ul className={'flex flex-wrap -m-1'}>
-            {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
-              <li key={skill.slug} className={'flex w-full max-w-[50%] p-1'}>
-                <div className={'flex flex-center mr-1'}>
-                  <SkillIcon skill={skill.slug} size={'1.2em'} />
-                </div>
-                <div className={'font-bold text-sm truncate'}>{skill.name}</div>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </aside>
+          <section id={'education'} className={asideSectionStyle}>
+            <h2 className={asideTitleStyle}>Education</h2>
+            <ContentfulDisplay className={clsx(styles.richText, styles.richTextEducation)} document={page.education} />
+          </section>
 
-      <main className={'h-full px-4 py-4 flex-1'} >
-        <section id={'intro'} className={'mb-5'}>
-          <hgroup className={'mb-6'}>
-            <h1 className={'font-bold text-4xl leading-none text-blue-600 mb-3'}>{page.title}</h1>
-            <h2 className={'font-normal text-lg leading-none text-gray-600'}>{page.subtitle}</h2>
-          </hgroup>
-          <ContentfulDisplay className={styles.richText} document={page.intro} />
-        </section>
+          <section id={'skills'} className={asideSectionStyle}>
+            <h2 className={asideTitleStyle}>Skills</h2>
+            <ul className={'flex flex-wrap -m-1'}>
+              {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
+                <li key={skill.slug} className={'flex w-full max-w-[50%] p-1'}>
+                  <div className={'flex flex-center mr-1'}>
+                    <SkillIcon skill={skill.slug} size={'1.2em'} />
+                  </div>
+                  <div className={'font-bold text-sm truncate'}>{skill.name}</div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
 
-        <section id={'jobs'} className={mainSectionStyle}>
-          <h2 className={mainTitleStyle}>{t('page:cv.workExperiences')}</h2>
-          <div>
-            {page.jobs.map((job) => {
-              return (
-                <div key={job.slug} className={'mb-5'}>
-                  <DateRange
-                    startDate={job.startDate}
-                    endDate={job.endDate}
-                    className={'text-gray-600 dark:text-gray-400 text-xs leading-tight'}
-                  />
-                  <h3 className={'font-bold text-blue-700 text-xl leading-tight'}>
-                    {t('page:curriculum.jobAtCompany', {
-                      job: job.title,
-                      companyName: job.companyName,
-                    })}
-                  </h3>
-                  <ul className={'flex -mx-1'}>
-                    {job.skills.map((skill) => (
-                      <li key={skill.slug} className={'p-1'}>
-                        <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
-                      </li>
-                    ))}
-                  </ul>
-                  <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      </main>
-    </div>
+        <main className={'h-full px-4 py-4 flex-1'} >
+          <section id={'intro'} className={'mb-5'}>
+            <hgroup className={'mb-6'}>
+              <h1 className={'font-bold text-4xl leading-none text-blue-600 mb-3'}>{page.title}</h1>
+              <h2 className={'font-normal text-lg leading-none text-gray-600'}>{page.subtitle}</h2>
+            </hgroup>
+            <ContentfulDisplay className={styles.richText} document={page.intro} />
+          </section>
+
+          <section id={'jobs'} className={mainSectionStyle}>
+            <h2 className={mainTitleStyle}>{t('page:cv.workExperiences')}</h2>
+            <div>
+              {page.jobs.map((job) => {
+                return (
+                  <div key={job.slug} className={'mb-5'}>
+                    <DateRange
+                      startDate={job.startDate}
+                      endDate={job.endDate}
+                      className={'text-gray-600 dark:text-gray-400 text-xs leading-tight'}
+                    />
+                    <h3 className={'font-bold text-blue-700 text-xl leading-tight'}>
+                      {t('page:curriculum.jobAtCompany', {
+                        job: job.title,
+                        companyName: job.companyName,
+                      })}
+                    </h3>
+                    <ul className={'flex -mx-1'}>
+                      {job.skills.map((skill) => (
+                        <li key={skill.slug} className={'p-1'}>
+                          <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
+                        </li>
+                      ))}
+                    </ul>
+                    <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 };
 

@@ -12,6 +12,7 @@
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@next/next/no-img-element": "off",
+    "@next/no-stylesheets-in-head-component": "off",
     "semi": ["error", "always"],
     "object-curly-spacing": ["error", "always"],
     "@typescript-eslint/no-unused-vars": [

@@ -1,13 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 
-type ButtonType = 'primary' | 'gray' | 'white' | 'default';
+type ButtonType = 'primary' | 'outline-primary' | 'gray' | 'outline-gray' | 'white' | 'default';
+type ButtonSize = 'base' | 'lg';
 
 export type ButtonProps = {
   children: React.ReactNode,
   className?: string,
   id?: string,
   type?: ButtonType,
+  size?: ButtonSize,
   title?: string,
   disabled?: boolean,
   onPress?: () => void,
@@ -15,7 +17,7 @@ export type ButtonProps = {
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { children, className, type = 'default', title, disabled, onPress } = props;
+  const { children, className, type = 'default', size = 'base', title, disabled, onPress } = props;
 
   const handleClick = !disabled ? onPress : undefined;
 
@@ -24,6 +26,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       className={clsx(
         'btn',
         type && `btn-${type}`,
+        size && `btn-${size}`,
         disabled && 'btn-disabled',
         className,
       )}
