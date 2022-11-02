@@ -24,7 +24,6 @@ package-lock.json
 /public/sitemap.xml
 /public/sitemap-0.xml
 /public/robots.txt
-/.postgres
 
 # misc
 .DS_Store
