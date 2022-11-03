@@ -12,4 +12,3 @@ export * from './Section/Section';
 export * from './SectionTitle/SectionTitle';
 export * from './StylishBox/StylishBox';
 export * from './StylishCode/StylishCode';
-export * from './CustomInput/CustomInput';

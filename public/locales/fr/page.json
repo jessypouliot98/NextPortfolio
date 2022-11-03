@@ -7,6 +7,31 @@
     "seeAllCompanyProjects": "Voir les projets de chez {{companyName}}",
     "viewProject": "Voir le project"
   },
+  "contact": {
+    "form": {
+      "firstName": {
+        "label": "Prénom",
+        "placeholder": "John"
+      },
+      "lastName": {
+        "label": "Nom",
+        "placeholder": "Doe"
+      },
+      "email": {
+        "label": "Courriel",
+        "placeholder": "johndoe@email.com"
+      },
+      "subject": {
+        "label": "Object",
+        "placeholder": "Ça parle de quoi ?"
+      },
+      "body": {
+        "label": "Message",
+        "placeholder": "Qu'est-ce qui préoccupe votre esprit ?"
+      },
+      "send": "Envoyer"
+    }
+  },
   "blog": {
     "pageOnlyAvailableInEnglish": "Cette page n'est disponible qu'en anglais",
     "comments": "Commentaires",

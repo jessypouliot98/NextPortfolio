@@ -11,6 +11,31 @@
       "viewDetails": "See more"
     }
   },
+  "contact": {
+    "form": {
+      "firstName": {
+        "label": "First name",
+        "placeholder": "John"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "johndoe@email.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is this about ?"
+      },
+      "body": {
+        "label": "Message",
+        "placeholder": "What's on your mind ?"
+      },
+      "send": "Send"
+    }
+  },
   "blog": {
     "pageOnlyAvailableInEnglish": "This page is only available in english",
     "comments": "Comments",

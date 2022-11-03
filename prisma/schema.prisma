@@ -24,3 +24,12 @@ model Blog {
   contentfulEntryId String @unique @db.VarChar(64)
   views Int
 }
+
+model Mail {
+  id Int @id @default(autoincrement())
+  firstName String @db.VarChar(64)
+  lastName String @db.VarChar(64)
+  email String @db.VarChar(255)
+  subject String @db.VarChar(255)
+  body String @db.Text()
+}

@@ -11,5 +11,8 @@
     "[slug]": {
       "title": "{{blogTitle}}"
     }
+  },
+  "contact": {
+    "title": "Contact"
   }
 }

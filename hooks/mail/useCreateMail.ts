@@ -2,10 +2,10 @@ import { useState } from 'react';
 import React, { useCallback } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
-export const useCreateComment = (contentfulEntryId: string, onCommentCreated?: () => void) => {
+export const useCreateMail = (onMailCreated?: () => void) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const handleSubmitComment = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitMail = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (isProcessing) {
@@ -16,34 +16,40 @@ export const useCreateComment = (contentfulEntryId: string, onCommentCreated?: (
       setIsProcessing(true);
       const form = e.target as HTMLFormElement;
       const formData = new FormData(form);
-      const content = (formData.get('comment') as string).trim();
+      const payload = {
+        firstName: (formData.get('firstName') as string).trim(),
+        lastName: (formData.get('lastName') as string).trim(),
+        email: (formData.get('email') as string).trim(),
+        subject: (formData.get('subject') as string).trim(),
+        body: (formData.get('body') as string).trim(),
+      };
       const recaptchaToken = await executeRecaptcha?.();
       
-      if (!content || !recaptchaToken) {
+      const isAllStrings = Object.values(payload).every((v) => typeof v === 'string');
+      if (!isAllStrings || !recaptchaToken) {
         throw new Error('Missing required fields');
       }
       
-      await fetch(`/api/comments/${contentfulEntryId}`, {
+      await fetch(`/api/mail`, {
         method: 'POST',
         body: JSON.stringify({
-          content,
-          authorName: 'Annonymous User',
+          ...payload,
           recaptchaToken,
         })
       });
       
       form.reset();
 
-      onCommentCreated?.();
+      onMailCreated?.();
     } catch (e) {
       console.error(e);
     } finally {
       setIsProcessing(false);
     }
-  }, [isProcessing, contentfulEntryId, onCommentCreated, executeRecaptcha]);
+  }, [isProcessing, onMailCreated, executeRecaptcha]);
 
   return {
     isProcessing,
-    handleSubmitComment,
+    handleSubmitMail,
   };
 };
