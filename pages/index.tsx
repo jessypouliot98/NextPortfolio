@@ -24,7 +24,7 @@ export type HomePageProps = {
 }
 
 const HomePage: NextPage<HomePageProps> = ({ page }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const lang = useLang();
 
   return (
