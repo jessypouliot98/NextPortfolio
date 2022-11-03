@@ -31,5 +31,4 @@ My Next.js portfolio app
 ## Deploying manually
 1. SSH into the server
 2. go into the project directory on the remote server
-3. run the deploy script
-   (`sh ./deploy.sh`)
+3. run the deploy command `make deploy` or `make deploy-latest` (to pull latest code before deploying)
