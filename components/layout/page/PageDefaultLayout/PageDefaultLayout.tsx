@@ -1,4 +1,5 @@
 import React from "react";
+import getConfig from "next/config";
 import Head from "next/head";
 import clsx from "clsx";
 import { motion } from 'framer-motion';
@@ -32,11 +33,13 @@ export type PageDefaultLayoutProps = {
   breadcrumbsI18nProps?: BreadcrumbsProps['i18nProps'],
 }
 
+const { SITE_TITLE } = getConfig().publicRuntimeConfig;
+
 export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, title, description, sharing, breadcrumbsI18nProps }) => {
   return (
     <>
       <Head>
-        {title && <title key={'title'}>{title}</title>}
+        {<title key={'title'}>{title ?? SITE_TITLE}</title>}
         {description && (<meta key={'description'} name={'description'} content={description} />)}
         {(sharing?.['og:title'] || title) && (<meta key={'og:title'} name={'og:title'} content={sharing?.['og:title'] || description} />)}
         {(sharing?.['og:description'] || description) && (<meta key={'og:description'} name={'og:description'} content={sharing?.['og:description'] || description} />)}

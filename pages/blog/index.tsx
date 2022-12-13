@@ -1,15 +1,14 @@
 import { useMemo } from "react";
-import { GetStaticProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
 import { FaEye } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
-import { AppLanguage } from "types";
 import { BlogPage, getBlogListPage } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { useBlogListViews } from "@/hooks/blog/useBlogListViews";
 import { Routes } from "@/utils/link";
 import { NextDate } from "@/utils/NextDate";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -85,16 +84,12 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<BlogPageProps> = async (context) => {
-  const lang = context.locale as AppLanguage;
-  const page = await getBlogListPage({ lang });
+export const getStaticProps = generateGetStaticProps(async (context) => {
+  const page = await getBlogListPage({ lang: context.locale });
 
-  return {
-    props: {
-      page,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
-    },
-  };
-};
+  return { props: { page } };
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router']
+});
 
 export default BlogPage;

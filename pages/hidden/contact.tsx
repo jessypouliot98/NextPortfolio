@@ -1,14 +1,12 @@
 import React from "react";
-import type { GetStaticProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { useCreateMail } from "../../hooks";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Button, Card, Section, SectionTitle, StylishBox } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
-
-import { AppLanguage } from "../../types";
 
 export type ContactPageProps = {};
 
@@ -60,14 +58,8 @@ const ContactPage: NextPage<ContactPageProps> = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const lang = context.locale as AppLanguage;
-
-  return {
-    props: {
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
-    }
-  };
-};
+export const getStaticProps = generateGetStaticProps(null, {
+  i18nNamespaces: ['common', 'global', 'page', 'router'],
+});
 
 export default ContactPage;

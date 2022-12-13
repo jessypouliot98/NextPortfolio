@@ -1,7 +1,6 @@
 import React from "react";
-import type { GetStaticPropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc, getHomePage, HomePage } from "@/lib/contentful";
@@ -17,7 +16,7 @@ import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
-import { AppLanguage } from "../types";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 export type HomePageProps = {
   page: HomePage,
@@ -129,16 +128,12 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
   );
 };
 
-export async function getStaticProps(context: GetStaticPropsContext ) {
-  const lang = context.locale as AppLanguage;
-  const page = await getHomePage({ lang });
+export const getStaticProps = generateGetStaticProps<HomePageProps>(async (context) => {
+  const page = await getHomePage(({ lang: context.locale }));
 
-  return {
-    props: {
-      page,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router'])),
-    },
-  };
-}
+  return { props: { page } };
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router'],
+});
 
 export default HomePage;

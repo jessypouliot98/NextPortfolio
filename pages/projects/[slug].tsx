@@ -1,11 +1,12 @@
 import { useMemo } from "react";
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import type { GetStaticPaths, NextPage } from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FaCode, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
+
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -134,10 +135,9 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: string }> = async (context) => {
-  const lang = context.locale as AppLanguage;
-  const projectsPage = await getProjectsPage({ lang });
-  const slug = context.params?.slug as string;
+export const getStaticProps = generateGetStaticProps<ProjectSinglePageProps, { slug: string }>(async (context) => {
+  const projectsPage = await getProjectsPage({ lang: context.locale });
+  const slug = context.params.slug;
   const project = projectsPage.projects.find((project) => project.slug === slug);
 
   if (!project) {
@@ -148,9 +148,10 @@ export const getStaticProps: GetStaticProps<ProjectSinglePageProps, { slug: stri
     props: {
       title: `${projectsPage.title} - ${project.name}`,
       project: project,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
   };
-};
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router'],
+});
 
 export default ProjectSinglePage;

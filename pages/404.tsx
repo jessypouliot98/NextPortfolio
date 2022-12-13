@@ -1,11 +1,10 @@
-import { GetStaticPropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { useLang } from '../hooks';
 import { Routes } from '@/utils/link';
-import { getValidLang } from '@/utils/locale';
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Button, FlexGrid } from '@/components/general';
 import { PageErrorLayout } from '@/components/layout/page/PageErrorLayout/PageErrorLayout';
@@ -40,12 +39,8 @@ const Error404: NextPage<Error404Props> = () => {
   );
 };
 
-export async function getStaticProps(context: GetStaticPropsContext) {
-  return {
-    props: {
-      ...(await serverSideTranslations(getValidLang(context.locale), ['error'])),
-    }
-  };
-}
+export const getStaticProps = generateGetStaticProps(null, {
+  i18nNamespaces: ['error'],
+});
 
 export default Error404;

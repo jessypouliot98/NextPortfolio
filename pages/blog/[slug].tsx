@@ -1,6 +1,5 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, NextPage } from "next";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaEye } from "react-icons/fa";
 import { AppLanguage } from "types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
@@ -11,6 +10,7 @@ import { useBlog, useBlogView } from "@/hooks/blog";
 import { useComments } from "@/hooks/comments";
 import { useCreateComment } from "@/hooks/comments/useCreateComment";
 import { NextDate } from "@/utils/NextDate";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { AlertBanner, Button, Card, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
@@ -19,14 +19,14 @@ import { CommentList } from "@/components/parts/Comment";
 export type BlogPostPageProps = {
   contentfulEntryId: string,
   title: string,
-  description: string,
+  description?: string,
   page: BlogPost,
 }
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, page }) => {
   const { t } = useTranslation();
   const lang = useLang();
-  const { isLoading, data: comments = [], refetch,  } = useComments(contentfulEntryId);
+  const { isLoading, data: comments = [], refetch  } = useComments(contentfulEntryId);
   const { data: blog } = useBlog(contentfulEntryId); 
   const { handleSubmitComment, isProcessing } = useCreateComment(contentfulEntryId, refetch);
   useBlogView(contentfulEntryId);
@@ -96,11 +96,10 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<BlogPostPageProps, { slug: string }> = async (context) => {
-  const lang = context.locale as AppLanguage;
-  const page = await getBlogListPage({ lang });
+export const getStaticProps = generateGetStaticProps<BlogPostPageProps, { slug: string }>(async (context) => {
+  const page = await getBlogListPage({ lang: context.locale });
 
-  const blogPost = page.blogPosts.find((blog) => blog.slug === context.params?.slug);
+  const blogPost = page.blogPosts.find((blog) => blog.slug === context.params.slug);
 
   if (!blogPost) {
     throw new Error('Blog post not found');
@@ -110,10 +109,12 @@ export const getStaticProps: GetStaticProps<BlogPostPageProps, { slug: string }>
     props: {
       contentfulEntryId: blogPost.id,
       title: `${page.title} - ${blogPost.title}`,
+      description: page.seoDescription,
       page: blogPost,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
   };
-};
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router']
+});
 
 export default BlogPostPage;

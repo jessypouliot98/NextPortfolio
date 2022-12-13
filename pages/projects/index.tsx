@@ -1,25 +1,24 @@
 import { useMemo } from "react";
-import type { GetStaticProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ProjectPage } from "@/lib/contentful";
 import { getProjectsPage } from "@/lib/contentful/api/contentful";
 
 import { useFilterQuery } from "@/hooks/filter";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Button, Section, SectionTitle } from "@/components/general";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 
-import { AppLanguage } from "../../types";
+export type ProjectListPageProps = {
+  page: ProjectPage;
+};
 
-export type ProjectListPageProps = ProjectPage;
-
-const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
+const ProjectListPage: NextPage<ProjectListPageProps> = ({  page  }) => {
   const { t } = useTranslation();
-  const projectsPage = props;
-  const allProjects = projectsPage.projects;
+  const allProjects = page.projects;
   const { hasFilter, filter, clearFilter } = useFilterQuery();
 
   const projects = useMemo(() => {
@@ -31,10 +30,10 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   }, [filter, allProjects]);
 
   return (
-    <PageDefaultLayout title={projectsPage.title} description={projectsPage.seoDescription}>
+    <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
         <SectionTitle component="h1">
-          {projectsPage.title}
+          {page.title}
         </SectionTitle>
         {hasFilter && (
           <div className={'flex flex-row-reverse mb-2'}>
@@ -58,16 +57,12 @@ const ProjectListPage: NextPage<ProjectListPageProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<ProjectListPageProps> = async (context) => {
-  const lang = context.locale as AppLanguage;
-  const projectPage = await getProjectsPage({ lang });
+export const getStaticProps = generateGetStaticProps<ProjectListPageProps>(async (context) => {
+  const page = await getProjectsPage({ lang: context.locale });
 
-  return {
-    props: {
-      ...projectPage,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
-    },
-  };
-};
+  return { props: { page } };
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router']
+});
 
 export default ProjectListPage;

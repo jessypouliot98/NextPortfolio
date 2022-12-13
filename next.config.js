@@ -11,6 +11,7 @@ const nextConfig = {
     GOOGLE_RECAPTCHA_SECRET: process.env.GOOGLE_RECAPTCHA_SECRET,
   },
   publicRuntimeConfig: {
+    SITE_TITLE: process.env.SITE_TITLE,
     GOOGLE_MEASUREMENT_ID: process.env.GOOGLE_MEASUREMENT_ID,
     GOOGLE_RECAPTCHA_SITE_KEY: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
   },
