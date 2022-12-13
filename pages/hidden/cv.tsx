@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaCalendar, FaDownload, FaHome, FaLanguage } from "react-icons/fa";
 import clsx from "clsx";
 import { useCalendly } from "@/lib/calendly";
@@ -12,14 +11,13 @@ import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
+import { generateGetServerSideProps } from "@/utils/nextjs/getServerSideProps";
 
 import { Button, RatioContainer } from "@/components/general";
 import { DateRange } from "@/components/parts/DateRange/DateRange";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from '@/styles/pages/cv.module.css';
-
-import { AppLanguage } from "../../types";
 
 const DARK_CLASS = 'dark';
 
@@ -185,17 +183,13 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<CVPageProps> = async (context) => {
-  const lang = context.locale as AppLanguage;
-  const page = await getCVPage({ lang });
+export const getServerSideProps = generateGetServerSideProps<CVPageProps>(async (context) => {
+  const page = await getCVPage({ lang: context.locale });
 
-  return {
-    props: {
-      page,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page']) as any),
-    },
-  };
-};
+  return { props: { page } };
+}, {
+  i18nNamespaces: ['common', 'global', 'page'],
+});
 
 
 export default CVPage;

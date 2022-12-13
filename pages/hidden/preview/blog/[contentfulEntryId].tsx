@@ -1,8 +1,8 @@
-import { GetServerSideProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
 import BlogPostPage, { BlogPostPageProps } from "pages/blog/[slug]";
-import { AppLanguage } from "types";
 import { BlogPost, getEntry } from "@/lib/contentful";
+
+import { generateGetServerSideProps } from "@/utils/nextjs/getServerSideProps";
 
 export type PreviewBlogPageProps = BlogPostPageProps;
 
@@ -10,11 +10,10 @@ const PreviewBlogPage: NextPage<PreviewBlogPageProps> = (props) => {
   return <BlogPostPage {...props}/>;
 };
 
-export const getServerSideProps: GetServerSideProps<BlogPostPageProps, { contentfulEntryId: string }> = async (context) => {
-  const lang = context.locale as AppLanguage;
+export const getServerSideProps = generateGetServerSideProps<PreviewBlogPageProps, { contentfulEntryId: string }>(async (context) => {
   const contentfulEntryId = context.params?.contentfulEntryId as string;
 
-  const page = await getEntry<BlogPost>({ entryId: contentfulEntryId, lang });
+  const page = await getEntry<BlogPost>({ entryId: contentfulEntryId, lang: context.locale });
   const title = `Preview - ${page.title}`;
 
   return {
@@ -23,9 +22,10 @@ export const getServerSideProps: GetServerSideProps<BlogPostPageProps, { content
       title,
       description: page.seoDescription || title,
       page,
-      ...(await serverSideTranslations(lang, ['common', 'global', 'page', 'router']) as any),
     },
   };
-};
+}, {
+  i18nNamespaces: ['common', 'global', 'page', 'router']
+});
 
 export default PreviewBlogPage;
