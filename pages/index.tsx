@@ -7,6 +7,7 @@ import { ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc, getHom
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
+import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -15,8 +16,6 @@ import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";
 import { ProjectList } from "@/components/parts/ProjectList/ProjectList";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
-
-import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 export type HomePageProps = {
   page: HomePage,
