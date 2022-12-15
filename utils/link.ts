@@ -16,7 +16,7 @@ export const getIsActive = (router: NextRouter, path: string) => {
   return router.pathname.includes(path);
 };
 
-export const urlWithQuery = (url: string, query?: Record<string, string>) => {
+export const urlWithQuery = (url: string, query?: Record<string, string | number>) => {
   if (!query || Object.keys(query).length === 0) {
     return url;
   }
@@ -38,7 +38,7 @@ export const getAlternateRoute = (router: NextRouter, alternateLang: AppLanguage
   });
 
   return alternateRoute;
-}
+};
 
 export namespace Routes {
   export const getHome = (lang: AppLanguage): AppRoute => {
