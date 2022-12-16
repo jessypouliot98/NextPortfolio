@@ -6,12 +6,13 @@ import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
-import { getAlternateRoute, getIsActive, Routes } from "@/utils/link";
+import { getAlternateRoute, Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
+import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
 
-import { AppLanguage } from "../../../../types";
+import { AppLanguage } from "@/types";
 
 export type DesktopMainNavigationProps = {
   className?: string,
@@ -28,20 +29,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
   const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
   const currentAlternateRoute = getAlternateRoute(router, otherLang);
 
-  const links = [
-    {
-      route: Routes.getProjectList(lang),
-      title: t('global:header.projects'),
-    },
-    {
-      route: Routes.getBlogList(lang),
-      title: t('global:header.blog'),
-    },
-    {
-      route: Routes.getContact(lang),
-      title: t('global:header.contact'),
-    },
-  ];
+  const { links } = useMainNavigationLinks();
 
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
@@ -85,14 +73,14 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
               {isDark ? <FaSun /> : <FaMoon />}
             </Button>
           </li>
-          {links.map(({ route, title }) => (
+          {links.map(({ href, title, isActive }) => (
             <li key={title} className={'p-2'}>
               <Link
                 className={clsx(
                   linkStyle,
-                  getIsActive(router, route?.path) && activeLinkStyle,
+                  isActive && activeLinkStyle,
                 )}
-                href={route.href}
+                href={href}
               >
                 {title}
               </Link>

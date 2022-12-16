@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { FaBars, FaMoon, FaSun, FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
-import { getIsActive, getIsHomeActive, Routes } from "@/utils/link";
+import { Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
+import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
 
-import { AppLanguage } from "../../../../types";
+import { AppLanguage } from "@/types";
 
 export type MobileMainNavigationProps = {
   className?: string,
@@ -23,28 +23,9 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
   const { toggleTheme, isDark } = useTheme();
   const { t } = useTranslation();
   const { dir } = useDocumentScroll({ y: 80 });
-  const router = useRouter();
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const links = [
-    {
-      route: Routes.getHome(lang),
-      title: t('global:header.home'),
-      getCustomIsActive: () => getIsHomeActive(router),
-    },
-    {
-      route: Routes.getProjectList(lang),
-      title: t('global:header.projects'),
-    },
-    {
-      route: Routes.getBlogList(lang),
-      title: t('global:header.blog'),
-    },
-    {
-      route: Routes.getContact(lang),
-      title: t('global:header.contact'),
-    },
-  ];
+  const { links } = useMainNavigationLinks(true);
   const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
   const changeLangText = { en: 'FR', fr: 'EN' }[lang];
 
@@ -100,8 +81,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
 
           <nav className={'h-full flex flex-center'}>
             <ul className={'-m-4 flex flex-center flex-col'}>
-              {links.map(({ route, title, getCustomIsActive }) => {
-                const isActive = getCustomIsActive ? getCustomIsActive() : getIsActive(router, route?.path);
+              {links.map(({ title, href, isActive }) => {
                 return (
                   <li key={title} className={'p-4'}>
                     <Link
@@ -109,7 +89,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
                         linkStyle,
                         isActive && '!bg-blue-700 dark:!bg-blue-500 !text-white',
                       )}
-                      href={route.href}
+                      href={href}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {title}

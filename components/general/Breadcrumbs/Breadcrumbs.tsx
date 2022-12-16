@@ -31,7 +31,6 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
         label: [...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
       });
 
-
       return linkAccumulator;
     }, []);
   }, [pathSplit, routeSplit]);
