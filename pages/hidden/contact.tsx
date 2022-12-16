@@ -59,7 +59,7 @@ const ContactPage: NextPage<ContactPageProps> = () => {
 };
 
 export const getStaticProps = generateGetStaticProps(null, {
-  i18nNamespaces: ['common', 'global', 'page', 'router'],
+  i18nNamespaces: ['common', 'global', 'page', 'navigation'],
 });
 
 export default ContactPage;

@@ -151,7 +151,7 @@ export const getStaticProps = generateGetStaticProps<ProjectSinglePageProps, { s
     },
   };
 }, {
-  i18nNamespaces: ['common', 'global', 'page', 'router'],
+  i18nNamespaces: ['common', 'global', 'page', 'navigation'],
 });
 
 export default ProjectSinglePage;

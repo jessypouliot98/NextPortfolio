@@ -11,8 +11,6 @@ import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
 
-import { AppLanguage } from "@/types";
-
 export type MobileMainNavigationProps = {
   className?: string,
   navHeightClass: string,
@@ -26,8 +24,6 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { links } = useMainNavigationLinks(true);
-  const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
-  const changeLangText = { en: 'FR', fr: 'EN' }[lang];
 
   const linkStyle = clsx('btn btn-white');
 
@@ -81,7 +77,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
 
           <nav className={'h-full flex flex-center'}>
             <ul className={'-m-4 flex flex-center flex-col'}>
-              {links.map(({ title, href, isActive }) => {
+              {links.map(({ title, href, isActive, locale, label  }) => {
                 return (
                   <li key={title} className={'p-4'}>
                     <Link
@@ -90,6 +86,8 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
                         isActive && '!bg-blue-700 dark:!bg-blue-500 !text-white',
                       )}
                       href={href}
+                      locale={locale}
+                      aria-label={label}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {title}
@@ -97,18 +95,6 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
                   </li>
                 );
               })}
-              <li className={'p-4'}>
-                <Link
-                  className={clsx(linkStyle)}
-                  aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
-                  // TODO Refactor to current page instead of home
-                  href={'/'}
-                  locale={otherLang}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {changeLangText}
-                </Link>
-              </li>
               <li className={'p-4'}>
                 <button
                   id={'toggle-theme'}

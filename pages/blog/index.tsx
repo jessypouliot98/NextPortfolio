@@ -89,7 +89,7 @@ export const getStaticProps = generateGetStaticProps(async (context) => {
 
   return { props: { page } };
 }, {
-  i18nNamespaces: ['common', 'global', 'page', 'router']
+  i18nNamespaces: ['common', 'global', 'page', 'navigation']
 });
 
 export default BlogPage;

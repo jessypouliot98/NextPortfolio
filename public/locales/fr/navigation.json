@@ -1,0 +1,20 @@
+{
+  "main": {
+    "title": "Accueil",
+    "projects": {
+      "title": "Projets",
+      "[slug]": {
+        "title": "{{projectTitle}}"
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "[slug]": {
+        "title": "{{blogTitle}}"
+      }
+    },
+    "contact": {
+      "title": "Contact"
+    }
+  }
+}

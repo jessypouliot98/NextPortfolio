@@ -16,7 +16,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   const router = useRouter();
   const pathSplit = router.asPath.split('/');
   const routeSplit = router.route.split('/').splice(1);
-  const { t } = useTranslation('router');
+  const { t } = useTranslation('navigation');
 
   const links = useMemo(() => {
     return pathSplit.reduce<{

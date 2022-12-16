@@ -132,7 +132,7 @@ export const getStaticProps = generateGetStaticProps<HomePageProps>(async (conte
 
   return { props: { page } };
 }, {
-  i18nNamespaces: ['common', 'global', 'page', 'router'],
+  i18nNamespaces: ['common', 'global', 'page', 'navigation'],
 });
 
 export default HomePage;

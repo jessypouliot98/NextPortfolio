@@ -9,14 +9,15 @@ import { Route } from "@/utils/navigation/types";
 import { AppLanguage } from "@/types";
 
 export const getRoute = <R extends Route = Route>(route: R) => {
+  const namespace = 'navigation';
   const translationKeyPath = getRouteTranslationKeyPath(route.path);
-  const titleTranslationKey = `${translationKeyPath}.title`;
-  
+  const titleTranslationKey = `${namespace}:${translationKeyPath}.title`;
+
   return {
     ...route,
     title: (i18n: I18n) => i18n.t(titleTranslationKey),
     breadcrumbTitle: (i18n: I18n) => {
-      const breadcrumbTitleTranslationKey = `${translationKeyPath}.breadcrumbTitle`;
+      const breadcrumbTitleTranslationKey = `${namespace}:${translationKeyPath}.breadcrumbTitle`;
 
       if (i18n.exists(breadcrumbTitleTranslationKey)) {
         return i18n.t(breadcrumbTitleTranslationKey);

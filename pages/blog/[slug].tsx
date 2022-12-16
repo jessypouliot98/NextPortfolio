@@ -114,7 +114,7 @@ export const getStaticProps = generateGetStaticProps<BlogPostPageProps, { slug: 
     },
   };
 }, {
-  i18nNamespaces: ['common', 'global', 'page', 'router']
+  i18nNamespaces: ['common', 'global', 'page', 'navigation']
 });
 
 export default BlogPostPage;

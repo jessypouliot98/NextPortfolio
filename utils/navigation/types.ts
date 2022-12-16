@@ -15,6 +15,7 @@ export type Route<
   i18n: {
     path: I18nMap<string>,
   },
+  breadcrumbs: string[],
   routeParams: R;
   queryParams: Q;
 }

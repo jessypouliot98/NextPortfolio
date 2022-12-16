@@ -21,13 +21,11 @@ export type DesktopMainNavigationProps = {
 
 export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ className, navHeightClass }) => {
   const { t } = useTranslation();
-  const router = useRouter();
+
   const lang = useLang();
 
   const { dir } = useDocumentScroll({ y: 80 });
   const { toggleTheme, isDark } = useTheme();
-  const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
-  const currentAlternateRoute = getAlternateRoute(router, otherLang);
 
   const { links } = useMainNavigationLinks();
 
@@ -73,7 +71,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
               {isDark ? <FaSun /> : <FaMoon />}
             </Button>
           </li>
-          {links.map(({ href, title, isActive }) => (
+          {links.map(({ href, title, isActive, label, locale }) => (
             <li key={title} className={'p-2'}>
               <Link
                 className={clsx(
@@ -81,21 +79,13 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
                   isActive && activeLinkStyle,
                 )}
                 href={href}
+                locale={locale}
+                aria-label={label}
               >
                 {title}
               </Link>
             </li>
           ))}
-          <li className={'p-2'}>
-            <Link
-              className={clsx(linkStyle)}
-              aria-label={t({ en: 'common:language.fr', fr: 'common:language.en' }[lang])}
-              href={currentAlternateRoute.href}
-              locale={otherLang}
-            >
-              {changeLangText}
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>

@@ -25,7 +25,7 @@ export const getServerSideProps = generateGetServerSideProps<PreviewBlogPageProp
     },
   };
 }, {
-  i18nNamespaces: ['common', 'global', 'page', 'router']
+  i18nNamespaces: ['common', 'global', 'page', 'navigation']
 });
 
 export default PreviewBlogPage;

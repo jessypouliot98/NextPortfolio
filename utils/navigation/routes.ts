@@ -21,6 +21,7 @@ export const ROUTES = {
         fr: '/fr',
       },
     },
+    breadcrumbs: [],
   }),
   'projects': createRoute({
     path: '/projects',
@@ -30,6 +31,7 @@ export const ROUTES = {
         fr: '/fr/projets',
       }
     },
+    breadcrumbs: ['home'],
   }),
   'projects.single': createRoute({
     path: '/projects/[slug]',
@@ -39,6 +41,7 @@ export const ROUTES = {
         fr: '/fr/projets/[slug]',
       }
     },
+    breadcrumbs: ['home', 'projects'],
     routeParams: z.object({
       slug: z.string(),
     }),
@@ -51,6 +54,7 @@ export const ROUTES = {
         fr: '/fr/blog',
       }
     },
+    breadcrumbs: ['home'],
   }),
   'blog.single': createRoute({
     path: '/projects/[slug]',
@@ -60,6 +64,7 @@ export const ROUTES = {
         fr: '/fr/blog/[slug]',
       }
     },
+    breadcrumbs: ['home', 'blog'],
     routeParams: z.object({
       slug: z.string(),
     }),
@@ -72,6 +77,7 @@ export const ROUTES = {
         fr: '/fr/hidden/cv',
       }
     },
+    breadcrumbs: [],
   }),
   'hidden.preview.blog.single': createRoute({
     path: '/hidden/preview/blog/[contentfulEntryId]',
@@ -81,6 +87,7 @@ export const ROUTES = {
         fr: '/fr/hidden/preview/blog/[contentfulEntryId]',
       }
     },
+    breadcrumbs: ['home', 'blog'],
     routeParams: z.object({
       contentfulEntryId: z.string(),
     }),
