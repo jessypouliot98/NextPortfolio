@@ -14,7 +14,7 @@ import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
-import { AppLanguage } from "../../types";
+import { AppLanguage } from "@/types";
 
 export type ProjectSinglePageProps = {
   title: string,

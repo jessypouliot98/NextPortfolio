@@ -1,18 +1,15 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
 
 import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
-import { getAlternateRoute, Routes } from "@/utils/link";
+import { Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
-
-import { AppLanguage } from "@/types";
 
 export type DesktopMainNavigationProps = {
   className?: string,
@@ -22,14 +19,11 @@ export type DesktopMainNavigationProps = {
 export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ className, navHeightClass }) => {
   const { t } = useTranslation();
 
-  const lang = useLang();
-
   const { dir } = useDocumentScroll({ y: 80 });
   const { toggleTheme, isDark } = useTheme();
 
-  const { links } = useMainNavigationLinks();
+  const { homeLink, links } = useMainNavigationLinks();
 
-  const changeLangText = { en: 'FR', fr: 'EN' }[lang];
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
 
   const linkStyle = clsx('btn btn-default');
@@ -54,8 +48,10 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
           <li className={'flex items-center p-2 mr-auto'}>
             <Link
               className="btn btn-default !p-1 -m-1"
-              href={Routes.getHome(lang).href}
-              title={t('global:header.home')}
+              href={homeLink.href}
+              title={homeLink.title}
+              locale={homeLink.locale}
+              aria-label={homeLink.label}
             >
               <img src={isDark ? '/assets/logo_bw.svg' : '/assets/logo_color.svg'} className="inline-block w-10 h-10" alt="logo" />
             </Link>

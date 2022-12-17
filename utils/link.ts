@@ -1,6 +1,6 @@
 import { NextRouter } from "next/router";
 
-import { AppLanguage } from "../types";
+import { AppLanguage } from "@/types";
 
 type AppRoute = {
   path: string,

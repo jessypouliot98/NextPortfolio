@@ -33,7 +33,7 @@ export const ROUTES = {
     },
     breadcrumbs: ['home'],
     queryParams: z.object({
-      page: z.number().optional(),
+      filter: z.string().optional(),
     })
   }),
   'projects.single': createRoute({

@@ -3,9 +3,7 @@ import { useTranslation } from "next-i18next";
 import { FaBars, FaMoon, FaSun, FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
 
-import { useLang } from "@/hooks/app";
 import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
-import { Routes } from "@/utils/link";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -17,13 +15,12 @@ export type MobileMainNavigationProps = {
 }
 
 export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ className, navHeightClass }) => {
-  const lang = useLang();
   const { toggleTheme, isDark } = useTheme();
   const { t } = useTranslation();
   const { dir } = useDocumentScroll({ y: 80 });
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { links } = useMainNavigationLinks(true);
+  const { homeLink, links } = useMainNavigationLinks(true);
 
   const linkStyle = clsx('btn btn-white');
 
@@ -42,8 +39,10 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
         <div className="flex-1 flex items-center">
           <Link
             className="btn btn-default !p-0"
-            href={Routes.getHome(lang).href}
-            title={t('global:header.home')}
+            href={homeLink.href}
+            title={homeLink.title}
+            locale={homeLink.locale}
+            aria-label={homeLink.label}
           >
             <img src={isDark ? '/assets/logo_bw.svg' : '/assets/logo_color.svg'} className="inline-block w-10 h-10" alt="logo" />
           </Link>

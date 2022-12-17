@@ -7,7 +7,7 @@ describe('routes', () => {
   });
 
   it('projects route returns expected url', () => {
-    expect(ROUTES['projects'].url('en', {}, { page: 3 })).toBe('/projects?page=3');
+    expect(ROUTES['projects'].url('en', {}, { filter: 'renorun' })).toBe('/projects?filter=renorun');
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     expect(ROUTES['projects'].url('en', {}, { invalid: 'foobar' })).toBe('/projects');

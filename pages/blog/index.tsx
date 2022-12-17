@@ -6,7 +6,7 @@ import { BlogPage, getBlogListPage } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { useBlogListViews } from "@/hooks/blog/useBlogListViews";
-import { Routes } from "@/utils/link";
+import { ROUTES } from "@/utils/navigation/routes";
 import { NextDate } from "@/utils/NextDate";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
@@ -34,7 +34,6 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
     }).reverse();
   }, [isLoading, blogListViews, page.blogPosts]);
 
-
   return (
     <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
@@ -53,7 +52,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
               >
                 <Link
                   className={'block transition hover:scale-105'}
-                  href={Routes.getBlogSingle(lang, { slug: blogPost.slug }).href}
+                  href={ROUTES['blog'].url(lang, { slug: blogPost.slug })}
                 >
                   <Card>
                     <div className="flex items-center">

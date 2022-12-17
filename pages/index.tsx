@@ -7,6 +7,7 @@ import { ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc, getHom
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
+import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Section, SectionTitle } from "@/components/general";
@@ -77,7 +78,7 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
           <ProjectList projects={page.featuredProjects}/>
         </StylishBox>
         <div className={'flex flex-row justify-end'}>
-          <Link className={'link link-primary'} href={Routes.getProjectList(lang).href}>
+          <Link className={'link link-primary'} href={ROUTES['projects'].url(lang)}>
             {t('page:projects.seeAllProjects')}
           </Link>
         </div>

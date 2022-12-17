@@ -2,7 +2,7 @@ import React from "react";
 import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
 
-import { useCreateMail } from "../../hooks";
+import { useCreateMail } from "@/hooks";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Button, Card, Section, SectionTitle, StylishBox } from "@/components/general";

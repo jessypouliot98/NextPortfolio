@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-import { useLang } from '../hooks';
-import { Routes } from '@/utils/link';
+import { useLang } from '@/hooks';
+import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Button, FlexGrid } from '@/components/general';
@@ -29,7 +29,7 @@ const Error404: NextPage<Error404Props> = () => {
             <Button type={'gray'} className={'w-full'} onPress={router.back}>
               {t('error:404.buttons.back')}
             </Button>
-            <Button type={'primary'} className={'w-full'} onPress={() => router.push(Routes.getHome(lang).href)}>
+            <Button type={'primary'} className={'w-full'} onPress={() => router.push(ROUTES['home'].url(lang))}>
               {t('error:404.buttons.home')}
             </Button>
           </FlexGrid>

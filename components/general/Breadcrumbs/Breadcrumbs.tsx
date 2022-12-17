@@ -28,7 +28,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
 
       linkAccumulator.push({
         href: `${hrefPrefix}/${path}`,
-        label: [...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
+        label: ['main', ...routeSplit.filter((_, j) => j < i), 'title'].join('.'),
       });
 
       return linkAccumulator;
@@ -40,7 +40,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
   }
 
   return (
-    <AnimatePresence initial={true   }>
+    <AnimatePresence initial={true}>
       <div className={'flex flex-wrap'}>
         {links.map(({ href, label }, i, arr) => {
           const isHome = i === 0;

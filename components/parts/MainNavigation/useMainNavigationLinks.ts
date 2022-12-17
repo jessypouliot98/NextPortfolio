@@ -73,6 +73,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
   }, [homeLink, i18n, isMobileNavigation, lang, switchLangLink]);
 
   return {
+    homeLink,
     links,
   };
 };

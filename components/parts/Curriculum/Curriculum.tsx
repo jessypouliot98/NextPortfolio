@@ -6,6 +6,7 @@ import { ContentfulDisplay, Job } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
 import { Routes } from "@/utils/link";
+import { ROUTES } from "@/utils/navigation/routes";
 
 import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -108,7 +109,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                     <div className={'flex flex-row-reverse'}>
                       <Link
                         className={'link link-primary'}
-                        href={Routes.getProjectList(lang, { filter: job.companySlug }).href}
+                        href={ROUTES['projects'].url(lang, {}, { filter: job.companySlug })}
                       >
                         {t('page:projects.seeAllCompanyProjects', {
                           companyName: job.companyName,
