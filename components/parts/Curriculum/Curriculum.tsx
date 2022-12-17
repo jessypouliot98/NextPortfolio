@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ContentfulDisplay, Job } from "@/lib/contentful";
 
 import { useLang } from "@/hooks/app";
-import { Routes } from "@/utils/link";
 import { ROUTES } from "@/utils/navigation/routes";
 
 import { Card } from "@/components/general";
