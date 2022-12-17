@@ -1,11 +1,11 @@
-import { z, ZodObject } from "zod";
+import { z } from "zod";
 
 import { getRoute } from "@/utils/navigation/getRoute";
 import { Route } from "@/utils/navigation/types";
 
 const createRoute = <
-  R extends Route['routeParams'] = ZodObject<{}>,
-  Q extends Route['queryParams'] = ZodObject<{}>,
+  R extends Route['routeParams'] = Route['routeParams'],
+  Q extends Route['queryParams'] = Route['routeParams'],
 >(route: Omit<Route<R, Q>, 'routeParams' | 'queryParams'> & Partial<Pick<Route<R, Q>, 'routeParams' | 'queryParams'>>) => getRoute({
   ...route,
   routeParams: route.routeParams ?? z.object({}),
@@ -32,6 +32,9 @@ export const ROUTES = {
       }
     },
     breadcrumbs: ['home'],
+    queryParams: z.object({
+      page: z.number().optional(),
+    })
   }),
   'projects.single': createRoute({
     path: '/projects/[slug]',

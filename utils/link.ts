@@ -16,7 +16,7 @@ export const getIsActive = (router: NextRouter, path: string) => {
   return router.pathname.includes(path);
 };
 
-export const urlWithQuery = (url: string, query?: Record<string, string | number>) => {
+export const urlWithQuery = (url: string, query?: Record<string, string | number | undefined>) => {
   if (!query || Object.keys(query).length === 0) {
     return url;
   }

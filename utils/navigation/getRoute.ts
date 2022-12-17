@@ -35,7 +35,7 @@ export const getRoute = <R extends Route = Route>(route: R) => {
       return Object.entries(parsed.routeParams).reduce((builder, [key, value]) => {
         const regex = new RegExp(`\\[${key}\\]`, 'gi');
 
-        return builder.replace(regex, value.toString());
+        return builder.replace(regex, value?.toString() || '');
       }, urlWithQuery(route.i18n.path[lang], parsed.queryParams));
     }
   };

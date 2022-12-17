@@ -1,40 +1,16 @@
-import { z } from "zod";
-
-import { getRoute } from "@/utils/navigation/getRoute";
-import { Route } from "@/utils/navigation/types";
-
-import { AppLanguage } from "../../types";
 import { ROUTES } from "./routes";
 
-type TestCase<
-  R extends Route['routeParams'] = Route['routeParams'],
-  Q extends Route['queryParams'] = Route['queryParams'],
-> = {
-  route: Route<R, Q>;
-  r: z.infer<R>;
-  q: z.infer<Q>;
-  expected: string;
-}
-
-const TEST_CASES: TestCase[] = [
-  {
-    route: ROUTES['home'],
-    r: {},
-    q: {},
-    expected: '/',
-  },
-  {
-    route: ROUTES['hidden.preview.blog.single'],
-    r: { contentfulEntryId: 'foobar' },
-    q: {},
-    expected: '/',
-  },
-];
-
 describe('routes', () => {
-  const lang: AppLanguage = 'en';
+  it('home route returns expected url', () => {
+    expect(ROUTES['home'].url('en')).toBe('/');
+    expect(ROUTES['home'].url('fr')).toBe('/fr');
+  });
 
-  it.each(TEST_CASES)('returns expected url', ({ route, r, q, expected }) => {
-    expect(getRoute(route).url(lang, r, q)).toBe(expected);
+  it('projects route returns expected url', () => {
+    expect(ROUTES['projects'].url('en', {}, { page: 3 })).toBe('/projects?page=3');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    expect(ROUTES['projects'].url('en', {}, { invalid: 'foobar' })).toBe('/projects');
+    expect(ROUTES['projects'].url('fr')).toBe('/fr/projets');
   });
 });

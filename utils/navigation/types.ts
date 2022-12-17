@@ -1,15 +1,16 @@
-import { ZodNumber, ZodObject, ZodString } from "zod";
+import { ZodNumber, ZodObject, ZodOptional, ZodString } from "zod";
 
 type I18nMap<T> = {
   en: T;
   fr: T;
 }
 
-type ZodUrlParam = ZodString | ZodNumber;
+type ZodParam = ZodOptional<ZodString | ZodNumber> | ZodString | ZodNumber;
+type ZodRouteParams = ZodObject<{ [key: string]: ZodParam }>;
 
 export type Route<
-  R extends ZodObject<Record<string, ZodUrlParam>> = ZodObject<Record<string, ZodUrlParam>>,
-  Q extends ZodObject<Record<string, ZodUrlParam>> = ZodObject<Record<string, ZodUrlParam>>,
+  R extends ZodRouteParams = ZodRouteParams,
+  Q extends ZodRouteParams = ZodRouteParams,
 > = {
   path: string;
   i18n: {
