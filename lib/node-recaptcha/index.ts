@@ -1,6 +1,6 @@
 import getConfig from 'next/config';
 
-import { urlWithQuery } from './../../utils/link';
+import { urlWithQuery } from "@/utils/navigation/urlWithQuery";
 
 const { GOOGLE_RECAPTCHA_SECRET } = getConfig().serverRuntimeConfig;
 

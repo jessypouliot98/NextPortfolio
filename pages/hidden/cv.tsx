@@ -10,7 +10,7 @@ import { CVPage,getCVPage } from "@/lib/contentful";
 import { ContentfulDisplay } from "@/lib/contentful/components/ContentfulDisplay";
 
 import { useLang } from "@/hooks/app";
-import { Routes } from "@/utils/link";
+import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetServerSideProps } from "@/utils/nextjs/getServerSideProps";
 
 import { Button, RatioContainer } from "@/components/general";
@@ -64,7 +64,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             className="flex-1"
             type="outline-gray"
             size="lg"
-            onPress={() => router.push(Routes.getHome(lang).href)}
+            onPress={() => router.push(ROUTES['home'].url(lang))}
           >
             <FaHome />
             <span className="ml-2">{t('page:cv.website')}</span>
@@ -95,7 +95,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             className="flex-1"
             type={'primary'}
             onPress={() => {
-              window.open(Routes.getPdfCV(lang).href, '_self');
+              window.open(ROUTES['api.pdf.cv'].url(lang), '_self');
             }}
           >
             <FaDownload />

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
 import { useLang } from "@/hooks";
-import { getAlternateRoute } from "@/utils/link";
+import { getMatchingRouteUrl } from "@/utils/navigation/getMatchingRoute";
 import { ROUTES } from "@/utils/navigation/routes";
 
 import { AppLanguage } from "@/types";
@@ -32,7 +32,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
 
     return {
       title: otherLang.toUpperCase(),
-      href: getAlternateRoute(router, otherLang).localizedHref,
+      href: getMatchingRouteUrl(otherLang, router),
       isActive: false,
       label: i18n.t({ en: 'common:language.fr', fr: 'common:language.en' }[otherLang]),
       locale: otherLang,

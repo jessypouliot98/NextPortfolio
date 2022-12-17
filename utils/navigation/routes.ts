@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { getRoute } from "@/utils/navigation/getRoute";
 import { Route } from "@/utils/navigation/types";
+import { urlWithQuery } from "@/utils/navigation/urlWithQuery";
 
 const createRoute = <
   R extends Route['routeParams'] = Route['routeParams'],
@@ -12,7 +13,7 @@ const createRoute = <
   queryParams: route.queryParams ?? z.object({}),
 } as Route<R, Q>);
 
-export const ROUTES = {
+export const ROUTES = Object.freeze({
   'home': createRoute({
     path: '/',
     i18n: {
@@ -60,7 +61,7 @@ export const ROUTES = {
     breadcrumbs: ['home'],
   }),
   'blog.single': createRoute({
-    path: '/projects/[slug]',
+    path: '/blog/[slug]',
     i18n: {
       path: {
         en: '/blog/[slug]',
@@ -95,5 +96,20 @@ export const ROUTES = {
       contentfulEntryId: z.string(),
     }),
   }),
-};
+  'api.pdf.cv': createRoute({
+    path: '/api/pdf/cv',
+    i18n: {
+      path: {
+        en: urlWithQuery('/api/pdf/cv', { lang: 'en' }),
+        fr: urlWithQuery('/api/pdf/cv', { lang: 'fr' }),
+      }
+    },
+    breadcrumbs: [],
+  })
+} as const);
+
+export const ROUTES_PATH_MAP = new Map(Object.values(ROUTES).map((route) => ([
+  route.path,
+  route,
+])));
 

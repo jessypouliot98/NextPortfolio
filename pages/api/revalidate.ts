@@ -1,28 +1,28 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getBlogListPage, getProjectsPage } from "@/lib/contentful";
 
-import { Routes } from "@/utils/link";
+import { ROUTES } from "@/utils/navigation/routes";
 
-import { AppLanguage } from "../../types";
+import { AppLanguage } from "@/types";
 
 const getAllProjectSingleRoutesForLang = async (lang: AppLanguage) => {
   const page = await getProjectsPage({ lang });
 
-  return page.projects.map((project) => Routes.getProjectSingle(lang, { slug: project.slug }).localizedHref);
+  return page.projects.map((project) => ROUTES['projects.single'].url(lang, { slug: project.slug }));
 };
 
 const getAllBlogPostRoutesForLang = async (lang: AppLanguage) => {
   const page = await getBlogListPage({ lang });
 
-  return page.blogPosts.map((blogPost) => Routes.getBlogSingle(lang, { slug: blogPost.slug }).localizedHref);
+  return page.blogPosts.map((blogPost) => ROUTES['blog.single'].url(lang, { slug: blogPost.slug }));
 };
 
 const getAllStaticRoutes = async () => {
   const languages: AppLanguage[] = ['en', 'fr'];
   const routes = languages.map(async (lang) => [
-    Routes.getHome(lang).localizedHref,
-    Routes.getProjectList(lang).localizedHref,
-    Routes.getBlogList(lang).localizedHref,
+    ROUTES['home'].url(lang),
+    ROUTES['projects'].url(lang),
+    ROUTES['blog'].url(lang),
     ...(await getAllProjectSingleRoutesForLang(lang)),
     ...(await getAllBlogPostRoutesForLang(lang)),
   ]).flat();

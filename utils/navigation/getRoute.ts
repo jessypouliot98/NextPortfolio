@@ -1,10 +1,10 @@
 import { I18n } from "next-i18next";
 import { z } from "zod";
 
-import { urlWithQuery } from "@/utils/link";
 import { getRouteTranslationKeyPath } from "@/utils/navigation/getRouteTranslationKeyPath";
 import { parseRoute } from "@/utils/navigation/parseRoute";
 import { Route } from "@/utils/navigation/types";
+import { urlWithQuery } from "@/utils/navigation/urlWithQuery";
 
 import { AppLanguage } from "@/types";
 
