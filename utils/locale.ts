@@ -1,9 +1,11 @@
-import {AppLanguage} from "../types";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@/utils/constants";
+
+import { AppLanguage } from "@/types";
 
 export const getValidLang = (locale?: string): AppLanguage => {
-  if (['en', 'fr'].includes(locale || '')) {
+  if (SUPPORTED_LANGUAGES.includes((locale || '') as any)) {
     return locale as AppLanguage;
   }
 
-  return 'en';
+  return DEFAULT_LANGUAGE;
 };

@@ -6,6 +6,7 @@ import { FaCode, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
 
+import { DEFAULT_LANGUAGE } from "@/utils/constants";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
@@ -121,7 +122,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const projectsPage = await getProjectsPage({ lang: 'en' });
+  const projectsPage = await getProjectsPage({ lang: DEFAULT_LANGUAGE });
 
   return {
     paths: projectsPage.projects.reduce((accPaths, project) => {

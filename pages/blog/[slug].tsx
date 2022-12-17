@@ -9,6 +9,7 @@ import { useLang } from "@/hooks/app";
 import { useBlog, useBlogView } from "@/hooks/blog";
 import { useComments } from "@/hooks/comments";
 import { useCreateComment } from "@/hooks/comments/useCreateComment";
+import { DEFAULT_LANGUAGE } from "@/utils/constants";
 import { NextDate } from "@/utils/NextDate";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
@@ -82,7 +83,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const page = await getBlogListPage({ lang: 'en' });
+  const page = await getBlogListPage({ lang: DEFAULT_LANGUAGE });
 
   return {
     paths: page.blogPosts.reduce((accPaths, blogPost) => {

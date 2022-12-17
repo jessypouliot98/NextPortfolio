@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import puppeteer from "puppeteer";
 
+import { DEFAULT_LANGUAGE } from "@/utils/constants";
 import { ROUTES } from "@/utils/navigation/routes";
 
 import { AppLanguage } from "@/types";
@@ -9,7 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>
 ) {
-  const lang = (req.query.lang || 'en') as AppLanguage;
+  const lang = (req.query.lang || DEFAULT_LANGUAGE) as AppLanguage;
   const cvUrl = process.env.SITE_URL + ROUTES['hidden.cv'].url(lang);
 
   const browser = await puppeteer.launch({

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getBlogListPage, getProjectsPage } from "@/lib/contentful";
 
+import { SUPPORTED_LANGUAGES } from "@/utils/constants";
 import { ROUTES } from "@/utils/navigation/routes";
 
 import { AppLanguage } from "@/types";
@@ -18,7 +19,7 @@ const getAllBlogPostRoutesForLang = async (lang: AppLanguage) => {
 };
 
 const getAllStaticRoutes = async () => {
-  const languages: AppLanguage[] = ['en', 'fr'];
+  const languages: AppLanguage[] = SUPPORTED_LANGUAGES;
   const routes = languages.map(async (lang) => [
     ROUTES['home'].url(lang),
     ROUTES['projects'].url(lang),
