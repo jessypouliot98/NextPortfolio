@@ -1,16 +1,19 @@
 {
   "main": {
     "title": "Home",
+    "services": {
+      "title": "Services"
+    },
     "projects": {
       "title": "Projects",
       "[slug]": {
-        "title": "{{projectTitle}}"
+        "title": "{{slug}}"
       }
     },
     "blog": {
       "title": "Blog",
       "[slug]": {
-        "title": "{{blogTitle}}"
+        "title": "{{slug}}"
       }
     },
     "contact": {

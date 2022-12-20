@@ -16,15 +16,15 @@ export const getRoute = <R extends Route = Route>(route: R) => {
 
   return {
     ...route,
-    title: (i18n: I18n) => i18n.t(titleTranslationKey),
-    breadcrumbTitle: (i18n: I18n) => {
+    title: (i18n: I18n, i18nProps: Record<string, string> = {}) => i18n.t(titleTranslationKey, i18nProps),
+    breadcrumbTitle: (i18n: I18n, i18nProps: Record<string, string> = {}) => {
       const breadcrumbTitleTranslationKey = `${namespace}:${translationKeyPath}.breadcrumbTitle`;
 
       if (i18n.exists(breadcrumbTitleTranslationKey)) {
-        return i18n.t(breadcrumbTitleTranslationKey);
+        return i18n.t(breadcrumbTitleTranslationKey, i18nProps);
       }
 
-      return i18n.t(titleTranslationKey);
+      return i18n.t(titleTranslationKey, i18nProps);
     },
     getIsActive: (router: NextRouter) => {
       return router.pathname === route.path;

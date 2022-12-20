@@ -47,12 +47,12 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
                 key={blogPost.slug}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 1 * (i / length) }}
+                transition={{ duration: 0.3, delay: i / length }}
                 className={'p-2'}
               >
                 <Link
                   className={'block transition hover:scale-105'}
-                  href={ROUTES['blog'].url(lang, { slug: blogPost.slug })}
+                  href={ROUTES['blog.single'].url(lang, { slug: blogPost.slug })}
                 >
                   <Card>
                     <div className="flex items-center">
