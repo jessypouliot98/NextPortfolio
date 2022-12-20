@@ -19,17 +19,27 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/',
-        fr: '/fr',
+        fr: '/',
       },
     },
     breadcrumbs: [],
+  }),
+  'services': createRoute({
+    path: '/services',
+    i18n: {
+      path: {
+        en: '/services',
+        fr: '/services',
+      }
+    },
+    breadcrumbs: ['home'],
   }),
   'projects': createRoute({
     path: '/projects',
     i18n: {
       path: {
         en: '/projects',
-        fr: '/fr/projets',
+        fr: '/projets',
       }
     },
     breadcrumbs: ['home'],
@@ -42,7 +52,7 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/projects/[slug]',
-        fr: '/fr/projets/[slug]',
+        fr: '/projets/[slug]',
       }
     },
     breadcrumbs: ['home', 'projects'],
@@ -55,7 +65,7 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/blog',
-        fr: '/fr/blog',
+        fr: '/blog',
       }
     },
     breadcrumbs: ['home'],
@@ -65,7 +75,7 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/blog/[slug]',
-        fr: '/fr/blog/[slug]',
+        fr: '/blog/[slug]',
       }
     },
     breadcrumbs: ['home', 'blog'],
@@ -78,7 +88,7 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/hidden/cv',
-        fr: '/fr/hidden/cv',
+        fr: '/hidden/cv',
       }
     },
     breadcrumbs: [],
@@ -88,7 +98,7 @@ export const ROUTES = Object.freeze({
     i18n: {
       path: {
         en: '/hidden/preview/blog/[contentfulEntryId]',
-        fr: '/fr/hidden/preview/blog/[contentfulEntryId]',
+        fr: '/hidden/preview/blog/[contentfulEntryId]',
       }
     },
     breadcrumbs: ['home', 'blog'],

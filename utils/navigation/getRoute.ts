@@ -1,3 +1,4 @@
+import { NextRouter } from "next/router";
 import { I18n } from "next-i18next";
 import { z } from "zod";
 
@@ -25,6 +26,12 @@ export const getRoute = <R extends Route = Route>(route: R) => {
 
       return i18n.t(titleTranslationKey);
     },
+    getIsActive: (router: NextRouter) => {
+      return router.pathname === route.path;
+    },
+    getIsChildActive: (router: NextRouter) => {
+      return router.pathname.indexOf(route.path) === 0;
+    },
     url: (
       lang: AppLanguage,
       routeParams: z.infer<R['routeParams']> = {},
@@ -32,11 +39,17 @@ export const getRoute = <R extends Route = Route>(route: R) => {
     ) => {
       const parsed = parseRoute(route, routeParams, queryParams);
 
-      return Object.entries(parsed.routeParams).reduce((builder, [key, value]) => {
+      const url = Object.entries(parsed.routeParams).reduce((builder, [key, value]) => {
         const regex = new RegExp(`\\[${key}\\]`, 'gi');
 
         return builder.replace(regex, value?.toString() || '');
       }, urlWithQuery(route.i18n.path[lang], parsed.queryParams));
+
+      if (lang !== 'en') {
+        return `/${lang}${url}`;
+      }
+
+      return url;
     }
   };
 };

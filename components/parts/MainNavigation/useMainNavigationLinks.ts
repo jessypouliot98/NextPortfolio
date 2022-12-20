@@ -24,8 +24,8 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
   const homeLink: NavLink = useMemo(() => ({
     title: ROUTES['home'].title(i18n),
     href: ROUTES['home'].url(lang),
-    isActive: false,
-  }), [i18n, lang]);
+    isActive: ROUTES['home'].getIsActive(router),
+  }), [i18n, lang, router]);
 
   const switchLangLink: NavLink = useMemo(() => {
     const otherLang: AppLanguage = ({ en: 'fr', fr: 'en' } as const)[lang];
@@ -42,14 +42,19 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
   const links =  useMemo(() => {
     const baseLinks: NavLink[] = [
       {
+        title: ROUTES['services'].title(i18n),
+        href: ROUTES['services'].url(lang),
+        isActive: ROUTES['services'].getIsChildActive(router),
+      },
+      {
         title: ROUTES['projects'].title(i18n),
         href: ROUTES['projects'].url(lang),
-        isActive: false,
+        isActive: ROUTES['projects'].getIsChildActive(router),
       },
       {
         title: ROUTES['blog'].title(i18n),
         href: ROUTES['blog'].url(lang),
-        isActive: false,
+        isActive: ROUTES['blog'].getIsChildActive(router),
       },
       {
         title: 'Contact',
@@ -70,7 +75,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
       ...baseLinks,
       switchLangLink,
     ];
-  }, [homeLink, i18n, isMobileNavigation, lang, switchLangLink]);
+  }, [homeLink, i18n, isMobileNavigation, lang, router, switchLangLink]);
 
   return {
     homeLink,
