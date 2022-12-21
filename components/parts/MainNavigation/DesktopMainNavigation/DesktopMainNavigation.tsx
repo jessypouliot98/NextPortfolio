@@ -2,8 +2,9 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
+import { useTheme } from "@/lib/theme";
 
-import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
+import { ScrollDir, useDocumentScroll } from "@/hooks/document";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -24,18 +25,15 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
 
   const positionOffset = dir === ScrollDir.up ? 0 : -100;
 
-  const linkStyle = clsx('btn btn-default');
-  const activeLinkStyle = clsx(
-    '!bg-blue-500 !text-white',
-    'dark:!bg-white dark:!text-blue-500'
-  );
+  const linkStyle = 'btn btn-default';
+  const activeLinkStyle = 'btn btn-primary dark:btn-white';
 
   return (
     <nav
       className={clsx(
         navHeightClass,
         'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
-        'bg-white dark:bg-blue-500 dark:bg-opacity-90',
+        'bg-white dark:bg-primary',
         'focus-within:!translate-y-0',
         className,
       )}
@@ -68,10 +66,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
           {links.map(({ href, title, isActive, label, locale }) => (
             <li key={title} className={'p-2'}>
               <Link
-                className={clsx(
-                  linkStyle,
-                  isActive && activeLinkStyle,
-                )}
+                className={isActive ? activeLinkStyle : linkStyle}
                 href={href}
                 locale={locale}
                 aria-label={label}

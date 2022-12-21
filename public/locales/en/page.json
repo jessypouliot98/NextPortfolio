@@ -15,23 +15,23 @@
     "form": {
       "firstName": {
         "label": "First name",
-        "placeholder": "John"
+        "placeholder": ""
       },
       "lastName": {
         "label": "Last name",
-        "placeholder": "Doe"
+        "placeholder": ""
       },
       "email": {
         "label": "Email",
-        "placeholder": "johndoe@email.com"
-      },
-      "subject": {
-        "label": "Subject",
-        "placeholder": "What is this about ?"
+        "placeholder": ""
       },
       "body": {
-        "label": "Message",
-        "placeholder": "What's on your mind ?"
+        "label": "How can we help you?",
+        "placeholder": ""
+      },
+      "referral": {
+        "label": "How did you hear about us?",
+        "placeholder": ""
       },
       "send": "Send"
     }
@@ -39,7 +39,8 @@
   "blog": {
     "pageOnlyAvailableInEnglish": "This page is only available in english",
     "comments": "Comments",
-    "commentInputPlaceholder": "Write a comment.."
+    "commentInputPlaceholder": "Write a comment..",
+    "readMore": "Read more"
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} at <Link>{{companyName}}</Link>",

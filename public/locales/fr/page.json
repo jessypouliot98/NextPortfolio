@@ -11,23 +11,23 @@
     "form": {
       "firstName": {
         "label": "Prénom",
-        "placeholder": "John"
+        "placeholder": ""
       },
       "lastName": {
         "label": "Nom",
-        "placeholder": "Doe"
+        "placeholder": ""
       },
       "email": {
-        "label": "Courriel",
-        "placeholder": "johndoe@email.com"
+        "label": "Adresse Courriel",
+        "placeholder": ""
       },
-      "subject": {
-        "label": "Object",
-        "placeholder": "Ça parle de quoi ?"
+      "referral": {
+        "label": "Comment avez-vous entendu parler de nous?",
+        "placeholder": ""
       },
       "body": {
-        "label": "Message",
-        "placeholder": "Qu'est-ce qui préoccupe votre esprit ?"
+        "label": "Comment pouvons-nous vous aider?",
+        "placeholder": ""
       },
       "send": "Envoyer"
     }
@@ -35,7 +35,8 @@
   "blog": {
     "pageOnlyAvailableInEnglish": "Cette page n'est disponible qu'en anglais",
     "comments": "Commentaires",
-    "commentInputPlaceholder": "Écrire un commentaire.."
+    "commentInputPlaceholder": "Écrire un commentaire..",
+    "readMore": "Lire plus"
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} chez <Link>{{companyName}}</Link>",

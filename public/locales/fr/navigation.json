@@ -7,13 +7,13 @@
     "projects": {
       "title": "Projets",
       "[slug]": {
-        "title": "{{slug}}"
+        "title": "{{projectTitle}}"
       }
     },
     "blog": {
       "title": "Blog",
       "[slug]": {
-        "title": "{{slug}}"
+        "title": "{{projectTitle}}"
       }
     },
     "contact": {

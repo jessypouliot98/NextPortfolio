@@ -26,10 +26,10 @@ export const getRoute = <R extends Route = Route>(route: R) => {
 
       return i18n.t(titleTranslationKey, i18nProps);
     },
-    getIsActive: (router: NextRouter) => {
+    getIsExactActive: (router: NextRouter) => {
       return router.pathname === route.path;
     },
-    getIsChildActive: (router: NextRouter) => {
+    getIsActive: (router: NextRouter) => {
       return router.pathname.indexOf(route.path) === 0;
     },
     url: (

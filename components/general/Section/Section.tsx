@@ -9,7 +9,7 @@ export type SectionProps = {
 export const Section: React.FC<SectionProps> = ({ children, className }) => {
   return (
     <section className={clsx(
-      'py-6',
+      'py-12',
       className
     )}>
       {children}

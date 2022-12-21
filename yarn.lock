@@ -5183,6 +5183,11 @@ react-google-recaptcha-v3@^1.10.0:
   dependencies:
     hoist-non-react-statics "^3.3.2"
 
+react-hook-form@^7.41.0:
+  version "7.41.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.41.0.tgz#cc0871f4784e7233ac8466300da557d622154414"
+  integrity sha512-u1cHOXujr+AsNBoeCtcCuRwPh87mXAgKtXqd3qTCBgNFYzVZLXjYgLcynORpAgqhe24r5scucR8+6gfWaXBtHQ==
+
 react-i18next@^11.18.0:
   version "11.18.3"
   resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-11.18.3.tgz"

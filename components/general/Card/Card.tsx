@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 export enum CardType {
   default = 'default',
+  primary = 'primary',
   none = 'none',
 }
 
@@ -20,7 +21,12 @@ export const Card: React.FC<CardProps> = (props) => {
   return (
     <div
       aria-describedby={props['aria-describedby']}
-      className={clsx('card', type === CardType.default && 'card-default', className)}
+      className={clsx(
+        'card',
+        type === CardType.default && 'card-default',
+        type === CardType.primary && 'card-primary',
+        className
+      )}
       style={style}
     >
       {children}

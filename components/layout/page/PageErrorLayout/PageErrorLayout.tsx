@@ -1,8 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import clsx from "clsx";
-
-import { useTheme } from "@/hooks/document";
+import { useTheme } from "@/lib/theme";
 
 export type PageErrorLayoutProps = {
   children: React.ReactNode,

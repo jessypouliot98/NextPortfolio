@@ -5,6 +5,7 @@ import { appWithTranslation, useTranslation } from 'next-i18next';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnimatePresence } from "framer-motion";
+import { ThemeProvider } from "@/lib/theme";
 
 import '@/styles/globals.css';
 
@@ -20,9 +21,11 @@ const MyApp = (props: MyAppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <GoogleReCaptchaProvider reCaptchaKey={GOOGLE_RECAPTCHA_SITE_KEY} language={i18n.language}>
-        <AnimatePresence initial={false}>
-          <Component {...pageProps} />
-        </AnimatePresence>
+        <ThemeProvider>
+          <AnimatePresence initial={false}>
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </ThemeProvider>
       </GoogleReCaptchaProvider>
     </QueryClientProvider>
   );

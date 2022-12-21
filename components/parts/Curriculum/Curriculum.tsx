@@ -7,7 +7,6 @@ import { ContentfulDisplay, Job } from "@/lib/contentful";
 import { useLang } from "@/hooks/app";
 import { ROUTES } from "@/utils/navigation/routes";
 
-import { Card } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
@@ -15,11 +14,11 @@ import styles from './Curriculum.module.css';
 
 import { DateRange } from "../DateRange/DateRange";
 
-export type CurricuclumProps = {
+export type CurriculumProps = {
   jobs: Job[],
 };
 
-export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
+export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
   const lang = useLang();
   const { t } = useTranslation();
   const [activeJob, setActiveJob] = useState(jobs[0].slug);
@@ -31,10 +30,10 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <Card>
+        <div className="card card-default">
           <div className={'flex flex-col md:flex-row'}>
             <ul className={clsx(
-              '-m-5 mb-5 md:-mb-5 md:mr-5 py-5 min-w-[200px]',
+              'py-5 min-w-[200px]',
               'bg-gray-200 dark:bg-gray-900',
             )}>
               {jobs.map((job) => {
@@ -44,7 +43,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                   <li key={job.slug} className={clsx(isActive && '-mx-2')}>
                     <button className={clsx(
                       'transition w-full py-2 text-center md:text-right',
-                      isActive ? 'text-white bg-blue-500' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
+                      isActive ? 'bg-primary-interactive text-white' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
                       isActive ? 'md:pl-5 md:pr-7' : 'px-5',
                       isActive && 'rounded-r',
                     )} onClick={() => setActiveJob(job.slug)}>
@@ -54,7 +53,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
                 );
               })}
             </ul>
-            <ul className={'flex-1'}>
+            <ul className={'flex-1 card-body'}>
               {jobs.map((job) => {
                 const isActive = job.slug === activeJob;
 
@@ -120,7 +119,7 @@ export const Curriculum: React.FC<CurricuclumProps> = ({ jobs }) => {
               })}
             </ul>
           </div>
-        </Card>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

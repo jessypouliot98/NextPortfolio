@@ -83,6 +83,16 @@ export const ROUTES = Object.freeze({
       slug: z.string(),
     }),
   }),
+  'contact': createRoute({
+    path: '/contact',
+    i18n: {
+      path: {
+        en: '/contact',
+        fr: '/contact',
+      }
+    },
+    breadcrumbs: ['home'],
+  }),
   'hidden.cv': createRoute({
     path: '/hidden/cv',
     i18n: {

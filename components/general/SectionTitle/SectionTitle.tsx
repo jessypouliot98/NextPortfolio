@@ -11,7 +11,7 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ children, className,
   return React.createElement(
     component,
     {
-      className: clsx('text-h1 mb-4', className),
+      className: clsx('text-h1 mb-8', className),
     },
     children,
   );

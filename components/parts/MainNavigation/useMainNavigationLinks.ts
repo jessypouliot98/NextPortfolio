@@ -24,7 +24,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
   const homeLink: NavLink = useMemo(() => ({
     title: ROUTES['home'].title(i18n),
     href: ROUTES['home'].url(lang),
-    isActive: ROUTES['home'].getIsActive(router),
+    isActive: ROUTES['home'].getIsExactActive(router),
   }), [i18n, lang, router]);
 
   const switchLangLink: NavLink = useMemo(() => {
@@ -44,22 +44,22 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
       {
         title: ROUTES['services'].title(i18n),
         href: ROUTES['services'].url(lang),
-        isActive: ROUTES['services'].getIsChildActive(router),
+        isActive: ROUTES['services'].getIsActive(router),
       },
       {
         title: ROUTES['projects'].title(i18n),
         href: ROUTES['projects'].url(lang),
-        isActive: ROUTES['projects'].getIsChildActive(router),
+        isActive: ROUTES['projects'].getIsActive(router),
       },
       {
         title: ROUTES['blog'].title(i18n),
         href: ROUTES['blog'].url(lang),
-        isActive: ROUTES['blog'].getIsChildActive(router),
+        isActive: ROUTES['blog'].getIsActive(router),
       },
       {
-        title: 'Contact',
-        href: 'mailto:jessypouliot98@gmail.com',
-        isActive: false,
+        title: ROUTES['contact'].title(i18n),
+        href: ROUTES['contact'].url(lang),
+        isActive: ROUTES['contact'].getIsActive(router),
       },
     ];
 

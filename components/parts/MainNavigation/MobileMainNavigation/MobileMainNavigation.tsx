@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { FaBars, FaMoon, FaSun, FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
+import { useTheme } from "@/lib/theme";
 
-import { ScrollDir, useDocumentScroll, useTheme } from "@/hooks/document";
+import { ScrollDir, useDocumentScroll } from "@/hooks/document";
 
 import { Button } from "@/components/general";
 import Link from "@/components/general/Link/Link";
@@ -30,7 +31,7 @@ export const MobileMainNavigation: React.FC<MobileMainNavigationProps> = ({ clas
         className={clsx(
           navHeightClass,
           'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
-          'bg-white dark:bg-blue-500 dark:bg-opacity-90',
+          'bg-white dark:bg-primary',
           'focus-within:!translate-y-0',
           className,
         )}
