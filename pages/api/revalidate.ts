@@ -19,8 +19,7 @@ const getAllBlogPostRoutesForLang = async (lang: AppLanguage) => {
 };
 
 const getAllStaticRoutes = async () => {
-  const languages: AppLanguage[] = SUPPORTED_LANGUAGES;
-  const routes = languages.map(async (lang) => [
+  const routes = SUPPORTED_LANGUAGES.map(async (lang) => [
     ROUTES['home'].url(lang),
     ROUTES['projects'].url(lang),
     ROUTES['blog'].url(lang),

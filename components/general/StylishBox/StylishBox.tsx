@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import clsx from "clsx";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 

@@ -39,7 +39,9 @@ const Error404: NextPage<Error404Props> = () => {
   );
 };
 
-export const getStaticProps = generateGetStaticProps(null, {
+export const getStaticProps = generateGetStaticProps(() => {
+  return { props: {} };
+}, {
   i18nNamespaces: ['error'],
 });
 

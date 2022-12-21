@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useCreateMail } from "@/hooks";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
-import { Button, Card, Section, SectionTitle, StylishBox } from "@/components/general";
+import { Button, Section, SectionTitle, StylishBox } from "@/components/general";
 import { FormField } from "@/components/general/FormField/FormField";
 import { PageDefaultLayout } from "@/components/layout";
 
@@ -14,7 +14,7 @@ export type ContactPageProps = {};
 
 const ContactPage: NextPage<ContactPageProps> = () => {
   const { t } = useTranslation();
-  const { isProcessing, handleSubmitMail } = useCreateMail();
+  const { isProcessing } = useCreateMail();
   const { handleSubmit, register } = useForm();
   
   return (
