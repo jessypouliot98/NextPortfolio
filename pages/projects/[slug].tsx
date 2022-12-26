@@ -58,8 +58,8 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
         ]}>
           <div className={'flex flex-col xl:flex-row-reverse'}>
             {project.skills && (
-              <Card className={'mb-4 xl:mb-0 xl:ml-4 xl:min-w-[200px]'}>
-                <ul className={'flex flex-wrap xl:flex-col'}>
+              <Card className="mb-4 xl:mb-0 xl:ml-4 xl:min-w-[200px] card-body">
+                <ul className="flex flex-wrap xl:flex-col">
                   {project.skills.map((skill) => (
                     <li key={skill.slug} className={'text-md flex items-center p-2 xl:p-1 w-[50%] sm:w-auto'}>
                       <SkillIcon className={'inline mr-2'} skill={skill.slug} color={skill.color} size="1.3em" />

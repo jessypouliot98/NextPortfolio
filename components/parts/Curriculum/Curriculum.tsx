@@ -43,7 +43,7 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                   <li key={job.slug} className={clsx(isActive && '-mx-2')}>
                     <button className={clsx(
                       'transition w-full py-2 text-center md:text-right',
-                      isActive ? 'bg-primary-interactive text-white' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
+                      isActive ? 'bg-blue-500 text-white' : 'text-blue-500 bg-transparent hover:bg-gray-100 dark:hover:bg-blue-900',
                       isActive ? 'md:pl-5 md:pr-7' : 'px-5',
                       isActive && 'rounded-r',
                     )} onClick={() => setActiveJob(job.slug)}>

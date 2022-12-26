@@ -40,27 +40,27 @@
     }
 
     .btn-primary {
-        @apply text-white bg-primary-interactive active:bg-opacity-50 shadow-lg;
+        @apply text-white bg-blue-500 hover:bg-blue-400 active:bg-opacity-50 shadow-lg;
     }
 
     .btn-outline-primary {
-        @apply bg-image-none border-2 text-blue-500 bg-white border-blue-500 hover:bg-blue-400 hover:border-blue-400 hover:text-white active:bg-opacity-50 shadow-lg;
+        @apply border-2 text-blue-500 bg-white border-blue-500 hover:bg-blue-400 hover:border-blue-400 hover:text-white active:bg-opacity-50 shadow-lg;
     }
 
     .btn-default {
-        @apply bg-image-none hover:bg-gray-300 hover:bg-opacity-30 active:bg-opacity-10 hover:shadow-lg;
+        @apply hover:bg-gray-300 hover:bg-opacity-30 active:bg-opacity-10 hover:shadow-lg;
     }
 
     .btn-gray {
-        @apply bg-image-none text-white bg-gray-500 hover:bg-gray-400 active:bg-opacity-50 shadow-lg;
+        @apply text-white bg-gray-500 hover:bg-gray-400 active:bg-opacity-50 shadow-lg;
     }
 
     .btn-outline-gray {
-        @apply bg-image-none border-2 text-gray-500 bg-white border-gray-500 hover:bg-gray-400 hover:border-gray-400 hover:text-white active:bg-opacity-50 shadow-lg;
+        @apply border-2 text-gray-500 bg-white border-gray-500 hover:bg-gray-400 hover:border-gray-400 hover:text-white active:bg-opacity-50 shadow-lg;
     }
 
     .btn-white {
-        @apply bg-image-none text-gray-700 bg-white hover:bg-gray-200 active:bg-opacity-50 shadow-lg;
+        @apply text-gray-700 bg-white hover:bg-gray-200 active:bg-opacity-50 shadow-lg;
     }
 
     .btn-disabled {
@@ -81,7 +81,7 @@
 
     .card { @apply shadow-lg rounded-lg overflow-hidden; }
     .card-default { @apply bg-white dark:bg-gray-700; }
-    .card-primary { @apply bg-primary text-white; }
+    .card-primary { @apply bg-blue-500 text-white; }
     .card-body { @apply p-5; }
 
     .input-row {
@@ -130,19 +130,6 @@
 }
 
 @layer utilities {
-    .bg-image-none {
-        background-image: none;
-    }
-
-    .bg-primary {
-        @apply bg-gradient-to-br from-blue-400 to-blue-600;
-    }
-
-    .bg-primary-interactive {
-        @apply transition-all bg-gradient-to-br bg-[length:250%_100%] from-blue-400 to-blue-600 bg-right
-        hover:bg-left
-    }
-
     .flex-center {
         @apply justify-center items-center;
     }

@@ -60,7 +60,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
         <SectionTitle>
           {t('page:blog.comments')}
         </SectionTitle>
-        <Card>
+        <Card className="card-body">
           {isLoading ? (
             <div>loading</div>
           ) : (

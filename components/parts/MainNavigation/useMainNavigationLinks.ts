@@ -41,11 +41,11 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
 
   const links =  useMemo(() => {
     const baseLinks: NavLink[] = [
-      {
-        title: ROUTES['services'].title(i18n),
-        href: ROUTES['services'].url(lang),
-        isActive: ROUTES['services'].getIsActive(router),
-      },
+      // {
+      //   title: ROUTES['services'].title(i18n),
+      //   href: ROUTES['services'].url(lang),
+      //   isActive: ROUTES['services'].getIsActive(router),
+      // },
       {
         title: ROUTES['projects'].title(i18n),
         href: ROUTES['projects'].url(lang),
@@ -58,7 +58,8 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
       },
       {
         title: ROUTES['contact'].title(i18n),
-        href: ROUTES['contact'].url(lang),
+        // href: ROUTES['contact'].url(lang),
+        href: 'mailto:jessypouliot98@gmail.com',
         isActive: ROUTES['contact'].getIsActive(router),
       },
     ];
