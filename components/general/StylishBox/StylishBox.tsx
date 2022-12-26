@@ -55,7 +55,7 @@ export const StylishBox: React.FC<StylishBoxProps> = ({ children, className, eff
                     <motion.div
                       className={clsx(
                         'rounded-2xl shadow-lg',
-                        filled ? 'bg-primary' : 'border-4 border-blue-500',
+                        filled ? 'bg-blue-500' : 'border-4 border-blue-500',
                         size,
                       )}
                       initial={{ opacity: 0, size: 1.1, rotate: i % 2 === 0 ? 45 : -45 }}
