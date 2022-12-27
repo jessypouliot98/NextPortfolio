@@ -1,12 +1,12 @@
 import React from "react";
 import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
-import { useForm } from "react-hook-form";
 
 import { useCreateMail } from "@/hooks";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
-import { Button, Section, SectionTitle, StylishBox } from "@/components/general";
+import { Section, SectionTitle, StylishBox } from "@/components/general";
+import { ButtonAsync } from "@/components/general/ButtonAsync/ButtonAsync";
 import { FormField } from "@/components/general/FormField/FormField";
 import { PageDefaultLayout } from "@/components/layout";
 
@@ -14,8 +14,9 @@ export type ContactPageProps = {};
 
 const ContactPage: NextPage<ContactPageProps> = () => {
   const { t } = useTranslation();
-  const { isProcessing } = useCreateMail();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, formState, submitError } = useCreateMail();
+
+  const inputDisabled = formState.isSubmitting;
   
   return (
     <PageDefaultLayout title={'Contact'} description={undefined}>
@@ -27,21 +28,21 @@ const ContactPage: NextPage<ContactPageProps> = () => {
           { bottom: -50, left: '30%' },
         ]}>
           <div className="card card-default flex">
-            <form className="flex-1 py-16 px-8" onSubmit={handleSubmit(console.log)}>
+            <form className="flex-1 py-16 px-8" onSubmit={handleSubmit}>
               <div className="input-row">
                 <FormField
                   type="text"
                   className="flex-1"
                   label={t('page:contact.form.firstName.label')}
                   placeholder={t('page:contact.form.firstName.placeholder')}
-                  {...register('firstName')}
+                  {...register('firstName', { disabled: inputDisabled })}
                 />
                 <FormField
                   type="text"
                   className="flex-1"
                   label={t('page:contact.form.lastName.label')}
                   placeholder={t('page:contact.form.lastName.placeholder')}
-                  {...register('lastName')}
+                  {...register('lastName', { disabled: inputDisabled })}
                 />
               </div>
               <FormField
@@ -49,26 +50,27 @@ const ContactPage: NextPage<ContactPageProps> = () => {
                 className="flex-1"
                 label={t('page:contact.form.email.label')}
                 placeholder={t('page:contact.form.email.placeholder')}
-                {...register('email')}
+                {...register('email', { disabled: inputDisabled })}
               />
               <FormField
                 type="textarea"
                 className="flex-1"
                 label={t('page:contact.form.body.label')}
                 placeholder={t('page:contact.form.body.placeholder')}
-                {...register('body')}
+                {...register('body', { disabled: inputDisabled })}
               />
               <FormField
                 type="text"
                 className="flex-1"
                 label={t('page:contact.form.referral.label')}
                 placeholder={t('page:contact.form.referral.placeholder')}
-                {...register('subject')}
+                {...register('subject', { disabled: inputDisabled })}
               />
               <div className="flex justify-end">
-                <Button type="primary" disabled={isProcessing}>
+                {submitError && <div>{submitError.message}</div>}
+                <ButtonAsync type="primary" disabled={inputDisabled} isLoading={formState.isSubmitting}>
                   {t('page:contact.form.send')}
-                </Button>
+                </ButtonAsync>
               </div>
             </form>
             <div className="hidden md:block bg-gray-300 dark:bg-gray-900 border-none flex-1 -mr-5 -my-5 ">

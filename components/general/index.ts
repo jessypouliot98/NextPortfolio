@@ -2,7 +2,6 @@ export * from './AlertBanner/AlertBanner';
 export * from './Breadcrumbs/Breadcrumbs';
 export * from './Button/Button';
 export * from './Card/Card';
-export * from './CardImage/CardImage';
 export * from './FlexGrid/FlexGrid';
 export * from './FocusableImage/FocusableImage';
 export * from './KeywordSEO/KeywordSEO';
