@@ -9,7 +9,7 @@ import { useLang } from "@/hooks/app";
 import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
-import { Section, SectionTitle } from "@/components/general";
+import { Card, Section, SectionTitle } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
@@ -30,7 +30,9 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
       <Section>
         <SectionTitle component="h1">{page.aboutMeTitle}</SectionTitle>
         <div className="flex flex-row">
-          <ContentfulDisplay className="flex-1 z-1" document={page.aboutMeContent} />
+          <Card className="flex-1 z-1 card-body">
+            <ContentfulDisplay document={page.aboutMeContent} />
+          </Card>
           <AnimatePresence initial={true}>
             {page.aboutMeImage && (
               <motion.div
@@ -96,32 +98,34 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
 
       <Section>
         <SectionTitle>{page.skillSetTitle}</SectionTitle>
-        <AnimatePresence initial={true}>
-          <div className={'-m-4 flex flex-wrap'}>
-            {page.skills.filter((skill) => skill.isMajorSkill).map((skill, i, { length }) => {
-              const transition = { delay: (2 * (i / length)), duration: 0.3 };
-              return (
-                <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl'}>
-                  <motion.div
-                    className={'mr-1'}
-                    initial={{ opacity: 0, translateX: -10 }}
-                    animate={{ opacity: 1, translateX: 0 }}
-                    transition={transition}
-                  >
-                    <SkillIcon color={skill.color} skill={skill.slug} size={'1.5em'} />
-                  </motion.div>
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ ...transition, delay: transition.delay + 0.1 }}
-                  >
-                    {skill.name}
-                  </motion.span>
-                </div>
-              );
-            })}
-          </div>
-        </AnimatePresence>
+        <Card className="card-body">
+          <AnimatePresence initial={true}>
+            <div className={'-m-4 flex flex-wrap'}>
+              {page.skills.filter((skill) => skill.isMajorSkill).map((skill, i, { length }) => {
+                const transition = { delay: (2 * (i / length)), duration: 0.3 };
+                return (
+                  <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl'}>
+                    <motion.div
+                      className={'mr-1'}
+                      initial={{ opacity: 0, translateX: -10 }}
+                      animate={{ opacity: 1, translateX: 0 }}
+                      transition={transition}
+                    >
+                      <SkillIcon color={skill.color} skill={skill.slug} size={'1.5em'} />
+                    </motion.div>
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ ...transition, delay: transition.delay + 0.1 }}
+                    >
+                      {skill.name}
+                    </motion.span>
+                  </div>
+                );
+              })}
+            </div>
+          </AnimatePresence>
+        </Card>
       </Section>
     </PageDefaultLayout>
   );

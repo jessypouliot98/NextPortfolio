@@ -28,6 +28,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             src={getContentfulImageSrc(project.thumbnail, PLACEHOLDER_IMAGE)}
             alt={getContentfulImageAlt(project.thumbnail)}
             className="object-cover w-full h-full"
+            loading="lazy"
           />
         </div>
         <div className="card-body flex flex-col flex-1 h-full">
