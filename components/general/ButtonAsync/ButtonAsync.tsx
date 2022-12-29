@@ -1,9 +1,9 @@
 import React from "react";
 import { FaSpinner } from "react-icons/fa";
 
-import { Button, ButtonProps } from "@/components/general";
+import { ButtonIcon, ButtonIconProps } from "@/components/general/ButtonIcon/ButtonIcon";
 
-export type ButtonAsyncProps = ButtonProps & {
+export type ButtonAsyncProps = ButtonIconProps & {
   isLoading: boolean;
 }
 
@@ -11,15 +11,12 @@ export const ButtonAsync: React.FC<ButtonAsyncProps> = ({ children, isLoading, d
   const isDisabled = isLoading || disabled;
 
   return (
-    <Button {...buttonProps} disabled={isDisabled}>
-      <span className="inline-flex">
-        {children}
-        {isLoading && (
-          <span className="ml-1">
-            <FaSpinner className="animate-spin" />
-          </span>
-        )}
-      </span>
-    </Button>
+    <ButtonIcon
+      {...buttonProps}
+      disabled={isDisabled}
+      rightIcon={isLoading ? <FaSpinner className="animate-spin" /> : buttonProps.rightIcon}
+    >
+      {children}
+    </ButtonIcon>
   );
 };

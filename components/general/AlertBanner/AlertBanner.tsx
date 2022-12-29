@@ -5,15 +5,15 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { Button } from '../Button/Button';
 
-export type AlertBannerVariant = 'warning';
+export type AlertBannerVariant = 'success' | 'warning' | 'error';
 
 export type AlertBannerProps = {
-  children: React.ReactNode,
-  className?: string,
-  variant: AlertBannerVariant,
+  children: React.ReactNode;
+  className?: string;
+  variant: AlertBannerVariant;
 }
 
-export const AlertBanner: React.FC<AlertBannerProps> = ({ children, className }) => {
+export const AlertBanner: React.FC<AlertBannerProps> = ({ children, variant, className }) => {
   const [isShown, setIsShown] = useState(true);
 
   return (
@@ -24,7 +24,13 @@ export const AlertBanner: React.FC<AlertBannerProps> = ({ children, className })
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className={clsx('flex flex-center px-4 py-2 rounded-lg shadow bg-amber-400 text-white', className)}
+          className={clsx(
+            'flex flex-center px-4 py-2 rounded-lg shadow',
+            variant === 'success' && 'bg-green-500 text-white',
+            variant === 'warning' && 'bg-amber-400 text-white',
+            variant === 'error' && 'bg-red-400 text-white',
+            className
+          )}
         >
           <div className="flex-1">
             {children}

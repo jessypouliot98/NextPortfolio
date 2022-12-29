@@ -1,6 +1,7 @@
 import React from "react";
 import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
+import { FaCheck } from "react-icons/fa";
 import {
   ContactPage,
   ContentfulDisplay,
@@ -10,9 +11,10 @@ import {
 } from "@/lib/contentful";
 
 import { useCreateMail } from "@/hooks";
+import { getFormErrorMessage } from "@/utils/form/getFormErrorMessage";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
-import { Section, SectionTitle, StylishBox } from "@/components/general";
+import { AlertBanner, Section, SectionTitle, StylishBox } from "@/components/general";
 import { ButtonAsync } from "@/components/general/ButtonAsync/ButtonAsync";
 import { FormField } from "@/components/general/FormField/FormField";
 import { PageDefaultLayout } from "@/components/layout";
@@ -23,7 +25,7 @@ export type ContactPageProps = {
 
 const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
   const { t } = useTranslation();
-  const { handleSubmit, register, formState } = useCreateMail();
+  const { handleSubmit, registerField, formState, submitError } = useCreateMail();
 
   const inputDisabled = formState.isSubmitting;
   
@@ -34,6 +36,11 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
           <SectionTitle component="h2" className="text-h1 !mb-2">{page.title}</SectionTitle>
           <ContentfulDisplay document={page.content} />
         </div>
+        {submitError && (
+          <AlertBanner className="relative z-20 mb-2" variant="error">
+            {getFormErrorMessage(submitError)}
+          </AlertBanner>
+        )}
         <StylishBox effects={[
           { top: -10, left: -30 },
           { top: 50, right: -30 },
@@ -48,7 +55,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
                   autoComplete="firstName"
                   label={t('page:contact.form.firstName.label')}
                   placeholder={t('page:contact.form.firstName.placeholder')}
-                  {...register('firstName', { disabled: inputDisabled })}
+                  {...registerField('firstName', { disabled: inputDisabled })}
                 />
                 <FormField
                   type="text"
@@ -56,7 +63,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
                   autoComplete="lastName"
                   label={t('page:contact.form.lastName.label')}
                   placeholder={t('page:contact.form.lastName.placeholder')}
-                  {...register('lastName', { disabled: inputDisabled })}
+                  {...registerField('lastName', { disabled: inputDisabled })}
                 />
               </div>
               <FormField
@@ -65,24 +72,29 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
                 autoComplete="email"
                 label={t('page:contact.form.email.label')}
                 placeholder={t('page:contact.form.email.placeholder')}
-                {...register('email', { disabled: inputDisabled })}
+                {...registerField('email', { disabled: inputDisabled })}
               />
               <FormField
                 type="text"
                 className="flex-1"
                 label={t('page:contact.form.referral.label')}
                 placeholder={t('page:contact.form.referral.placeholder')}
-                {...register('referral', { disabled: inputDisabled })}
+                {...registerField('referral', { disabled: inputDisabled })}
               />
               <FormField
                 type="textarea"
                 className="flex-1"
                 label={t('page:contact.form.body.label')}
                 placeholder={t('page:contact.form.body.placeholder')}
-                {...register('body', { disabled: inputDisabled })}
+                {...registerField('body', { disabled: inputDisabled })}
               />
               <div className="flex justify-end">
-                <ButtonAsync variant="primary" disabled={inputDisabled} isLoading={formState.isSubmitting}>
+                <ButtonAsync
+                  variant="primary"
+                  disabled={inputDisabled}
+                  isLoading={formState.isSubmitting}
+                  rightIcon={formState.isSubmitSuccessful && <FaCheck />}
+                >
                   {formState.isSubmitSuccessful ? t('page:contact.form.submitted') : t('page:contact.form.submit')}
                 </ButtonAsync>
               </div>

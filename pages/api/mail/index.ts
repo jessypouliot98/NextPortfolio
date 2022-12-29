@@ -16,7 +16,13 @@ const mailApi = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const createMail = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { recaptchaToken, ...data } = mailCreateSchema.merge(reCAPTCHASchema).parse(req.body);
+  const zodParse = mailCreateSchema.merge(reCAPTCHASchema).safeParse(req.body);
+
+  if (!zodParse.success) {
+    return res.status(400).send(zodParse.error.formErrors);
+  }
+
+  const { recaptchaToken, ...data } = zodParse.data;
 
   const reCAPTCHAValidation = await validateRecaptchaToken(recaptchaToken);
   if (!reCAPTCHAValidation.success) {
