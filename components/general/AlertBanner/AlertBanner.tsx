@@ -5,12 +5,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { Button } from '../Button/Button';
 
-export type AlertBannerType = 'warning';
+export type AlertBannerVariant = 'warning';
 
 export type AlertBannerProps = {
   children: React.ReactNode,
   className?: string,
-  type: AlertBannerType,
+  variant: AlertBannerVariant,
 }
 
 export const AlertBanner: React.FC<AlertBannerProps> = ({ children, className }) => {
@@ -30,7 +30,7 @@ export const AlertBanner: React.FC<AlertBannerProps> = ({ children, className })
             {children}
           </div>
           <div className="ml-4">
-            <Button onPress={() => setIsShown(false)}>
+            <Button onClick={() => setIsShown(false)}>
               <FaWindowClose />
             </Button>
           </div>

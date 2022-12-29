@@ -3,6 +3,9 @@ import { NextApiResponse } from 'next';
 import { validateRecaptchaToken } from '@/lib/node-recaptcha';
 import { NextPrisma } from '@/lib/prisma-client';
 
+import { mailCreateSchema } from "@/utils/schemas/mail";
+import { reCAPTCHASchema } from "@/utils/schemas/reCAPTCHA";
+
 const mailApi = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'POST':
@@ -13,27 +16,14 @@ const mailApi = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const createMail = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { firstName, lastName, email, subject, body, recaptchaToken } = JSON.parse(req.body);  
+  const { recaptchaToken, ...data } = mailCreateSchema.merge(reCAPTCHASchema).parse(req.body);
 
-  if (!recaptchaToken) {
-    return res.status(400).send('Missing reCAPTCHA token');
-  }
-  
-  const reCAPTCHAvalidation = await validateRecaptchaToken(recaptchaToken);
-
-  if (!reCAPTCHAvalidation.success) {
+  const reCAPTCHAValidation = await validateRecaptchaToken(recaptchaToken);
+  if (!reCAPTCHAValidation.success) {
     return res.status(400).send('Invalid reCAPTCHA token');
   }
   
-  await NextPrisma.getClient().mail.create({
-    data: {
-      firstName,
-      lastName,
-      email,
-      subject,
-      body,
-    }
-  });
+  await NextPrisma.getClient().mail.create({ data });
   
   res.status(201).end();
 };

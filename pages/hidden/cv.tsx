@@ -62,18 +62,18 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         <nav className="flex p-2 gap-2 mx-auto w-[8.5in] justify-center">
           <Button
             className="flex-1"
-            type="outline-gray"
+            variant="outline-gray"
             size="lg"
-            onPress={() => router.push(ROUTES['home'].url(lang))}
+            onClick={() => router.push(ROUTES['home'].url(lang))}
           >
             <FaHome />
             <span className="ml-2">{t('page:cv.website')}</span>
           </Button>
           <Button
             className="flex-1"
-            type="gray"
+            variant="gray"
             size="lg"
-            onPress={() => router.push(
+            onClick={() => router.push(
               router.asPath,
               router.asPath,
               { locale: { en: 'fr', fr: 'en' }[lang] }
@@ -84,17 +84,17 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
           </Button>
           <Button
             className="flex-1"
-            type="outline-primary"
+            variant="outline-primary"
             size="lg"
-            onPress={handleInitPopupWidget}
-            >
+            onClick={handleInitPopupWidget}
+          >
             <FaCalendar />
             <span className="ml-2">{t('page:cv.scheduleMeeting')}</span>
           </Button>
           <Button
             className="flex-1"
-            type={'primary'}
-            onPress={() => {
+            variant="primary"
+            onClick={() => {
               window.open(ROUTES['api.pdf.cv'].url(lang), '_self');
             }}
           >

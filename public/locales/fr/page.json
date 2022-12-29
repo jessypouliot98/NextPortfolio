@@ -29,7 +29,8 @@
         "label": "Comment pouvons-nous vous aider?",
         "placeholder": ""
       },
-      "send": "Envoyer"
+      "submit": "Envoyer",
+      "submitted": "Envoyé"
     }
   },
   "blog": {

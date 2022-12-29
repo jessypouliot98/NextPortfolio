@@ -27,6 +27,13 @@ export type HomePage = Entry<{
   skills: Skill[],
 }>
 
+export type ContactPage = Entry<{
+  title: string;
+  slug: string;
+  seoDescription?: string;
+  formImage: ContentfulMediaImage;
+}>
+
 export type ProjectPage = Entry<{
   title: string,
   slug: string,

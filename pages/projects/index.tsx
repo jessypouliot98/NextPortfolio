@@ -36,8 +36,8 @@ const ProjectListPage: NextPage<ProjectListPageProps> = ({  page  }) => {
           {page.title}
         </SectionTitle>
         {hasFilter && (
-          <div className={'flex flex-row-reverse mb-2'}>
-            <Button type={'primary'} className={'relative w-full md:w-auto z-20 mb-2'} onPress={clearFilter}>
+          <div className="flex flex-row-reverse mb-2">
+            <Button variant="primary" className="relative w-full md:w-auto z-20 mb-2" onClick={clearFilter}>
               {t('global:common.clearFilters')}
             </Button>
           </div>

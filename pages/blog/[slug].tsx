@@ -50,7 +50,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
           {page.title}
         </SectionTitle>
         {lang !== 'en' && (
-          <AlertBanner className="font-bold mb-4" type="warning">
+          <AlertBanner className="font-bold mb-4" variant="warning">
             {t('page:blog.pageOnlyAvailableInEnglish')}
           </AlertBanner>
         )}
@@ -69,7 +69,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
               <form onSubmit={handleSubmitComment}>
                 <input className="w-full input mb-2" type="text" name="comment" placeholder={t('page:blog.commentInputPlaceholder')} required={true} disabled={isProcessing} />
                 <div className="flex justify-end">
-                  <Button type="primary" disabled={isProcessing}>
+                  <Button variant="primary" disabled={isProcessing}>
                     Comment
                   </Button>
                 </div>

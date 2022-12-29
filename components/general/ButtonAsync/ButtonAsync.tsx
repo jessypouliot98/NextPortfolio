@@ -14,9 +14,11 @@ export const ButtonAsync: React.FC<ButtonAsyncProps> = ({ children, isLoading, d
     <Button {...buttonProps} disabled={isDisabled}>
       <span className="inline-flex">
         {children}
-        <span className="ml-1">
-          {isLoading && <FaSpinner className="animate-spin" />}
-        </span>
+        {isLoading && (
+          <span className="ml-1">
+            <FaSpinner className="animate-spin" />
+          </span>
+        )}
       </span>
     </Button>
   );

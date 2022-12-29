@@ -1,38 +1,30 @@
-import React from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 
-type ButtonType = 'primary' | 'outline-primary' | 'gray' | 'outline-gray' | 'white' | 'default';
+type ButtonVariant = 'primary' | 'outline-primary' | 'gray' | 'outline-gray' | 'white' | 'default';
 type ButtonSize = 'base' | 'lg';
 
-export type ButtonProps = {
-  children: React.ReactNode,
-  className?: string,
-  id?: string,
-  type?: ButtonType,
+export type ButtonProps = ComponentPropsWithoutRef<'button'> & {
+  variant?: ButtonVariant,
   size?: ButtonSize,
-  title?: string,
-  disabled?: boolean,
-  onPress?: () => void,
-  'aria-label'?: string,
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { children, className, type = 'default', size = 'base', title, disabled, onPress } = props;
+  const { children, variant = 'default', size = 'base', onClick } = props;
 
-  const handleClick = !disabled ? onPress : undefined;
+  const handleClick = !props.disabled ? onClick : undefined;
 
   return (
     <button
+      {...props}
       className={clsx(
         'btn',
-        type && `btn-${type}`,
+        variant && `btn-${variant}`,
         size && `btn-${size}`,
-        disabled && 'btn-disabled',
-        className,
+        props.disabled && 'btn-disabled',
+        props.className,
       )}
-      title={title}
       onClick={handleClick}
-      aria-label={props['aria-label']}
     >
       {children}
     </button>

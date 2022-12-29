@@ -30,6 +30,7 @@ model Mail {
   firstName String @db.VarChar(64)
   lastName String @db.VarChar(64)
   email String @db.VarChar(255)
-  subject String @db.VarChar(255)
+  referral String? @db.VarChar(255)
+  read Boolean @db.Boolean() @default(false)
   body String @db.Text()
 }

@@ -54,11 +54,11 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
           </li>
           <li className={'p-2'}>
             <Button
-              id={'toggle-theme'}
-              type={'default'}
+              id="toggle-theme"
+              variant="default"
               aria-label={t('global:header.toggleTheme')}
               className={linkStyle}
-              onPress={toggleTheme}
+              onClick={toggleTheme}
             >
               {isDark ? <FaSun /> : <FaMoon />}
             </Button>

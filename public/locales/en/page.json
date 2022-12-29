@@ -33,7 +33,8 @@
         "label": "How did you hear about us?",
         "placeholder": ""
       },
-      "send": "Send"
+      "submit": "Send",
+      "submitted": "Submitted"
     }
   },
   "blog": {

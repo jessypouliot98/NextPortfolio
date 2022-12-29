@@ -1,6 +1,6 @@
 import getConfig from 'next/config';
 import { createClient } from "contentful";
-import { BlogPage, CVPage, HomePage, ProjectPage } from "@/lib/contentful/types";
+import { BlogPage, ContactPage, CVPage, HomePage, ProjectPage } from "@/lib/contentful/types";
 
 import { AppLanguage } from "../../../types";
 
@@ -66,6 +66,15 @@ export const getCVPage = async ({ lang }: BaseApiParams) => {
   );
 
   return mapEntry<CVPage>(entry);
+};
+
+export const getContactPage = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry(
+    '4Wzzyjtze1U6G6bEW4lMRb',
+    getBaseQuery(lang),
+  );
+
+  return mapEntry<ContactPage>(entry);
 };
 
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {
