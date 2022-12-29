@@ -31,6 +31,7 @@ export type ContactPage = Entry<{
   title: string;
   slug: string;
   seoDescription?: string;
+  content: Document;
   formImage: ContentfulMediaImage;
 }>
 

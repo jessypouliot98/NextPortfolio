@@ -1,7 +1,13 @@
 import React from "react";
 import type { NextPage } from 'next';
 import { useTranslation } from "next-i18next";
-import { ContactPage, getContactPage, getContentfulImageAlt, getContentfulImageSrc } from "@/lib/contentful";
+import {
+  ContactPage,
+  ContentfulDisplay,
+  getContactPage,
+  getContentfulImageAlt,
+  getContentfulImageSrc
+} from "@/lib/contentful";
 
 import { useCreateMail } from "@/hooks";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
@@ -24,7 +30,10 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
   return (
     <PageDefaultLayout title={page.title} description={page.seoDescription}>
       <Section>
-        <SectionTitle>{'Contact'}</SectionTitle>
+        <div className="mb-12">
+          <SectionTitle component="h2" className="text-h1 !mb-2">{page.title}</SectionTitle>
+          <ContentfulDisplay document={page.content} />
+        </div>
         <StylishBox effects={[
           { top: -10, left: -30 },
           { top: 50, right: -30 },

@@ -58,8 +58,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
       },
       {
         title: ROUTES['contact'].title(i18n),
-        // href: ROUTES['contact'].url(lang),
-        href: 'mailto:jessypouliot98@gmail.com',
+        href: ROUTES['contact'].url(lang),
         isActive: ROUTES['contact'].getIsActive(router),
       },
     ];
