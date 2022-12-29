@@ -1,6 +1,6 @@
 import getConfig from 'next/config';
 import { createClient } from "contentful";
-import { BlogPage, ContactPage, CVPage, HomePage, ProjectPage } from "@/lib/contentful/types";
+import { BlogPage, ContactPage, CVPage, HomePage, ProjectPage, ServicesPage } from "@/lib/contentful/types";
 
 import { AppLanguage } from "../../../types";
 
@@ -24,7 +24,7 @@ const getPreviewClient = () => {
 type BaseApiParams = { lang: AppLanguage };
 export type Entry<T extends {} = {}> = { id: string, createdAt: string, updatedAt: string } & T;
 
-const getBaseQuery = (lang: AppLanguage, queryExtra: Record<string, string> = {}) => {
+const getBaseQuery = (lang: AppLanguage, queryExtra: Record<string, string | number> = {}) => {
   return {
     locale: lang === 'en' ? 'en-CA' : 'fr-CA',
     ...queryExtra,
@@ -75,6 +75,15 @@ export const getContactPage = async ({ lang }: BaseApiParams) => {
   );
 
   return mapEntry<ContactPage>(entry);
+};
+
+export const getServicesPage = async ({ lang }: BaseApiParams) => {
+  const entry = await getClient().getEntry(
+    '3aV7DlDpBFOzybp0oDc3Oo',
+    getBaseQuery(lang, { include: 5 }),
+  );
+
+  return mapEntry<ServicesPage>(entry);
 };
 
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {

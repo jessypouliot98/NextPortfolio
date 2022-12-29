@@ -7,8 +7,6 @@ import { ROUTES } from "@/utils/navigation/routes";
 import { Card, KeywordSEO } from "@/components/general";
 import Link from "@/components/general/Link/Link";
 
-const PLACEHOLDER_IMAGE = 'https://images.ctfassets.net/8cut8f9cq03l/5v4rdL95gfVfUKjSR2rKXF/e94c1c81d76d56e2710b2b990482fda9/placeholder.png';
-
 export type ProjectCardProps = {
   project: Project;
 }
@@ -25,7 +23,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <KeywordSEO keywords={project.keywords} />
         <div className="h-full aspect-square rounded-lg">
           <img
-            src={getContentfulImageSrc(project.thumbnail, PLACEHOLDER_IMAGE)}
+            src={getContentfulImageSrc(project.thumbnail)}
             alt={getContentfulImageAlt(project.thumbnail)}
             className="object-cover w-full h-full"
             loading="lazy"

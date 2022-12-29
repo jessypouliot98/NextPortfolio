@@ -1,16 +1,16 @@
 import { ContentfulMediaImage } from './../types';
 
-export const getContentfulImageSrc = (media: ContentfulMediaImage, fallbackSrc?: string) => {
-  return media.file.url ? `https:${media.file.url}` : fallbackSrc;
+export const getContentfulImageSrc = (media: ContentfulMediaImage) => {
+  return `https:${media.file.url}`;
 };
 
 export const getContentfulImageAlt = (media: ContentfulMediaImage) => {
   return media.title;
 };
 
-export const getContentfulImageProps = (media: ContentfulMediaImage, fallbackSrc?: string) => {
+export const getContentfulImageProps = (media: ContentfulMediaImage) => {
   return {
-    src: getContentfulImageSrc(media, fallbackSrc),
+    src: getContentfulImageSrc(media),
     alt: getContentfulImageAlt(media),
   };
 };

@@ -1,0 +1,3 @@
+.cardCTAContent.cardCTAContent * {
+    @apply text-white;
+}

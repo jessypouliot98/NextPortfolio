@@ -35,6 +35,13 @@ export type ContactPage = Entry<{
   formImage: ContentfulMediaImage;
 }>
 
+export type ServicesPage = Entry<{
+  title: string;
+  slug: string;
+  seoDescription?: string;
+  contactCTA: CardCTA;
+}>
+
 export type ProjectPage = Entry<{
   title: string,
   slug: string,
@@ -87,6 +94,17 @@ export type BlogPost = Entry<{
   slug: string,
   seoDescription?: string,
   content: string, // Markdown content
+}>
+
+export type CustomLink = Entry<{
+  label: string;
+  url: string;
+}>
+
+export type CardCTA = Entry<{
+  content: Document;
+  link: CustomLink;
+  image: ContentfulMediaImage
 }>
 
 export type ContentfulFileImage = {
