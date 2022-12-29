@@ -33,7 +33,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
       className={clsx(
         navHeightClass,
         'transition px-5 flex items-center fixed z-50 top-0 left-0 right-0 shadow-lg',
-        'bg-white dark:btn-primary',
+        'bg-white dark:bg-blue-500 dark:text-white',
         'focus-within:!translate-y-0',
         className,
       )}

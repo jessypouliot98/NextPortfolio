@@ -111,6 +111,7 @@ export type CardCTA = Entry<{
 export type Service = Entry<{
   title: string;
   content: Document;
+  image: ContentfulMediaImage;
 }>
 
 export type ContentfulFileImage = {
