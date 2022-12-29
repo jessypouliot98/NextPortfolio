@@ -4,12 +4,16 @@ import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { useLang } from "@/hooks";
+import { ROUTES } from "@/utils/navigation/routes";
+
 import Link from "@/components/general/Link/Link";
 
 export type SocialLinksProps = {};
 
 export const SocialLinks: React.FC<SocialLinksProps> = () => {
   const { t } = useTranslation();
+  const lang = useLang();
 
   const socials = [
     {
@@ -24,7 +28,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
     },
     {
       title: t('global:footer.email'),
-      link: 'mailto:jessypouliot98@gmail.com',
+      link: ROUTES['contact'].url(lang),
       icon: <FaEnvelope size={'1.5rem'} />,
     }
   ];
@@ -32,12 +36,12 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
   return (
     <AnimatePresence initial={true}>
       <motion.div
-        className={'xl:fixed z-40 bottom-5 right-5'}
+        className="xl:fixed z-40 bottom-5 right-5"
         initial={{ opacity: 0, scale: 1.1, x: 100 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ delay: 1 }}
       >
-        <div className={'mb-2 xl:m-0'}>
+        <div className="mb-2 xl:m-0">
           <ul
             className={clsx(
               'flex',
@@ -47,7 +51,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
             )}
           >
             {socials.map((social) => (
-              <li key={social.title} className={'p-1'}>
+              <li key={social.title} className="p-1">
                 <Link
                   className={clsx(
                     'w-11 h-11 rounded flex-center transition',

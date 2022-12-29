@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 
 import { getValidLang } from "@/utils/locale";
 
-import { AppLanguage } from "../../types";
+import { AppLanguage } from "@/types";
 
 type CustomGetStaticPropsContext<
   Q extends ParsedUrlQuery | undefined = undefined,
@@ -43,7 +43,7 @@ export const generateGetStaticProps = <
       defaultLocale: context.defaultLocale as AppLanguage,
     } as CustomGetStaticPropsContext<Q, D>;
 
-    const result = getStaticProps ? await getStaticProps(customContext) : {} as GetStaticPropsResult<never>;
+    const result = getStaticProps ? await getStaticProps(customContext) : { props: {} } as GetStaticPropsResult<never>;
 
     if ('props' in result) {
       return {

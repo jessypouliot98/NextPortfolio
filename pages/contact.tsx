@@ -51,7 +51,6 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
               <div className="input-row">
                 <FormField
                   type="text"
-                  className="flex-1"
                   autoComplete="firstName"
                   label={t('page:contact.form.firstName.label')}
                   placeholder={t('page:contact.form.firstName.placeholder')}
@@ -59,7 +58,6 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
                 />
                 <FormField
                   type="text"
-                  className="flex-1"
                   autoComplete="lastName"
                   label={t('page:contact.form.lastName.label')}
                   placeholder={t('page:contact.form.lastName.placeholder')}

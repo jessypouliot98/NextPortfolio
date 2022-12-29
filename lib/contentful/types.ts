@@ -40,6 +40,7 @@ export type ServicesPage = Entry<{
   slug: string;
   seoDescription?: string;
   contactCTA: CardCTA;
+  services: Service[];
 }>
 
 export type ProjectPage = Entry<{
@@ -105,6 +106,11 @@ export type CardCTA = Entry<{
   content: Document;
   link: CustomLink;
   image: ContentfulMediaImage
+}>
+
+export type Service = Entry<{
+  title: string;
+  content: Document;
 }>
 
 export type ContentfulFileImage = {
