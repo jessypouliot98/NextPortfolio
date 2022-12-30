@@ -41,6 +41,8 @@ export type ServicesPage = Entry<{
   seoDescription?: string;
   contactCTA: CardCTA;
   services: Service[];
+  contactMeParagraph: string;
+  contactMeButton: string;
 }>
 
 export type ProjectPage = Entry<{

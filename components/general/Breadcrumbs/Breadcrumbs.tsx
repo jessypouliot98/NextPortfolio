@@ -28,7 +28,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ i18nProps }) => {
 
   return (
     <AnimatePresence initial={true}>
-      <div className={'flex flex-wrap'}>
+      <div className="flex flex-wrap mt-5">
         {[...routes.breadcrumbs, SELF].map((breadcrumb, i, { length }) => {
           const isSelf = breadcrumb === SELF;
 
