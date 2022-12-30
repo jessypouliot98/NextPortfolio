@@ -43,6 +43,16 @@ export type ServicesPage = Entry<{
   services: Service[];
   contactMeParagraph: string;
   contactMeButton: string;
+  testimonials: Testimonial[];
+}>
+
+export type Testimonial = Entry<{
+  title: string;
+  slug: string;
+  text: string;
+  writtenByName: string;
+  writtenByTitle: string;
+  relatedJob: Job;
 }>
 
 export type ProjectPage = Entry<{

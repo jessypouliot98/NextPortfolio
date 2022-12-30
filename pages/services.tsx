@@ -14,6 +14,7 @@ import { Card, Section, SectionTitle, StylishBox } from "@/components/general";
 import { CardCTA } from "@/components/general/CardCTA/CardCTA";
 import Link from "@/components/general/Link/Link";
 import { PageDefaultLayout } from "@/components/layout";
+import { Testimonial } from "@/components/parts/Testimonial/Testimonial";
 
 export type ServicesPageProps = {
   page: ServicesPage;
@@ -58,6 +59,7 @@ const ServicesPage: NextPage<ServicesPageProps> = ({ page }) => {
             </Card>
           ))}
         </StylishBox>
+        <Testimonial {...page.testimonials[0]} className={"mb-16"} />
         <div className="bg-gray-300 dark:bg-gray-900 px-8 py-12 flex flex-col flex-center breakout">
           <p className="text-center mb-8 text-gray-700 dark:text-gray-400 max-w-prose">
             {page.contactMeParagraph}
