@@ -43,7 +43,6 @@ export type ServicesPage = Entry<{
   services: Service[];
   contactMeParagraph: string;
   contactMeButton: string;
-  testimonials: Testimonial[];
 }>
 
 export type Testimonial = Entry<{
@@ -93,6 +92,7 @@ export type Job = Entry<{
   endDate?: string,
   content: Document,
   skills: Skill[],
+  logo: ContentfulMediaImage;
 }>
 
 export type Skill = Entry<{
