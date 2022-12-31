@@ -58,7 +58,7 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, 
         'text-gray-900 dark:text-gray-200',
       )}>
         <Header />
-        <main className="px-5 max-w-[1200px] mx-auto">
+        <main className="px-5 w-full max-w-[1200px] mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

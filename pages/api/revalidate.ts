@@ -38,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const routesToRevalidate = await getAllStaticRoutes();
     for (const route of routesToRevalidate) {
-      console.log(`Revalidating: ${route}`);
+      console.info(`Revalidating: ${route}`);
       await res.revalidate(route);
     }
 

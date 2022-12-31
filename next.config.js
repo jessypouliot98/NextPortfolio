@@ -9,6 +9,11 @@ const nextConfig = {
     CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
     CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
     GOOGLE_RECAPTCHA_SECRET: process.env.GOOGLE_RECAPTCHA_SECRET,
+    MAIL_SERVICE: process.env.MAIL_SERVICE,
+    MAIL_HOST: process.env.MAIL_HOST,
+    MAIL_USER: process.env.MAIL_USER,
+    MAIL_ADDRESS: process.env.MAIL_ADDRESS,
+    MAIL_PASSWORD: process.env.MAIL_PASSWORD,
   },
   publicRuntimeConfig: {
     SITE_TITLE: process.env.SITE_TITLE,

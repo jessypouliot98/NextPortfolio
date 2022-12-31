@@ -18,11 +18,9 @@ export const useSchemaForm = <TSchema extends Schema = Schema>(schema: TSchema, 
   const registerField = useCallback((...[name, fieldOptions]: Parameters<UseFormRegister<FormFields>>) => {
     const props = form.register(name, fieldOptions);
 
-    console.log(schema.shape[name]);
-
     return {
       ...props,
-      required: !schema.shape[name].isOptional(),
+      required: schema.shape[name]?.isOptional() === false,
       error: form.formState.errors[name],
     };
   }, [form, schema.shape]);

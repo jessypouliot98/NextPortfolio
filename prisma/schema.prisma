@@ -31,6 +31,8 @@ model Mail {
   lastName String @db.VarChar(64)
   email String @db.VarChar(255)
   referral String? @db.VarChar(255)
-  read Boolean @db.Boolean() @default(false)
   body String @db.Text()
+  isRead Boolean @db.Boolean() @default(false)
+  isSent Boolean @db.Boolean() @default(false)
+  dump String? @db.Text()
 }
