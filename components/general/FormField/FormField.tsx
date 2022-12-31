@@ -1,4 +1,5 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from "react";
+import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 
 export type FormFieldProps = ComponentPropsWithoutRef<'input'> & {
@@ -10,6 +11,7 @@ export type FormFieldProps = ComponentPropsWithoutRef<'input'> & {
 export const FormField: React.FC<FormFieldProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement, FormFieldProps>((props, ref) => {
   const { label, className, error, ...inputProps } = props;
   const inputIdentifier = inputProps.id || inputProps.name;
+  const { t } = useTranslation('');
 
   const inputClassName = clsx(
     'input',
@@ -23,7 +25,7 @@ export const FormField: React.FC<FormFieldProps> = forwardRef<HTMLInputElement |
           {label}
         </label>
         {inputProps.required === false && (
-          <span className="text-sm text-gray-500 ml-1">Optional</span>
+          <span className="text-sm text-gray-500 ml-1">{t('common:form.optional')}</span>
         )}
       </div>
       {inputProps.type === "textarea" ? (
