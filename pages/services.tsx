@@ -36,9 +36,9 @@ const ServicesPage: NextPage<ServicesPageProps> = ({ page }) => {
           { bottom: -30, right: '15%', blur: true },
         ]}>
           {page.services.map((service) => (
-            <Card key={service.title} className="flex mb-8">
-              <div className="p-4 pr-0">
-                <div className="w-32 h-32 rounded-lg bg-gray-200 p-1">
+            <Card key={service.title} className="flex mb-8 flex-col sm:flex-row py-4">
+              <div className="mb-6 px-4 sm:pr-0">
+                <div className="w-full aspect-video sm:w-32 sm:aspect-square rounded-lg bg-gray-200 p-2">
                   <img
                     src={getContentfulImageSrc(service.image)}
                     alt={getContentfulImageAlt((service.image))}
@@ -48,12 +48,12 @@ const ServicesPage: NextPage<ServicesPageProps> = ({ page }) => {
                 </div>
               </div>
 
-              <div className="flex-1 py-8 pr-4">
+              <div className="flex-1 px-4 sm:pl-0 sm:py-4">
                 <div className="flex items-center mb-4">
-                  <div className="h-0.5 w-8 mx-4 bg-gray-300" />
+                  <div className="hidden sm:block h-0.5 w-8 mx-4 bg-gray-300" />
                   <h3 className="text-h3">{service.title}</h3>
                 </div>
-                <ContentfulDisplay className="pl-16" document={service.content} />
+                <ContentfulDisplay className="sm:pl-16" document={service.content} />
               </div>
             </Card>
           ))}
