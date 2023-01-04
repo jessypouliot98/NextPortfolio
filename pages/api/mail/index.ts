@@ -52,14 +52,14 @@ const createMail = async (req: NextApiRequest, res: NextApiResponse) => {
       subject: `[NextPortfolio] - ${data.firstName} ${data.lastName}`,
       text,
     });
-    await sendMailConfirmation({
+    const sentConfirmationMail = await sendMailConfirmation({
       to: data.email,
       text,
       lang: getLanguageFromRequest(req),
     });
     mailData = {
       isSent: true,
-      dump: JSON.stringify(sentMail),
+      dump: JSON.stringify({ sentMail, sentConfirmationMail }),
     };
   } catch (e) {
     mailData = {

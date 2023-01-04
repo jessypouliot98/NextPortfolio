@@ -1,14 +1,17 @@
-import React, { ComponentPropsWithoutRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import { useTranslation } from "next-i18next";
+import { Input, InputProps, Option } from "react-advanced-input";
 import clsx from "clsx";
 
-export type FormFieldProps = ComponentPropsWithoutRef<'input'> & {
-  type: string;
+export type FormFieldProps<TOption extends Option = Option> = InputProps<TOption> & {
   label: string;
   error?: { message?: string };
 }
 
-export const FormField: React.FC<FormFieldProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement, FormFieldProps>((props, ref) => {
+export const FormField = forwardRef(<TOption extends Option = Option>(
+  props: FormFieldProps<TOption>,
+  ref: ForwardedRef<any>,
+) => {
   const { label, className, error, ...inputProps } = props;
   const inputIdentifier = inputProps.id || inputProps.name;
   const { t } = useTranslation('');
@@ -25,14 +28,12 @@ export const FormField: React.FC<FormFieldProps> = forwardRef<HTMLInputElement |
           {label}
         </label>
         {inputProps.required === false && (
-          <span className="text-sm text-gray-500 ml-1">{t('common:form.optional')}</span>
+          <span className="text-sm text-gray-500 ml-1">
+            {t('common:form.optional')}
+          </span>
         )}
       </div>
-      {inputProps.type === "textarea" ? (
-        <textarea ref={ref as any} {...inputProps as any} id={inputIdentifier} className={inputClassName} />
-      ) : (
-        <input ref={ref as any} {...inputProps} id={inputIdentifier} className={inputClassName} />
-      )}
+      <Input ref={ref} {...inputProps} id={inputIdentifier} className={inputClassName} />
       {error && (
         <div className="text-red-500">
           {error.message}

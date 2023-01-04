@@ -34,7 +34,7 @@ export type SendMailConfirmationOptions = {
   lang: AppLanguage;
 }
 export const sendMailConfirmation = async ({ lang, text, ...mailOptions }: SendMailConfirmationOptions) => {
-  await sendMail({
+  return sendMail({
     ...mailOptions,
     subject: lang === 'en' ? 'Email confirmation' : 'Confirmation d\'envoie',
     text: [
