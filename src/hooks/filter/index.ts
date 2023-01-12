@@ -1,1 +1,1 @@
-export * from './useFilterQuery'
+export * from './useFilterQuery';
