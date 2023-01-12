@@ -3,6 +3,7 @@
     "home": "Accueil"
   },
   "projects": {
+    "aCompanyProject": "un project <Link>{{companyName}}</Link>",
     "seeAllProjects": "Voir tout les projets",
     "seeAllCompanyProjects": "Voir les projets de chez {{companyName}}",
     "viewProject": "Voir le project"

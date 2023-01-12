@@ -3,7 +3,7 @@ import { ROUTES } from "./routes";
 describe('routes', () => {
   it('home route returns expected url', () => {
     expect(ROUTES['home'].url('en')).toBe('/');
-    expect(ROUTES['home'].url('fr')).toBe('/fr');
+    expect(ROUTES['home'].url('fr')).toBe('/fr/');
   });
 
   it('projects route returns expected url', () => {

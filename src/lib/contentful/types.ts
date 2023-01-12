@@ -1,6 +1,6 @@
 import { Document } from "@contentful/rich-text-types";
 
-import { Entry } from ".";
+import { Entry } from "./index";
 
 export type CVPage = Entry<{
   title: string,
@@ -55,43 +55,44 @@ export type Testimonial = Entry<{
 }>
 
 export type ProjectPage = Entry<{
-  title: string,
-  slug: string,
-  seoDescription?: string,
-  projects: Project[],
+  title: string;
+  slug: string;
+  seoDescription?: string;
+  projects: Project[];
 }>
 
 export type BlogPage = Entry<{
-  title: string,
-  slug: string,
-  seoDescription?: string,
-  blogPosts: BlogPost[],
+  title: string;
+  slug: string;
+  seoDescription?: string;
+  blogPosts: BlogPost[];
 }>
 
 export type Project = Entry<{
-  name: string,
-  slug: string,
-  seoDescription?: string,
-  keywords: string[],
-  thumbnail: ContentfulMediaImage,
-  skills?: Skill[],
-  link?: string, // @deprecated
-  linkSourceCode?: string,
-  linkProject?: string,
-  linkPresentation?: string,
-  content: Document,
+  name: string;
+  slug: string;
+  seoDescription?: string;
+  keywords: string[];
+  thumbnail: ContentfulMediaImage;
+  skills?: Skill[];
+  link?: string; // @deprecated
+  linkSourceCode?: string;
+  linkProject?: string;
+  linkPresentation?: string;
+  content: Document;
+  relatedJob?: Job;
 }>
 
 export type Job = Entry<{
-  title: string,
-  slug: string,
-  companyName: string,
-  companySlug: string,
-  companyLink: string,
-  startDate?: string,
-  endDate?: string,
-  content: Document,
-  skills: Skill[],
+  title: string;
+  slug: string;
+  companyName: string;
+  companySlug: string;
+  companyLink: string;
+  startDate?: string;
+  endDate?: string;
+  content: Document;
+  skills: Skill[];
   logo: ContentfulMediaImage;
 }>
 

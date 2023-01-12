@@ -1,7 +1,8 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import type { GetStaticPaths, NextPage } from 'next';
 import Image from 'next/image';
 import { useTranslation } from "next-i18next";
+import { Trans } from "react-i18next";
 import { FaCode, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import clsx from "clsx";
 import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
@@ -30,7 +31,26 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
     <PageDefaultLayout title={title} description={project.seoDescription} breadcrumbsI18nProps={{ projectTitle: project.name }}>
       <Section>
         <SectionTitle component="h1">
-          {project.name}
+          <span>{project.name}</span>
+          {!!project.relatedJob && (
+            <span className="ml-4 text-h5">
+              <Trans
+                i18nKey="page:projects.aCompanyProject"
+                values={{
+                  companyName: project.relatedJob.companyName,
+                }}
+                components={{
+                  Link: (
+                    <Link
+                      className={'font-bold link link-primary'}
+                      href={project.relatedJob.companyLink}
+                      target={'_blank'}
+                    />
+                  ),
+                }}
+              />
+            </span>
+          )}
         </SectionTitle>
         {project.keywords && (
           <KeywordSEO keywords={project.keywords}/>

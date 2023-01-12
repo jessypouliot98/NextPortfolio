@@ -1,5 +1,5 @@
+import { isServer } from '../../utils/platform';
 import { useMount } from '../utils/useMount';
-import { isServer } from './../../utils/platform';
 
 const BLOG_VIEWED_STORAGE_KEY = 'blog-post-viewed';
 

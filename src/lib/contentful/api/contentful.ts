@@ -89,7 +89,7 @@ export const getServicesPage = async ({ lang }: BaseApiParams) => {
 export const getProjectsPage = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry(
     '9Fvhg1FFcvesojFqhg6PK',
-    getBaseQuery(lang),
+    getBaseQuery(lang, { include: 10 }),
   );
 
   return mapEntry<ProjectPage>(entry);

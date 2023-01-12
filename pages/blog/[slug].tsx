@@ -1,7 +1,7 @@
 import { GetStaticPaths, NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { FaEye } from "react-icons/fa";
-import { AppLanguage } from "types";
+import { AppLanguage } from "src/types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 

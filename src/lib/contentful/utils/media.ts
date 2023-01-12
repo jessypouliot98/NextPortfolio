@@ -1,4 +1,4 @@
-import { ContentfulMediaImage } from './../types';
+import { ContentfulMediaImage } from '../types';
 
 export const getContentfulImageSrc = (media: ContentfulMediaImage) => {
   return `https:${media.file.url}`;
