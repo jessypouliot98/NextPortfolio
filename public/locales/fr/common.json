@@ -1,4 +1,7 @@
 {
+  "state": {
+    "loading": "Chargement"
+  },
   "language": {
     "en": "Anglais",
     "fr": "Français"

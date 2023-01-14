@@ -42,7 +42,8 @@
     "pageOnlyAvailableInEnglish": "This page is only available in english",
     "comments": "Comments",
     "commentInputPlaceholder": "Write a comment..",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "submit": "Comment"
   },
   "curriculum": {
     "jobAtCompanyLinked": "{{job}} at <Link>{{companyName}}</Link>",

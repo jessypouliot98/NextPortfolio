@@ -17,12 +17,14 @@ model Comment {
   authorName String @db.VarChar(128)
   createdAt DateTime @default(now())
   deletedAt DateTime?
+  blog Blog @relation(references: [contentfulEntryId], fields: [contentfulEntryId])
 }
 
 model Blog {
   id Int @id @default(autoincrement())
   contentfulEntryId String @unique @db.VarChar(64)
   views Int
+  comments Comment[] @relation()
 }
 
 model Mail {

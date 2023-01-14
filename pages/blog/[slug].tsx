@@ -4,10 +4,10 @@ import { FaEye } from "react-icons/fa";
 import { AppLanguage } from "src/types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
+import { trpc } from "@/lib/trpc/utils/trpc";
 
 import { useLang } from "@/hooks/app";
-import { useBlog, useBlogView } from "@/hooks/blog";
-import { useComments } from "@/hooks/comments";
+import { useBlogView } from "@/hooks/blog";
 import { useCreateComment } from "@/hooks/comments/useCreateComment";
 import { DEFAULT_LANGUAGE } from "@/utils/constants";
 import { NextDate } from "@/utils/NextDate";
@@ -27,8 +27,8 @@ export type BlogPostPageProps = {
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, page }) => {
   const { t } = useTranslation();
   const lang = useLang();
-  const { isLoading, data: comments = [], refetch  } = useComments(contentfulEntryId);
-  const { data: blog } = useBlog(contentfulEntryId); 
+
+  const { isLoading, data: blog, refetch  } = trpc.blog.get.useQuery({ contentfulEntryId });
   const { handleSubmitComment, isProcessing } = useCreateComment(contentfulEntryId, refetch);
   useBlogView(contentfulEntryId);
 
@@ -62,20 +62,20 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ contentfulEntryId, title, p
         </SectionTitle>
         <Card className="card-body">
           {isLoading ? (
-            <div>loading</div>
+            <div>{t("common:state.loading")}</div>
           ) : (
             <>
-              <CommentList comments={comments} />
+              <CommentList comments={blog?.comments ?? []} />
               <form onSubmit={handleSubmitComment}>
                 <input className="w-full input mb-2" type="text" name="comment" placeholder={t('page:blog.commentInputPlaceholder')} required={true} disabled={isProcessing} />
                 <div className="flex justify-end">
                   <Button variant="primary" disabled={isProcessing}>
-                    Comment
+                    {t("page:blog.submit")}
                   </Button>
                 </div>
               </form>
             </>
-          )}  
+          )}
         </Card>
       </Section>
     </PageDefaultLayout>

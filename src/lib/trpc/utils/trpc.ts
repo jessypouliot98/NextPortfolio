@@ -1,5 +1,6 @@
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
+import superjson from "superjson";
 
 import { isClient } from "@/utils/platform";
 
@@ -21,6 +22,7 @@ function getBaseUrl() {
 export const trpc = createTRPCNext<AppRouter>({
   config: () => {
     return {
+      transformer: superjson,
       links: [
         httpBatchLink({
           /**

@@ -1,4 +1,5 @@
 import { initTRPC } from '@trpc/server';
+import superjson from 'superjson';
 import { TRPCContext } from "@/lib/trpc/context/createContext";
 
 // Avoid exporting the entire t-object
@@ -7,7 +8,9 @@ import { TRPCContext } from "@/lib/trpc/context/createContext";
 // is common in i18n libraries.
 const t = initTRPC
   .context<TRPCContext>()
-  .create();
+  .create({
+    transformer: superjson,
+  });
 
 // Base router and procedure helpers
 export const router = t.router;

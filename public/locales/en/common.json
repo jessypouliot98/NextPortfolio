@@ -1,4 +1,7 @@
 {
+  "state": {
+    "loading": "Loading"
+  },
   "language": {
     "en": "English",
     "fr": "French"

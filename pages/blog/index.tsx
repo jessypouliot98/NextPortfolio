@@ -5,9 +5,9 @@ import { useTranslation } from "next-i18next";
 import { FaEye } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { BlogPage, getBlogListPage } from "@/lib/contentful";
+import { trpc } from "@/lib/trpc/utils/trpc";
 
 import { useLang } from "@/hooks/app";
-import { useBlogListViews } from "@/hooks/blog/useBlogListViews";
 import { ROUTES } from "@/utils/navigation/routes";
 import { NextDate } from "@/utils/NextDate";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
@@ -22,7 +22,7 @@ export type BlogPageProps = {
 const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
   const lang = useLang();
   const { t } = useTranslation();
-  const { data: blogListViews, isLoading } = useBlogListViews();
+  const { data: blogListViews, isLoading } = trpc.blog.views.list.useQuery();
 
   const blogPosts = useMemo(() => {
     return page.blogPosts.map((post) => {
