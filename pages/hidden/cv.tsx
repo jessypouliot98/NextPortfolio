@@ -13,7 +13,7 @@ import { useLang } from "@/hooks/app";
 import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetServerSideProps } from "@/utils/nextjs/getServerSideProps";
 
-import { Button, RatioContainer } from "@/components/general";
+import { Button } from "@/components/general";
 import { DateRange } from "@/components/parts/DateRange/DateRange";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
@@ -58,7 +58,7 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         {stylesheet}
       </Head>
 
-      <header className="print:hidden mb-12 bg-white shadow-lg">
+      <header className="print:hidden bg-white">
         <nav className="flex p-2 gap-2 mx-auto w-[8.5in] justify-center">
           <Button
             className="flex-1"
@@ -104,13 +104,13 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         </nav>
       </header>
 
-      <div className="m-auto flex text-base mb-12 shadow-2xl w-[8.5in] h-[11in]">
+      <div className="m-auto flex text-base w-[8.5in] h-[11in]">
 
         <aside className="w-full px-4 py-4 text-white bg-blue-600" style={{ width: '2.8in' }}>
           <section id={'presentation'} className={asideSectionStyle}>
-            <RatioContainer ratio={[1, 1]} className="overflow-hidden rounded-3xl shadow-lg">
+            <div className="overflow-hidden rounded-3xl shadow-lg aspect-square">
               <img className="object-cover" src="/assets/cv/avatar.jpg" alt="avatar" />
-            </RatioContainer>
+            </div>
           </section>
 
           <section id={'contact'} className={asideSectionStyle}>

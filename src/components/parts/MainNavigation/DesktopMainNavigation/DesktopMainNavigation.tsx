@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { FaMoon, FaSun } from "react-icons/fa";
 import clsx from "clsx";
@@ -7,7 +8,6 @@ import { useTheme } from "@/lib/theme";
 import { ScrollDir, useDocumentScroll } from "@/hooks/document";
 
 import { Button } from "@/components/general";
-import Link from "@/components/general/Link/Link";
 import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
 
 export type DesktopMainNavigationProps = {

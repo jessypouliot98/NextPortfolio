@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { FaAngleRight, FaHome } from "react-icons/fa";
@@ -8,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/hooks";
 import { ROUTES, ROUTES_PATH_MAP } from "@/utils/navigation/routes";
 
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 
 const SELF = '--SELF--';
 

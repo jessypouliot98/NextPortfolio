@@ -5,7 +5,7 @@ import { useLang } from "@/hooks";
 import { ROUTES } from "@/utils/navigation/routes";
 
 import { Card, KeywordSEO } from "@/components/general";
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 
 export type ProjectCardProps = {
   project: Project;
@@ -15,7 +15,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const lang = useLang();
 
   return (
-    <Link
+    <Anchor
       className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
       href={ROUTES['projects.single'].url(lang, { slug: project.slug })}
     >
@@ -47,6 +47,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
       </Card>
-    </Link>
+    </Anchor>
   );
 };

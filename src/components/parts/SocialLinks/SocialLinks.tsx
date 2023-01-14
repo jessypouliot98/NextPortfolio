@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/hooks";
 import { ROUTES } from "@/utils/navigation/routes";
 
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 
 export type SocialLinksProps = {};
 
@@ -52,7 +52,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
           >
             {socials.map((social) => (
               <li key={social.title} className="p-1">
-                <Link
+                <Anchor
                   className={clsx(
                     'w-11 h-11 rounded flex-center transition',
                     'btn btn-default',
@@ -62,7 +62,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
                   title={social.title}
                 >
                   {social.icon}
-                </Link>
+                </Anchor>
               </li>
             ))}
           </ul>

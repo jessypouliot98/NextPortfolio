@@ -1,5 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
+import Link from "next/link";
 import {
   ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc,
   getServicesPage,
@@ -11,8 +12,8 @@ import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle, StylishBox } from "@/components/general";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { CardCTA } from "@/components/general/CardCTA/CardCTA";
-import Link from "@/components/general/Link/Link";
 import { PageDefaultLayout } from "@/components/layout";
 
 export type ServicesPageProps = {

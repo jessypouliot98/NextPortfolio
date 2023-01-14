@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from 'next';
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,7 +11,7 @@ import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle } from "@/components/general";
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";

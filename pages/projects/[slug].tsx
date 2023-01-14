@@ -5,13 +5,19 @@ import { useTranslation } from "next-i18next";
 import { Trans } from "react-i18next";
 import { FaCode, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import clsx from "clsx";
-import { ContentfulDisplay, getProjectsPage, Project } from '@/lib/contentful';
+import {
+  ContentfulDisplay,
+  getContentfulImageAlt,
+  getContentfulImageSrc,
+  getProjectsPage,
+  Project
+} from '@/lib/contentful';
 
 import { DEFAULT_LANGUAGE } from "@/utils/constants";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
-import { Card, KeywordSEO, RatioContainer, Section, SectionTitle } from "@/components/general";
-import Link from "@/components/general/Link/Link";
+import { Card, KeywordSEO, Section, SectionTitle } from "@/components/general";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
@@ -41,10 +47,10 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
                 }}
                 components={{
                   Link: (
-                    <Link
-                      className={'font-bold link link-primary'}
+                    <Anchor
+                      className="font-bold link link-primary"
                       href={project.relatedJob.companyLink}
-                      target={'_blank'}
+                      target="_blank"
                     />
                   ),
                 }}
@@ -56,27 +62,26 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
           <KeywordSEO keywords={project.keywords}/>
         )}
         {project.thumbnail && (
-          <RatioContainer
+          <div
             className={clsx(
-              'mb-6 bg-gray-300 dark:bg-gray-700 rounded-lg shadow',
+              'mb-6 bg-gray-300 dark:bg-gray-700 rounded-lg shadow aspect-[21/9]',
               'relative z-20' // Fix to keep decoration under
             )}
-            ratio={[21, 9]}
           >
             <Image
               className={'w-full h-full object-contain'}
-              src={`https:${project.thumbnail.file.url}`}
-              layout={'fill'}
+              src={getContentfulImageSrc(project.thumbnail)}
+              alt={getContentfulImageAlt(project.thumbnail)}
               title={project.thumbnail.title}
-              alt={project.thumbnail.description}
+              fill={true}
             />
-          </RatioContainer>
+          </div>
         )}
         <StylishBox className={'mb-2'} effects={[
           { top: -10, left: -10, blur: true },
           { bottom: -100, right: 50, blur: true },
         ]}>
-          <div className={'flex flex-col xl:flex-row-reverse'}>
+          <div className="flex flex-col xl:flex-row-reverse">
             {project.skills && (
               <Card className="mb-4 xl:mb-0 xl:ml-4 xl:min-w-[200px] card-body">
                 <ul className="flex flex-wrap xl:flex-col">
@@ -89,47 +94,47 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
                 </ul>
               </Card>
             )}
-            <div className={'flex-1'}>
+            <div className="flex-1">
               {isInConstruction ? (
-                <p className={'font-bold text-xl mb-4'}>{t('global:common.toBeConstructedContent')}</p>
+                <p className="font-bold text-xl mb-4">{t('global:common.toBeConstructedContent')}</p>
               ) : (
-                <ContentfulDisplay className={'mb-4'} document={project.content} />
+                <ContentfulDisplay className="mb-4" document={project.content} />
               )}
               <div className="-m-2 flex flex-wrap">
                 {project.linkSourceCode && (
                   <div className="p-2">
-                    <Link
-                      className={'btn btn-primary'}
+                    <Anchor
+                      className="btn btn-primary"
                       href={project.linkSourceCode}
-                      target={'_blank'}
+                      target="_blank"
                     >
                       <span>{t('page:projects.link.viewSource')}</span>
-                      <FaCode className={'ml-2'} />
-                    </Link>
+                      <FaCode className="ml-2" />
+                    </Anchor>
                   </div>
                 )}
                 {project.linkProject && (
                   <div className="p-2">
-                    <Link
-                      className={'btn btn-primary'}
+                    <Anchor
+                      className="btn btn-primary"
                       href={project.linkProject}
-                      target={'_blank'}
+                      target="_blank"
                     >
                       <span>{t('page:projects.link.viewProject')}</span>
                       <FaLaptopCode className={'ml-2'} />
-                    </Link>
+                    </Anchor>
                   </div>
                 )}
                 {project.linkPresentation && (
                   <div className="p-2">
-                    <Link
-                      className={'btn btn-primary'}
+                    <Anchor
+                      className="btn btn-primary"
                       href={project.linkPresentation}
-                      target={'_blank'}
+                      target="_blank"
                     >
                       <span>{t('page:projects.link.viewDetails')}</span>
                       <FaExternalLinkAlt className={'ml-2'} />
-                    </Link>
+                    </Anchor>
                   </div>
                 )}
               </div>

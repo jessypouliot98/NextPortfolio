@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { preventDefaultEventCallback } from '@/utils/event';
 
 export type FocusableImageProps = {
-  src: string,
-  alt: string,
+  src?: string,
+  alt?: string,
   className?: string,
 };
 

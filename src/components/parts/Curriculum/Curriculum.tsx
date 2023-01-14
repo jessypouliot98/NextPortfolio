@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { Trans, useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { AnimatePresence, motion } from 'framer-motion';
@@ -7,7 +8,7 @@ import { ContentfulDisplay, Job } from "@/lib/contentful";
 import { useLang } from "@/hooks/app";
 import { ROUTES } from "@/utils/navigation/routes";
 
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import styles from './Curriculum.module.css';
@@ -75,10 +76,10 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                           }}
                           components={{
                             Link: (
-                              <Link
+                              <Anchor
                                 className={'font-bold link link-primary'}
                                 href={job.companyLink}
-                                target={'_blank'}
+                                target="_blank"
                               />
                             ),
                           }}

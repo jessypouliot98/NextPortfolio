@@ -3,7 +3,7 @@ import { documentToReactComponents, Options } from "@contentful/rich-text-react-
 import { Document, INLINES } from "@contentful/rich-text-types";
 import clsx from "clsx";
 
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 
 export type ContentfulDisplayProps = {
   className?: string,
@@ -14,9 +14,9 @@ const options: Options = {
   renderNode: {
     [INLINES.HYPERLINK]: (node, children) => {
       return (
-        <Link href={node.data.uri} target={'_blank'}>
+        <Anchor href={node.data.uri} target={'_blank'}>
           {children}
-        </Link>
+        </Anchor>
       );
     }
   }

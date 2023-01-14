@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { FaEye } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,7 +13,7 @@ import { NextDate } from "@/utils/NextDate";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle, StylishBox } from "@/components/general";
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { PageDefaultLayout } from "@/components/layout";
 
 export type BlogPageProps = {

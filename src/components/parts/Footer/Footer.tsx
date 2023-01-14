@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 import { SocialLinks } from "@/components/parts";
 
 export type FooterProps = {}
@@ -19,14 +19,14 @@ export const Footer: React.FC<FooterProps> = () => {
     >
       <SocialLinks />
       <div className={'flex-1 text-center'}>
-        <Link
+        <Anchor
           className={'hover:underline'}
           href={'https://github.com/jessypouliot98/NextPortfolio'}
           target={'_blank'}
           aria-label={t('global:footer.builtAndDesignedARIA')}
         >
           {t('global:footer.builtAndDesigned')}
-        </Link>
+        </Anchor>
       </div>
     </footer>
   );

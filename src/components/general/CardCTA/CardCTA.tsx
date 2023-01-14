@@ -1,9 +1,10 @@
 import React from "react";
+import Link from "next/link";
 import clsx from "clsx";
 import { CardCTA as CardCTAType, ContentfulDisplay, getContentfulImageSrc } from "@/lib/contentful";
 
 import { Card, StylishBox } from "@/components/general";
-import Link from "@/components/general/Link/Link";
+import Anchor from "@/components/general/Anchor/Anchor";
 
 import styles from './CardCTA.module.css';
 
