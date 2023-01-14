@@ -6,6 +6,7 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "@/lib/theme";
+import { trpc } from "@/lib/trpc/utils/trpc";
 
 import '@/styles/globals.css';
 
@@ -31,4 +32,4 @@ const MyApp = (props: MyAppProps) => {
   );
 };
 
-export default appWithTranslation(MyApp);
+export default trpc.withTRPC(appWithTranslation(MyApp));
