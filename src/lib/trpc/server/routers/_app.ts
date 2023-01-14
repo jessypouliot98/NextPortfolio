@@ -9,8 +9,10 @@ export const appRouter = router({
         text: z.string(),
       }),
     )
-    .query(({ input }) => {
+    .query(async ({ ctx, input }) => {
+      const count = await ctx.prisma.comment.count();
       return {
+        count,
         greeting: `hello ${input.text}`,
       };
     }),
