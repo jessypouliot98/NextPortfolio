@@ -1,4 +1,5 @@
 {
+  "unknown": "Erreur inconnue",
   "404": {
     "title": "404",
     "subTitle": "Page non trouvé",

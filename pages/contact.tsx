@@ -38,7 +38,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ page }) => {
         </div>
         {submitError && (
           <AlertBanner className="relative z-20 mb-2" variant="error">
-            {getFormErrorMessage(submitError)}
+            {getFormErrorMessage(submitError, t)}
           </AlertBanner>
         )}
         <StylishBox effects={[

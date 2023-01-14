@@ -2,15 +2,14 @@ import getConfig from "next/config";
 import { Mail } from "@prisma/client";
 import { sendMail, sendMailConfirmation } from "@/lib/mail";
 import { validateRecaptchaToken } from "@/lib/node-recaptcha";
+import { zContactSchema } from "@/lib/trpc/server/routers/mail/validators";
 import { procedure, router } from "@/lib/trpc/server/trpc";
 import { zFormReCAPTCHASchema } from "@/lib/validators/form";
-
-import { mailCreateSchema } from "@/utils/schemas/mail";
 
 const { MAIL_ADDRESS } = getConfig().serverRuntimeConfig;
 
 export const mailRouter = router({
-  contact: procedure.input(mailCreateSchema.merge(zFormReCAPTCHASchema)).mutation(async ({ ctx, input }) => {
+  contact: procedure.input(zContactSchema.merge(zFormReCAPTCHASchema)).mutation(async ({ ctx, input }) => {
     const { recaptchaToken, ...data } = input;
 
     const reCAPTCHAValidation = await validateRecaptchaToken(recaptchaToken);

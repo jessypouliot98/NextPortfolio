@@ -3,7 +3,7 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { trpc } from "@/lib/trpc/utils/trpc";
 
 export const useCreateComment = (contentfulEntryId: string, onCommentCreated?: () => void) => {
-  const { mutate: createComment, isLoading: isProcessing } = trpc.comments.create.useMutation();
+  const { mutateAsync: createComment, isLoading: isProcessing } = trpc.comments.create.useMutation();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmitComment = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +19,7 @@ export const useCreateComment = (contentfulEntryId: string, onCommentCreated?: (
         throw new Error('Missing required fields');
       }
 
-      createComment({
+      await createComment({
         contentfulEntryId,
         content,
         authorName: 'Anonymous',

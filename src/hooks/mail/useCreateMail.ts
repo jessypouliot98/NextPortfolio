@@ -1,43 +1,26 @@
-import { useState } from "react";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { API } from "@/lib/api-client";
 import { useSchemaForm } from "@/lib/react-hook-form";
-
-import { getFormFieldErrors } from "@/utils/form/getFormFieldErrors";
-import { setFormFieldErrors } from "@/utils/form/setFormFieldErrors";
-import { mailCreateSchema } from "@/utils/schemas/mail";
+import { zContactSchema } from "@/lib/trpc/server/routers/mail/validators";
+import { trpc } from "@/lib/trpc/utils/trpc";
 
 export const useCreateMail = () => {
-  const form = useSchemaForm(mailCreateSchema);
-  const [submitError, setSubmitError] = useState<Error>();
+  const form = useSchemaForm(zContactSchema);
+  const { mutateAsync: sendMail, error: submitError } = trpc.mail.contact.useMutation();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = form.handleSubmit(async (formData) => {
-    setSubmitError(undefined);
-    try {
-      const recaptchaToken = await executeRecaptcha?.();
+    const recaptchaToken = await executeRecaptcha?.();
 
-      if (!recaptchaToken) {
-        throw new Error('Missing ReCaptcha');
-      }
-
-      const payload = {
-        ...formData,
-        recaptchaToken,
-      };
-
-      await API.post('/api/mail', payload);
-
-      form.reset();
-    } catch (e) {
-      const formFieldErrors = getFormFieldErrors(e as Error);
-      if (formFieldErrors) {
-        setFormFieldErrors(form.setError, formFieldErrors);
-        return;
-      }
-      setSubmitError(e as Error);
-      throw e;
+    if (!recaptchaToken) {
+      throw new Error('Missing ReCaptcha');
     }
+
+    await sendMail({
+      ...formData,
+      recaptchaToken,
+    });
+
+    form.reset();
   });
 
   return {
