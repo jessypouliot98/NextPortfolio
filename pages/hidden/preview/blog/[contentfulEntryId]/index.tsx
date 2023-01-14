@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import BlogPostPage, { BlogPostPageProps } from "pages/blog/[slug]";
+import BlogPostPage, { BlogPostPageProps } from "@pages/blog/[slug]";
 import { BlogPost, getEntry } from "@/lib/contentful";
 
 import { generateGetServerSideProps } from "@/utils/nextjs/getServerSideProps";

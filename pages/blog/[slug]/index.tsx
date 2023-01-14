@@ -1,7 +1,6 @@
 import { GetStaticPaths, NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { FaEye } from "react-icons/fa";
-import { AppLanguage } from "src/types";
 import { BlogPost, getBlogListPage } from "@/lib/contentful";
 import { Markdown } from "@/lib/react-markdown";
 import { trpc } from "@/lib/trpc/utils/trpc";
@@ -16,6 +15,8 @@ import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 import { AlertBanner, Button, Card, Section, SectionTitle } from "@/components/general";
 import { PageDefaultLayout } from "@/components/layout";
 import { CommentList } from "@/components/parts/Comment";
+
+import { AppLanguage } from "@/types";
 
 export type BlogPostPageProps = {
   contentfulEntryId: string,
