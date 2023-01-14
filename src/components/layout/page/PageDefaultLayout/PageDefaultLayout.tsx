@@ -39,18 +39,18 @@ export const PageDefaultLayout: React.FC<PageDefaultLayoutProps> = ({ children, 
   return (
     <>
       <Head>
-        {<title key={'title'}>{title ?? SITE_TITLE}</title>}
-        {description && (<meta key={'description'} name={'description'} content={description} />)}
-        {(sharing?.['og:title'] || title) && (<meta key={'og:title'} name={'og:title'} content={sharing?.['og:title'] || description} />)}
-        {(sharing?.['og:description'] || description) && (<meta key={'og:description'} name={'og:description'} content={sharing?.['og:description'] || description} />)}
-        {sharing?.['og:type'] && (<meta key={'og:type'} name={'og:type'} content={sharing?.['og:type']} />)}
-        {sharing?.['og:image'] && (<meta key={'og:image'} name={'og:image'} content={sharing?.['og:image']} />)}
-        {sharing?.['og:url'] && (<meta key={'og:url'} name={'og:url'} content={sharing?.['og:url']} />)}
-        {sharing?.['og:site_name'] && (<meta key={'og:site_name'} name={'og:site_name'} content={sharing?.['og:site_name']} />)}
-        {sharing?.['twitter:card'] && (<meta key={'twitter:card'} name={'twitter:card'} content={sharing?.['twitter:card']} />)}
-        {sharing?.['twitter:image:alt'] && (<meta key={'twitter:image:alt'} name={'twitter:image:alt'} content={sharing?.['twitter:image:alt']} />)}
-        {sharing?.['twitter:site'] && (<meta key={'twitter:site'} name={'twitter:site'} content={sharing?.['twitter:site']} />)}
-        {sharing?.['fb:app_id'] && (<meta key={'fb:app_id'} name={'fb:app_id'} content={sharing?.['fb:app_id']} />)}
+        <title key="title">{title ?? SITE_TITLE}</title>
+        {description && (<meta key="description" name="description" content={description} />)}
+        {(sharing?.['og:title'] || title) && (<meta key="og:title" name="og:title" content={sharing?.['og:title'] || description} />)}
+        {(sharing?.['og:description'] || description) && (<meta key="og:description" name="og:description" content={sharing?.['og:description'] || description} />)}
+        {sharing?.['og:type'] && (<meta key="og:type" name="og:type" content={sharing?.['og:type']} />)}
+        {sharing?.['og:image'] && (<meta key="og:image" name="og:image" content={sharing?.['og:image']} />)}
+        {sharing?.['og:url'] && (<meta key="og:url" name="og:url" content={sharing?.['og:url']} />)}
+        {sharing?.['og:site_name'] && (<meta key="og:site_name" name="og:site_name" content={sharing?.['og:site_name']} />)}
+        {sharing?.['twitter:card'] && (<meta key="twitter:card" name="twitter:card" content={sharing?.['twitter:card']} />)}
+        {sharing?.['twitter:image:alt'] && (<meta key="twitter:image:alt" name="twitter:image:alt" content={sharing?.['twitter:image:alt']} />)}
+        {sharing?.['twitter:site'] && (<meta key="twitter:site" name="twitter:site" content={sharing?.['twitter:site']} />)}
+        {sharing?.['fb:app_id'] && (<meta key="fb:app_id" name="fb:app_id" content={sharing?.['fb:app_id']} />)}
       </Head>
       <div className={clsx(
         'relative flex flex-col min-h-screen overflow-hidden',

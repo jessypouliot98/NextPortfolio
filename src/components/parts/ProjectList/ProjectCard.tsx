@@ -16,7 +16,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <Anchor
-      className={'group block h-full w-full transition transform scale-100 hover:scale-105'}
+      className="group block h-full w-full transition transform scale-100 hover:scale-105"
       href={ROUTES['projects.single'].url(lang, { slug: project.slug })}
     >
       <Card className="flex h-32">

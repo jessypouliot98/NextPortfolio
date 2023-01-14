@@ -107,66 +107,66 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
       <div className="m-auto flex text-base w-[8.5in] h-[11in]">
 
         <aside className="w-full px-4 py-4 text-white bg-blue-600" style={{ width: '2.8in' }}>
-          <section id={'presentation'} className={asideSectionStyle}>
+          <section id="presentation" className={asideSectionStyle}>
             <div className="overflow-hidden rounded-3xl shadow-lg aspect-square">
               <img className="object-cover" src="/assets/cv/avatar.jpg" alt="avatar" />
             </div>
           </section>
 
-          <section id={'contact'} className={asideSectionStyle}>
+          <section id="contact" className={asideSectionStyle}>
             <h2 className={asideTitleStyle}>Contact</h2>
             <ContentfulDisplay className={clsx(styles.richText, styles.richTextContact)} document={page.contact} />
           </section>
 
-          <section id={'education'} className={asideSectionStyle}>
+          <section id="education" className={asideSectionStyle}>
             <h2 className={asideTitleStyle}>Education</h2>
             <ContentfulDisplay className={clsx(styles.richText, styles.richTextEducation)} document={page.education} />
           </section>
 
-          <section id={'skills'} className={asideSectionStyle}>
+          <section id="skills" className={asideSectionStyle}>
             <h2 className={asideTitleStyle}>Skills</h2>
-            <ul className={'flex flex-wrap -m-1'}>
+            <ul className="flex flex-wrap -m-1">
               {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
-                <li key={skill.slug} className={'flex w-full max-w-[50%] p-1'}>
-                  <div className={'flex flex-center mr-1'}>
-                    <SkillIcon skill={skill.slug} size={'1.2em'} />
+                <li key={skill.slug} className="flex w-full max-w-[50%] p-1">
+                  <div className="flex flex-center mr-1">
+                    <SkillIcon skill={skill.slug} size="1.2em" />
                   </div>
-                  <div className={'font-bold text-sm truncate'}>{skill.name}</div>
+                  <div className="font-bold text-sm truncate">{skill.name}</div>
                 </li>
               ))}
             </ul>
           </section>
         </aside>
 
-        <main className={'h-full px-4 py-4 flex-1'} >
-          <section id={'intro'} className={'mb-5'}>
-            <hgroup className={'mb-6'}>
-              <h1 className={'font-bold text-4xl leading-none text-blue-600 mb-3'}>{page.title}</h1>
-              <h2 className={'font-normal text-lg leading-none text-gray-600'}>{page.subtitle}</h2>
+        <main className="h-full px-4 py-4 flex-1" >
+          <section id="intro" className="mb-5">
+            <hgroup className="mb-6">
+              <h1 className="font-bold text-4xl leading-none text-blue-600 mb-3">{page.title}</h1>
+              <h2 className="font-normal text-lg leading-none text-gray-600">{page.subtitle}</h2>
             </hgroup>
             <ContentfulDisplay className={styles.richText} document={page.intro} />
           </section>
 
-          <section id={'jobs'} className={mainSectionStyle}>
+          <section id="jobs" className={mainSectionStyle}>
             <h2 className={mainTitleStyle}>{t('page:cv.workExperiences')}</h2>
             <div>
               {page.jobs.map((job) => {
                 return (
-                  <div key={job.slug} className={'mb-5'}>
+                  <div key={job.slug} className="mb-5">
                     <DateRange
                       startDate={job.startDate}
                       endDate={job.endDate}
-                      className={'text-gray-600 dark:text-gray-400 text-xs leading-tight'}
+                      className="text-gray-600 dark:text-gray-400 text-xs leading-tight"
                     />
-                    <h3 className={'font-bold text-blue-700 text-xl leading-tight'}>
+                    <h3 className="font-bold text-blue-700 text-xl leading-tight">
                       {t('page:curriculum.jobAtCompany', {
                         job: job.title,
                         companyName: job.companyName,
                       })}
                     </h3>
-                    <ul className={'flex -mx-1'}>
+                    <ul className="flex -mx-1">
                       {job.skills.map((skill) => (
-                        <li key={skill.slug} className={'p-1'}>
+                        <li key={skill.slug} className="p-1">
                           <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
                         </li>
                       ))}

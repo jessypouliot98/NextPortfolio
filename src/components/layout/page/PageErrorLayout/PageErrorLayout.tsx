@@ -14,7 +14,7 @@ export const PageErrorLayout: React.FC<PageErrorLayoutProps> = ({ children, stat
   return (
     <>
       <Head>
-        <title key={'title'}>{status}</title>
+        <title key="title">{status}</title>
       </Head>
       <main className={clsx(
         'relative min-h-screen overflow-x-hidden p-5',

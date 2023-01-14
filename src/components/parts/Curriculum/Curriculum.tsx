@@ -32,7 +32,7 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
         transition={{ duration: 0.3 }}
       >
         <div className="card card-default">
-          <div className={'flex flex-col md:flex-row'}>
+          <div className="flex flex-col md:flex-row">
             <ul className={clsx(
               'py-5 min-w-[200px]',
               'bg-gray-200 dark:bg-gray-900',
@@ -54,7 +54,7 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                 );
               })}
             </ul>
-            <ul className={'flex-1 card-body'}>
+            <ul className="flex-1 card-body">
               {jobs.map((job) => {
                 const isActive = job.slug === activeJob;
 
@@ -63,13 +63,13 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                     key={job.slug}
                     className={clsx(isActive ? 'block' : 'hidden')}
                   >
-                    <div className={'mb-2'}>
+                    <div className="mb-2">
                       <h3 className={clsx(
                         'text-2xl',
                         'text-gray-900 dark:text-gray-100',
                       )}>
                         <Trans
-                          i18nKey={'page:curriculum.jobAtCompanyLinked'}
+                          i18nKey="page:curriculum.jobAtCompanyLinked"
                           values={{
                             job: job.title,
                             companyName: job.companyName,
@@ -77,7 +77,7 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                           components={{
                             Link: (
                               <Anchor
-                                className={'font-bold link link-primary'}
+                                className="font-bold link link-primary"
                                 href={job.companyLink}
                                 target="_blank"
                               />
@@ -88,26 +88,26 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                       <DateRange
                         startDate={job.startDate}
                         endDate={job.endDate}
-                        className={'text-sm text-gray-600 dark:text-gray-400'}
+                        className="text-sm text-gray-600 dark:text-gray-400"
                       />
                     </div>
-                    <ul className={'flex mb-2'}>
+                    <ul className="flex mb-2">
                       {job.skills.map((skill) => (
-                        <li key={skill.slug} className={'p-1'}>
+                        <li key={skill.slug} className="p-1">
                           <SkillIcon
-                            className={'dark:!text-gray-100'}
+                            className="dark:!text-gray-100"
                             title={skill.name}
                             skill={skill.slug}
                             color={skill.color}
-                            size={'1.3em'}
+                            size="1.3em"
                           />
                         </li>
                       ))}
                     </ul>
                     <ContentfulDisplay className={styles.richText} document={job.content} />
-                    <div className={'flex flex-row-reverse'}>
+                    <div className="flex flex-row-reverse">
                       <Link
-                        className={'link link-primary'}
+                        className="link link-primary"
                         href={ROUTES['projects'].url(lang, {}, { filter: job.companySlug })}
                       >
                         {t('page:projects.seeAllCompanyProjects', {

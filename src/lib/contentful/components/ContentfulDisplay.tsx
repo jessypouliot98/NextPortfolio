@@ -14,7 +14,7 @@ const options: Options = {
   renderNode: {
     [INLINES.HYPERLINK]: (node, children) => {
       return (
-        <Anchor href={node.data.uri} target={'_blank'}>
+        <Anchor href={node.data.uri} target="_blank">
           {children}
         </Anchor>
       );

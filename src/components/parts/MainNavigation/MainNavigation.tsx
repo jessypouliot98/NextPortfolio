@@ -10,10 +10,10 @@ export type MainNavigationProps = {
 export const MainNavigation: React.FC<MainNavigationProps> = ({ navHeightClass }) => {
   return (
     <>
-      <div className={'hidden md:block'}>
+      <div className="hidden md:block">
         <DesktopMainNavigation navHeightClass={navHeightClass} />
       </div>
-      <div className={'block md:hidden'}>
+      <div className="block md:hidden">
         <MobileMainNavigation navHeightClass={navHeightClass} />
       </div>
     </>

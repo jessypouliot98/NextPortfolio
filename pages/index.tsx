@@ -72,15 +72,15 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
       </Section>
 
       <Section>
-        <SectionTitle className={'relative z-20'}>{page.featuredProjectsTitle}</SectionTitle>
-        <StylishBox className={'mb-2'} effects={[
+        <SectionTitle className="relative z-20">{page.featuredProjectsTitle}</SectionTitle>
+        <StylishBox className="mb-2" effects={[
           { top: -10, right: '20%', blur: true,  },
           { bottom: -10, left: '-10%', blur: true },
         ]}>
           <ProjectList projects={page.featuredProjects}/>
         </StylishBox>
-        <div className={'flex flex-row justify-end'}>
-          <Link className={'link link-primary'} href={ROUTES['projects'].url(lang)}>
+        <div className="flex flex-row justify-end">
+          <Link className="link link-primary" href={ROUTES['projects'].url(lang)}>
             {t('page:projects.seeAllProjects')}
           </Link>
         </div>
@@ -101,18 +101,18 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
         <SectionTitle>{page.skillSetTitle}</SectionTitle>
         <Card className="card-body">
           <AnimatePresence initial={true}>
-            <div className={'-m-4 flex flex-wrap'}>
+            <div className="-m-4 flex flex-wrap">
               {page.skills.filter((skill) => skill.isMajorSkill).map((skill, i, { length }) => {
                 const transition = { delay: (2 * (i / length)), duration: 0.3 };
                 return (
-                  <div key={skill.slug} className={'flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl'}>
+                  <div key={skill.slug} className="flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl">
                     <motion.div
-                      className={'mr-1'}
+                      className="mr-1"
                       initial={{ opacity: 0, translateX: -10 }}
                       animate={{ opacity: 1, translateX: 0 }}
                       transition={transition}
                     >
-                      <SkillIcon color={skill.color} skill={skill.slug} size={'1.5em'} />
+                      <SkillIcon color={skill.color} skill={skill.slug} size="1.5em" />
                     </motion.div>
                     <motion.span
                       initial={{ opacity: 0 }}

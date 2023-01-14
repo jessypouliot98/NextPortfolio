@@ -69,7 +69,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
             )}
           >
             <Image
-              className={'w-full h-full object-contain'}
+              className="w-full h-full object-contain"
               src={getContentfulImageSrc(project.thumbnail)}
               alt={getContentfulImageAlt(project.thumbnail)}
               title={project.thumbnail.title}
@@ -77,7 +77,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
             />
           </div>
         )}
-        <StylishBox className={'mb-2'} effects={[
+        <StylishBox className="mb-2" effects={[
           { top: -10, left: -10, blur: true },
           { bottom: -100, right: 50, blur: true },
         ]}>
@@ -86,8 +86,8 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
               <Card className="mb-4 xl:mb-0 xl:ml-4 xl:min-w-[200px] card-body">
                 <ul className="flex flex-wrap xl:flex-col">
                   {project.skills.map((skill) => (
-                    <li key={skill.slug} className={'text-md flex items-center p-2 xl:p-1 w-[50%] sm:w-auto'}>
-                      <SkillIcon className={'inline mr-2'} skill={skill.slug} color={skill.color} size="1.3em" />
+                    <li key={skill.slug} className="text-md flex items-center p-2 xl:p-1 w-[50%] sm:w-auto">
+                      <SkillIcon className="inline mr-2" skill={skill.slug} color={skill.color} size="1.3em" />
                       <span>{skill.name}</span>
                     </li>
                   ))}
@@ -121,7 +121,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
                       target="_blank"
                     >
                       <span>{t('page:projects.link.viewProject')}</span>
-                      <FaLaptopCode className={'ml-2'} />
+                      <FaLaptopCode className="ml-2" />
                     </Anchor>
                   </div>
                 )}
@@ -133,7 +133,7 @@ const ProjectSinglePage: NextPage<ProjectSinglePageProps> = ({ title, project })
                       target="_blank"
                     >
                       <span>{t('page:projects.link.viewDetails')}</span>
-                      <FaExternalLinkAlt className={'ml-2'} />
+                      <FaExternalLinkAlt className="ml-2" />
                     </Anchor>
                   </div>
                 )}

@@ -49,7 +49,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ page }) => {
           { top: 300, right: -20 },
         ]}>
           <Card>
-            <div className={'card-body flex flex-wrap -m-4'}>
+            <div className="card-body flex flex-wrap -m-4">
               <AnimatePresence initial={true}>
                 {blogPosts.map((blogPost, i , { length }) => (
                   <motion.div

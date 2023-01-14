@@ -18,18 +18,18 @@ const Error404: NextPage<Error404Props> = () => {
 
   return (
     <PageErrorLayout status={404}>
-      <div className={'flex-center flex-col'}>
-        <div className={'flex-row'}>
-          <div className={'flex-center flex-col mb-4'}>
-            <h1 className={'inline-block text-8xl font-bold'}>{t('error:404.title')}</h1>
-            <h2 className={'inline-block'}>{t('error:404.subTitle')}</h2>
+      <div className="flex-center flex-col">
+        <div className="flex-row">
+          <div className="flex-center flex-col mb-4">
+            <h1 className="inline-block text-8xl font-bold">{t('error:404.title')}</h1>
+            <h2 className="inline-block">{t('error:404.subTitle')}</h2>
           </div>
 
-          <FlexGrid className={'w-96'} columns={2}>
-            <Button variant="gray" className={'w-full'} onClick={router.back}>
+          <FlexGrid className="w-96" columns={2}>
+            <Button variant="gray" className="w-full" onClick={router.back}>
               {t('error:404.buttons.back')}
             </Button>
-            <Button variant="primary" className={'w-full'} onClick={() => router.push(ROUTES['home'].url(lang))}>
+            <Button variant="primary" className="w-full" onClick={() => router.push(ROUTES['home'].url(lang))}>
               {t('error:404.buttons.home')}
             </Button>
           </FlexGrid>

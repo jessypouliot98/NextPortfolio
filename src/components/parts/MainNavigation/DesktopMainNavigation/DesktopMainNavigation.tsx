@@ -40,8 +40,8 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
       style={{ transform: `translateY(${positionOffset}%)` }}
     >
       <div className="w-full max-w-[1500px] m-auto">
-        <ul className={'-m-2 flex flex-1 flex-row items-center justify-end'}>
-          <li className={'flex items-center p-2 mr-auto'}>
+        <ul className="-m-2 flex flex-1 flex-row items-center justify-end">
+          <li className="flex items-center p-2 mr-auto">
             <Link
               className="btn btn-default !p-1 -m-1"
               href={homeLink.href}
@@ -52,7 +52,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
               <img src={isDark ? '/assets/logo_bw.svg' : '/assets/logo_color.svg'} className="inline-block w-10 h-10" alt="logo" />
             </Link>
           </li>
-          <li className={'p-2'}>
+          <li className="p-2">
             <Button
               id="toggle-theme"
               variant="default"
@@ -64,7 +64,7 @@ export const DesktopMainNavigation: React.FC<DesktopMainNavigationProps> = ({ cl
             </Button>
           </li>
           {links.map(({ href, title, isActive, label, locale }) => (
-            <li key={title} className={'p-2'}>
+            <li key={title} className="p-2">
               <Link
                 className={isActive ? activeLinkStyle : linkStyle}
                 href={href}

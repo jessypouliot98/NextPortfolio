@@ -19,17 +19,17 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
     {
       title: t('global:footer.github'),
       link: 'https://github.com/jessypouliot98',
-      icon: <FaGithub size={'1.5rem'} />,
+      icon: <FaGithub size="1.5rem" />,
     },
     {
       title: t('global:footer.linkedin'),
       link: 'https://www.linkedin.com/in/jessypouliot/',
-      icon: <FaLinkedinIn size={'1.5rem'} />,
+      icon: <FaLinkedinIn size="1.5rem" />,
     },
     {
       title: t('global:footer.email'),
       link: ROUTES['contact'].url(lang),
-      icon: <FaEnvelope size={'1.5rem'} />,
+      icon: <FaEnvelope size="1.5rem" />,
     }
   ];
 
@@ -58,7 +58,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = () => {
                     'btn btn-default',
                   )}
                   href={social.link}
-                  target={'_blank'}
+                  target="_blank"
                   title={social.title}
                 >
                   {social.icon}

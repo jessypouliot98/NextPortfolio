@@ -26,7 +26,7 @@ const getColumnStyle = (columns: Column) => {
 export const FlexGrid: React.FC<FlexGridProps> = ({ children: gridItems, className, columns = 2 }) => {
   return (
     <div className={className}>
-      <div className={'-m-2 flex flex-wrap'}>
+      <div className="-m-2 flex flex-wrap">
         {gridItems.map((gridItem, i) => {
           return (
             <div key={gridItem.key || i} className={clsx('p-2', getColumnStyle(columns))}>

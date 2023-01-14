@@ -6,15 +6,19 @@
   ],
   "plugins": ["simple-import-sort"],
   "rules": {
+    "semi": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "react/jsx-curly-brace-presence": ["error", {
+      "children": "never",
+      "propElementValues": "never"
+    }],
+    "@next/next/no-img-element": "off",
+    "@next/no-stylesheets-in-head-component": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-empty-function": "off",
-    "@next/next/no-img-element": "off",
-    "@next/no-stylesheets-in-head-component": "off",
-    "semi": ["error", "always"],
-    "object-curly-spacing": ["error", "always"],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {

@@ -19,7 +19,7 @@ export type MarkdownProps = {
 export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
   return (
     <ReactMarkdown
-      className={'content'}
+      className="content"
       components={{
         pre: ({ node }) => {
           const { properties = {}, children } = node.children?.[0] as any;
@@ -34,7 +34,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ markdown }) => {
         },
         a: (props) => {
           return (
-            <Anchor href={props.href} target={'_blank'}>{props.children}</Anchor>
+            <Anchor href={props.href} target="_blank">{props.children}</Anchor>
           );
         },
         img: (props) => {
