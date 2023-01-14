@@ -1,4 +1,4 @@
-ARG PORT="${PORT}"
+ARG APP_PORT="${APP_PORT}"
 
 FROM node:16.17.0-buster-slim as next-portfolio
 
@@ -9,7 +9,7 @@ RUN apt-get install -yyq libappindicator1 libasound2 libatk1.0-0 libc6 libcairo2
 RUN apt-get install -yyq gconf-service lsb-release wget
 
 # Setup app
-ARG PORT
+ARG APP_PORT
 
 RUN mkdir -p /usr/app/
 WORKDIR /usr/app
@@ -23,8 +23,7 @@ COPY . .
 RUN npx prisma generate
 RUN yarn build
 
-EXPOSE "${PORT}"
+EXPOSE ${APP_PORT}
 
 # Run app
-ENV PORT="${PORT}"
-CMD ["yarn", "start", "-p", "${PORT}"]
+CMD ["yarn", "start"]

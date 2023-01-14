@@ -12,19 +12,19 @@ datasource db {
 
 model Comment {
   id Int @id @default(autoincrement())
-  contentfulEntryId String @db.VarChar(64)
   content String
   authorName String @db.VarChar(128)
   createdAt DateTime @default(now())
   deletedAt DateTime?
-  blog Blog @relation(references: [contentfulEntryId], fields: [contentfulEntryId])
+  blogId Int
+  blog Blog @relation(references: [id], fields: [blogId], onDelete: Cascade)
 }
 
 model Blog {
   id Int @id @default(autoincrement())
   contentfulEntryId String @unique @db.VarChar(64)
   views Int
-  comments Comment[] @relation()
+  comments Comment[]
 }
 
 model Mail {

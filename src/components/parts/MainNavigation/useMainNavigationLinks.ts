@@ -34,7 +34,7 @@ export const useMainNavigationLinks = (isMobileNavigation = false) => {
       title: otherLang.toUpperCase(),
       href: getMatchingRouteUrl(otherLang, router),
       isActive: false,
-      label: i18n.t({ en: 'common:language.fr', fr: 'common:language.en' }[otherLang]),
+      label: i18n.t(({ en: 'common:language.fr', fr: 'common:language.en' } as const)[otherLang]),
       locale: otherLang,
     };
   }, [i18n, lang, router]);

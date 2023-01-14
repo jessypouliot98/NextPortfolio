@@ -14,7 +14,7 @@ export const FormField = forwardRef(<TOption extends Option = Option>(
 ) => {
   const { label, className, error, ...inputProps } = props;
   const inputIdentifier = inputProps.id || inputProps.name;
-  const { t } = useTranslation('');
+  const { t } = useTranslation();
 
   const inputClassName = clsx(
     'input',

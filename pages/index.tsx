@@ -5,7 +5,6 @@ import { useTranslation } from "next-i18next";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { ContentfulDisplay, getContentfulImageAlt, getContentfulImageSrc, getHomePage, HomePage } from "@/lib/contentful";
-import { trpc } from "@/lib/trpc/utils/trpc";
 
 import { useLang } from "@/hooks/app";
 import { ROUTES } from "@/utils/navigation/routes";
@@ -23,8 +22,6 @@ export type HomePageProps = {
 }
 
 const HomePage: NextPage<HomePageProps> = ({ page }) => {
-  const q = trpc.hello.useQuery({ text: "Hi" });
-  console.log(q.data);
   const { t } = useTranslation();
   const lang = useLang();
 

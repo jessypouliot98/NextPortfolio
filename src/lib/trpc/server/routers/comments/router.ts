@@ -9,13 +9,18 @@ export const commentRouter = router({
     authorName: z.string(),
     recaptchaToken: z.string(),
   })).mutation(async ({ ctx, input }) => {
-    const { recaptchaToken, ...data } = input;
+    const { contentfulEntryId, recaptchaToken, ...data } = input;
 
     const reCAPTCHAValidation = await validateRecaptchaToken(recaptchaToken);
     if (!reCAPTCHAValidation.success) {
       throw new Error('Invalid ReCAPTCHA token');
     }
 
-    await ctx.prisma.comment.create({ data });
+    await ctx.prisma.comment.create({
+      data: {
+        ...data,
+        blog: { connect: { contentfulEntryId } }
+      }
+    });
   })
 });

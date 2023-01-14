@@ -16,8 +16,8 @@ export const getRoute = <R extends Route = Route>(route: R) => {
 
   return {
     ...route,
-    title: (i18n: I18n, i18nProps: Record<string, string> = {}) => i18n.t(titleTranslationKey, i18nProps),
-    breadcrumbTitle: (i18n: I18n, i18nProps: Record<string, string> = {}) => {
+    title: (i18n: I18n, i18nProps: any = {}) => i18n.t(titleTranslationKey, i18nProps),
+    breadcrumbTitle: (i18n: I18n, i18nProps: any = {}) => {
       const breadcrumbTitleTranslationKey = `${namespace}:${translationKeyPath}.breadcrumbTitle`;
 
       if (i18n.exists(breadcrumbTitleTranslationKey)) {
