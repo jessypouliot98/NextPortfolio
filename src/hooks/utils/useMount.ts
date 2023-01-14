@@ -11,5 +11,6 @@ export const useMount = (callback: () => void) => {
 
     callback();
     initRef.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

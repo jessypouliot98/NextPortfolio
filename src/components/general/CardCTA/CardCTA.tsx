@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { CardCTA as CardCTAType, ContentfulDisplay, getContentfulImageSrc } from "@/lib/contentful";
 
 import { Card, StylishBox } from "@/components/general";
-import Anchor from "@/components/general/Anchor/Anchor";
 
 import styles from './CardCTA.module.css';
 

@@ -12,7 +12,6 @@ import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle, StylishBox } from "@/components/general";
-import Anchor from "@/components/general/Anchor/Anchor";
 import { CardCTA } from "@/components/general/CardCTA/CardCTA";
 import { PageDefaultLayout } from "@/components/layout";
 

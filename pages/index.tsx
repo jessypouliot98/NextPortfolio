@@ -11,7 +11,6 @@ import { ROUTES } from "@/utils/navigation/routes";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle } from "@/components/general";
-import Anchor from "@/components/general/Anchor/Anchor";
 import { StylishBox } from "@/components/general/StylishBox/StylishBox";
 import { PageDefaultLayout } from "@/components/layout";
 import { Curriculum } from "@/components/parts";

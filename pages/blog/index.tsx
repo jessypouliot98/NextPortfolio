@@ -13,7 +13,6 @@ import { NextDate } from "@/utils/NextDate";
 import { generateGetStaticProps } from "@/utils/nextjs/getStaticProps";
 
 import { Card, Section, SectionTitle, StylishBox } from "@/components/general";
-import Anchor from "@/components/general/Anchor/Anchor";
 import { PageDefaultLayout } from "@/components/layout";
 
 export type BlogPageProps = {

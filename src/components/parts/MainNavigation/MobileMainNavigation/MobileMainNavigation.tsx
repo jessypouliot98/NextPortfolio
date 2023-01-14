@@ -8,7 +8,6 @@ import { useTheme } from "@/lib/theme";
 import { ScrollDir, useDocumentScroll } from "@/hooks/document";
 
 import { Button } from "@/components/general";
-import Anchor from "@/components/general/Anchor/Anchor";
 import { useMainNavigationLinks } from "@/components/parts/MainNavigation/useMainNavigationLinks";
 
 export type MobileMainNavigationProps = {

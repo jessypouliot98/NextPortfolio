@@ -9,8 +9,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/hooks";
 import { ROUTES, ROUTES_PATH_MAP } from "@/utils/navigation/routes";
 
-import Anchor from "@/components/general/Anchor/Anchor";
-
 const SELF = '--SELF--';
 
 export type BreadcrumbsProps = {
