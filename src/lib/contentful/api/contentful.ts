@@ -53,7 +53,7 @@ const mapEntry = <R extends {} = any>(entry: any): R => {
 export const getHomePage = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry(
     'O1yWAroLh52b0wKZtWrVR',
-    getBaseQuery(lang)
+    getBaseQuery(lang, { include: 5 })
   );
 
   return mapEntry<HomePage>(entry);

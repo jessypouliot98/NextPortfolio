@@ -93,11 +93,11 @@ export const Curriculum: React.FC<CurriculumProps> = ({ jobs }) => {
                     </div>
                     <ul className="flex mb-2">
                       {job.skills.map((skill) => (
-                        <li key={skill.slug} className="p-1">
+                        <li key={skill.slug} className="p-1" title={skill.name}>
                           <SkillIcon
                             className="dark:!text-gray-100"
-                            title={skill.name}
                             skill={skill.slug}
+                            title={skill.name}
                             color={skill.color}
                             size="1.3em"
                           />

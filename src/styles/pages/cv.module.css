@@ -12,6 +12,7 @@
 }
 
 .richText a { @apply text-current; }
+.richText a:visited { @apply text-current; }
 
 .richText p { @apply text-sm; }
 

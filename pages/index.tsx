@@ -101,7 +101,7 @@ const HomePage: NextPage<HomePageProps> = ({ page }) => {
         <Card className="card-body">
           <AnimatePresence initial={true}>
             <div className="-m-4 flex flex-wrap">
-              {page.skills.filter((skill) => skill.isMajorSkill).map((skill, i, { length }) => {
+              {page.skills.map((skill, i, { length }) => {
                 const transition = { delay: (2 * (i / length)), duration: 0.3 };
                 return (
                   <div key={skill.slug} className="flex flex-center p-4 text-gray-700 dark:text-gray-300 text-lg md:text-2xl">
