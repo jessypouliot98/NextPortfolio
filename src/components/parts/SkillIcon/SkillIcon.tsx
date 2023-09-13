@@ -10,7 +10,7 @@ import {
   SiLinux,
   SiNextdotjs,
   SiNodedotjs,
-  SiPhp,
+  SiPhp, SiPostgresql,
   SiPython,
   SiReact,
   SiRedux,
@@ -44,6 +44,7 @@ const getIcon = (skill: string) => {
     case 'wordpress': return SiWordpress;
     case 'redux': return SiRedux;
     case 'python': return SiPython;
+    case 'sql': return SiPostgresql;
     default: return GiEmptyChessboard;
   }
 };

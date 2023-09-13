@@ -54,6 +54,8 @@
     "changeLanguage": "Switch to french",
     "scheduleMeeting": "Schedule a Meeting",
     "downloadPdf": "Download PDF",
-    "workExperiences": "Work experiences"
+    "workExperiences": "Work experiences",
+    "skills": "Skills",
+    "education": "Education"
   }
 }

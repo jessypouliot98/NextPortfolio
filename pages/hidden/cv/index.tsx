@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -20,6 +20,7 @@ import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 import styles from '@/styles/pages/cv.module.css';
 
 const DARK_CLASS = 'dark';
+const IS_CALENDLY_ENABLED = false;
 
 export type CVPageProps = {
   page: CVPage,
@@ -38,14 +39,20 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
 
   const { handleInitPopupWidget, stylesheet } = useCalendly('jessypouliot98/30min');
 
-  useEffect(() => {
-    const isDark = document.body.classList.contains(DARK_CLASS);
+  useLayoutEffect(() => {
+    let isDark = false;
 
-    if (isDark) {
-      document.body.classList.remove(DARK_CLASS);
-    }
+    const timeout = setTimeout(() => {
+      const isDarkMode = document.body.classList.contains(DARK_CLASS);
+
+      if (isDarkMode) {
+        isDark = true;
+        document.body.classList.remove(DARK_CLASS);
+      }
+    }, 100);
     
     return () => {
+      clearTimeout(timeout);
       if (isDark) {
         document.body.classList.add(DARK_CLASS);
       }
@@ -82,15 +89,17 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
             <FaLanguage />
             <span className="ml-2">{t('page:cv.changeLanguage')}</span>
           </Button>
-          <Button
-            className="flex-1"
-            variant="outline-primary"
-            size="lg"
-            onClick={handleInitPopupWidget}
-          >
-            <FaCalendar />
-            <span className="ml-2">{t('page:cv.scheduleMeeting')}</span>
-          </Button>
+          {IS_CALENDLY_ENABLED && (
+            <Button
+              className="flex-1"
+              variant="outline-primary"
+              size="lg"
+              onClick={handleInitPopupWidget}
+            >
+              <FaCalendar />
+              <span className="ml-2">{t('page:cv.scheduleMeeting')}</span>
+            </Button>
+          )}
           <Button
             className="flex-1"
             variant="primary"
@@ -104,41 +113,9 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
         </nav>
       </header>
 
-      <div className="m-auto flex text-base w-[8.5in] h-[11in]">
+      <div className="m-auto grid grid-cols-[1fr_auto] text-base w-[8.5in] h-[10.99in] overflow-hidden">
 
-        <aside className="w-full px-4 py-4 text-white bg-blue-600" style={{ width: '2.8in' }}>
-          <section id="presentation" className={asideSectionStyle}>
-            <div className="overflow-hidden rounded-3xl shadow-lg aspect-square">
-              <img className="object-cover" src="/assets/cv/avatar.jpg" alt="avatar" />
-            </div>
-          </section>
-
-          <section id="contact" className={asideSectionStyle}>
-            <h2 className={asideTitleStyle}>Contact</h2>
-            <ContentfulDisplay className={clsx(styles.richText, styles.richTextContact)} document={page.contact} />
-          </section>
-
-          <section id="education" className={asideSectionStyle}>
-            <h2 className={asideTitleStyle}>Education</h2>
-            <ContentfulDisplay className={clsx(styles.richText, styles.richTextEducation)} document={page.education} />
-          </section>
-
-          <section id="skills" className={asideSectionStyle}>
-            <h2 className={asideTitleStyle}>Skills</h2>
-            <ul className="flex flex-wrap -m-1">
-              {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
-                <li key={skill.slug} className="flex w-full max-w-[50%] p-1">
-                  <div className="flex flex-center mr-1">
-                    <SkillIcon skill={skill.slug} size="1.2em" />
-                  </div>
-                  <div className="font-bold text-sm truncate">{skill.name}</div>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </aside>
-
-        <main className="h-full px-4 py-4 flex-1" >
+        <main className="h-full px-5 py-5 flex-1" >
           <section id="intro" className="mb-5">
             <hgroup className="mb-6">
               <h1 className="font-bold text-4xl leading-none text-blue-600 mb-3">{page.title}</h1>
@@ -149,10 +126,10 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
 
           <section id="jobs" className={mainSectionStyle}>
             <h2 className={mainTitleStyle}>{t('page:cv.workExperiences')}</h2>
-            <div>
+            <div className="space-y-8">
               {page.jobs.map((job) => {
                 return (
-                  <div key={job.slug} className="mb-5">
+                  <div key={job.slug}>
                     <DateRange
                       startDate={job.startDate}
                       endDate={job.endDate}
@@ -164,20 +141,47 @@ const CVPage: NextPage<CVPageProps> = ({ page }) => {
                         companyName: job.companyName,
                       })}
                     </h3>
-                    <ul className="flex -mx-1">
+                    <ul className="flex gap-2 py-2">
                       {job.skills.map((skill) => (
-                        <li key={skill.slug} className="p-1">
+                        <li key={skill.slug}>
                           <SkillIcon skill={skill.slug} color={skill.color} title={skill.name} />
                         </li>
                       ))}
                     </ul>
-                    <ContentfulDisplay className={clsx(styles.richText, 'mb-2 leading-snug')} document={job.content} />
+                    <ContentfulDisplay className={styles.richText} document={job.content} />
                   </div>
                 );
               })}
             </div>
           </section>
         </main>
+
+        <aside className="w-[2.9in] px-5 py-5 text-white bg-blue-600">
+
+          <section id="contact" className={asideSectionStyle}>
+            <ContentfulDisplay className={clsx(styles.richText, styles.richTextContact)} document={page.contact} />
+          </section>
+
+          <section id="education" className={asideSectionStyle}>
+            <h2 className={asideTitleStyle}>{t("page:cv.education")}</h2>
+            <ContentfulDisplay className={clsx(styles.richText, styles.richTextEducation)} document={page.education} />
+          </section>
+
+          <section id="skills" className={asideSectionStyle}>
+            <h2 className={asideTitleStyle}>{t("page:cv.skills")}</h2>
+            <ul className="grid grid-cols-2 gap-2">
+              {page.skills.filter((skill) => skill.isMajorSkill).map((skill) => (
+                <li key={skill.slug} className="flex">
+                  <div className="flex flex-center mr-1">
+                    <SkillIcon skill={skill.slug} size="1.2em" />
+                  </div>
+                  <div className="font-bold text-sm truncate">{skill.name}</div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
+
       </div>
     </>
   );

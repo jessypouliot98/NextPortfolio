@@ -62,7 +62,7 @@ export const getHomePage = async ({ lang }: BaseApiParams) => {
 export const getCVPage = async ({ lang }: BaseApiParams) => {
   const entry = await getClient().getEntry(
     '7I1lyspj1Pv4n4GqXI5HJW',
-    getBaseQuery(lang)
+    getBaseQuery(lang, { include: 5 })
   );
 
   return mapEntry<CVPage>(entry);
