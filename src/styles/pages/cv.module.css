@@ -21,7 +21,7 @@
 { @apply space-y-0.5; }
 
 .richTextContact a { @apply !text-white; }
-.richTextContact p { @apply !text-p; }
+.richTextContact p { @apply !font-normal !text-base; }
 .richTextContact ul { @apply !space-y-2; }
 
 .richTextEducation h2 { @apply !text-sm font-bold; }
