@@ -9,9 +9,11 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "yarn lint --fix",
+    "prisma": "npx prisma",
     "prepare": "husky install",
     "postbuild": "next-sitemap",
-    "test": "jest"
+    "test": "jest",
+    "vercel-build": "yarn prisma generate && yarn prisma migrate deploy && yarn build"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
