@@ -27,8 +27,3 @@ My Next.js portfolio app
 ## Running locally
 1. `yarn install`
 2. `yarn dev`
-
-## Deploying manually
-1. SSH into the server
-2. go into the project directory on the remote server
-3. run the deploy command `make deploy` or `make deploy-latest` (to pull latest code before deploying)
