@@ -10,7 +10,8 @@
     "object-curly-spacing": ["error", "always"],
     "react/jsx-curly-brace-presence": ["error", {
       "children": "never",
-      "propElementValues": "never"
+      "propElementValues": "always",
+      "props": "never"
     }],
     "@next/next/no-img-element": "off",
     "@next/no-stylesheets-in-head-component": "off",
