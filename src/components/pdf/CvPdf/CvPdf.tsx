@@ -115,6 +115,7 @@ export function CvPdf(page: CvPdfProps) {
             />
           </Pdf.View>
           <Pdf.View>
+            <Pdf.Text style={tw("text-xl leading-snug font-bold border-b border-white mb-4")}>Skills</Pdf.Text>
             <Pdf.View style={tw("flex-row flex-wrap -mx-1 -my-2")}>
               {page.skills.map((skill) => (
                 <Pdf.View
