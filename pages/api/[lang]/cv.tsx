@@ -13,6 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const pdf = await Pdf.renderToStream(<CvPdf {...page} />);
+    res.setHeader("Content-Disposition", `inline; filename="CV ${process.env.SITE_TITLE} (${lang}).pdf"`);
     pdf.pipe(res);
   } catch (err) {
     res.status(400).send((err as Error).message);
