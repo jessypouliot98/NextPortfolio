@@ -6,6 +6,7 @@ import { documentToReactComponents, Options } from "@contentful/rich-text-react-
 import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types";
 import NodeHtmlParser from "node-html-parser";
 import HTMLElement from "node-html-parser/dist/nodes/html";
+import * as path from "path";
 import { CVPage } from "@/lib/contentful";
 
 import { NextDate } from "@/utils/NextDate";
@@ -14,13 +15,19 @@ import { SkillIcon } from "@/components/parts/SkillIcon/SkillIcon";
 
 import twConfig from "../../../../tailwind.config";
 
-Pdf.Font.registerEmojiSource({
-  format: 'png',
-  url: "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/",
-});
+const fontPath = path.resolve(process.cwd(), "public/assets/fonts");
 
 // Create styles
-const tw = createTw(twConfig);
+const tw = createTw({
+  ...twConfig,
+  theme: {
+    ...twConfig.theme,
+    fontFamily: {
+      "geist-sans": "Geist",
+      "open-sans": "Open Sans",
+    }
+  }
+});
 
 export type CvPdfProps = CVPage;
 
@@ -28,7 +35,8 @@ export type CvPdfProps = CVPage;
 export function CvPdf(page: CvPdfProps) {
   return (
     <Pdf.Document>
-      <Pdf.Page size="A4" style={tw("flex-row text-base leading-snug text-neutral-900")}>
+      {/*<Pdf.Page size="A4" style={tw("flex-row text-base leading-snug text-neutral-900")}>*/}
+      <Pdf.Page size="A4" style={tw("font-open-sans flex-row text-base leading-snug text-neutral-900")}>
 
         <Pdf.View style={tw("p-4 h-full flex-1")}>
           <Pdf.View style={tw("mb-6")}>
@@ -43,9 +51,9 @@ export function CvPdf(page: CvPdfProps) {
             <Pdf.View style={tw("gap-4")}>
              {page.jobs.map((job) => (
                <Pdf.View key={job.id}>
-                 <Pdf.Text style={tw("text-sm text-neutral-500")}>{`${NextDate.getMonthYear(new Date(job.startDate ?? Date.now()))} - ${job.endDate ? NextDate.getMonthYear(new Date(job.endDate)) : "Present"}`}</Pdf.Text>
-                 <Pdf.Text style={tw("font-bold text-xl leading-none text-blue-600")}>{`${job.title} at ${job.companyName}`}</Pdf.Text>
-                 <Pdf.View style={tw("flex-row flex-wrap gap-2 mt-2")}>
+                 <Pdf.Text style={tw("text-sm text-neutral-500 leading-none")}>{`${NextDate.getMonthYear(new Date(job.startDate ?? Date.now()))} - ${job.endDate ? NextDate.getMonthYear(new Date(job.endDate)) : "Present"}`}</Pdf.Text>
+                 <Pdf.Text style={tw("font-bold text-xl leading-none text-blue-600 mb-3 mt-2")}>{`${job.title} at ${job.companyName}`}</Pdf.Text>
+                 <Pdf.View style={tw("flex-row flex-wrap gap-2 mb-3")}>
                    {job.skills.map((skill) => (
                      <SvgMapper
                        key={skill.id}
@@ -141,6 +149,59 @@ export function CvPdf(page: CvPdfProps) {
       </Pdf.Page>
     </Pdf.Document>
   );
+}
+
+export namespace CvPdf {
+  export async function init() {
+    Pdf.Font.clear();
+    Pdf.Font.reset();
+
+    Pdf.Font.register({
+      family: "Geist",
+      fonts: [
+        { src: path.resolve(fontPath, "Geist-Regular.woff2"), fontWeight: "normal" },
+        { src: path.resolve(fontPath, "Geist-Regular.woff2"), fontWeight: "normal", fontStyle: "italic" },
+        { src: path.resolve(fontPath, "Geist-Bold.woff2"), fontWeight: "bold" },
+        { src: path.resolve(fontPath, "Geist-Bold.woff2"), fontWeight: "bold", fontStyle: "italic" },
+      ]
+    });
+
+    Pdf.Font.register({
+      family: "Open Sans",
+      fonts: [
+        { src: path.resolve(fontPath, "OpenSans-Regular.ttf"), fontWeight: "normal" },
+        { src: path.resolve(fontPath, "OpenSans-Italic.ttf"), fontWeight: "normal", fontStyle: "italic" },
+        { src: path.resolve(fontPath, "OpenSans-Bold.ttf"), fontWeight: "bold" },
+        { src: path.resolve(fontPath, "OpenSans-BoldItalic.ttf"), fontWeight: "bold", fontStyle: "italic" },
+      ]
+    });
+
+    // Pdf.Font.register({
+    //   family: 'Geist',
+    //   src: 'https://fonts.gstatic.com/s/rochester/v6/bnj8tmQBiOkdji_G_yvypg.ttf'
+    // });
+
+    Pdf.Font.registerEmojiSource({
+      format: 'png',
+      url: "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/",
+    });
+
+    const registeredFonts = Object.values(Pdf.Font.getRegisteredFonts());
+
+    await Promise.all(
+      registeredFonts.map(async (registeredFont) => {
+        await Promise.all(
+          registeredFont.sources.map(async (source) => {
+            return Pdf.Font.load(source);
+          })
+        );
+      })
+    );
+
+    Object.values(Pdf.Font.getRegisteredFonts()).forEach((font) => {
+      console.log(font.sources);
+    });
+  }
 }
 
 const SvgMapper = (
