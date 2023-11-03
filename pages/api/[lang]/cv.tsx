@@ -12,7 +12,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const page = await getCVPage({ lang });
 
   try {
-    await CvPdf.init();
     const pdf = await Pdf.renderToStream(<CvPdf {...page} />);
     pdf.pipe(res);
   } catch (err) {
