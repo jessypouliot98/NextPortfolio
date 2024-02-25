@@ -24,16 +24,6 @@ export const ROUTES = Object.freeze({
     },
     breadcrumbs: [],
   }),
-  'services': createRoute({
-    path: '/services',
-    i18n: {
-      path: {
-        en: '/services',
-        fr: '/services',
-      }
-    },
-    breadcrumbs: ['home'],
-  }),
   'projects': createRoute({
     path: '/projects',
     i18n: {
