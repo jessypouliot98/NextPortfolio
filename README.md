@@ -25,5 +25,5 @@ My Next.js portfolio app
 2. fill in the missing properties from `.env`
 
 ## Running locally
-1. `yarn install`
-2. `yarn dev`
+1. `npm i`
+2. `npm run dev`
