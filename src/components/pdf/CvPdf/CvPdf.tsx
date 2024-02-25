@@ -1,5 +1,5 @@
 import React from 'react';
-import Pdf from '@react-pdf/renderer';
+import Pdf, { SVGProps, ViewProps } from '@react-pdf/renderer';
 import { renderToString } from "react-dom/server";
 import { createTw } from "react-pdf-tailwind";
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
@@ -168,7 +168,7 @@ export function CvPdf(page: CvPdfProps) {
 
 const SvgMapper = (
   { style, svg, currentColor, height, width }: {
-    style?: Pdf.SVGProps["style"];
+    style?: SVGProps["style"];
     svg: React.ReactElement;
     currentColor: string;
     height: number;
@@ -238,7 +238,7 @@ const SvgMapper = (
 };
 
 type PdfContentfulDisplayProps = {
-  style?: Pdf.ViewProps["style"];
+  style?: ViewProps["style"];
   document: Document;
   options?: Options;
 }

@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { GetStaticPropsResult, PreviewData } from "next/types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { TypeOptions } from "i18next";
 import { ParsedUrlQuery } from "querystring";
 
 import { getValidLang } from "@/utils/locale";
@@ -26,7 +27,7 @@ type CustomGetStaticProps<
 ) => Promise<GetStaticPropsResult<P>> | GetStaticPropsResult<P>
 
 type CustomGetStaticPropsParams = {
-  i18nNamespaces: string[];
+  i18nNamespaces: Array<keyof TypeOptions['resources']>;
 }
 
 export const generateGetStaticProps = <

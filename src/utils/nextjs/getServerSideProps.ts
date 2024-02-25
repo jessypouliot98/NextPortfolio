@@ -5,11 +5,12 @@ import {
 } from "next";
 import { PreviewData } from "next/types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { TypeOptions } from 'i18next';
 import { ParsedUrlQuery } from "querystring";
 
 import { getValidLang } from "@/utils/locale";
 
-import { AppLanguage } from "../../types";
+import { AppLanguage } from "@/types";
 
 type CustomGetServerSidePropsContext<
   Q extends ParsedUrlQuery | undefined = undefined,
@@ -30,7 +31,7 @@ type CustomGetServerSideProps<
 ) => Promise<GetServerSidePropsResult<P>> | GetServerSidePropsResult<P>
 
 type CustomGetServerSidePropsParams = {
-  i18nNamespaces: string[];
+  i18nNamespaces: Array<keyof TypeOptions['resources']>;
 }
 
 export const generateGetServerSideProps = <
