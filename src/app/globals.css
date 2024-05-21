@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply focus-visible:outline-none ring-0 ring-orange-400 focus-visible:ring-4;
+}
+
+html {
+  @apply
+    [--root-header-height:73px]
+    [--scroll-padding:theme(spacing.8)]
+    scroll-pt-[calc(var(--root-header-height)+var(--scroll-padding))];
+}
+
+@layer utilities {
+
+  .no-focus-ring {
+    @apply focus-visible:ring-0;
+  }
+
+}
+
+@media (prefers-reduced-motion) {
+  * {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

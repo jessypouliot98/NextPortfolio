@@ -1,0 +1,132 @@
+/*
+https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors
+https://mar.codes/apple-colors
+*/
+:root {
+  --mac-desktop-app-opacity: 1;
+  --apple-system-red-light: rgba(255,59,48,var(--mac-desktop-app-opacity));
+  --apple-system-red-dark: rgba(255,69,58,var(--mac-desktop-app-opacity));
+  --apple-system-red: var(--apple-system-red-light);
+  --apple-system-orange-light: rgba(255,149,0,var(--mac-desktop-app-opacity));
+  --apple-system-orange-dark: rgba(255,159,10,var(--mac-desktop-app-opacity));
+  --apple-system-orange: var(--apple-system-orange-light);
+  --apple-system-yellow-light: rgba(255,204,0,var(--mac-desktop-app-opacity));
+  --apple-system-yellow-dark: rgba(255,214,10,var(--mac-desktop-app-opacity));
+  --apple-system-yellow: var(--apple-system-yellow-light);
+  --apple-system-green-light: rgba(40,205,65,var(--mac-desktop-app-opacity));
+  --apple-system-green-dark: rgba(50,215,75,var(--mac-desktop-app-opacity));
+  --apple-system-green: var(--apple-system-green-light);
+  --apple-system-gray-light: rgba(142,142,147,var(--mac-desktop-app-opacity));
+  --apple-system-gray-dark: rgba(152,152,157,var(--mac-desktop-app-opacity));
+  --apple-system-gray: var(--apple-system-gray-light);
+  --apple-window-background-light: #ECECEC;
+  --apple-window-background-dark: #323232;
+  --apple-window-background: var(--apple-window-background-light);
+  --apple-under-page-background-light: #969696;
+  --apple-under-page-background-dark: #282828;
+  --apple-under-page-background: var(--apple-under-page-background-light);
+  --apple-text-light: #000000;
+  --apple-text-dark: #FFFFFF;
+  --apple-text: var(--apple-text-light);
+  --mac-desktop-rounded-full: 9999px;
+  --mac-desktop-rounded-md: 10px;
+  --mac-desktop-backdrop-blur: blur(20px);
+  --mac-desktop-shadow-none: 0px 0px 0px 0px rgba(0,0,0,0);
+  --mac-desktop-shadow-md: 0px 0px 1rem 0px rgba(0,0,0,0.3);
+  --mac-desktop-shadow-lg: 0px 0px 2rem 0px rgba(0,0,0,0.3);
+  --mac-desktop-topbar-height-base: 28px;
+  --mac-desktop-topbar-height-lg: 52px;
+  --mac-desktop-sidebar-width: 185px;
+  --mac-desktop-action-spacing: 8px;
+  --mac-desktop-action-size: 12px;
+}
+
+.dark {
+  --apple-system-red: var(--apple-system-red-dark);
+  --apple-system-orange: var(--apple-system-orange-dark);
+  --apple-system-yellow: var(--apple-system-yellow-dark);
+  --apple-system-green: var(--apple-system-green-dark);
+  --apple-system-gray: var(--apple-system-gray-dark);
+  --apple-window-background: var(--apple-window-background-dark);
+  --apple-under-page-background: var(--apple-under-page-background-dark);
+  --apple-text: var(--apple-text-dark);
+}
+
+/* Text Colors */
+.desktop-app-text-window { color: var(--apple-text); }
+
+/* Background Colors */
+.desktop-app-bg-window { background-color: var(--apple-window-background); }
+
+/* Window border */
+.desktop-app-rounded {
+  --border-radius: var(--mac-desktop-rounded-md);
+  --border-radius-tr: 0px;
+  --border-radius-br: 0px;
+  --border-radius-bl: 0px;
+  --border-radius-tl: 0px;
+  border-radius: var(--border-radius-tl) var(--border-radius-tr) var(--border-radius-br) var(--border-radius-bl);
+}
+.desktop-app-rounded-tr { --border-radius-tr: var(--border-radius); }
+.desktop-app-rounded-br { --border-radius-br: var(--border-radius); }
+.desktop-app-rounded-bl { --border-radius-bl: var(--border-radius); }
+.desktop-app-rounded-tl { --border-radius-tl: var(--border-radius); }
+.desktop-app-rounded-t {
+  --border-radius-tl: var(--border-radius);
+  --border-radius-tr: var(--border-radius);
+}
+.desktop-app-rounded-r {
+  --border-radius-tr: var(--border-radius);
+  --border-radius-br: var(--border-radius);
+}
+.desktop-app-rounded-b {
+  --border-radius-br: var(--border-radius);
+  --border-radius-bl: var(--border-radius);
+}
+.desktop-app-rounded-l {
+  --border-radius-bl: var(--border-radius);
+  --border-radius-tl: var(--border-radius);
+}
+.desktop-app-rounded-all {
+  --border-radius-tr: var(--border-radius);
+  --border-radius-br: var(--border-radius);
+  --border-radius-bl: var(--border-radius);
+  --border-radius-tl: var(--border-radius);
+}
+
+/* Focus Shadow */
+.desktop-app-focus-shadow {
+  --shadow: var(--mac-desktop-shadow-none);
+  box-shadow: var(--shadow);
+}
+[data-desktop-app-focus="true"].desktop-app-focus-shadow,
+[data-desktop-app-focus="true"] .desktop-app-focus-shadow {
+  --shadow: var(--mac-desktop-shadow-lg);
+}
+
+/* Sizes */
+.desktop-app-topbar-h {
+  min-height: var(--mac-desktop-topbar-height-base);
+}
+.desktop-app-topbar-h-lg {
+  height: var(--mac-desktop-topbar-height-lg);
+}
+
+/* Action Container */
+.desktop-app-action-container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--mac-desktop-action-spacing);
+}
+
+/* Action Button */
+.desktop-app-action-button {
+  --btn-bg: var(--apple-system-gray);
+  width: var(--mac-desktop-action-size);
+  height: var(--mac-desktop-action-size);
+  background-color: var(--btn-bg);
+  border-radius: var(--mac-desktop-rounded-full);
+}
+[data-desktop-app-focus="true"] [data-desktop-app-action="close"] { --btn-bg: var(--apple-system-red); }
+[data-desktop-app-focus="true"] [data-desktop-app-action="minimize"] { --btn-bg: var(--apple-system-yellow); }
+[data-desktop-app-focus="true"] [data-desktop-app-action="maximize"] { --btn-bg: var(--apple-system-green); }

@@ -1,0 +1,34 @@
+[data-desktop="root"] {
+
+}
+
+[data-desktop="root"][data-desktop-root-apps-opened="0"] {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+[data-desktop="container"] {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+[data-desktop="app"] {
+  --desktop-app-width: 600px;
+  --desktop-app-height: 400px;
+  --desktop-app-x: 0px;
+  --desktop-app-y: 0px;
+  position: absolute;
+  width: var(--desktop-app-width);
+  height: var(--desktop-app-height);
+  transform: translate(var(--desktop-app-x), var(--desktop-app-y));
+  pointer-events: auto;
+  user-select: none;
+}
+
+[data-desktop-app-visibility="minimized"] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
