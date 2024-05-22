@@ -1,0 +1,1 @@
+export type PickRequired<T extends object, U extends keyof T> = Omit<T, U> & Required<Pick<T, U>>
