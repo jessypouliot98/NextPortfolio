@@ -60,7 +60,6 @@ export function CvPdf(page: CvPdfProps) {
           <Pdf.View style={tw("mb-6")}>
             <Pdf.Text style={tw("text-4xl font-bold leading-none text-blue-600 mb-4")}>{page.title}</Pdf.Text>
             <Pdf.Text style={tw("text-xl leading-none text-neutral-600")}>{page.subtitle}</Pdf.Text>
-            <Pdf.Text style={tw("text-xl leading-none text-neutral-600")}>{i18n.language}</Pdf.Text>
           </Pdf.View>
           <Pdf.View style={tw("mb-6")}>
             <PdfContentfulDisplay document={page.intro} />
