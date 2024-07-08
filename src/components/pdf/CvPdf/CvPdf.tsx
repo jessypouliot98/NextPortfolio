@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from "next-i18next";
 import Pdf, { SVGProps, ViewProps } from '@react-pdf/renderer';
 import { renderToString } from "react-dom/server";
 import { createTw } from "react-pdf-tailwind";
@@ -48,6 +49,8 @@ export type CvPdfProps = CVPage;
 
 // Create Document Component
 export function CvPdf(page: CvPdfProps) {
+  const { t, i18n } = useTranslation();
+
   return (
     <Pdf.Document>
       {/*<Pdf.Page size="A4" style={tw("flex-row text-base leading-snug text-neutral-900")}>*/}
@@ -57,17 +60,20 @@ export function CvPdf(page: CvPdfProps) {
           <Pdf.View style={tw("mb-6")}>
             <Pdf.Text style={tw("text-4xl font-bold leading-none text-blue-600 mb-4")}>{page.title}</Pdf.Text>
             <Pdf.Text style={tw("text-xl leading-none text-neutral-600")}>{page.subtitle}</Pdf.Text>
+            <Pdf.Text style={tw("text-xl leading-none text-neutral-600")}>{i18n.language}</Pdf.Text>
           </Pdf.View>
           <Pdf.View style={tw("mb-6")}>
             <PdfContentfulDisplay document={page.intro} />
           </Pdf.View>
           <Pdf.View>
-            <Pdf.Text style={tw("font-bold text-2xl leading-normal text-neutral-700 border-b border-neutral-200 mb-4")}>Work experiences</Pdf.Text>
+            <Pdf.Text style={tw("font-bold text-2xl leading-normal text-neutral-700 border-b border-neutral-200 mb-4")}>{t("page:cv.workExperiences")}</Pdf.Text>
             <Pdf.View style={tw("gap-4")}>
              {page.jobs.map((job) => (
                <Pdf.View key={job.id}>
-                 <Pdf.Text style={tw("text-sm text-neutral-500 leading-none")}>{`${NextDate.getMonthYear(new Date(job.startDate ?? Date.now()))} - ${job.endDate ? NextDate.getMonthYear(new Date(job.endDate)) : "Present"}`}</Pdf.Text>
-                 <Pdf.Text style={tw("font-bold text-xl leading-none text-blue-600 mt-2 mb-4")}>{`${job.title} at ${job.companyName}`}</Pdf.Text>
+                 <Pdf.Text style={tw("text-sm text-neutral-500 leading-none")}>{`${NextDate.getMonthYear(new Date(job.startDate ?? Date.now()))} - ${job.endDate ? NextDate.getMonthYear(new Date(job.endDate)) : t("common:date.present")}`}</Pdf.Text>
+                 <Pdf.Text style={tw("font-bold text-xl leading-none text-blue-600 mt-2 mb-4")}>
+                   {t("page:curriculum.jobAtCompany", { job: job.title, companyName: job.companyName })}
+                 </Pdf.Text>
                  <Pdf.View style={tw("flex-row flex-wrap gap-2")}>
                    {job.skills.map((skill) => (
                      <SvgMapper
@@ -120,7 +126,9 @@ export function CvPdf(page: CvPdfProps) {
             }}
           />
           <Pdf.View>
-            <Pdf.Text style={tw("text-xl leading-normal font-bold border-b border-white mb-4")}>Education</Pdf.Text>
+            <Pdf.Text style={tw("text-xl leading-normal font-bold border-b border-white mb-4")}>
+              {t("page:cv.education")}
+            </Pdf.Text>
             <PdfContentfulDisplay
               style={tw("text-white leading-snug")}
               document={page.education}
@@ -138,7 +146,9 @@ export function CvPdf(page: CvPdfProps) {
             />
           </Pdf.View>
           <Pdf.View>
-            <Pdf.Text style={tw("text-xl leading-normal font-bold border-b border-white mb-4")}>Skills</Pdf.Text>
+            <Pdf.Text style={tw("text-xl leading-normal font-bold border-b border-white mb-4")}>
+              {t("page:cv.skills")}
+            </Pdf.Text>
             <Pdf.View style={tw("flex-row flex-wrap -mx-1 -my-2")}>
               {page.skills.map((skill) => (
                 <Pdf.View
