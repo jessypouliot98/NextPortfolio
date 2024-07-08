@@ -1,6 +1,6 @@
-import i18next from "i18next";
 import * as DateFns from 'date-fns';
 import { enCA, frCA } from 'date-fns/locale';
+import i18next from "i18next";
 
 const getDateLocale = () => {
   const lng = i18next?.language || '';

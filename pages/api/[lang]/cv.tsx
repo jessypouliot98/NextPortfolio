@@ -9,10 +9,10 @@ import { getValidLang } from "@/utils/locale";
 
 import { CvPdf } from "@/components/pdf/CvPdf/CvPdf";
 
-import pageEn from "../../../public/locales/en/page.json";
 import commonEn from "../../../public/locales/en/common.json";
-import pageFr from "../../../public/locales/fr/page.json";
+import pageEn from "../../../public/locales/en/page.json";
 import commonFr from "../../../public/locales/fr/common.json";
+import pageFr from "../../../public/locales/fr/page.json";
 
 i18next
   .init({

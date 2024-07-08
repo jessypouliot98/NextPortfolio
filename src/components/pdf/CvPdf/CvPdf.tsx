@@ -49,7 +49,7 @@ export type CvPdfProps = CVPage;
 
 // Create Document Component
 export function CvPdf(page: CvPdfProps) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Pdf.Document>
