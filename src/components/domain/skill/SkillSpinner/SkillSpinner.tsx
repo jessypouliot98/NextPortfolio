@@ -156,7 +156,7 @@ export namespace SkillSpinner {
     const cssVars: object = {
       "--bubble-offset-x": `calc(${offsetCss} * sin(${anglePercent * 360}deg))`,
       "--bubble-offset-y": `calc(${offsetCss} * cos(${anglePercent * 360}deg))`,
-      "--bubble-rotation": `${anglePercent * 360}deg`,
+      "--bubble-rotation": `${-anglePercent * 360 + 90}deg`,
       "--bubble-size": typeof size === "number" ? `${size}px` : size,
     };
 
@@ -173,11 +173,12 @@ export namespace SkillSpinner {
           )}
           style={cssVars}
         >
-          <div className="w-full h-full bg-red-500 rounded-full object-contain">
+          <div className="relative w-full h-full rounded-full object-contain overflow-hidden">
             <Image
               className="block w-full h-full"
               src={skill.image.url}
               alt={skill.image.alt}
+              fill
             />
           </div>
         </div>

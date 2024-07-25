@@ -2,26 +2,27 @@ import { SkillSpinner } from "@/components/domain/skill/SkillSpinner/SkillSpinne
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-900">
       <SkillSpinner
         rings={3}
         classNames={{
-          "ring-nth-odd": "border-4 border-dashed border-blue-500",
-          "ring-nth-even": "border-4 border-blue-500",
+          "ring-nth-odd": "border-4 border-dashed border-orange-500/30",
+          "ring-nth-even": "border-4 border-orange-500/30",
         }}
         spinDurations={{
-          "nth-1": "80s",
-          "nth-2": "70s",
-          "nth-3": "60s",
+          "nth-1": "10s",
+          "nth-2": "10s",
+          "nth-3": "10s",
         }}
         sizes={{
           ringCircle: {
             "nth-1": "36rem",
             "nth-2": "24rem",
-            "nth-3": "12rem",
+            "nth-3": "10rem",
           },
           ringBubble: {
-            default: "6rem",
+            default: "4rem",
+            "nth-1": "6rem",
           },
         }}
         skills={[
@@ -29,7 +30,7 @@ export default function Home() {
             name: "TypeScript",
             slug: "typescript",
             image: {
-              url: "",
+              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
               alt: "ts",
             }
           },
@@ -37,7 +38,7 @@ export default function Home() {
             name: "Javascript",
             slug: "javascript",
             image: {
-              url: "",
+              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
               alt: "javascript",
             }
           },
@@ -45,7 +46,7 @@ export default function Home() {
             name: "Tailwind CSS",
             slug: "tailwindcss",
             image: {
-              url: "",
+              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
               alt: "tailwindcss",
             }
           },
@@ -53,7 +54,7 @@ export default function Home() {
             name: "React",
             slug: "reactjs",
             image: {
-              url: "",
+              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
               alt: "react",
             }
           },
@@ -61,7 +62,7 @@ export default function Home() {
             name: "React Native",
             slug: "react-native",
             image: {
-              url: "",
+              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
               alt: "react-native",
             }
           }
