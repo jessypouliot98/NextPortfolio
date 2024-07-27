@@ -8,13 +8,13 @@ export async function HeroPresentation() {
   return (
     <div className="flex items-center h-full mx-auto max-w-screen-xl">
       <div>
-        <h1 className="font-medium text-6xl text-blue-300">
+        <h1 className="font-medium text-6xl text-blue-900 dark:text-blue-300">
           Jessy Pouliot
         </h1>
-        <h2 className="font-bold text-6xl text-blue-400 mt-2">
-          <TextGradient className="bg-gradient-to-br from-blue-600 to-blue-400">TypeScript Web Developer</TextGradient>
+        <h2 className="font-bold text-6xl mt-2">
+          <TextGradient className="bg-gradient-to-br from-blue-400 dark:from-blue-600 to-blue-600 dark:to-blue-400">TypeScript Web Developer</TextGradient>
         </h2>
-        <h3 className="italic text-sm text-blue-200 text-right mt-2">
+        <h3 className="italic text-sm text-gray-700 dark:text-blue-200 text-right mt-2">
           and aspiring General purpose Developer
         </h3>
         <menu className="flex items-center gap-4 mt-2 text-2xl">
@@ -29,11 +29,11 @@ export async function HeroPresentation() {
                   className={clsx(
                     "grid place-items-center rounded-lg size-12 border-2",
                     "transition-colors duration-300",
-                    "bg-transparent text-gray-50 border-gray-50",
-                    "hover:text-gray-900",
+                    "bg-transparent text-gray-700 dark:text-gray-50 border-gray-700 dark:border-gray-50",
+                    "hover:text-gray-50 dark:hover:text-gray-900",
                     social.fields.highlightColor
-                      ? "hover:bg-[var(--highlight-color)] hover:border-[var(--highlight-color)]"
-                      : "hover:bg-blue-500 hover:border-blue-500",
+                      ? "hover:!bg-[var(--highlight-color)] hover:!border-[var(--highlight-color)]"
+                      : "hover:!bg-blue-500 hover:!border-blue-500",
                   )}
                   style={cssVars}
                   title={social.fields.title}
