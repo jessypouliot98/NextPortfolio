@@ -47,6 +47,19 @@ export type EntrySkillCircle = Entry<{
   rings: EntryRing[];
 }>
 
+export type EntrySocial = Entry<{
+  title: string;
+  slug: string;
+  icon: string;
+  highlightColor?: string;
+  href: string;
+}>
+
+export type EntryHeroSocials = Entry<{
+  title: string;
+  socials: EntrySocial[];
+}>
+
 export async function getHeroSkillCircle() {
   const entry = await getCms().getEntry(
     '5vOJmStm2QB4yc9Iqx6KTs',
@@ -54,4 +67,13 @@ export async function getHeroSkillCircle() {
   );
 
   return entry as EntrySkillCircle;
+}
+
+export async function getHeroSocials() {
+  const entry = await getCms().getEntry(
+    '53ewG5xgg3VToGcFaqbjT6',
+    { locale: "en-CA" },
+  );
+
+  return entry as EntryHeroSocials;
 }

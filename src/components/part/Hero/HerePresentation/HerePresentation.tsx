@@ -1,8 +1,10 @@
-import { GrGithub, GrLinkedin, GrMail } from "react-icons/gr";
+import * as GrIcon from "react-icons/gr";
 import clsx from "clsx";
 import { TextGradient } from "@/components/common/TextGradient/TextGradient";
+import { getHeroSocials } from "@/modules/cms/queries";
 
-export function HeroPresentation() {
+export async function HeroPresentation() {
+  const heroSocials = await getHeroSocials();
   return (
     <div className="flex items-center h-full mx-auto max-w-screen-xl">
       <div>
@@ -16,21 +18,32 @@ export function HeroPresentation() {
           and aspiring General purpose Developer
         </h3>
         <menu className="flex items-center gap-4 mt-2 text-2xl">
-          {[GrLinkedin, GrGithub, GrMail].map((Icon) => (
-            <li key={Icon.name}>
-              <a
-                className={clsx(
-                  "grid place-items-center rounded-lg size-12 border-2",
-                  "transition-colors duration-300",
-                  "bg-transparent text-gray-50 border-gray-50",
-                  "hover:bg-blue-500 hover:text-gray-900 hover:border-blue-500",
-                )}
-                href="#"
-              >
-                <Icon/>
-              </a>
-            </li>
-          ))}
+          {heroSocials.fields.socials.map((social) => {
+            const Icon = social.fields.icon in GrIcon ? GrIcon[social.fields.icon as keyof typeof GrIcon] : GrIcon.GrCircleQuestion;
+            const cssVars: object = {
+              "--highlight-color": social.fields.highlightColor
+            }
+            return (
+              <li key={social.fields.slug}>
+                <a
+                  className={clsx(
+                    "grid place-items-center rounded-lg size-12 border-2",
+                    "transition-colors duration-300",
+                    "bg-transparent text-gray-50 border-gray-50",
+                    "hover:text-gray-900",
+                    social.fields.highlightColor
+                      ? "hover:bg-[var(--highlight-color)] hover:border-[var(--highlight-color)]"
+                      : "hover:bg-blue-500 hover:border-blue-500",
+                  )}
+                  style={cssVars}
+                  title={social.fields.title}
+                  href={social.fields.href}
+                >
+                  <Icon/>
+                </a>
+              </li>
+            )
+          })}
         </menu>
       </div>
     </div>
