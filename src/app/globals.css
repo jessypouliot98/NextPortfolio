@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply focus-visible:outline-none ring-0 ring-orange-400 focus-visible:ring-4;
+}
