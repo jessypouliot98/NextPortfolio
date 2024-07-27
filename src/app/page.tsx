@@ -1,73 +1,59 @@
 import { SkillSpinner } from "@/components/domain/skill/SkillSpinner/SkillSpinner";
+import { getHeroSkillCircle } from "@/modules/cms/queries";
 
-export default function Home() {
+export default async function Home() {
+  const entryHeroSkillCircle = await getHeroSkillCircle();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-900">
-      <SkillSpinner
-        rings={3}
-        classNames={{
-          "ring-nth-odd": "border-4 border-dashed border-orange-500/30",
-          "ring-nth-even": "border-4 border-orange-500/30",
-        }}
-        spinDurations={{
-          "nth-1": "10s",
-          "nth-2": "10s",
-          "nth-3": "10s",
-        }}
-        sizes={{
-          ringCircle: {
-            "nth-1": "36rem",
-            "nth-2": "24rem",
-            "nth-3": "10rem",
-          },
-          ringBubble: {
-            default: "4rem",
-            "nth-1": "6rem",
-          },
-        }}
-        skills={[
-          {
-            name: "TypeScript",
-            slug: "typescript",
-            image: {
-              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
-              alt: "ts",
+    <main className="min-h-screen bg-gray-900">
+      <div className="w-full flex justify-center items-center h-screen max-h-screen overflow-x-hidden">
+        <SkillSpinner className="size-[80vh]">
+          {entryHeroSkillCircle.fields.rings.map((ring) => {
+            const conf = ring.fields.configuration;
+
+            let sizeRing: string;
+            if (typeof conf?.size?.ring === "string") {
+              sizeRing = conf.size.ring;
+            } else if (typeof conf?.size.ring === "number") {
+              sizeRing = `${conf.size.ring}px`;
+            } else {
+              sizeRing = "500px";
             }
-          },
-          {
-            name: "Javascript",
-            slug: "javascript",
-            image: {
-              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
-              alt: "javascript",
+
+            let sizeBubble: string;
+            if (typeof conf?.size?.bubble === "string") {
+              sizeBubble = conf.size?.bubble;
+            } else if (typeof conf?.size.bubble === "number") {
+              sizeBubble = `${conf.size.bubble}px`;
+            } else {
+              sizeBubble = "4rem";
             }
-          },
-          {
-            name: "Tailwind CSS",
-            slug: "tailwindcss",
-            image: {
-              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
-              alt: "tailwindcss",
+
+            let spinDuration: string;
+            if (typeof conf?.spinDuration === "string") {
+              spinDuration = conf.spinDuration;
+            } else if (typeof conf?.spinDuration === "number") {
+              spinDuration = `${conf.spinDuration}ms`;
+            } else {
+              spinDuration = "30s";
             }
-          },
-          {
-            name: "React",
-            slug: "reactjs",
-            image: {
-              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
-              alt: "react",
-            }
-          },
-          {
-            name: "React Native",
-            slug: "react-native",
-            image: {
-              url: "https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg",
-              alt: "react-native",
-            }
-          }
-        ]}
-      />
+
+            return (
+              <SkillSpinner.Ring
+                key={ring.fields.title}
+                classNames={{
+                  ring: "border-2 border-dashed border-orange-500/50"
+                }}
+                size={{
+                  ring: sizeRing,
+                  bubble: sizeBubble,
+                }}
+                spinDuration={spinDuration}
+                skills={ring.fields.skills}
+              />
+            )
+          })}
+        </SkillSpinner>
+      </div>
     </main>
   );
 }
