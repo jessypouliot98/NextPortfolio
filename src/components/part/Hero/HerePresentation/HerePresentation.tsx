@@ -6,9 +6,9 @@ import { getHeroSocials } from "@/modules/cms/queries";
 export async function HeroPresentation() {
   const heroSocials = await getHeroSocials();
   return (
-    <div className="flex items-center h-full mx-auto max-w-screen-xl">
+    <div className="flex items-center h-full mx-auto max-w-screen-xl px-8">
       <div>
-        <h1 className="font-medium text-6xl text-blue-900 dark:text-blue-300">
+        <h1 className="font-medium text-6xl text-blue-900 dark:text-blue-100">
           Jessy Pouliot
         </h1>
         <h2 className="font-bold text-6xl mt-2">
@@ -17,7 +17,17 @@ export async function HeroPresentation() {
         <h3 className="italic text-sm text-gray-700 dark:text-blue-200 text-right mt-2">
           and aspiring General purpose Developer
         </h3>
-        <menu className="flex items-center gap-4 mt-2 text-2xl">
+        <div className="text-lg text-blue-100 space-y-2 max-w-2xl mt-8">
+          <p>
+            I’m passionate about writing code that pushes boundaries.
+            Whether it’s crafting high-performance websites and apps or building impressive user experiences that make you go <TextGradient className="transition-all ease-in-out scale-100 hover:scale-125 hover:rotate-12 font-bold bg-gradient-to-r from-orange-500 to-blue-500">WOW!</TextGradient>
+          </p>
+          <p>
+            I’m constantly eager to learn and dive into new technologies, frameworks, and programming languages. Right now, I’m exploring <a className="underline"
+            href="https://github.com/jessypouliot98?tab=repositories&q=&type=&language=zig&sort=" target="_blank">Zig</a> and sharpening my SQL skills.
+          </p>
+        </div>
+        <menu className="flex items-center gap-4 mt-8 text-2xl">
           {heroSocials.fields.socials.map((social) => {
             const Icon = social.fields.icon in GrIcon ? GrIcon[social.fields.icon as keyof typeof GrIcon] : GrIcon.GrCircleQuestion;
             const cssVars: object = {

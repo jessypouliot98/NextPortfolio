@@ -6,6 +6,18 @@ export type Entry<T> = {
   fields: T;
 }
 
+export type Entries<T extends Entry<unknown>> = {
+  sys: object;
+  total: number;
+  skip: number;
+  limit: number;
+  items: T[];
+  includes: {
+    Entry: object[];
+    Asset: object[];
+  }
+}
+
 export type FileDetails = {
   size: number;
   image: {
@@ -60,6 +72,19 @@ export type EntryHeroSocials = Entry<{
   socials: EntrySocial[];
 }>
 
+export type EntryProject = Entry<{
+  name: string;
+  slug: string;
+  keywords: string[];
+  thumbnail: EntryMedia;
+  skills: object[];
+  link?: string;
+  linkPresentation?: string;
+  linkProject?: string;
+  relatedJob: object;
+  content: object;
+}>
+
 export async function getHeroSkillCircle() {
   const entry = await getCms().getEntry(
     '5vOJmStm2QB4yc9Iqx6KTs',
@@ -76,4 +101,14 @@ export async function getHeroSocials() {
   );
 
   return entry as EntryHeroSocials;
+}
+
+export async function getProjects() {
+  const entries = await getCms().getEntries({
+    locale: "en-CA",
+    content_type: "project",
+    order: ["-sys.createdAt"],
+  });
+
+  return entries as Entries<EntryProject>;
 }
