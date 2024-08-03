@@ -109,9 +109,9 @@ export function Projects({ projects }: ProjectsProps) {
           </li>
         ))}
       </ul>
-      <div className="max-w-screen-xl mx-auto px-8 text-xl flex justify-between items-center">
-        <button onClick={handleFocusPrev}>previous</button>
-        <button onClick={handleFocusNext}>next</button>
+      <div className="max-w-screen-xl mx-auto px-8 text-xl font-bold flex justify-between items-center">
+        <button onClick={handleFocusPrev}>Previous</button>
+        <button onClick={handleFocusNext}>Next</button>
       </div>
     </section>
   )
