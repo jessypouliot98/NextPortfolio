@@ -23,8 +23,8 @@ export default function RootLayout({
         )}>
           <RootHeader />
           {children}
-          <footer className="max-w-screen-xl p-8 text-blue-100">
-            &copy; ${new Date().getFullYear()} Jessy Pouliot, All rights reserved.
+          <footer className="max-w-screen-xl mx-auto p-8">
+            &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
           </footer>
         </div>
       </ThemeProvider>

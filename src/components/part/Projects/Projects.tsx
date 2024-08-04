@@ -18,10 +18,20 @@ export function Projects({ projects }: ProjectsProps) {
     const list = listRef.current;
     if (!list) return;
     const paddingLeft = parseFloat(getComputedStyle(list).paddingLeft);
-    index = Math.max(0, Math.min(index, list.children.length));
+    const scrollRight = list.scrollWidth - list.scrollLeft - list.getBoundingClientRect().width;
+    if (index < 0) {
+      index = list.children.length - 1;
+    } else if (
+      index >= list.children.length - 1 ||
+      (index > focusedIndexRef.current && scrollRight <= 0)
+    ) {
+      index = 0;
+    }
+
     const target = list.children[index];
+    const nextScrollLeft = target.getBoundingClientRect().left - paddingLeft;
     list.scrollBy({
-      left: target.getBoundingClientRect().left - paddingLeft,
+      left: nextScrollLeft,
       behavior: "smooth",
     })
   }
@@ -39,11 +49,17 @@ export function Projects({ projects }: ProjectsProps) {
     if (!list) return;
 
     const abortController = new AbortController();
+
+    let paddingLeft = parseFloat(getComputedStyle(list).paddingLeft);
+    window.addEventListener("resize", () => {
+      paddingLeft = parseFloat(getComputedStyle(list).paddingLeft);
+    }, { signal: abortController.signal })
+
     list.addEventListener("scroll", () => {
       const elements = Array.from(list.children);
       const best = elements.reduce((best, element, index) => {
-        const { left } = element.getBoundingClientRect();
-        const distance = Math.abs(left);
+        const { right, left } = element.getBoundingClientRect();
+        const distance = Math.abs(left + ((right - left) / 2) - paddingLeft);
         if (distance >= best.distance) {
           return best;
         }
@@ -52,15 +68,17 @@ export function Projects({ projects }: ProjectsProps) {
           distance,
         }
       }, { index: 0, distance: Infinity });
+
       focusedIndexRef.current = best.index;
     }, { signal: abortController.signal })
+
     return () => abortController.abort();
   })
 
   return (
     <section className="">
       <div className="max-w-screen-xl px-8 mx-auto">
-        <h2 className="text-4xl font-bold text-blue-100">
+        <h2 className="text-4xl font-bold">
           Projects
         </h2>
       </div>
@@ -68,14 +86,14 @@ export function Projects({ projects }: ProjectsProps) {
         ref={listRef}
         className={clsx(
           "overflow-x-auto flex gap-12",
-          "scroll-px-[calc((100vw-theme(maxWidth.screen-xl))/2)]",
+          "snap-x scroll-px-[calc((100vw-theme(maxWidth.screen-xl))/2)]",
           // max-w-screen-xl mx-auto as padding to allow for overflow style scrolling effect
           "py-4 px-[calc(((100vw-theme(maxWidth.screen-xl))/2)+theme(spacing.8))]",
         )}
       >
         {projects.items.map((item) => (
           <li key={item.fields.slug} className="group snap-start">
-            <div className="rounded-xl bg-blue-600 p-6 w-[24rem] transition group-even:rotate-3 group-odd:-rotate-3 group-hover:rotate-0 scale-90 group-hover:scale-100">
+            <div className="rounded-xl bg-blue-600 p-6 text-white w-[24rem] transition group-even:rotate-3 group-odd:-rotate-3 group-hover:rotate-0 scale-90 group-hover:scale-100">
               <div className="relative rounded-lg bg-blue-900 aspect-video">
                 <Image
                   className="w-full h-full block object-contain"

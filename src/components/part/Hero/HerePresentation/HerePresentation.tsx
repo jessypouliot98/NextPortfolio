@@ -25,7 +25,7 @@ export async function HeroPresentation() {
         <h3 className="italic text-sm text-gray-700 dark:text-blue-200 text-left lg:text-right mt-2">
           and aspiring General purpose Developer
         </h3>
-        <div className="text-lg text-blue-100 space-y-2 max-w-2xl mt-8">
+        <div className="text-lg space-y-2 max-w-2xl mt-8">
           <p>
             I’m passionate about writing code that pushes boundaries.
             Whether it’s crafting high-performance websites and apps or building impressive user experiences that make you go <TextGradient className="transition-all ease-in-out scale-100 hover:scale-125 hover:rotate-12 font-bold bg-gradient-to-br from-orange-400 dark:from-orange-600 to-orange-600 dark:to-orange-400">WOW!</TextGradient>
