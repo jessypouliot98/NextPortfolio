@@ -1,9 +1,11 @@
 "use client";
 
+import * as Tooltip from '@radix-ui/react-tooltip';
 import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import { EntryDock } from "@/modules/cms/queries";
 import Image from "next/image";
+import { MacDockApp } from "@/components/part/MacDock/MacDockApp";
 
 const maxScaleDistance = 150;
 const maxTranslateDistance = 400;
@@ -19,7 +21,7 @@ function translateElement(ev: MouseEvent, element: HTMLElement) {
   const distance = ev.clientX - centerX;
   const dir = Math.sign(distance);
   const clampedDistance = Math.min(Math.abs(distance), maxTranslateDistance);
-  const translate = magnitudeEasing(clampedDistance / maxTranslateDistance) * 5;
+  const translate = magnitudeEasing(clampedDistance / maxTranslateDistance) * 3;
   element.style.setProperty("--magnitude-translate", `${dir * translate}px`);
 }
 
@@ -63,39 +65,23 @@ export function MacDock({ dock }: MacDockProps) {
   }, []);
 
   return (
-    <div className="fixed bottom-0 inset-x-0">
-      <div className="group/zone relative -mb-[100%] transition-all delay-300 hover:-translate-y-full grid place-items-center">
-        <div className="flex items-end p-2 justify-center absolute inset-x-0 bottom-full h-6">
-          <div className="rounded-full bg-white/20 backdrop-blur h-1 w-16"/>
+    <Tooltip.Provider delayDuration={0}>
+      <div className="fixed bottom-0 inset-x-0">
+        <div
+          className="group/zone relative -mb-[100%] transition-all duration-300 ease-in-out delay-150 hover:-translate-y-full grid place-items-center">
+          <div className="flex items-end p-2 justify-center absolute inset-x-0 bottom-full h-8">
+            <div className="group-hover/zone:delay-300 transition-colors bg-white/30 group-hover/zone:bg-transparent rounded-full backdrop-blur-3xl h-1 w-16"/>
+          </div>
+          <ul ref={listRef}
+              className="group/dock flex items-center rounded-2xl bg-neutral-700/50 border border-neutral-600 backdrop-blur shadow px-3 py-3 gap-3 mb-1">
+            {dock.fields.apps.map((app) => (
+              <li key={app.fields.slug}>
+                <MacDockApp app={app} />
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul ref={listRef} className="group/dock flex items-center rounded-2xl bg-neutral-700/50 border border-neutral-600 backdrop-blur shadow px-3 py-3 gap-3 mb-1">
-          {dock.fields.apps.map((app) => (
-            <li key={app.fields.slug}>
-              <div
-                className={clsx(
-                  "grid place-items-center",
-                  "group-hover/dock:translate-x-[var(--magnitude-translate)]"
-                )}
-                data-dock="item"
-              >
-                <div
-                  className={clsx(
-                    "relative size-10 grid place-items-center",
-                    "group-hover/dock:scale-[var(--magnitude-scale,1)] origin-bottom"
-                  )}
-                  data-dock="app"
-                >
-                  <Image
-                    src={`https:${app.fields.appIcon.fields.file.url}`}
-                    alt={app.fields.appIcon.fields.description}
-                    fill
-                  />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
-    </div>
+    </Tooltip.Provider>
   )
 }
