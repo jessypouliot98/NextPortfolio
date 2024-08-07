@@ -4,15 +4,18 @@ import "./globals.css";
 import clsx from "clsx";
 import { RootHeader } from "@/components/part/RootHeader/RootHeader";
 import { ThemeProvider } from "@/modules/theme/ThemeProvider";
+import { MacDock } from "@/components/part/MacDock/MacDock";
+import { getMacDock } from "@/modules/cms/queries";
 
 export const metadata: Metadata = {
   title: "Jessy Pouliot",
   description: "Full-Stack developer who specializes in Typescript. From front-end to back-end, I'll build mobile apps, websites with React, React-Native, Next.js and more.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
+  const macDock = await getMacDock();
   return (
     <html lang="en">
       <body className="font-sans overflow-x-hidden">
@@ -26,6 +29,7 @@ export default function RootLayout({
           <footer className="max-w-screen-xl mx-auto p-8">
             &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
           </footer>
+          <MacDock dock={macDock} />
         </div>
       </ThemeProvider>
       </body>

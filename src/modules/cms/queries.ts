@@ -85,6 +85,18 @@ export type EntryProject = Entry<{
   content: object;
 }>
 
+export type EntryDockApp = Entry<{
+  title: string;
+  slug: string;
+  appIcon: EntryMedia;
+}>
+
+export type EntryDock = Entry<{
+  title: string;
+  slug: string;
+  apps: EntryDockApp[];
+}>
+
 export async function getHeroSkillCircle() {
   const entry = await getCms().getEntry(
     '5vOJmStm2QB4yc9Iqx6KTs',
@@ -111,4 +123,13 @@ export async function getProjects() {
   });
 
   return entries as Entries<EntryProject>;
+}
+
+export async function getMacDock() {
+  const entry = await getCms().getEntry(
+    "6Tf1ZvtW3Kci9dDCd5l8Fw",
+    { locale: "en-CA" },
+  );
+
+  return entry as EntryDock;
 }
