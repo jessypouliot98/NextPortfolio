@@ -96,7 +96,7 @@ export function Projects({ projects }: ProjectsProps) {
             <div className="rounded-xl bg-blue-600 p-6 text-white w-[24rem] transition group-even:rotate-3 group-odd:-rotate-3 group-hover:rotate-0 scale-90 group-hover:scale-100">
               <div className="relative rounded-lg bg-blue-900 aspect-video">
                 <Image
-                  className="w-full h-full block object-contain"
+                  className="transition w-full h-full block object-contain filter sepia-[50%] group-hover:sepia-0"
                   src={`https:${item.fields.thumbnail.fields.file.url}`}
                   alt={item.fields.thumbnail.fields.description}
                   fill

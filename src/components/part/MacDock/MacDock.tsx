@@ -70,10 +70,10 @@ export function MacDock({ dock }: MacDockProps) {
         <div
           className="group/zone relative -mb-[100%] transition-all duration-300 ease-in-out delay-150 hover:-translate-y-full grid place-items-center">
           <div className="flex items-end p-2 justify-center absolute inset-x-0 bottom-full h-8">
-            <div className="group-hover/zone:delay-300 transition-colors bg-white/30 group-hover/zone:bg-transparent rounded-full backdrop-blur-3xl h-1 w-16"/>
+            <div className="group-hover/zone:delay-300 transition-colors bg-black/30 dark:bg-white/30 group-hover/zone:bg-transparent rounded-full backdrop-blur-3xl h-1 w-16"/>
           </div>
           <ul ref={listRef}
-              className="group/dock flex items-center rounded-2xl bg-neutral-700/50 border border-neutral-600 backdrop-blur shadow px-3 py-3 gap-3 mb-1">
+              className="group/dock flex items-center rounded-2xl bg-neutral-300/50 dark:bg-neutral-700/50 border border-neutral-200 dark:border-neutral-600 backdrop-blur shadow px-3 py-1.5 gap-2 mb-1">
             {dock.fields.apps.map((app) => (
               <li key={app.fields.slug}>
                 <MacDockApp app={app} />

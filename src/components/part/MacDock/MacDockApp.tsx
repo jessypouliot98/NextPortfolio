@@ -20,7 +20,7 @@ export function MacDockApp({ app }: MacDockAppProps) {
       >
         <div
           className={clsx(
-            "relative size-10 grid place-items-center",
+            "relative size-12 grid place-items-center",
             "transition group-hover/dock:duration-0",
             "group-hover/dock:scale-[var(--magnitude-scale,1)] origin-bottom"
           )}
@@ -36,11 +36,11 @@ export function MacDockApp({ app }: MacDockAppProps) {
       <Tooltip.Portal>
         <Tooltip.Content sideOffset={16} side="top" align="center">
           <div
-            className="rounded-lg text-xs px-3 py-1.5 bg-neutral-700/70 backdrop-blur text-white font-medium"
+            className="rounded-lg text-xs px-3 py-1.5 bg-neutral-300/70 dark:bg-neutral-700/70 backdrop-blur text-neutral-900 dark:text-white"
           >
             {app.fields.title}
           </div>
-          <Tooltip.Arrow className="fill-neutral-700/70"/>
+          <Tooltip.Arrow className="fill-neutral-300/70 dark:fill-neutral-700/70"/>
         </Tooltip.Content>
       </Tooltip.Portal>
     </Tooltip.Root>
