@@ -1,7 +1,7 @@
-import * as GrIcon from "react-icons/gr";
 import clsx from "clsx";
 import { TextGradient } from "@/components/common/TextGradient/TextGradient";
 import { getHeroSocials } from "@/modules/cms/queries";
+import { Icon } from "@/components/common/Icon/Icon";
 
 export async function HeroPresentation() {
   const heroSocials = await getHeroSocials();
@@ -37,7 +37,7 @@ export async function HeroPresentation() {
         </div>
         <menu className="flex items-center gap-4 mt-8 text-2xl">
           {heroSocials.fields.socials.map((social) => {
-            const Icon = social.fields.icon in GrIcon ? GrIcon[social.fields.icon as keyof typeof GrIcon] : GrIcon.GrCircleQuestion;
+            const IconComp = social.fields.icon in Icon ? Icon[social.fields.icon as keyof typeof Icon] : Icon.GrCircleQuestion;
             const cssVars: object = {
               "--highlight-color": social.fields.highlightColor
             }
@@ -57,7 +57,7 @@ export async function HeroPresentation() {
                   title={social.fields.title}
                   href={social.fields.href}
                 >
-                  <Icon/>
+                  <IconComp/>
                 </a>
               </li>
             )

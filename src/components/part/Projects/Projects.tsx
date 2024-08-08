@@ -5,6 +5,8 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { serialize } from "@/modules/cms/utils/serialize";
+import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
+import { Icon } from "@/components/common/Icon/Icon";
 
 export type ProjectsProps = {
   projects: serialize.Serialized<Entries<EntryProject>>;
@@ -127,9 +129,15 @@ export function Projects({ projects }: ProjectsProps) {
           </li>
         ))}
       </ul>
-      <div className="max-w-screen-xl mx-auto px-8 text-xl font-bold flex justify-between items-center">
-        <button onClick={handleFocusPrev}>Previous</button>
-        <button onClick={handleFocusNext}>Next</button>
+      <div className="max-w-screen-xl mx-auto px-8 text-lg flex justify-between items-center">
+        <button className="transition-colors flex items-center gap-1 text-gray-800 hover:text-blue-700 dark:text-white dark:hover:text-blue-200" onClick={handleFocusPrev}>
+          <Icon.FaCaretLeft/>
+          <div>Previous</div>
+        </button>
+        <button className="transition-colors flex items-center gap-1 text-gray-800 hover:text-blue-700 dark:text-white dark:hover:text-blue-200" onClick={handleFocusNext}>
+          <div>Next</div>
+          <Icon.FaCaretRight/>
+        </button>
       </div>
     </section>
   )
