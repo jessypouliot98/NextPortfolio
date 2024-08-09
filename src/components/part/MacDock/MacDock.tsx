@@ -2,9 +2,7 @@
 
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { useEffect, useRef } from "react";
-import clsx from "clsx";
 import { EntryDock } from "@/modules/cms/queries";
-import Image from "next/image";
 import { MacDockApp } from "@/components/part/MacDock/MacDockApp";
 
 const maxScaleDistance = 150;
@@ -36,9 +34,10 @@ function scaleElement(ev: MouseEvent, element: HTMLElement) {
 
 export type MacDockProps = {
   dock: EntryDock;
+  onRequestOpen?: (appId: string) => void;
 }
 
-export function MacDock({ dock }: MacDockProps) {
+export function MacDock({ dock, onRequestOpen }: MacDockProps) {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -76,7 +75,10 @@ export function MacDock({ dock }: MacDockProps) {
               className="group/dock flex items-center rounded-2xl bg-neutral-300/50 dark:bg-neutral-700/50 border border-neutral-200 dark:border-neutral-600 backdrop-blur shadow px-3 py-1.5 gap-2 mb-1">
             {dock.fields.apps.map((app) => (
               <li key={app.fields.slug}>
-                <MacDockApp app={app} />
+                <MacDockApp
+                  app={app}
+                  onRequestOpen={onRequestOpen}
+                />
               </li>
             ))}
           </ul>

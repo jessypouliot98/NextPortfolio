@@ -6,9 +6,10 @@ import { ComponentPropsWithoutRef } from "react";
 
 export type MacDockAppProps = {
   app: EntryDockApp;
+  onRequestOpen?: (appId: string) => void;
 }
 
-export function MacDockApp({ app }: MacDockAppProps) {
+export function MacDockApp({ app, onRequestOpen }: MacDockAppProps) {
   let trigger: { Comp: "a", props: ComponentPropsWithoutRef<"a"> } | { Comp: "button", props: ComponentPropsWithoutRef<"button"> }
   if (typeof app.fields.options?.href === "string") {
     trigger = {
@@ -19,10 +20,11 @@ export function MacDockApp({ app }: MacDockAppProps) {
       }
     }
   } else {
+    const appId: string | undefined = typeof app.fields.options?.open === "string" ? app.fields.options?.open : undefined;
     trigger = {
       Comp: "button",
       props: {
-        onClick: () => console.log(app.fields.options),
+        onClick: onRequestOpen && appId ? () => onRequestOpen(appId) : undefined,
       }
     }
   }

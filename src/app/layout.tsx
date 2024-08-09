@@ -6,6 +6,7 @@ import { RootHeader } from "@/components/part/RootHeader/RootHeader";
 import { ThemeProvider } from "@/modules/theme/ThemeProvider";
 import { MacDock } from "@/components/part/MacDock/MacDock";
 import { getMacDock } from "@/modules/cms/queries";
+import { DesktopAppManager } from "@/components/part/DesktopAppManager/DesktopAppManager";
 
 export const metadata: Metadata = {
   title: "Jessy Pouliot",
@@ -29,8 +30,8 @@ export default async function RootLayout({
           <footer className="max-w-screen-xl mx-auto p-8">
             &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
           </footer>
-          <MacDock dock={macDock} />
         </div>
+        <DesktopAppManager dock={macDock} />
       </ThemeProvider>
       </body>
     </html>

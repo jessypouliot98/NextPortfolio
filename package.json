@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@xterm/xterm": "^5.5.0",
     "clsx": "^2.1.1",
     "contentful": "^10.12.15",
     "next": "14.2.5",
