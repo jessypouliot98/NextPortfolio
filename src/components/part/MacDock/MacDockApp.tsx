@@ -39,20 +39,21 @@ export function MacDockApp({ app, onRequestOpen }: MacDockAppProps) {
         )}
         data-dock="item"
       >
-        <trigger.Comp
-          {...trigger.props as any}
-          className={clsx(
-            "relative size-12 grid place-items-center",
-            "transition group-hover/dock:duration-0",
-            "group-hover/dock:scale-[var(--magnitude-scale,1)] origin-bottom"
-          )}
-          data-dock="app"
-        >
-          <Image
-            src={`https:${app.fields.appIcon.fields.file.url}`}
-            alt={app.fields.appIcon.fields.description}
-            fill
-          />
+        <trigger.Comp {...trigger.props as any}>
+          <div
+            className={clsx(
+              "relative size-12 grid place-items-center",
+              "transition group-hover/dock:duration-0",
+              "group-hover/dock:scale-[var(--magnitude-scale,1)] origin-bottom"
+            )}
+            data-dock="app"
+          >
+            <Image
+              src={`https:${app.fields.appIcon.fields.file.url}`}
+              alt={app.fields.appIcon.fields.description}
+              fill
+            />
+          </div>
         </trigger.Comp>
       </Tooltip.Trigger>
       <Tooltip.Portal>

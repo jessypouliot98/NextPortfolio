@@ -42,6 +42,7 @@ export function MacDock({ dock, onRequestOpen }: MacDockProps) {
 
   useEffect(() => {
     const list = listRef.current;
+    console.log({list});
     if (!list) return;
 
     const abortController = new AbortController();
@@ -51,11 +52,11 @@ export function MacDock({ dock, onRequestOpen }: MacDockProps) {
       for (const element of elements) {
         const itemEl = element.querySelector("[data-dock='item']");
         const appEl = element.querySelector("[data-dock='app']");
-        if (appEl) {
+        if (appEl && itemEl) {
           scaleElement(ev, appEl as HTMLElement);
-        }
-        if (itemEl) {
           translateElement(ev, itemEl as HTMLElement);
+        } else {
+          console.warn("Missing element", { appEl, itemEl });
         }
       }
     }, { signal: abortController.signal });
