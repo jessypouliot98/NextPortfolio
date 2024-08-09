@@ -46,6 +46,14 @@ export type EntrySkill = Entry<{
   slug: string;
   image: EntryMedia;
   extra: any;
+}>;
+
+export type EntryLink = Entry<{
+  title: string;
+  slug: string;
+  label: string;
+  link: string;
+  icon?: string;
 }>
 
 export type EntryRing = Entry<{
@@ -73,22 +81,20 @@ export type EntryHeroSocials = Entry<{
 }>
 
 export type EntryProject = Entry<{
-  name: string;
+  title: string;
   slug: string;
-  keywords: string[];
   thumbnail: EntryMedia;
-  skills: object[];
-  link?: string;
-  linkPresentation?: string;
-  linkProject?: string;
-  relatedJob: object;
-  content: object;
+  description: string;
+  technologies: EntrySkill[];
+  tags: string[];
+  links?: EntryLink[];
 }>
 
 export type EntryDockApp = Entry<{
   title: string;
   slug: string;
   appIcon: EntryMedia;
+  options: any;
 }>
 
 export type EntryDock = Entry<{
@@ -118,7 +124,7 @@ export async function getHeroSocials() {
 export async function getProjects() {
   const entries = await getCms().getEntries({
     locale: "en-CA",
-    content_type: "project",
+    content_type: "field-project",
     order: ["-sys.createdAt"],
   });
 

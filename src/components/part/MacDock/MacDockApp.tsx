@@ -2,15 +2,34 @@ import * as Tooltip from "@radix-ui/react-tooltip";
 import clsx from "clsx";
 import Image from "next/image";
 import { EntryDockApp } from "@/modules/cms/queries";
+import { ComponentPropsWithoutRef } from "react";
 
 export type MacDockAppProps = {
   app: EntryDockApp;
 }
 
 export function MacDockApp({ app }: MacDockAppProps) {
+  let trigger: { Comp: "a", props: ComponentPropsWithoutRef<"a"> } | { Comp: "button", props: ComponentPropsWithoutRef<"button"> }
+  if (typeof app.fields.options?.href === "string") {
+    trigger = {
+      Comp: "a",
+      props: {
+        href: app.fields.options.href,
+        target: "_blank",
+      }
+    }
+  } else {
+    trigger = {
+      Comp: "button",
+      props: {
+        onClick: () => console.log(app.fields.options),
+      }
+    }
+  }
   return (
     <Tooltip.Root>
       <Tooltip.Trigger
+        asChild
         className={clsx(
           "grid place-items-center",
           "transition group-hover/dock:duration-0",
@@ -18,7 +37,8 @@ export function MacDockApp({ app }: MacDockAppProps) {
         )}
         data-dock="item"
       >
-        <div
+        <trigger.Comp
+          {...trigger.props as any}
           className={clsx(
             "relative size-12 grid place-items-center",
             "transition group-hover/dock:duration-0",
@@ -31,7 +51,7 @@ export function MacDockApp({ app }: MacDockAppProps) {
             alt={app.fields.appIcon.fields.description}
             fill
           />
-        </div>
+        </trigger.Comp>
       </Tooltip.Trigger>
       <Tooltip.Portal>
         <Tooltip.Content sideOffset={16} side="top" align="center">

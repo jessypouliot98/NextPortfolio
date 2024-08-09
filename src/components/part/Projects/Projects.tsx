@@ -5,7 +5,6 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { serialize } from "@/modules/cms/utils/serialize";
-import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import { Icon } from "@/components/common/Icon/Icon";
 
 export type ProjectsProps = {
@@ -104,26 +103,20 @@ export function Projects({ projects }: ProjectsProps) {
                   fill
                 />
               </div>
-              <h3 className="font-bold text-2xl mt-4">{item.fields.name}</h3>
-              <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque, cum
-                delectus eligendi enim eos et, impedit inventore iusto labore nam odit pariatur quia quidem repudiandae
-                sequi soluta voluptate.</p>
-              <div className="grid gap-2">
-                {item.fields.linkPresentation && (
-                  <a href={item.fields.linkPresentation}>
-                    presentation
+              <h3 className="font-bold text-2xl mt-4">{item.fields.title}</h3>
+              <p className="mt-2">{item.fields.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {item.fields.links?.map((link) => (
+                  <a
+                    key={link.fields.slug}
+                    className="flex items-center gap-1 underline"
+                    href={link.fields.link}
+                    target="_blank"
+                  >
+                    <Icon.FaFirefoxBrowser/>
+                    <div>{link.fields.label}</div>
                   </a>
-                )}
-                {item.fields.linkProject && (
-                  <a href={item.fields.linkProject}>
-                    project
-                  </a>
-                )}
-                {item.fields.link && (
-                  <a href={item.fields.link}>
-                    link
-                  </a>
-                )}
+                ))}
               </div>
             </div>
           </li>
@@ -141,10 +134,4 @@ export function Projects({ projects }: ProjectsProps) {
       </div>
     </section>
   )
-}
-
-export namespace Projects {
-
-  export const maxWidth = 1280; // tailwind max-w-screen-xl
-
 }
