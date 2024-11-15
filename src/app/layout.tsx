@@ -4,7 +4,6 @@ import "./globals.css";
 import clsx from "clsx";
 import { RootHeader } from "@/components/part/RootHeader/RootHeader";
 import { ThemeProvider } from "@/modules/theme/ThemeProvider";
-import { NoSsr } from "@/modules/next-utils/components/NoSsr";
 import { MyDesktop } from "@/components/part/MyDesktop/MyDesktop";
 import { getFinderRootDir, getMacDock } from "@/modules/cms/queries";
 
