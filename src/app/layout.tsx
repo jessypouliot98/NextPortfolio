@@ -6,6 +6,7 @@ import { RootHeader } from "@/components/part/RootHeader/RootHeader";
 import { ThemeProvider } from "@/modules/theme/ThemeProvider";
 import { MyDesktop } from "@/components/part/MyDesktop/MyDesktop";
 import { getFinderRootDir, getMacDock } from "@/modules/cms/queries";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Jessy Pouliot",
@@ -22,6 +23,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
+      <Head>
+        <title>Jessy Pouliot - FullStack TypeScript Developer - Montreal</title>
+        <meta name="description" content="I specialize in building modern, high-performance web and mobile apps using TypeScript, Next.js, React, and React Native. With a focus on intuitive UI/UX design, I deliver scalable solutions that elevate user experiences."/>
+      </Head>
       <body className="font-sans overflow-x-hidden">
       <ThemeProvider>
         <div className={clsx(
