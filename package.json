@@ -13,9 +13,9 @@
     "@xterm/xterm": "^5.5.0",
     "clsx": "^2.1.1",
     "contentful": "^11.2.1",
-    "next": "15.0.3",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "latest",
+    "react": "rc",
+    "react-dom": "rc",
     "react-icons": "^5.2.1"
   },
   "devDependencies": {
@@ -26,6 +26,6 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "eslint": "^9",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "latest"
   }
 }
