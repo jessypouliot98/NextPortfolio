@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { entries } from "@/modules/ts-utils/object";
 
@@ -22,13 +24,14 @@ export function useRootCssVars(cssVars: Record<`--${string}`, string>) {
   }, [cssVars]);
 }
 
-export function useRect(el: Element) {
-  const [rect, setRect] = useState<DOMRect>();
+export function useBoundingClientRect(el: Element | null) {
+  const [rect, setRect] = React.useState<DOMRect | undefined>(() => el?.getBoundingClientRect());
 
   useEffect(() => {
-    setRect(el.getBoundingClientRect);
+    if (!el) return;
+    setRect(el.getBoundingClientRect());
     const observer = new ResizeObserver(() => {
-      setRect(el.getBoundingClientRect);
+      setRect(el.getBoundingClientRect());
     })
     observer.observe(el);
     return () => observer.disconnect();
