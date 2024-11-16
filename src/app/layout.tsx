@@ -27,18 +27,18 @@ export default async function RootLayout({
         <title>Jessy Pouliot - FullStack TypeScript Developer - Montreal</title>
         <meta name="description" content="I specialize in building modern, high-performance web and mobile apps using TypeScript, Next.js, React, and React Native. With a focus on intuitive UI/UX design, I deliver scalable solutions that elevate user experiences."/>
       </Head>
-      <body className="font-sans overflow-x-hidden">
+      <body className={clsx(
+        "font-sans",
+        "bg-gray-100 text-gray-900",
+        "dark:bg-gray-900 dark:text-gray-50",
+        "w-full overflow-x-hidden"
+      )}>
       <ThemeProvider>
-        <div className={clsx(
-          "bg-gray-100 text-gray-900",
-          "dark:bg-gray-900 dark:text-gray-50",
-        )}>
-          <RootHeader />
-          {children}
-          <footer className="max-w-screen-xl mx-auto p-8">
-            &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
-          </footer>
-        </div>
+        <RootHeader />
+        {children}
+        <footer className="max-w-screen-xl mx-auto p-8">
+          &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
+        </footer>
         <MyDesktop dock={macDock} finderRoot={finderRoot} />
       </ThemeProvider>
       </body>

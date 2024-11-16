@@ -8,7 +8,7 @@ export default async function Home() {
   const projects = await getProjects();
 
   return (
-    <main className="min-h-screen space-y-8">
+    <main className="min-h-screen space-y-8 max-w-[100vw] overflow-hidden">
       <Hero id="home"/>
       <Projects id="portfolio" projects={serialize(projects)} />
       <div className="[--wiggle-angle:1deg] animate-wiggle max-w-screen-xl px-8 mx-auto min-h-96 grid place-items-center">

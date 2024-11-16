@@ -30,7 +30,7 @@ export function MyDesktop({ dock, finderRoot }: MyDesktopProps) {
   return (
     <>
       <Desktop.Provider>
-        <Desktop.Root className="transition z-10 fixed inset-0 bg-black/10 backdrop-blur">
+        <Desktop.Root className="transition z-10 fixed inset-0 bg-black/10 backdrop-blur [&:not([data-desktop-root-apps-opened])]:hidden">
           {apps.map((appId) => {
             switch (appId) {
               case "Finder.app": {

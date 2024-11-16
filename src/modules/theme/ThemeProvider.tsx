@@ -10,9 +10,9 @@ export function ThemeProvider({ children }: React.PropsWithChildren) {
     const applyTheme = () => {
       const darkMode = store.getSnapshot() === "on";
       if (darkMode) {
-        document.body.classList.add("dark");
+        document.body.parentElement!.classList.add("dark");
       } else {
-        document.body.classList.remove("dark");
+        document.body.parentElement!.classList.remove("dark");
       }
     };
     applyTheme();
