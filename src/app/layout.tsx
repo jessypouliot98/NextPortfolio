@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import clsx from "clsx";
@@ -39,7 +39,9 @@ export default async function RootLayout({
         <footer className="max-w-screen-xl mx-auto p-8">
           &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
         </footer>
-        <MyDesktop dock={macDock} finderRoot={finderRoot} />
+        <Suspense>
+          <MyDesktop dock={macDock} finderRoot={finderRoot} />
+        </Suspense>
       </ThemeProvider>
       </body>
     </html>
