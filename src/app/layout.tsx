@@ -46,8 +46,8 @@ export default async function RootLayout({
             <MyDesktop dock={macDock} finderRoot={finderRoot} />
           </Suspense>
         </ThemeProvider>
-        {/*<Analytics/>*/}
-        {/*<SpeedInsights/>*/}
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
