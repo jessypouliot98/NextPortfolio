@@ -125,7 +125,7 @@ export function Projects({ projects, ...props }: ProjectsProps) {
                   <ul className="sr-only">
                     {item.fields.tags.map((tag) => <li key={tag}>{tag}</li>)}
                   </ul>
-                  <p className="mt-2">{item.fields.description}</p>
+                  <p className="mt-2 max-h-[25vh] overflow-y-auto">{item.fields.description}</p>
                   {item.fields.links && item.fields.links.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-2">
                       {item.fields.links.map((link) => {
