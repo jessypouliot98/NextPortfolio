@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/modules/theme/ThemeProvider";
 import { MyDesktop } from "@/components/part/MyDesktop/MyDesktop";
 import { getFinderRootDir, getMacDock } from "@/modules/cms/queries";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Jessy Pouliot",
@@ -34,16 +36,18 @@ export default async function RootLayout({
         "dark:bg-gray-900 dark:text-gray-50",
         "w-full overflow-x-hidden"
       )}>
-      <ThemeProvider>
-        <RootHeader />
-        {children}
-        <footer className="max-w-screen-xl mx-auto p-8">
-          &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
-        </footer>
-        <Suspense fallback={null}>
-          <MyDesktop dock={macDock} finderRoot={finderRoot} />
-        </Suspense>
-      </ThemeProvider>
+        <ThemeProvider>
+          <RootHeader />
+          {children}
+          <footer className="max-w-screen-xl mx-auto p-8">
+            &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
+          </footer>
+          <Suspense fallback={null}>
+            <MyDesktop dock={macDock} finderRoot={finderRoot} />
+          </Suspense>
+        </ThemeProvider>
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
