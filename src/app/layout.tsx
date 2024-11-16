@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
+  // Move query to behind suspence
   const [macDock, finderRoot] = await Promise.all([
     getMacDock(),
     getFinderRootDir(),
@@ -39,7 +40,7 @@ export default async function RootLayout({
         <footer className="max-w-screen-xl mx-auto p-8">
           &copy; {new Date().getFullYear()} Jessy Pouliot, All rights reserved.
         </footer>
-        <Suspense>
+        <Suspense fallback={null}>
           <MyDesktop dock={macDock} finderRoot={finderRoot} />
         </Suspense>
       </ThemeProvider>
