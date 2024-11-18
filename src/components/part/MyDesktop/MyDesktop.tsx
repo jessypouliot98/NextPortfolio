@@ -8,6 +8,7 @@ import { EntryDock, EntryFinderDirectory } from "@/modules/cms/queries";
 import React, { useState } from "react";
 import { Xterm } from "@/components/common/Xterm/Xterm";
 import { DesktopFinderApp } from "@/components/part/DesktopFinderApp/DesktopFinderApp";
+import { useMediaQuery } from "@/modules/react-utils/hooks";
 
 export type MyDesktopProps = {
   dock: EntryDock;
@@ -16,6 +17,7 @@ export type MyDesktopProps = {
 
 export function MyDesktop({ dock, finderRoot }: MyDesktopProps) {
   const [apps, setApps] = useState<string[]>([]);
+  const isTouch = useMediaQuery("(pointer: coarse)");
 
   const handleRequestOpen = (appId: string) => {
     setApps((prev) => {
@@ -25,6 +27,10 @@ export function MyDesktop({ dock, finderRoot }: MyDesktopProps) {
       }
       return next;
     });
+  }
+
+  if (isTouch) {
+    return null;
   }
 
   return (
