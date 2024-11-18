@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { entries } from "@/modules/ts-utils/object";
 
 export function useDynamicRef<T>(value: T): React.MutableRefObject<T> {
@@ -38,4 +38,25 @@ export function useBoundingClientRect(el: Element | null) {
   }, [el]);
 
   return rect;
+}
+
+export function useMediaQuery(mediaQuery: string) {
+  const matchMedia = useMemo(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    return window.matchMedia(mediaQuery);
+  }, [mediaQuery])
+
+  const [matches, setMatches] = useState(matchMedia?.matches ?? false);
+
+  useEffect(() => {
+    if (!matchMedia) return;
+    setMatches(matchMedia.matches);
+    const abortController = new AbortController();
+    matchMedia.addEventListener("change", (ev) => {
+      setMatches(ev.matches);
+    }, { signal: abortController.signal });
+    return () => abortController.abort();
+  }, [matches]);
+
+  return matches;
 }
